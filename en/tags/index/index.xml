@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>index on Hugo Zzo Theme</title>
+    <link>http://example.org/en/tags/index/</link>
+    <description>Recent content in index on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+    <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    
+        <atom:link href="http://example.org/en/tags/index/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Posts</title>
+        <link>http://example.org/en/posts/</link>
+        <pubDate>Sun, 29 Nov 2020 08:47:11 +0100</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>http://example.org/en/posts/</guid>
+        <description></description>
+        
+        <dc:creator>Hugo Authors</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>index</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
