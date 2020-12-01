@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Galleries on Hugo Zzo Theme</title>
-    <link>http://example.org/en/gallery/</link>
+    <link>https://yiyangd.github.io/en/gallery/</link>
     <description>Recent content in Galleries on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 31 Oct 2019 10:20:16 +0900</lastBuildDate>
     
-        <atom:link href="http://example.org/en/gallery/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://yiyangd.github.io/en/gallery/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,15 +24,15 @@
       
       <item>
         <title>Cartoon</title>
-        <link>http://example.org/en/gallery/cartoon/</link>
+        <link>https://yiyangd.github.io/en/gallery/cartoon/</link>
         <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
         <author>yiyangd@sfu.ca (Yiyang Dong)</author>
         <atom:modified>Thu, 31 Oct 2019 10:20:16 +0900</atom:modified>
-        <guid>http://example.org/en/gallery/cartoon/</guid>
+        <guid>https://yiyangd.github.io/en/gallery/cartoon/</guid>
         <description>Sample images from Pixabay</description>
         
         <dc:creator>Yiyang Dong</dc:creator>
-        <media:content url="http://example.orgimages/feature2/bam.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        <media:content url="https://yiyangd.github.io/images/feature2/bam.png" medium="image"><media:title type="html">featured image</media:title></media:content>
         
         
         
@@ -42,15 +42,15 @@
       
       <item>
         <title>Photo</title>
-        <link>http://example.org/en/gallery/photo/</link>
+        <link>https://yiyangd.github.io/en/gallery/photo/</link>
         <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
         <author>yiyangd@sfu.ca (Yiyang Dong)</author>
         <atom:modified>Thu, 31 Oct 2019 10:20:16 +0900</atom:modified>
-        <guid>http://example.org/en/gallery/photo/</guid>
+        <guid>https://yiyangd.github.io/en/gallery/photo/</guid>
         <description>Sample images from Pixabay</description>
         
         <dc:creator>Yiyang Dong</dc:creator>
-        <media:content url="http://example.orgimages/feature2/gallery.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        <media:content url="https://yiyangd.github.io/images/feature2/gallery.png" medium="image"><media:title type="html">featured image</media:title></media:content>
         
         
         
@@ -60,15 +60,15 @@
       
       <item>
         <title>2019 Vancouver Marathon</title>
-        <link>http://example.org/en/gallery/2019-vancouver-marathon/</link>
+        <link>https://yiyangd.github.io/en/gallery/2019-vancouver-marathon/</link>
         <pubDate>Sat, 04 May 2019 10:20:16 +0900</pubDate>
         <author>yiyangd@sfu.ca (Yiyang Dong)</author>
         <atom:modified>Sat, 04 May 2019 10:20:16 +0900</atom:modified>
-        <guid>http://example.org/en/gallery/2019-vancouver-marathon/</guid>
+        <guid>https://yiyangd.github.io/en/gallery/2019-vancouver-marathon/</guid>
         <description>Run with Rex!</description>
         
         <dc:creator>Yiyang Dong</dc:creator>
-        <media:content url="http://example.orgimages/whoami/avatar.jpg" medium="image"><media:title type="html">featured image</media:title></media:content>
+        <media:content url="https://yiyangd.github.io/images/whoami/avatar.jpg" medium="image"><media:title type="html">featured image</media:title></media:content>
         
         
         
