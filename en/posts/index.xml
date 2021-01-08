@@ -14,13 +14,31 @@
     <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
     <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 29 Nov 2020 08:47:11 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 07 Jan 2021 08:47:11 +0100</lastBuildDate>
     
         <atom:link href="https://yiyangd.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>CodeNote01-Arrays and Strings</title>
+        <link>https://yiyangd.github.io/en/posts/codenote210107/</link>
+        <pubDate>Thu, 07 Jan 2021 08:47:11 +0100</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Thu, 07 Jan 2021 08:47:11 +0100</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/codenote210107/</guid>
+        <description>Cracking the Code Interview Notes Chapter1 - Array &amp;amp; String 1. Is Unique Implement an algorithm to determine if a string has all unique characters. constraint: what if you cannot use additional data structures Cases: Input: s = &amp;quot;leetcode&amp;quot; Output: False Input: s = &amp;quot;abc&amp;quot; Output: True Solution 1 - (Set) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>My First Post</title>
