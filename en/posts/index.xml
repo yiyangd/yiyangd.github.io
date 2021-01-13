@@ -29,7 +29,7 @@
         <author>yiyangd@sfu.ca (Yiyang Dong)</author>
         <atom:modified>Tue, 12 Jan 2021 16:00:00 +0100</atom:modified>
         <guid>https://yiyangd.github.io/en/posts/networking_ch3/</guid>
-        <description>【Networking】Transport-Layer Services Intro（3.1） #techNotes/Networking 9/149 ==================== Key Words： multiplexing，demultipl</description>
+        <description>Transport-Layer Services Intro（3.1） Key Words： multiplexing，demultiplexing RDT：Reliable Data Transfer Flow Control Congestion Control 1. Transport Services and Protocols They</description>
         
         <dc:creator>Yiyang Dong</dc:creator>
         
