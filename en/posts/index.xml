@@ -14,13 +14,31 @@
     <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
     <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 10 Jan 2021 08:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 12 Jan 2021 16:00:00 +0100</lastBuildDate>
     
         <atom:link href="https://yiyangd.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>【Networking】Transport Layer</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch3/</link>
+        <pubDate>Tue, 12 Jan 2021 16:00:00 +0100</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Tue, 12 Jan 2021 16:00:00 +0100</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch3/</guid>
+        <description>【Networking】Transport-Layer Services Intro（3.1） #techNotes/Networking 9/149 ==================== Key Words： multiplexing，demultipl</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>CodeNote02-Linked List</title>
