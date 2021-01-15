@@ -1771,7 +1771,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jan 12, 2021 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;1&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;2&nbsp;min read </span>
   
   &nbsp;&middot;&nbsp; <span class="single__info" title="WRITTEN BY">✍️&nbsp;Yiyang Dong</span>
   
@@ -1803,7 +1803,11 @@ Congestion Control</p>
 <li>Relies on, enhances, network layer services</li>
 </ul>
 <h4 id="network-layer">Network Layer:</h4>
-<p>Logical Communication between Hosts</p>
+<p>Logical Communication between <strong>Hosts</strong></p>
+<ul>
+<li>[Knowledge]: the network-layer’s best-effort service means that IP makes its best effort to deliver Segments between communicating hosts</li>
+<li>but it makes NO Guarantees the data in the segments</li>
+</ul>
 <h4 id="household-analogy">Household Analogy:</h4>
 <p>12 Kids in Ann’s house sending letters to 12 kids in Bill’s house:</p>
 <ul>
@@ -1813,9 +1817,9 @@ Congestion Control</p>
 <li>transport protocol = Ann and Bill who <strong>demux</strong> to in-house siblings</li>
 <li>network-layer protocol = postal service （ 实体）</li>
 </ul>
-<h3 id="2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in <strong>end systems</strong>:</h3>
+<h3 id="2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in end systems:</h3>
 <h4 id="sender">Sender:</h4>
-<p>Breaks application messages into <strong>segments</strong>, passes to <em>network layer</em></p>
+<p>Breaks application messages into <strong>segments</strong>, passes to <strong>network layer</strong></p>
 <ul>
 <li>it is passed an application-layer message</li>
 <li>determines segment header fields values</li>
@@ -1834,7 +1838,8 @@ Congestion Control</p>
 <ul>
 <li>Reliable, in-order Delivery</li>
 <li>Congestion Control</li>
-<li></li>
+<li>Flow Control</li>
+<li>Connection Setup</li>
 </ul>
 <h4 id="udp-user-datagram-protocol">UDP: User Datagram Protocol</h4>
 <ul>
@@ -1846,15 +1851,102 @@ Congestion Control</p>
 <li>Delay Guarantees</li>
 <li>Bandwidth Guarantees</li>
 </ul>
+<h3 id="4-location-of-transport-layer-functionality">4. Location of transport-layer functionality</h3>
+<p>Transport Layer functions are implemented primarily <strong>at the hosts at the “edge”</strong> of the network</p>
+<ul>
+<li>TCP and UDP are used to communicate with network management functions that are a router or switch</li>
+<li>But regular users don’t access the transport-layer at a router or switch</li>
+<li>Network Routers and switches perform routing and switching, which are network-layer functions</li>
+<li>The Network Layer provides for host-to-host delivery service</li>
+</ul>
 <h2 id="multiplexing--demultiplexing-32">Multiplexing &amp; Demultiplexing (3.2)</h2>
-<p>page 10 - 22</p>
-<h2 id="udpconnectionless-transport-33">UDP：Connectionless Transport (3.3)</h2>
+<h2 id="multiplexing--demultiplexing-32-1">Multiplexing &amp; Demultiplexing (3.2)</h2>
+<h3 id="1-multiplexing--demultiplexing">1. Multiplexing &amp; Demultiplexing</h3>
+<h4 id="multiplexing-at-sender">Multiplexing at Sender:</h4>
+<p>Handle data from multiple Sockets, encapsulating a data chunk with header information and passing this segment to the network layer</p>
+<h4 id="demultiplexing-at-receiver">Demultiplexing at Receiver:</h4>
+<p>Receiving a transport-layer segment from the network layer, extracting the payload, and use Header Info to deliver received segments to correct socket</p>
+<p>Host receives IP datagrams</p>
+<ul>
+<li>each datagram has source &amp; destination IP address</li>
+<li>each datagram carries ONE transport-layer Segment</li>
+<li>each segment has source &amp; destination Port Number (header fields, Application data…)</li>
+</ul>
+<p>Host uses <strong>IP address &amp; Port Number</strong> to direct segment to appropriate socket</p>
+<h3 id="2-udp-connectionless-demultiplexing">2. UDP Connectionless Demultiplexing</h3>
+<h4 id="recall">Recall:</h4>
+<p>When creating socket, must specify <strong>host-local</strong> port number</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">DatagramSocket</span> <span class="n">mySocket1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">12534</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When creating datagram to send into UDP Socket, must specify</p>
+<ul>
+<li>Destination IP address</li>
+<li>Destination Port Number</li>
+</ul>
+<p>When receiving host receives UDP segment:</p>
+<ul>
+<li>checks destination port number in segment</li>
+<li>directs UDP segment to socket with that port number</li>
+</ul>
+<p>IP/UDP datagrams with SAME destination port number,</p>
+<ul>
+<li>but different source IP addresses and/or source IP port number</li>
+<li>will be directed to SAME socket at receiving host</li>
+<li>UDP demultiplexing happens solely on the basis of destination port number</li>
+</ul>
+<h3 id="3-tcp-connection-oriented-demultiplexing">3. TCP Connection-Oriented Demultiplexing</h3>
+<p>TCP Socket identified by 4-tuple:</p>
+<ul>
+<li>Source and Destination IP addresses</li>
+<li>Source and Destination port numbers</li>
+</ul>
+<p>Demux: receiver uses ALL four values (4-tuple)</p>
+<ul>
+<li>to direct segment to appropriate Socket</li>
+</ul>
+<p>Server may support many Simultaneous TCP Sockets:</p>
+<ul>
+<li>each socket identified by its own 4-tuple</li>
+<li>each socket associated with a different connecting client</li>
+<li>Destination Port Number 80 but different source:
+<ul>
+<li>are multiplexed to DIFFERENT sockets</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-summary">4. Summary</h3>
+<p>Multiplexing, Demultiplexing:</p>
+<ul>
+<li>happen at ALL Layers</li>
+<li>based on segment, datagram header field values<br />
+UDP: Demultiplexing using destination port number (only)<br />
+TCP: Demultiplexing using 4-tuple:</li>
+<li>source and destination IP addresses</li>
+<li>source and destination port numbers</li>
+</ul>
+<figure >
+  
+  
+  
+    <img data-src="/images/networking/Conless_demul.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='250px' height='250px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:250px;height:250px;"/>
+  
+
+  
+  
+</figure>
+<h2 id="33-udpconnectionless-transport">(3.3) UDP：Connectionless Transport</h2>
 <p>page 23-35</p>
 <h3 id="1udpuser-datagram-protocol">1.UDP：User Datagram Protocol</h3>
 <h3 id="2-transport-layer-actions">2. Transport Layer Actions</h3>
-<h2 id="principles-of-rdt">Principles of RDT</h2>
+<h2 id="34-principles-of-rdt">(3.4) Principles of RDT</h2>
 <p>RDT：Reliable Data Transfer</p>
-<h2 id="tcpconnection-oriented-transport35">TCP：Connection-Oriented Transport（3.5）</h2>
+<h2 id="35-tcpconnection-oriented-transport">(3.5) TCP：Connection-Oriented Transport</h2>
 
     </article>
     
@@ -2571,7 +2663,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="#household-analogy">Household Analogy:</a></li>
           </ul>
         </li>
-        <li><a href="#2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in <strong>end systems</strong>:</a>
+        <li><a href="#2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in end systems:</a>
           <ul>
             <li><a href="#sender">Sender:</a></li>
             <li><a href="#receiver">Receiver:</a></li>
@@ -2584,17 +2676,35 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="#services-not-available">Services NOT Available:</a></li>
           </ul>
         </li>
+        <li><a href="#4-location-of-transport-layer-functionality">4. Location of transport-layer functionality</a></li>
       </ul>
     </li>
     <li><a href="#multiplexing--demultiplexing-32">Multiplexing &amp; Demultiplexing (3.2)</a></li>
-    <li><a href="#udpconnectionless-transport-33">UDP：Connectionless Transport (3.3)</a>
+    <li><a href="#multiplexing--demultiplexing-32-1">Multiplexing &amp; Demultiplexing (3.2)</a>
+      <ul>
+        <li><a href="#1-multiplexing--demultiplexing">1. Multiplexing &amp; Demultiplexing</a>
+          <ul>
+            <li><a href="#multiplexing-at-sender">Multiplexing at Sender:</a></li>
+            <li><a href="#demultiplexing-at-receiver">Demultiplexing at Receiver:</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-udp-connectionless-demultiplexing">2. UDP Connectionless Demultiplexing</a>
+          <ul>
+            <li><a href="#recall">Recall:</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-tcp-connection-oriented-demultiplexing">3. TCP Connection-Oriented Demultiplexing</a></li>
+        <li><a href="#4-summary">4. Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#33-udpconnectionless-transport">(3.3) UDP：Connectionless Transport</a>
       <ul>
         <li><a href="#1udpuser-datagram-protocol">1.UDP：User Datagram Protocol</a></li>
         <li><a href="#2-transport-layer-actions">2. Transport Layer Actions</a></li>
       </ul>
     </li>
-    <li><a href="#principles-of-rdt">Principles of RDT</a></li>
-    <li><a href="#tcpconnection-oriented-transport35">TCP：Connection-Oriented Transport（3.5）</a></li>
+    <li><a href="#34-principles-of-rdt">(3.4) Principles of RDT</a></li>
+    <li><a href="#35-tcpconnection-oriented-transport">(3.5) TCP：Connection-Oriented Transport</a></li>
   </ul>
 </nav>
   </div>
