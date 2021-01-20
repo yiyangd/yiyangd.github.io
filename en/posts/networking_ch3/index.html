@@ -1326,9 +1326,9 @@
 <meta name="description" content="My Networking Notes about TCP, UDP and Transport-Layer Actions" />
 
 
-<meta name="created" content="2021-01-12T16:00:00&#43;0100">
-<meta name="modified" content="2021-01-12T16:00:00&#43;0100">
-<meta property="article:published_time" content="2021-01-12T16:00:00&#43;0100">
+<meta name="created" content="2021-01-12T00:00:00&#43;0000">
+<meta name="modified" content="2021-01-12T00:00:00&#43;0000">
+<meta property="article:published_time" content="2021-01-12T00:00:00&#43;0000">
 
 <meta name="author" content="Yiyang Dong">
 <meta property="article:author" content="https://yiyangd.github.io/en/posts/networking_ch3/@Yiyang Dong">
@@ -1376,8 +1376,8 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "headline": "【Networking】Transport Layer",
-    "datePublished": "2021-01-12T16:00:00+01:00",
-    "dateModified": "2021-01-12T16:00:00+01:00",
+    "datePublished": "2021-01-12T00:00:00Z",
+    "dateModified": "2021-01-12T00:00:00Z",
     "url" : "https://yiyangd.github.io/en/posts/networking_ch3/",
     "description": "My Networking Notes about TCP, UDP and Transport-Layer Actions",
     "author": {
@@ -1771,7 +1771,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jan 12, 2021 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;2&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;3&nbsp;min read </span>
   
   &nbsp;&middot;&nbsp; <span class="single__info" title="WRITTEN BY">✍️&nbsp;Yiyang Dong</span>
   
@@ -1789,13 +1789,13 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <h2 id="transport-layer-services-intro31">Transport-Layer Services Intro（3.1）</h2>
+      <h2 id="1-transport-layer-services-intro31">1. Transport-Layer Services Intro（3.1）</h2>
 <p>Key Words：<br />
 multiplexing，demultiplexing<br />
 RDT：Reliable Data Transfer<br />
 Flow Control<br />
 Congestion Control</p>
-<h3 id="1-transport-services-and-protocols">1. Transport Services and Protocols</h3>
+<h3 id="11-transport-services-and-protocols">1.1 Transport Services and Protocols</h3>
 <p>They provide <strong>logical communication</strong> between application processes <em>running</em> on different hosts</p>
 <h4 id="transport-layer">Transport Layer:</h4>
 <p>Logical Communication between Processes</p>
@@ -1817,7 +1817,7 @@ Congestion Control</p>
 <li>transport protocol = Ann and Bill who <strong>demux</strong> to in-house siblings</li>
 <li>network-layer protocol = postal service （ 实体）</li>
 </ul>
-<h3 id="2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in end systems:</h3>
+<h3 id="12-transport-protocols-actions-in-end-systems">1.2 Transport Protocols Actions in end systems:</h3>
 <h4 id="sender">Sender:</h4>
 <p>Breaks application messages into <strong>segments</strong>, passes to <strong>network layer</strong></p>
 <ul>
@@ -1833,7 +1833,7 @@ Congestion Control</p>
 <li>extracts application-layer message</li>
 <li><strong>demultiplexes</strong> message up to application via socket</li>
 </ul>
-<h3 id="3-two-main-internet-transport-protocols">3. Two Main Internet Transport Protocols</h3>
+<h3 id="13-two-main-internet-transport-protocols">1.3 Two Main Internet Transport Protocols</h3>
 <h4 id="tcp-transmission-control-protocol">TCP: Transmission Control Protocol</h4>
 <ul>
 <li>Reliable, in-order Delivery</li>
@@ -1851,7 +1851,7 @@ Congestion Control</p>
 <li>Delay Guarantees</li>
 <li>Bandwidth Guarantees</li>
 </ul>
-<h3 id="4-location-of-transport-layer-functionality">4. Location of transport-layer functionality</h3>
+<h3 id="14-location-of-transport-layer-functionality">1.4 Location of transport-layer functionality</h3>
 <p>Transport Layer functions are implemented primarily <strong>at the hosts at the “edge”</strong> of the network</p>
 <ul>
 <li>TCP and UDP are used to communicate with network management functions that are a router or switch</li>
@@ -1859,9 +1859,8 @@ Congestion Control</p>
 <li>Network Routers and switches perform routing and switching, which are network-layer functions</li>
 <li>The Network Layer provides for host-to-host delivery service</li>
 </ul>
-<h2 id="multiplexing--demultiplexing-32">Multiplexing &amp; Demultiplexing (3.2)</h2>
-<h2 id="multiplexing--demultiplexing-32-1">Multiplexing &amp; Demultiplexing (3.2)</h2>
-<h3 id="1-multiplexing--demultiplexing">1. Multiplexing &amp; Demultiplexing</h3>
+<h2 id="2multiplexing--demultiplexing">2.Multiplexing &amp; Demultiplexing</h2>
+<h3 id="21-multiplexing--demultiplexing">2.1 Multiplexing &amp; Demultiplexing</h3>
 <h4 id="multiplexing-at-sender">Multiplexing at Sender:</h4>
 <p>Handle data from multiple Sockets, encapsulating a data chunk with header information and passing this segment to the network layer</p>
 <h4 id="demultiplexing-at-receiver">Demultiplexing at Receiver:</h4>
@@ -1873,7 +1872,7 @@ Congestion Control</p>
 <li>each segment has source &amp; destination Port Number (header fields, Application data…)</li>
 </ul>
 <p>Host uses <strong>IP address &amp; Port Number</strong> to direct segment to appropriate socket</p>
-<h3 id="2-udp-connectionless-demultiplexing">2. UDP Connectionless Demultiplexing</h3>
+<h3 id="22-udp-connectionless-demultiplexing">2.2 UDP Connectionless Demultiplexing</h3>
 <h4 id="recall">Recall:</h4>
 <p>When creating socket, must specify <strong>host-local</strong> port number</p>
 <div class="highlight"><div class="chroma">
@@ -1900,7 +1899,7 @@ Congestion Control</p>
 <li>will be directed to SAME socket at receiving host</li>
 <li>UDP demultiplexing happens solely on the basis of destination port number</li>
 </ul>
-<h3 id="3-tcp-connection-oriented-demultiplexing">3. TCP Connection-Oriented Demultiplexing</h3>
+<h3 id="23-tcp-connection-oriented-demultiplexing">2.3. TCP Connection-Oriented Demultiplexing</h3>
 <p>TCP Socket identified by 4-tuple:</p>
 <ul>
 <li>Source and Destination IP addresses</li>
@@ -1920,7 +1919,7 @@ Congestion Control</p>
 </ul>
 </li>
 </ul>
-<h3 id="4-summary">4. Summary</h3>
+<h3 id="24-summary">2.4. Summary</h3>
 <p>Multiplexing, Demultiplexing:</p>
 <ul>
 <li>happen at ALL Layers</li>
@@ -1934,19 +1933,171 @@ TCP: Demultiplexing using 4-tuple:</li>
   
   
   
-    <img data-src="/images/networking/Conless_demul.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='250px' height='250px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:250px;height:250px;"/>
+    <img data-src="/images/networking/Conless_demul.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='390px' height='200px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:390px;height:200px;"/>
   
 
   
   
 </figure>
-<h2 id="33-udpconnectionless-transport">(3.3) UDP：Connectionless Transport</h2>
-<p>page 23-35</p>
-<h3 id="1udpuser-datagram-protocol">1.UDP：User Datagram Protocol</h3>
-<h3 id="2-transport-layer-actions">2. Transport Layer Actions</h3>
-<h2 id="34-principles-of-rdt">(3.4) Principles of RDT</h2>
-<p>RDT：Reliable Data Transfer</p>
-<h2 id="35-tcpconnection-oriented-transport">(3.5) TCP：Connection-Oriented Transport</h2>
+<h2 id="3-udpconnectionless-transport">3. UDP：Connectionless Transport</h2>
+<h3 id="31-udpuser-datagram-protocol">3.1 UDP：User Datagram Protocol</h3>
+<h4 id="very-simple">Very Simple：</h4>
+<ul>
+<li>“No Frills”, “bare bones”</li>
+<li>“Best Effort” Service, UDP segments may be:
+<ul>
+<li>Lost (unreliable)</li>
+<li>Delivered out-of-order to app</li>
+<li>“Best Effort Service” means: “send and hope for the best”</li>
+</ul>
+</li>
+</ul>
+<h4 id="connectionless">Connectionless:</h4>
+<ul>
+<li>No handshaking between UDP sender, receiver</li>
+<li>Each UDP segment handled independently of others</li>
+</ul>
+<h4 id="advantage-of-udp">Advantage of UDP:</h4>
+<ul>
+<li>No Connection Establishment/ NO handshaking
+<ul>
+<li>which can add RTT Delay</li>
+</ul>
+</li>
+<li>Simple: NO Connection state at sender, receiver</li>
+<li>Small Header size</li>
+<li>NO Congestion Control
+<ul>
+<li>UDP can blast away as FAST as desired!</li>
+<li>can function in the face of congestion</li>
+</ul>
+</li>
+</ul>
+<h4 id="udp-use">UDP use:</h4>
+<ul>
+<li>Streaming Multimedia Apps (loss tolerant, rate sensitive)</li>
+<li>DNS</li>
+<li>SNMP</li>
+<li>HTTP/3</li>
+</ul>
+<h4 id="if-reliable-transfer-needed-over-udp-eg-http3">If Reliable Transfer needed over UDP (e.g. HTTP/3)</h4>
+<ul>
+<li>add needed reliability at Application Layer</li>
+<li>add Congestion Control  at Application Layer</li>
+</ul>
+<h3 id="32-transport-layer-actions">3.2 Transport Layer Actions</h3>
+<h4 id="udp-sender-actions">UDP Sender Actions:</h4>
+<ul>
+<li><em>is passed</em> an application layer message</li>
+<li><em>determines</em> UDP segment header fields values</li>
+<li><em>creates</em> UDP Segment</li>
+<li><em>passes</em> Segment to IP</li>
+<li>IP forward IP Datagram onto the receiving IP host</li>
+</ul>
+<h4 id="udp-receiver-actions">UDP Receiver Actions:</h4>
+<ul>
+<li><em>receives</em> segment from IP</li>
+<li><em>checks</em> UDP checksum header value</li>
+<li><em>extracts</em> application-layer message</li>
+<li><em>demultiplexes</em> message up to application-layer via socket</li>
+</ul>
+<h3 id="33-udp-checksum">3.3 UDP Checksum</h3>
+<h4 id="goal">Goal:</h4>
+<ul>
+<li>Detect errors (i.e. flipped bits) in transmitted segment</li>
+</ul>
+<h4 id="sender-1">Sender:</h4>
+<ul>
+<li>treat contents of UDP segment (including UDP header fields and source/destination IP addresses) as <strong>sequence of 16-bit integers</strong></li>
+<li>add them together and take the one complement sum
+<ul>
+<li>Note: if there is a carryout from the most significant bit, 1 needs to be added to the result when adding numbers</li>
+</ul>
+</li>
+<li>Checksum value put into UDP checksum field</li>
+</ul>
+<h4 id="receiver-1">Receiver：</h4>
+<ul>
+<li>Computer checksum of received segment</li>
+<li>Check if computed checksum equals checksum field value:
+<ul>
+<li>NOT Equal - error detected</li>
+<li>Equal - <em>NO Error detected</em> ？ ==&gt; Maybe Error
+<ul>
+<li>Weak Protection ！！！！</li>
+<li>e.g. 1+0 =&gt; 0+1 two bits flip but no change in checksum!</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-principles-of-rdt">4. Principles of RDT</h2>
+<h3 id="41-rdt-reliable-data-transfer">4.1 RDT: Reliable Data Transfer</h3>
+<h4 id="abstraction-and-implementation">Abstraction and Implementation</h4>
+<figure >
+  
+  
+  
+    <img data-src="/images/networking/rdt_abs_impl.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='446px' height='200px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:446px;height:200px;"/>
+  
+
+  
+  
+</figure>
+<p>Sender, receiver do NOT know the “state” of each other, e.g. was a message received ?</p>
+<ul>
+<li>unless communicated via a message</li>
+<li>e.g. Receiver somehow signals back to the Sender</li>
+</ul>
+<h4 id="interfaces">Interfaces</h4>
+<figure >
+  
+  
+  
+    <img data-src="/images/networking/rdt_API.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='432px' height='200px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:432px;height:200px;"/>
+  
+
+  
+  
+</figure>
+<h3 id="42-rdt-development">4.2. rdt Development</h3>
+<p>Incrementally develop sender, receiver sides of rdt protocol</p>
+<ul>
+<li>consider only unidirectional data transfer
+<ul>
+<li>but control info will flow on both directions!</li>
+</ul>
+</li>
+<li>Use Finite State Machines (FSM) to specify sender, receiver:
+<ul>
+<li>State: next state 2 uniquely determined by next event when in current state 1<br />
+<figure >
+  
+  
+  
+    <img data-src="/images/networking/rdt_FSM.jpeg"  data-caption="" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='404px' height='200px' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload" style="width:404px;height:200px;"/>
+  
+
+  
+  
+</figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="rdt10-reliable-transfer-over-a-reliable-channel">rdt1.0: Reliable transfer over a reliable channel</h4>
+<p>Assume Underlying channel perfectly reliable</p>
+<ul>
+<li>NO bit errors</li>
+<li>NO loss of packets</li>
+</ul>
+<p>rdt1.0 protocol is simple because:</p>
+<ul>
+<li>reliable channel</li>
+<li></li>
+</ul>
+<h4 id="rdt20-channel-with-bit-errors">rdt2.0: Channel with bit errors</h4>
+<h4 id="rdt30-channels-with-errors-and-loss">rdt3.0: channels with errors and loss</h4>
+<h2 id="5tcpconnection-oriented-transport">5.TCP：Connection-Oriented Transport</h2>
 
     </article>
     
@@ -2654,57 +2805,92 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc " data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#transport-layer-services-intro31">Transport-Layer Services Intro（3.1）</a>
+    <li><a href="#1-transport-layer-services-intro31">1. Transport-Layer Services Intro（3.1）</a>
       <ul>
-        <li><a href="#1-transport-services-and-protocols">1. Transport Services and Protocols</a>
+        <li><a href="#11-transport-services-and-protocols">1.1 Transport Services and Protocols</a>
           <ul>
             <li><a href="#transport-layer">Transport Layer:</a></li>
             <li><a href="#network-layer">Network Layer:</a></li>
             <li><a href="#household-analogy">Household Analogy:</a></li>
           </ul>
         </li>
-        <li><a href="#2-transport-protocols-actions-in-end-systems">2. Transport Protocols Actions in end systems:</a>
+        <li><a href="#12-transport-protocols-actions-in-end-systems">1.2 Transport Protocols Actions in end systems:</a>
           <ul>
             <li><a href="#sender">Sender:</a></li>
             <li><a href="#receiver">Receiver:</a></li>
           </ul>
         </li>
-        <li><a href="#3-two-main-internet-transport-protocols">3. Two Main Internet Transport Protocols</a>
+        <li><a href="#13-two-main-internet-transport-protocols">1.3 Two Main Internet Transport Protocols</a>
           <ul>
             <li><a href="#tcp-transmission-control-protocol">TCP: Transmission Control Protocol</a></li>
             <li><a href="#udp-user-datagram-protocol">UDP: User Datagram Protocol</a></li>
             <li><a href="#services-not-available">Services NOT Available:</a></li>
           </ul>
         </li>
-        <li><a href="#4-location-of-transport-layer-functionality">4. Location of transport-layer functionality</a></li>
+        <li><a href="#14-location-of-transport-layer-functionality">1.4 Location of transport-layer functionality</a></li>
       </ul>
     </li>
-    <li><a href="#multiplexing--demultiplexing-32">Multiplexing &amp; Demultiplexing (3.2)</a></li>
-    <li><a href="#multiplexing--demultiplexing-32-1">Multiplexing &amp; Demultiplexing (3.2)</a>
+    <li><a href="#2multiplexing--demultiplexing">2.Multiplexing &amp; Demultiplexing</a>
       <ul>
-        <li><a href="#1-multiplexing--demultiplexing">1. Multiplexing &amp; Demultiplexing</a>
+        <li><a href="#21-multiplexing--demultiplexing">2.1 Multiplexing &amp; Demultiplexing</a>
           <ul>
             <li><a href="#multiplexing-at-sender">Multiplexing at Sender:</a></li>
             <li><a href="#demultiplexing-at-receiver">Demultiplexing at Receiver:</a></li>
           </ul>
         </li>
-        <li><a href="#2-udp-connectionless-demultiplexing">2. UDP Connectionless Demultiplexing</a>
+        <li><a href="#22-udp-connectionless-demultiplexing">2.2 UDP Connectionless Demultiplexing</a>
           <ul>
             <li><a href="#recall">Recall:</a></li>
           </ul>
         </li>
-        <li><a href="#3-tcp-connection-oriented-demultiplexing">3. TCP Connection-Oriented Demultiplexing</a></li>
-        <li><a href="#4-summary">4. Summary</a></li>
+        <li><a href="#23-tcp-connection-oriented-demultiplexing">2.3. TCP Connection-Oriented Demultiplexing</a></li>
+        <li><a href="#24-summary">2.4. Summary</a></li>
       </ul>
     </li>
-    <li><a href="#33-udpconnectionless-transport">(3.3) UDP：Connectionless Transport</a>
+    <li><a href="#3-udpconnectionless-transport">3. UDP：Connectionless Transport</a>
       <ul>
-        <li><a href="#1udpuser-datagram-protocol">1.UDP：User Datagram Protocol</a></li>
-        <li><a href="#2-transport-layer-actions">2. Transport Layer Actions</a></li>
+        <li><a href="#31-udpuser-datagram-protocol">3.1 UDP：User Datagram Protocol</a>
+          <ul>
+            <li><a href="#very-simple">Very Simple：</a></li>
+            <li><a href="#connectionless">Connectionless:</a></li>
+            <li><a href="#advantage-of-udp">Advantage of UDP:</a></li>
+            <li><a href="#udp-use">UDP use:</a></li>
+            <li><a href="#if-reliable-transfer-needed-over-udp-eg-http3">If Reliable Transfer needed over UDP (e.g. HTTP/3)</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-transport-layer-actions">3.2 Transport Layer Actions</a>
+          <ul>
+            <li><a href="#udp-sender-actions">UDP Sender Actions:</a></li>
+            <li><a href="#udp-receiver-actions">UDP Receiver Actions:</a></li>
+          </ul>
+        </li>
+        <li><a href="#33-udp-checksum">3.3 UDP Checksum</a>
+          <ul>
+            <li><a href="#goal">Goal:</a></li>
+            <li><a href="#sender-1">Sender:</a></li>
+            <li><a href="#receiver-1">Receiver：</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#34-principles-of-rdt">(3.4) Principles of RDT</a></li>
-    <li><a href="#35-tcpconnection-oriented-transport">(3.5) TCP：Connection-Oriented Transport</a></li>
+    <li><a href="#4-principles-of-rdt">4. Principles of RDT</a>
+      <ul>
+        <li><a href="#41-rdt-reliable-data-transfer">4.1 RDT: Reliable Data Transfer</a>
+          <ul>
+            <li><a href="#abstraction-and-implementation">Abstraction and Implementation</a></li>
+            <li><a href="#interfaces">Interfaces</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-rdt-development">4.2. rdt Development</a>
+          <ul>
+            <li><a href="#rdt10-reliable-transfer-over-a-reliable-channel">rdt1.0: Reliable transfer over a reliable channel</a></li>
+            <li><a href="#rdt20-channel-with-bit-errors">rdt2.0: Channel with bit errors</a></li>
+            <li><a href="#rdt30-channels-with-errors-and-loss">rdt3.0: channels with errors and loss</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5tcpconnection-oriented-transport">5.TCP：Connection-Oriented Transport</a></li>
   </ul>
 </nav>
   </div>
