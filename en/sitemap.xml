@@ -14,7 +14,7 @@
   
   <url>
     <loc>https://yiyangd.github.io/en/</loc>
-    <lastmod>2021-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -28,8 +28,13 @@
   </url>
   
   <url>
+    <loc>https://yiyangd.github.io/en/tags/networking/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yiyangd.github.io/en/posts/</loc>
-    <lastmod>2021-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -40,6 +45,56 @@
                 hreflang="en"
                 href="https://yiyangd.github.io/en/posts/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/tags/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://yiyangd.github.io/ko/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://yiyangd.github.io/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/tags/web/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/posts/networking_ch4/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/tags/bayesian/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/tags/data-science/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/tags/stats/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/posts/bayesnote_01/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/posts/networking_ch2/</loc>
+    <lastmod>2021-01-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -125,21 +180,6 @@
   <url>
     <loc>https://yiyangd.github.io/en/posts/shortcodes/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yiyangd.github.io/en/tags/</loc>
-    <lastmod>2020-01-25T06:40:51+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://yiyangd.github.io/ko/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://yiyangd.github.io/en/tags/"
-                />
   </url>
   
   <url>
@@ -430,6 +470,10 @@
   <url>
     <loc>https://yiyangd.github.io/en/publication/misc/misc_any_folder_name_1/</loc>
     <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yiyangd.github.io/en/posts/bayesianstats_ch2/</loc>
   </url>
   
   <url>

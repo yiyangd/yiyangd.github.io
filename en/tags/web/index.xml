@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>web on Yiyang&#39;s Blog</title>
+    <link>https://yiyangd.github.io/en/tags/web/</link>
+    <description>Recent content in web on Yiyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+    <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://yiyangd.github.io/en/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>【Networking】Network Layer: Data Plane</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch4/</link>
+        <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Fri, 12 Feb 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch4/</guid>
+        <description>1. Overview of Network Layer Key Words: Services and Protocols Forwarding in Data Plane 1.1. Network-Layer Services and Protocols Network-Layer role: Transport Segment from sending to receiving host Sender: encapsulates segments into datagrams, passes to link layer Receiver: delivers segments to transport layer protocol Network-Layer Protocols in EVERY Internet Device: hosts, routers 1.2. Forwarding and Routing Forwarding in Data Plane Forwarding: Local per-Router action of transferring packets from a Router&amp;rsquo;s</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>【Networking】Application Layer</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch2/</link>
+        <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Tue, 12 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch2/</guid>
+        <description>Application Layer Protocols and Infrastructure Key Words:
+&amp;ndash; Transport-Layer Service Models
+&amp;ndash; Cilent-Server Paradigm
+&amp;ndash; Peer-to-Peer Paradigm
+&amp;ndash; HTTP
+&amp;ndash; SMTP, IMAP
+&amp;ndash; DNS
+&amp;ndash; Video Streaming, CDN
+1. Principles of Network Applications Network(Internet) Apps include:
+ 1970-1980s: text E-mail, remote access to computers, file transfers mid-1990s: the World Wide Web, encompassing Web Surfing, Search Engine (google), and Electronic Commerce 2000s: Social Networking, text messaging, multi-user network games, streaming stored video (Youtube, Hulu, Netflix), P2P File Sharing, Voice over IP (Skype), Real-time Video Conferencing (Zoom)  1.</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>【Networking】Transport Layer</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch3/</link>
+        <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Tue, 12 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch3/</guid>
+        <description>1. Transport-Layer Services Intro Key Words： multiplexing，demultiplexing RDT：Reliable Data Transfer Flow Control Congestion Control 1.1 Transport Services and Protocols They provide logical communication between application processes running on</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

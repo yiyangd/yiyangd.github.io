@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Bayesian on Yiyang&#39;s Blog</title>
+    <link>https://yiyangd.github.io/en/tags/bayesian/</link>
+    <description>Recent content in Bayesian on Yiyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+    <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://yiyangd.github.io/en/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>【Bayesian】Intro</title>
+        <link>https://yiyangd.github.io/en/posts/bayesnote_01/</link>
+        <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Mon, 25 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/bayesnote_01/</guid>
+        <description>Remember that using Bayes&#39; Theorem doesn&amp;rsquo;t make you a Bayesian, quantifying uncertainty with probability makes you a Bayesian &amp;ndash; Michael Betancourt
+ 1. Bayesian Analysis Inference Bayes&#39; rule yields the posterior density:
+$$p(\theta|y)=\frac{p(\theta,y)}{p(y)}=$$</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>Stats</category>
+            
+          
+            
+              <category>Bayesian</category>
+            
+          
+            
+              <category>Data Science</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

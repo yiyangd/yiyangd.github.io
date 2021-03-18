@@ -14,7 +14,7 @@
     <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
     <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 12 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://yiyangd.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,18 +23,127 @@
 
       
       <item>
+        <title>【Networking】Network Layer: Data Plane</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch4/</link>
+        <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Fri, 12 Feb 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch4/</guid>
+        <description>1. Overview of Network Layer Key Words: Services and Protocols Forwarding in Data Plane 1.1. Network-Layer Services and Protocols Network-Layer role: Transport Segment from sending to receiving host Sender: encapsulates segments into datagrams, passes to link layer Receiver: delivers segments to transport layer protocol Network-Layer Protocols in EVERY Internet Device: hosts, routers 1.2. Forwarding and Routing Forwarding in Data Plane Forwarding: Local per-Router action of transferring packets from a Router&amp;rsquo;s</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>【Bayesian】Intro</title>
+        <link>https://yiyangd.github.io/en/posts/bayesnote_01/</link>
+        <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Mon, 25 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/bayesnote_01/</guid>
+        <description>Remember that using Bayes&#39; Theorem doesn&amp;rsquo;t make you a Bayesian, quantifying uncertainty with probability makes you a Bayesian &amp;ndash; Michael Betancourt
+ 1. Bayesian Analysis Inference Bayes&#39; rule yields the posterior density:
+$$p(\theta|y)=\frac{p(\theta,y)}{p(y)}=$$</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>Stats</category>
+            
+          
+            
+              <category>Bayesian</category>
+            
+          
+            
+              <category>Data Science</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>【Networking】Application Layer</title>
+        <link>https://yiyangd.github.io/en/posts/networking_ch2/</link>
+        <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        <atom:modified>Tue, 12 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://yiyangd.github.io/en/posts/networking_ch2/</guid>
+        <description>Application Layer Protocols and Infrastructure Key Words:
+&amp;ndash; Transport-Layer Service Models
+&amp;ndash; Cilent-Server Paradigm
+&amp;ndash; Peer-to-Peer Paradigm
+&amp;ndash; HTTP
+&amp;ndash; SMTP, IMAP
+&amp;ndash; DNS
+&amp;ndash; Video Streaming, CDN
+1. Principles of Network Applications Network(Internet) Apps include:
+ 1970-1980s: text E-mail, remote access to computers, file transfers mid-1990s: the World Wide Web, encompassing Web Surfing, Search Engine (google), and Electronic Commerce 2000s: Social Networking, text messaging, multi-user network games, streaming stored video (Youtube, Hulu, Netflix), P2P File Sharing, Voice over IP (Skype), Real-time Video Conferencing (Zoom)  1.</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
         <title>【Networking】Transport Layer</title>
         <link>https://yiyangd.github.io/en/posts/networking_ch3/</link>
         <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
         <author>yiyangd@sfu.ca (Yiyang Dong)</author>
         <atom:modified>Tue, 12 Jan 2021 00:00:00 +0000</atom:modified>
         <guid>https://yiyangd.github.io/en/posts/networking_ch3/</guid>
-        <description>1. Transport-Layer Services Intro（3.1） Key Words： multiplexing，demultiplexing RDT：Reliable Data Transfer Flow Control Congestion Control 1.1 Transport Services and Protocols</description>
+        <description>1. Transport-Layer Services Intro Key Words： multiplexing，demultiplexing RDT：Reliable Data Transfer Flow Control Congestion Control 1.1 Transport Services and Protocols They provide logical communication between application processes running on</description>
         
         <dc:creator>Yiyang Dong</dc:creator>
         
         
         
+        
+          
+            
+              <category>networking</category>
+            
+          
+            
+              <category>web</category>
+            
+          
         
         
         
@@ -568,6 +677,24 @@ Inline math: $ \varphi = \dfrac{1+\sqrt5}{2}= 1.</description>
           
             
           
+        
+      </item>
+      
+      <item>
+        <title></title>
+        <link>https://yiyangd.github.io/en/posts/bayesianstats_ch2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/posts/bayesianstats_ch2/</guid>
+        <description>The Subjective Worlds of Frequentist and Bayesian Statistics Keys: Introduction to Bayesian Inference Purpose of Statistical Inference Similarities and differences between Frequentist and Bayesian Inference 1. Introduction to Statistical Inference Data scientists aim to build predictive models to understand complex phenomena typically disregard those parts of the system that are NOT directly of interest this deliberate omission of information makes models statistical rather than deterministic because of the uncertainty of</description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
         
       </item>
       

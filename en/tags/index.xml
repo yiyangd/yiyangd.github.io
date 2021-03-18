@@ -14,13 +14,103 @@
     <managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
     <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 25 Jan 2020 06:40:51 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://yiyangd.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>networking</title>
+        <link>https://yiyangd.github.io/en/tags/networking/</link>
+        <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/tags/networking/</guid>
+        <description></description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>web</title>
+        <link>https://yiyangd.github.io/en/tags/web/</link>
+        <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/tags/web/</guid>
+        <description></description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Bayesian</title>
+        <link>https://yiyangd.github.io/en/tags/bayesian/</link>
+        <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/tags/bayesian/</guid>
+        <description></description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Data Science</title>
+        <link>https://yiyangd.github.io/en/tags/data-science/</link>
+        <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/tags/data-science/</guid>
+        <description></description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Stats</title>
+        <link>https://yiyangd.github.io/en/tags/stats/</link>
+        <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+        <author>yiyangd@sfu.ca (Yiyang Dong)</author>
+        
+        <guid>https://yiyangd.github.io/en/tags/stats/</guid>
+        <description></description>
+        
+        <dc:creator>Yiyang Dong</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>shortcode</title>
