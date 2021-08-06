@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Yiyang&#39;s Blog</title>
+        <link>https://yiyangd.github.io/posts/</link>
+        <description>All Posts | Yiyang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Aug 2021 15:20:08 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>First_post</title>
+    <link>https://yiyangd.github.io/first_post/</link>
+    <pubDate>Fri, 06 Aug 2021 15:20:08 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/first_post/</guid>
+    <description><![CDATA[hihioodd]]></description>
+</item></channel>
+</rss>
