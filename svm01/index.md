@@ -29,24 +29,21 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p= 0$$
 Suppose that we have a $n \times p$ data matrix  $X$
 - that consists of *n training observations* in *p-dimensional space*
 
-\\ x_1 = \left (\begin{array}{cccc}
-x_{11}  \\
+x_1 = \begin{pmatrix}
+   x_{11}  \\
 \vdots   \\
-x_{1p}  \\
-\end{array}\right), \cdots, x_n = \left (\begin{array}{cccc}
-x_{n1}  \\
-\vdots   \\
-x_{np}  \\
-\end{array}\right),
+  x_{1p} 
+\end{pmatrix}
 
 - and these n observations fall into two classes:
-$$y1, \cdots, y_n \in \{-1,1\}$$
+
+\\y1, \cdots, y_n \in \{-1,1\}
 
 {{< figure src="/images/ISLR/figure9-2.jpg" title="Separating HyperPlane" >}}
 
 A classifier that is based on a separating hyperplane leads to a _linear decision boundary_
 
-- for a test observation $x^*$, calculate $f(x^*)=\beta_0 + \beta_1X_1^* + \beta_2X_2^* + ... + \beta_pX_p^*$
+- for a test observation $x^*$, calculate \f(x^*)=\beta_0 + \beta_1X_1^* + \beta_2X_2^* + ... + \beta_pX_p^*
   - if $f(x^*)$ is positive, then we assign the test data to *class 1*
   - if $f(x^*)$ is negative, then we assign the test data to *class -1*
   - if $|f(x^*)|$ is far from 0, we can be *confident* about the class assignment
