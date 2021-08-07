@@ -29,11 +29,11 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p= 0$$
 Suppose that we have a $n \times p$ data matrix  $X$
 - that consists of *n training observations* in *p-dimensional space*
 
-x_1 = \begin{pmatrix}
+$$x_1 = \begin{pmatrix}
    x_{11}  \\
 \vdots   \\
   x_{1p} 
-\end{pmatrix}
+\end{pmatrix}$$
 
 - and these n observations fall into two classes:
 
