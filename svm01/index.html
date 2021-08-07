@@ -19,8 +19,8 @@
 <meta name="twitter:title" content="SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification"/>
 <meta name="twitter:description" content="SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
  affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 &#43; &hellip; &#43; \beta_pX_p= 0$$"/>
-<meta name="application-name" content=":(fas fa-campground fa-fw): Yiyang&#39;s Blog">
-<meta name="apple-mobile-web-app-title" content=":(fas fa-campground fa-fw): Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="⛺ Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="⛺ Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/svm01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm01\/"
-        },"genre": "posts","wordcount":  569 ,
+        },"genre": "posts","wordcount":  576 ,
         "url": "https:\/\/yiyangd.github.io\/svm01\/","datePublished": "2021-08-06T15:20:08-07:00","dateModified": "2021-08-06T15:20:08-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;569 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;576 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -161,14 +161,11 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$</p>
 </ul>
 </li>
 </ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg"
-        data-srcset="https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg, https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg 1.5x, https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg 2x"
-        data-sizes="auto"
-        alt="https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg"
-        title="https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg" /></p>
+<figure><img src="/images/ISLR/figure9-1.jpg"/><figcaption>
+            <h4>2D HyperPlane</h4>
+        </figcaption>
+</figure>
+
 <h4 id="12-classification-using-a-separating-hyperplane">1.2. Classification using a Separating HyperPlane</h4>
 <p>Suppose that we have a $n \times p$ data matrix  $X$</p>
 <ul>
@@ -185,8 +182,8 @@ x_{np}  \<br>
 <li>and these n observations fall into two classes:
 $$y1, \cdots, y_n \in {-1,1}$$</li>
 </ul>
-<figure><img src="/images/figure9-1.jpg"/><figcaption>
-            <h4>2D HyperPlane</h4>
+<figure><img src="/images/ISLR/figure9-2.jpg"/><figcaption>
+            <h4>Separating HyperPlane</h4>
         </figcaption>
 </figure>
 
@@ -226,14 +223,11 @@ The training observations that are <em>equidistant</em> from the <em>Maximal Mar
 </ul>
 </li>
 </ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png"
-        data-srcset="https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png, https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png 1.5x, https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png 2x"
-        data-sizes="auto"
-        alt="https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png"
-        title="https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png" /></p>
+<figure><img src="/images/ISLR/figure9-3.jpg"/><figcaption>
+            <h4>Maximal Margin Classifier</h4>
+        </figcaption>
+</figure>
+
 <p>The Maximal Margin Hyperplane is the <em>solution</em> to the <em>optimization problem</em> :</p>
 <ul>
 <li>
@@ -250,16 +244,13 @@ $$for \ i = 1, \cdots, n$$</p>
 <h4 id="14-the-non-separable-case">1.4 The Non-Separable Case</h4>
 <p>In many cases NO separating hyperplane exists, and so there is NO Maximal Margin Classifier.</p>
 <ul>
-<li>the optimization problem has NO solution with M &gt; 0.
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg"
-        data-srcset="https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg, https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg 1.5x, https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg 2x"
-        data-sizes="auto"
-        alt="https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg"
-        title="https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg" /></li>
+<li>the optimization problem has NO solution with M &gt; 0.</li>
 </ul>
+<figure><img src="/images/ISLR/figure9-4.jpg"/><figcaption>
+            <h4>Non-Separable Case</h4>
+        </figcaption>
+</figure>
+
 <p><strong>Next: Support Vector Classifier</strong>
 The generalization of the Maximal Margin Classifier to the <em>Non-Separable</em> Case</p>
 <ul>

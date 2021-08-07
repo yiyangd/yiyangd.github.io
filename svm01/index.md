@@ -21,7 +21,7 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p= 0$$
   - otherwise, X lies on the one of two sides of the hyperplane
     - we can think of the hyperplane as dividing p-dimensional space _into two halves_
     
-![](https://files.mdnice.com/user/1474/1d010608-6efb-41b3-b642-8f2cdfb39413.jpeg)
+{{< figure src="/images/ISLR/figure9-1.jpg" title="2D HyperPlane" >}}
 
 
 
@@ -40,7 +40,7 @@ x_{np}  \\
 - and these n observations fall into two classes:
 $$y1, \cdots, y_n \in \{-1,1\}$$
 
-{{< figure src="/images/figure9-1.jpg" title="2D HyperPlane" >}}
+{{< figure src="/images/ISLR/figure9-2.jpg" title="Separating HyperPlane" >}}
 
 A classifier that is based on a separating hyperplane leads to a _linear decision boundary_
 
@@ -66,7 +66,7 @@ The training observations that are *equidistant* from the *Maximal Margin Hyperp
 - they **"support"** the Maximal Margin Hyperplane since if these points of support vectors were *moved slightly* then the Maximal Hyperplane would *move as well*!!!
     - property for later SVC and SVM: the maximal margin hyperplane *depends directly on ONLY* a small subset of observations (support vectors)
 
-![](https://files.mdnice.com/user/1474/43391223-16db-4889-8b99-d4bd0447ee5c.png)
+{{< figure src="/images/ISLR/figure9-3.jpg" title="Maximal Margin Classifier" >}}
 
 The Maximal Margin Hyperplane is the *solution* to the *optimization problem* :
 -  M represents the margin of hyperplane
@@ -80,7 +80,8 @@ $$for \ i = 1, \cdots, n$$
 #### 1.4 The Non-Separable Case
 In many cases NO separating hyperplane exists, and so there is NO Maximal Margin Classifier.
 - the optimization problem has NO solution with M > 0.
-![](https://files.mdnice.com/user/1474/cd3ee483-2b8d-4724-8923-7dfd6d90329e.jpeg)
+
+{{< figure src="/images/ISLR/figure9-4.jpg" title="Non-Separable Case" >}}
 
 **Next: Support Vector Classifier**
 The generalization of the Maximal Margin Classifier to the *Non-Separable* Case
