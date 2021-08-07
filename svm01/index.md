@@ -29,7 +29,7 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p= 0$$
 Suppose that we have a $n \times p$ data matrix  $X$
 - that consists of *n training observations* in *p-dimensional space*
 
-$$ x_1 = \left (\begin{array}{cccc}
+\\ x_1 = \left (\begin{array}{cccc}
 x_{11}  \\
 \vdots   \\
 x_{1p}  \\
@@ -37,7 +37,7 @@ x_{1p}  \\
 x_{n1}  \\
 \vdots   \\
 x_{np}  \\
-\end{array}\right),$$
+\end{array}\right),
 
 - and these n observations fall into two classes:
 $$y1, \cdots, y_n \in \{-1,1\}$$
