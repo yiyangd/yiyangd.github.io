@@ -40,7 +40,7 @@ x_{np}  \\
 - and these n observations fall into two classes:
 $$y1, \cdots, y_n \in \{-1,1\}$$
 
-![](https://files.mdnice.com/user/1474/33c1f6ba-733b-47e2-aae7-2d884bd3082e.png)
+{{< figure src="/images/figure9-1.jpg" title="2D HyperPlane" >}}
 
 A classifier that is based on a separating hyperplane leads to a _linear decision boundary_
 
