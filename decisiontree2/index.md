@@ -23,9 +23,9 @@ A set of $\{X_1,...,X_n\}\ $ with variance $\sigma^2$
 To reduce the variance of a model and improve the prediction accuracy
 - Using B separate training sets from the population (hard since data may not enough)
 - Fit separate model $\hat{f}^1(x),...,\hat{f}^B(x)$
-- *Average* them to obtain a *low-variance* model:
+- *Average* them to obtain a *low-variance* model:   
 
-$$\hat{f}_{avg}(x)=\frac{1}{B}\sum_{b=1}^B\hat{f}^b(x)$$
+$\hat{f}_{avg}(x)=\frac{1}{B}\sum_{b=1}^B\hat{f}^b(x)$
 
 *Bagging(Bootstrap)* takes repeated samples from *single trainging data set*
 - Generate B different bootstrapped training data sets 
@@ -143,7 +143,7 @@ The Boosting *learns slowly*
 - d is the *interaction depth* that controls the *interaction order* of the *boosted model*, since d splits can involve at most d variables
 
 **Boosting vs RF**  
-{{< figure src="/images/ISLR/figure8.11.jpg">}}
+{{< figure src="/images/ISLR/figure8-11.jpg">}}
 
 In boosting, since the growth of a particular tree *takes into account the other* trees that have already been grown, smaller trees are typically sufficient
 - using smaller trees can aid in *interpretability*

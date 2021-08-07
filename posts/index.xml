@@ -3,7 +3,15 @@
         <title>All Posts - DYY</title>
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Aug 2021 15:20:08 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Fri, 06 Aug 2021 16:20:08 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>3D Vision - Intel® RealSense™ depth camera and IMU</title>
+    <link>https://yiyangd.github.io/open3d-1/</link>
+    <pubDate>Fri, 06 Aug 2021 16:20:08 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/open3d-1/</guid>
+    <description><![CDATA[daas]]></description>
+</item><item>
     <title>SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification</title>
     <link>https://yiyangd.github.io/svm01/</link>
     <pubDate>Fri, 06 Aug 2021 15:20:08 -0700</pubDate>
