@@ -47,7 +47,7 @@ A classifier that is based on a separating hyperplane leads to a _linear decisio
   - if $f(x^*)$ is positive, then we assign the test data to *class 1*
   - if $f(x^*)$ is negative, then we assign the test data to *class -1*
   - if $|f(x^*)|$ is far from 0, we can be *confident* about the class assignment
-  - if |$f(x^*)$| is close to 0, we are *less certain* about the class assignment for $x^*$
+  - if $|f(x^*)|$ is close to 0, we are *less certain* about the class assignment for \x^*
 
 #### 1.3. Construction of Maximal Margin Classifier
 In general, there will exist *inifinite number* of hyperplane 
