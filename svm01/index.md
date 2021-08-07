@@ -43,7 +43,7 @@ $$y1, \cdots, y_n \in \{-1,1\}$$
 
 A classifier that is based on a separating hyperplane leads to a _linear decision boundary_
 
-- for a test observation $x^*$, calculate \f(x^*)=\beta_0 + \beta_1X_1^* + \beta_2X_2^* + ... + \beta_pX_p^*
+- for a test observation $x^{*}$, calculate $f(x^*)=\beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_pX_p= 0$
   - if $f(x^*)$ is positive, then we assign the test data to *class 1*
   - if $f(x^*)$ is negative, then we assign the test data to *class -1*
   - if $|f(x^*)|$ is far from 0, we can be *confident* about the class assignment
