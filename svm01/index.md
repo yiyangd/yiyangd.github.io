@@ -88,3 +88,4 @@ The generalization of the Maximal Margin Classifier to the *Non-Separable* Case
 - that can develop a hyperplane that *almost* separates the classes
 - using *soft margin*
 
+

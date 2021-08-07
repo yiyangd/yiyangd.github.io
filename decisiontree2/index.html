@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting" />
+<meta property="og:description" content="1.Bagging
+&ndash; Out-of-Bag (OOB) Error Estimation
+&ndash; Variable Importance Measures
+2.Random Forest &ndash; Decorrelating the Trees
+3.boosting
+&ndash; Algorithm
+&ndash; Three Tuning Parameters
+These three ensemble methods use trees as building blocks to construct more powerful prediction models
+1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
+Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
+ high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/decisiontree2/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-05T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"/>
+<meta name="twitter:description" content="1.Bagging
+&ndash; Out-of-Bag (OOB) Error Estimation
+&ndash; Variable Importance Measures
+2.Random Forest &ndash; Decorrelating the Trees
+3.boosting
+&ndash; Algorithm
+&ndash; Three Tuning Parameters
+These three ensemble methods use trees as building blocks to construct more powerful prediction models
+1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
+Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
+ high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$"/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/decisiontree2/" /><link rel="next" href="https://yiyangd.github.io/svm01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Decision Tree 2 - Bagging \u0026 Random Forrest \u0026 Boosting",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/decisiontree2\/"
+        },"genre": "posts","wordcount":  1064 ,
+        "url": "https:\/\/yiyangd.github.io\/decisiontree2\/","datePublished": "2021-08-05T00:00:00+00:00","dateModified": "2021-08-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-05">2021-08-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1064 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-bagging">1. Bagging</a>
+          <ul>
+            <li><a href="#out-of-bag-oob-error-estimation">Out-of-Bag (OOB) Error Estimation</a></li>
+            <li><a href="#variable-importance-measures">Variable Importance Measures</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-random-forest">2. Random Forest</a>
+          <ul>
+            <li><a href="#rf-vs-bagging">RF vs Bagging</a></li>
+            <li><a href="#decorrelating-the-trees">Decorrelating the Trees</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-boosting">3. Boosting</a>
+          <ul>
+            <li><a href="#boosting-for-regression-trees">Boosting for Regression Trees:</a></li>
+            <li><a href="#explanation">Explanation:</a></li>
+            <li><a href="#idea">Idea:</a></li>
+            <li><a href="#three-tuning-parameters">Three Tuning Parameters:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>1.Bagging<br>
+&ndash; Out-of-Bag (OOB) Error Estimation<br>
+&ndash; Variable Importance Measures<br>
+2.Random Forest <br>
+&ndash; Decorrelating the Trees<br>
+3.boosting<br>
+&ndash; Algorithm<br>
+&ndash; Three Tuning Parameters</p>
+<p>These three ensemble methods use trees as building blocks to construct more powerful prediction models</p>
+<h3 id="1-bagging">1. Bagging</h3>
+<p>Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.</p>
+<p>Bootstrap Aggregation (or bagging) can reduce the <em>high-variance</em> of decision trees</p>
+<ul>
+<li>high variance may result in fitting quite different trees on different part of same data</li>
+</ul>
+<p>A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$<br>
+<em>Averaging a set of observations $\bar{X}\ $ reduces variance to $\sigma^2/n \ $</em></p>
+<p>To reduce the variance of a model and improve the prediction accuracy</p>
+<ul>
+<li>Using B separate training sets from the population (hard since data may not enough)</li>
+<li>Fit separate model $\hat{f}^1(x),&hellip;,\hat{f}^B(x)$</li>
+<li><em>Average</em> them to obtain a <em>low-variance</em> model:
+$$\hat{f}<em>{avg}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^b(x)$$</li>
+</ul>
+<p><em>Bagging(Bootstrap)</em> takes repeated samples from <em>single trainging data set</em></p>
+<ul>
+<li>Generate B different bootstrapped training data sets</li>
+<li>then train the model on $b^{th}$ bootstrapped training set to get $\hat{f}^{*b}(x)$</li>
+<li><em>Average</em> all the predictions:
+$$\hat{f}<em>{bag}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^{*b}(x)$$</li>
+</ul>
+<p><strong>Bagging for Regression Tree:</strong><br>
+Construct B regression trees using B bootstrapped training sets, these trees are grown deep and unpruned</p>
+<ul>
+<li>each individual tree has high variance and low bias</li>
+<li>Average these B trees to reduce the variance and improve accuracy</li>
+</ul>
+<p><strong>Bagging for Classification Tree:</strong><br>
+Record the class predicted by each of the B trees, and take a <em>majority vote</em>:</p>
+<ul>
+<li>The overall prediction is the <em>most commonly occuring class</em>  among the B predictions.</li>
+</ul>
+<p><strong>Heart Disease Example:</strong></p>
+<figure><img src="/images/ISLR/figure8-8.jpg"/>
+</figure>
+
+<p>The number of trees B is not a critical parameter with bagging, large B will not lead to overfitting.</p>
+<h4 id="out-of-bag-oob-error-estimation">Out-of-Bag (OOB) Error Estimation</h4>
+<p>On average, each bagged tree makes use of around two-thirds of the observations,</p>
+<ul>
+<li>the remaining one-third of the observations not used to fit a given bagged tree are referred to as the out-of-bag (OOB)  observations</li>
+</ul>
+<p>For the $i,^{th}$ observation, there will be around B/3 predictions to average or take a majority vote.</p>
+<p>The resulting OOB error is a valid estimate of the test error for the bagged model</p>
+<ul>
+<li>since the response for each observation is predicted using ONLY the trees that were NOT fit using that obseration</li>
+</ul>
+<p><strong>OOB replaces CV:</strong><br>
+The OOB approach for estimating the Test Error is better when performing bagging <em>on large data sets</em> for which CV would be <em>computationally onerous</em></p>
+<ul>
+<li>as B sufficiently large, OOB error is virtually equivalent to LOOCV error</li>
+</ul>
+<h4 id="variable-importance-measures">Variable Importance Measures</h4>
+<p>Bagging <em>improves accuracy</em> at the expense of <em>interpretability</em></p>
+<ul>
+<li>not clear which variables are important</li>
+</ul>
+<p>Still can obtain an <em>overall summary</em> of the importance of each predictor by</p>
+<ul>
+<li>Record the total amount that the <em>RSS</em> is decreased due to splits over given predictor for bagging regression trees</li>
+<li>Add up the total amount that the <em>Gini Index</em>  is decreased due to splits over given predictor for bagging classification trees</li>
+<li>Average over all B trees and a large value indicates an important predictor</li>
+</ul>
+<figure><img src="/images/ISLR/figure8-9.jpg"/>
+</figure>
+
+<h3 id="2-random-forest">2. Random Forest</h3>
+<p>Random Forests provide an improvement over <em>bagged trees</em> by a way of a small <em>tweak</em> that <em>decorrlates</em> the trees.</p>
+<p>As in bagging, RF builds a number of trees on bootstrapped training samples,</p>
+<ul>
+<li><em>a random sample of m predictors</em>  is chosen as split candidates from <em>all p predictors</em></li>
+<li>a fresh <em>resample of m predictors</em> at each split and use ONE of those <em>m predictors</em></li>
+<li>$m\approx\sqrt{p}$</li>
+</ul>
+<h4 id="rf-vs-bagging">RF vs Bagging</h4>
+<p>The prediction from the bagged trees is <em>highly correlated</em>,</p>
+<ul>
+<li>since most trees will use the strongest predictor in the top split</li>
+<li>all of the bagged trees look quite similar</li>
+</ul>
+<h4 id="decorrelating-the-trees">Decorrelating the Trees</h4>
+<p>RFs force each split to consider ONLY a subset of the predictors</p>
+<ul>
+<li>on average (p-m)/p of the splits will NOT consider the strongest predictor</li>
+<li>other predictors will have more of a chance to be considered at first</li>
+<li>this makes the average of the resulting trees <em>less variable and more reliable</em></li>
+<li>and <em>reduction</em> in test error and OOB error</li>
+</ul>
+<p>Small m will be helpful if a large number of correlated predictors</p>
+<ul>
+<li>Example: RF on high-dimensional biology data includes 500 genes that have the largest variance in the training set</li>
+</ul>
+<figure><img src="/images/ISLR/figure8-10.jpg"/>
+</figure>
+
+<h3 id="3-boosting">3. Boosting</h3>
+<p>Boosting does not involve bootstrap sampling</p>
+<ul>
+<li>instead each tree is grown <em>sequentially</em> using information from <em>previously</em> grown trees</li>
+<li>on a modified version of the original data set</li>
+</ul>
+<h4 id="boosting-for-regression-trees">Boosting for Regression Trees:</h4>
+<ol>
+<li>Set $\hat{f}(x)=0\ $  and $r_i=y_i \ $ for all i in the training set.</li>
+<li>For b = 1,2,&hellip;,B, repeat:<br>
+(a) Fit a tree $\hat{f}^b$ with d splits (d+1 leaves) to the training data (X,r)<br>
+(b) Update $\hat{f}\ $ by adding in a <em>shrunken version</em> of the new tree:   $$\hat{f}(x) \leftarrow \hat{f}(x)+\lambda\hat{f}^b(x)$$
+(c) Update the Residuals:  $$r_i \leftarrow r_i - \lambda\hat{f}^b(x_i)$$</li>
+<li>Output the Boosted Model:
+$$\hat{f}(x)=\sum_{b=1}^B\lambda\hat{f}^b(x)$$</li>
+</ol>
+<h4 id="explanation">Explanation:</h4>
+<p>Fit a tree using the <em>current residuals</em> rather than Y</p>
+<ul>
+<li>then add this new tree into the fitted function to <em>update the residuals</em></li>
+</ul>
+<p>Splits Parameter d controls each tree to be <em>small with a few leaves</em></p>
+<ul>
+<li>by fitting <em>small trees to the residuals</em>, we <em>slowly improve</em> $\hat{f}$</li>
+<li>in areas where it does NOT perform well</li>
+</ul>
+<p>The shrinkage parameter $\lambda\ $ <em>slows the process down</em> even further</p>
+<ul>
+<li>allows more and different trees to <em>attack the residuals</em></li>
+</ul>
+<h4 id="idea">Idea:</h4>
+<p>The Boosting <em>learns slowly</em></p>
+<ul>
+<li>Unlike fitting a single large decision tree to the data, which amounts to <em>fitting the data hard</em> and potentially <em>overfitting</em></li>
+<li>Unlike in bagging, the construction of each tree <em>depends strongly</em> on the trees that have already been grown</li>
+<li>In general, Statistical Learning methods that <em>learn slowly</em> tend to <em>perform well</em></li>
+</ul>
+<h4 id="three-tuning-parameters">Three Tuning Parameters:</h4>
+<p>1.<strong>The number of trees B</strong>.</p>
+<ul>
+<li>Large B leads to overfit for boosting, unlike bagging and RFs</li>
+<li>Use CV to select B</li>
+</ul>
+<p>2.<strong>The shrinkage parameter $\lambda$</strong></p>
+<ul>
+<li>$\lambda$ = 0.01 or 0.01 typically <em>controls the boosting learning rate</em></li>
+<li>a very <em>small $\lambda\ $</em>  can require using a very <em>large B</em> to <em>perform well</em></li>
+</ul>
+<p>3.<strong>The number d of splits in each tree</strong></p>
+<ul>
+<li><em>controls the complexity</em> of the <em>boosted ensemble</em></li>
+<li>$d=1$ works well, in which case each tree is <em>stump</em> with single split</li>
+<li>the boosted ensemble is fitting an <em>additive model</em>, since each term involves ONLY a single variable</li>
+<li>d is the <em>interaction depth</em> that controls the <em>interaction order</em> of the <em>boosted model</em>, since d splits can involve at most d variables</li>
+</ul>
+<p><strong>Boosting vs RF</strong><br>
+<figure><img src="/images/ISLR/figure8.11.jpg"/>
+</figure>
+</p>
+<p>In boosting, since the growth of a particular tree <em>takes into account the other</em> trees that have already been grown, smaller trees are typically sufficient</p>
+<ul>
+<li>using smaller trees can aid in <em>interpretability</em></li>
+<li>e.g. using <em>stumps</em> leads to <em>an additive model</em></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/decisiontree2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting" data-via="xxxx"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/decisiontree2/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/decisiontree2/" data-title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/svm01/" class="next" rel="next" title="SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification">SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

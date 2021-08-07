@@ -13,5 +13,22 @@
     <guid>https://yiyangd.github.io/svm01/</guid>
     <description><![CDATA[SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
  affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$]]></description>
+</item><item>
+    <title>Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</title>
+    <link>https://yiyangd.github.io/decisiontree2/</link>
+    <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/decisiontree2/</guid>
+    <description><![CDATA[1.Bagging
+&ndash; Out-of-Bag (OOB) Error Estimation
+&ndash; Variable Importance Measures
+2.Random Forest &ndash; Decorrelating the Trees
+3.boosting
+&ndash; Algorithm
+&ndash; Three Tuning Parameters
+These three ensemble methods use trees as building blocks to construct more powerful prediction models
+1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
+Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
+ high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$]]></description>
 </item></channel>
 </rss>
