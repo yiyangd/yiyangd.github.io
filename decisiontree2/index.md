@@ -24,12 +24,14 @@ To reduce the variance of a model and improve the prediction accuracy
 - Using B separate training sets from the population (hard since data may not enough)
 - Fit separate model $\hat{f}^1(x),...,\hat{f}^B(x)$
 - *Average* them to obtain a *low-variance* model:
+
 $$\hat{f}_{avg}(x)=\frac{1}{B}\sum_{b=1}^B\hat{f}^b(x)$$
 
 *Bagging(Bootstrap)* takes repeated samples from *single trainging data set*
 - Generate B different bootstrapped training data sets 
 - then train the model on $b^{th}$ bootstrapped training set to get $\hat{f}^{*b}(x)$
 - *Average* all the predictions:
+
 $$\hat{f}_{bag}(x)=\frac{1}{B}\sum_{b=1}^B\hat{f}^{*b}(x)$$
 
 **Bagging for Regression Tree:**  

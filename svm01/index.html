@@ -169,8 +169,9 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$</p>
 <h4 id="12-classification-using-a-separating-hyperplane">1.2. Classification using a Separating HyperPlane</h4>
 <p>Suppose that we have a $n \times p$ data matrix  $X$</p>
 <ul>
-<li>that consists of <em>n training observations</em> in <em>p-dimensional space</em>
-$$ x_1 = \left (\begin{array}{cccc}
+<li>that consists of <em>n training observations</em> in <em>p-dimensional space</em></li>
+</ul>
+<p>$$ x_1 = \left (\begin{array}{cccc}
 x_{11}  \<br>
 \vdots   \<br>
 x_{1p}  \<br>
@@ -178,7 +179,8 @@ x_{1p}  \<br>
 x_{n1}  \<br>
 \vdots   \<br>
 x_{np}  \<br>
-\end{array}\right),$$</li>
+\end{array}\right),$$</p>
+<ul>
 <li>and these n observations fall into two classes:
 $$y1, \cdots, y_n \in {-1,1}$$</li>
 </ul>
@@ -230,16 +232,14 @@ The training observations that are <em>equidistant</em> from the <em>Maximal Mar
 
 <p>The Maximal Margin Hyperplane is the <em>solution</em> to the <em>optimization problem</em> :</p>
 <ul>
-<li>
-<p>M represents the margin of hyperplane
-$$\max_{\beta_0,\beta_1,\cdots,\beta_p,M} M$$
+<li>M represents the margin of hyperplane</li>
+</ul>
+<p>$$\max_{\beta_0,\beta_1,\cdots,\beta_p,M} M$$
 $$s.t. \sum_{j=1}^p \beta_j^2 = 1$$
 $$y_i(\beta_0 + \sum_{k=1}^p\beta_kx_{ik})\geq M$$
 $$for \ i = 1, \cdots, n$$</p>
-</li>
-<li>
-<p>the constraints ensure that each observation is <em>on the correct side</em> of the hyperlane and <em>at least a distance M</em> from the hyperplane</p>
-</li>
+<ul>
+<li>the constraints ensure that each observation is <em>on the correct side</em> of the hyperlane and <em>at least a distance M</em> from the hyperplane</li>
 </ul>
 <h4 id="14-the-non-separable-case">1.4 The Non-Separable Case</h4>
 <p>In many cases NO separating hyperplane exists, and so there is NO Maximal Margin Classifier.</p>

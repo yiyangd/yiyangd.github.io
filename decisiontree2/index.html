@@ -182,16 +182,16 @@ Bootstrap Aggregation (or bagging) can reduce the high-variance of decision tree
 <ul>
 <li>Using B separate training sets from the population (hard since data may not enough)</li>
 <li>Fit separate model $\hat{f}^1(x),&hellip;,\hat{f}^B(x)$</li>
-<li><em>Average</em> them to obtain a <em>low-variance</em> model:
-$$\hat{f}<em>{avg}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^b(x)$$</li>
+<li><em>Average</em> them to obtain a <em>low-variance</em> model:</li>
 </ul>
+<p>$$\hat{f}<em>{avg}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^b(x)$$</p>
 <p><em>Bagging(Bootstrap)</em> takes repeated samples from <em>single trainging data set</em></p>
 <ul>
 <li>Generate B different bootstrapped training data sets</li>
 <li>then train the model on $b^{th}$ bootstrapped training set to get $\hat{f}^{*b}(x)$</li>
-<li><em>Average</em> all the predictions:
-$$\hat{f}<em>{bag}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^{*b}(x)$$</li>
+<li><em>Average</em> all the predictions:</li>
 </ul>
+<p>$$\hat{f}<em>{bag}(x)=\frac{1}{B}\sum</em>{b=1}^B\hat{f}^{*b}(x)$$</p>
 <p><strong>Bagging for Regression Tree:</strong><br>
 Construct B regression trees using B bootstrapped training sets, these trees are grown deep and unpruned</p>
 <ul>
