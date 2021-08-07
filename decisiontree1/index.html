@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Decision Tree 1 - Regression and Classification Trees - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Decision Tree 1 - Regression and Classification Trees" />
+<meta property="og:description" content="0. Tree-based methods Involving stratifying / segmenting the predictor space into a number of simple regions
+ Use the mean/mode of the training data in the region as prediction for test data  1. Regression Decision Tree 1.1 Motivation Making Prediction via Stratification of the Feature Space：
+ Divide the predictor space &ndash; that is, the set of possible response $Y$ for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$ For every test data which will fall into the region $R_j$, we make the same prediction, which is simply the mean of the response $Y$ for the training observations in $R_j$  1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/decisiontree1/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-14T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Decision Tree 1 - Regression and Classification Trees"/>
+<meta name="twitter:description" content="0. Tree-based methods Involving stratifying / segmenting the predictor space into a number of simple regions
+ Use the mean/mode of the training data in the region as prediction for test data  1. Regression Decision Tree 1.1 Motivation Making Prediction via Stratification of the Feature Space：
+ Divide the predictor space &ndash; that is, the set of possible response $Y$ for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$ For every test data which will fall into the region $R_j$, we make the same prediction, which is simply the mean of the response $Y$ for the training observations in $R_j$  1."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/decisiontree1/" /><link rel="next" href="https://yiyangd.github.io/decisiontree2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Decision Tree 1 - Regression and Classification Trees",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/decisiontree1\/"
+        },"genre": "posts","wordcount":  888 ,
+        "url": "https:\/\/yiyangd.github.io\/decisiontree1\/","datePublished": "2020-11-14T00:00:00+00:00","dateModified": "2020-11-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Decision Tree 1 - Regression and Classification Trees</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-14">2020-11-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;888 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0-tree-based-methods">0. Tree-based methods</a></li>
+        <li><a href="#1-regression-decision-tree">1. Regression Decision Tree</a>
+          <ul>
+            <li><a href="#11-motivation">1.1 Motivation</a></li>
+            <li><a href="#12-tree-splitting">1.2 Tree Splitting</a></li>
+            <li><a href="#13-tree-pruning">1.3 Tree Pruning</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-classification-trees">2. Classification Trees</a></li>
+        <li><a href="#3-trees-vs-linear-models">3. Trees vs Linear Models</a></li>
+        <li><a href="#4-pros--cons-of-trees">4. Pros &amp; Cons of Trees</a></li>
+        <li><a href="#5-reference">5. Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="0-tree-based-methods">0. Tree-based methods</h3>
+<p>Involving <em>stratifying / segmenting</em> the predictor space into a number of simple regions</p>
+<ul>
+<li>Use the <em>mean/mode</em>  of the training data in the region as <em>prediction</em> for test data</li>
+</ul>
+<h3 id="1-regression-decision-tree">1. Regression Decision Tree</h3>
+<h4 id="11-motivation">1.1 Motivation</h4>
+<p>Making Prediction via Stratification of the Feature Space：</p>
+<ol>
+<li>Divide the predictor space &ndash; that is, the set of <em>possible response $Y$</em> for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$</li>
+<li>For every test data which will fall into the region $R_j$, we make the <em>same prediction</em>, which is simply the <em>mean of the response $Y$</em> for the training observations in $R_j$</li>
+</ol>
+<h4 id="12-tree-splitting">1.2 Tree Splitting</h4>
+<p>The goal is to find leaves $R_1,&hellip;,R_J$ that minimizes the RSS, given by:
+$$\sum_{j=1}^J\sum_{i\in R_j}(y_i-\hat{y}_{R_j})^2$$</p>
+<ul>
+<li>where $\hat{y}_{R_j}$ is the <em>mean response</em> for the training observations within the $j,^{th}$ leaf</li>
+</ul>
+<p><strong>Problem</strong>: it is <em>computationally infeasible</em> to consider <em>every possible partition</em> of the feature space into $J$ leaves</p>
+<p><strong>Solution</strong>: <em>Recursive Binary Splitting</em> is a <em>top-down</em>, <em>greedy</em> approach:</p>
+<ul>
+<li><em>top-down</em> because it begins at the <em>top</em> of the tree (all in one region) and then successively splits the predictor space;</li>
+<li><em>greedy</em> because the <em>best split is made  at each step</em>, rather than <del>looking ahead globally and picking a split will lead to a better tree in some future step</del> (which is impossible)</li>
+</ul>
+<p>First, for any <em>feature $p$ and cutpoint $s$</em> , we define two regions:
+$$R_1(p,s)={X|X_j&lt; s}$$
+$$and$$
+$$R_2(p,s)={X|X_j\geq s}$$
+to get the <em>best $p$ and $s$</em> that minimize:
+$$\sum_{i:x_i\in R_1(p,s)}(y_i-\hat{y}_{R_1})^2+\sum_{i:x_i\in R_2(p,s)}(y_i-\hat{y}_{R_2})^2$$</p>
+<p>Next, repeat the process, looking for the best $p$ and $s$ to continue splitting</p>
+<ul>
+<li>until a <em>stopping criterion</em> is reached:</li>
+<li>e.g. no region contains more than 5 observations.</li>
+</ul>
+<p>If the number of features $p$ is not too large, this process can be done quickly</p>
+<ul>
+<li>predict $Y$ in test data using the <em>mean of the train data</em> in the region $R_j$ to which the test data belongs</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305"
+        data-srcset="https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305, https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305 1.5x, https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305 2x"
+        data-sizes="auto"
+        alt="https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305"
+        title="https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&amp;Expires=1605344305" /></p>
+<h4 id="13-tree-pruning">1.3 Tree Pruning</h4>
+<p><strong>Problem</strong>：Complex Tree will lead overfit (each leaf has one data)</p>
+<p><strong>Solution</strong>: A smaller tree with fewer splits (fewer $R_j\ $) may lead to <em>lower variance</em> and <em>better interpretation</em> at the cost of a <em>little bias</em></p>
+<p><strong>Method 1 - Threshold</strong><br>
+Splitting only as the <em>decrease</em> in the RSS <em>exceeds some (high) threshold</em></p>
+<ul>
+<li>Problem: too <em>short-sighted</em> since a seemingly <em>worthless split</em> early on may lead to a <em>better split</em> with large reduction in RSS</li>
+</ul>
+<p><strong>Method 2 - Pruning</strong><br>
+Grow a very large tree $T_0\ $, then <em>prune</em> it back in order to obtain a <em>subtree</em></p>
+<ul>
+<li>Goal: select a subtree that leads to the <em>lowest test error rate</em></li>
+</ul>
+<p>Rather than <del>CVing every possible subtree</del>, we consider a sequence of trees <em>indexed by non-negative tuning parameter $\alpha$</em></p>
+<ul>
+<li><em>Cost Complexity / Weakest Link Pruning</em></li>
+</ul>
+<p>For each value of $\alpha$ there corresponds a subtree $T\subset T_0$ to minimize:
+$$\sum_{j=1}^{|T|}\sum_{i: \ x_i\in R_j}(y_i-\hat{y}_{Rj})^2 + \alpha|T|$$</p>
+<ul>
+<li>$|T|$ : number of leaves of the tree $T$</li>
+</ul>
+<p>The tuning parameter <em>$\alpha$ controls a trade-off</em> between the subtree&rsquo;s <em>complexity</em> and its <em>fit</em> to the training data.</p>
+<ul>
+<li>$\alpha= 0 =&gt; T = T_0$, just measures the error</li>
+<li>As $\alpha,$ increases, there is <em>penalty</em> for the subtree with <em>many leaves</em></li>
+<li>so <em>branches get pruned</em> from the tree in a nested and predictable fashion,</li>
+<li>then obtaining the whole sequence of subtrees (as a function of $\alpha$ ) is easy</li>
+</ul>
+<p><em>$\alpha$ is similar to $\lambda$ of the lasso</em>, which is a controller of the complexity of a linear model</p>
+<ul>
+<li>also can be selected via CV and obtain the subtree corresponding to $\alpha$</li>
+</ul>
+<p><strong>Example on Baseball Hitters Data</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017"
+        data-srcset="https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017, https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017 1.5x, https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017 2x"
+        data-sizes="auto"
+        alt="https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017"
+        title="https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&amp;Expires=1605425017" />
+Perform 6-fold CV to estimate the CV MSE of the trees as a function of $\alpha$</p>
+<ul>
+<li>CV error is minimum at $|T|=3$ based on the best $\alpha$</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052"
+        data-srcset="https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052, https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052 1.5x, https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052 2x"
+        data-sizes="auto"
+        alt="https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052"
+        title="https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&amp;Expires=1605425052" /></p>
+<h3 id="2-classification-trees">2. Classification Trees</h3>
+<p>For a classification tree, we predict the test data belongs to the <em>most commonly occurring class</em> of train data in the region to which it belongs</p>
+<ul>
+<li>RSS cannot be a criterion for classification tree</li>
+<li>need two criterions to evaluate the quality of a particular split</li>
+</ul>
+<p><strong>Gini Index</strong>:<br>
+A measure of total variance across the $K$ classes:
+$$G=\sum_{k=1}^K\hat{p}_{mk}(1-\hat{p}_{mk})$$</p>
+<ul>
+<li>$\hat{p}_{mk}$ represents the <em>proportion</em> of train data in the $m^{th}$ region that are from the $k^{th}$ class</li>
+<li>G small if all $\hat{p}_{mk}$ are close 1 or 0</li>
+<li><em>Node Purity</em>: Smaller if a node contains <em>larger amount of</em> observations from a <em>single class</em></li>
+</ul>
+<p><strong>Cross-Entropy</strong>:
+$$D=-\sum_{k=1}^K\hat{p}_{mk}\log (\hat{p}_{mk})$$</p>
+<ul>
+<li>Like the Gini Index, the Entropy is smaller if $m^{th}$ node is pure</li>
+<li>both are sensitive to <em>node purity</em></li>
+</ul>
+<p><strong>Heart Disease Example</strong>:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174"
+        data-srcset="https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174, https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174 1.5x, https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174 2x"
+        data-sizes="auto"
+        alt="https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174"
+        title="https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&amp;Expires=1605344174" />
+The splits may yield two <em>same predicted value</em>, there are reasons to keep them:</p>
+<ul>
+<li>because it leads to <em>increased node purity</em></li>
+<li>improves the Gini Index and the Entropy</li>
+</ul>
+<h3 id="3-trees-vs-linear-models">3. Trees vs Linear Models</h3>
+<p>If there is a <em>highly non-linear complex</em> relathinship between the features and the response, CARTs may outperform classical approaches</p>
+<ul>
+<li>However, there may still be linear relationship</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911"
+        data-srcset="https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911, https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911 1.5x, https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911 2x"
+        data-sizes="auto"
+        alt="https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911"
+        title="https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&amp;Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&amp;Expires=1605344911" /></p>
+<h3 id="4-pros--cons-of-trees">4. Pros &amp; Cons of Trees</h3>
+<p><strong>Advantages:</strong></p>
+<ol>
+<li>Easier to interpret than Linear Regression</li>
+<li>More closely mirror <em>human decision making</em></li>
+<li>Trees can be displayed graphically</li>
+<li>Easily handle <em>qualitative predictor</em> <del>without the  dummy variables</del></li>
+</ol>
+<p><strong>Limitations</strong>:</p>
+<ol>
+<li>Trees can be very <em>non-robust</em>:</li>
+</ol>
+<ul>
+<li>a <em>small change</em> in the data can cause a <em>large change</em> in the final estimated tree</li>
+</ul>
+<ol start="2">
+<li>Trees do not have the same level of predictive accuracy as other regression and classification methods</li>
+</ol>
+<ul>
+<li>TOGO：By <em>aggregating</em> many decision trees, <em>bagging, random forests and boosting</em> will <em>improve accuracy</em>, at the expense of some loss in interpretation</li>
+</ul>
+<h3 id="5-reference">5. Reference</h3>
+<p>An Introduction to Statistical Learning, with applications in R (Springer, 2013)</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-11-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/decisiontree1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/decisiontree1/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/decisiontree1/" data-title="Decision Tree 1 - Regression and Classification Trees"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/decisiontree2/" class="next" rel="next" title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting">Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

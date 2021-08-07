@@ -14,7 +14,7 @@
     <guid>https://yiyangd.github.io/open3d-1/</guid>
     <description><![CDATA[daas]]></description>
 </item><item>
-    <title>SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification</title>
+    <title>SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</title>
     <link>https://yiyangd.github.io/svm01/</link>
     <pubDate>Fri, 06 Aug 2021 15:20:08 -0700</pubDate>
     <author>Author</author>
@@ -24,7 +24,7 @@
 </item><item>
     <title>Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</title>
     <link>https://yiyangd.github.io/decisiontree2/</link>
-    <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/decisiontree2/</guid>
     <description><![CDATA[1.Bagging
@@ -38,5 +38,14 @@ These three ensemble methods use trees as building blocks to construct more powe
 1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
 Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
  high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$]]></description>
+</item><item>
+    <title>Decision Tree 1 - Regression and Classification Trees</title>
+    <link>https://yiyangd.github.io/decisiontree1/</link>
+    <pubDate>Sat, 14 Nov 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/decisiontree1/</guid>
+    <description><![CDATA[0. Tree-based methods Involving stratifying / segmenting the predictor space into a number of simple regions
+ Use the mean/mode of the training data in the region as prediction for test data  1. Regression Decision Tree 1.1 Motivation Making Prediction via Stratification of the Feature Space：
+ Divide the predictor space &ndash; that is, the set of possible response $Y$ for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$ For every test data which will fall into the region $R_j$, we make the same prediction, which is simply the mean of the response $Y$ for the training observations in $R_j$  1.]]></description>
 </item></channel>
 </rss>

@@ -1,4 +1,4 @@
-# SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification
+# SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification
 
 
 ### SVM 1. Maximal Margin Classifier
