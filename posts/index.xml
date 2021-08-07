@@ -4,11 +4,12 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | Yiyang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Aug 2021 15:20:08 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>First_post</title>
-    <link>https://yiyangd.github.io/first_post/</link>
+    <title>SVM01 - HyperPlane, Support Vectors and Maximal Margin Classification</title>
+    <link>https://yiyangd.github.io/svm01/</link>
     <pubDate>Fri, 06 Aug 2021 15:20:08 -0700</pubDate>
     <author>Author</author>
-    <guid>https://yiyangd.github.io/first_post/</guid>
-    <description><![CDATA[hihioodd]]></description>
+    <guid>https://yiyangd.github.io/svm01/</guid>
+    <description><![CDATA[SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
+ affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$]]></description>
 </item></channel>
 </rss>
