@@ -37,7 +37,8 @@ Next, repeat the process, looking for the best $p$ and $s$ to continue splitting
 If the number of features $p$ is not too large, this process can be done quickly
 - predict $Y$ in test data using the *mean of the train data* in the region $R_j$ to which the test data belongs
 
-![](https://imgkr2.cn-bj.ufileos.com/23158c95-4725-4d0b-ae93-5d15c9ef9e2f.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=7ZtLjCiJtQalSeGfbbjZyvJkLhk%253D&Expires=1605344305)
+{{< figure src="/images/ISLR/figure8-3.jpg">}}
+
 
 #### 1.3 Tree Pruning 
 **Problem**：Complex Tree will lead overfit (each leaf has one data)  
@@ -69,12 +70,15 @@ The tuning parameter *$\alpha$ controls a trade-off* between the subtree's *comp
 - also can be selected via CV and obtain the subtree corresponding to $\alpha$
 
 **Example on Baseball Hitters Data**
-![](https://imgkr2.cn-bj.ufileos.com/ce59c10a-5dfa-4d53-830a-da9e63549feb.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=kmNP4S6uTLBb66tx7%252FnJ9tWQORI%253D&Expires=1605425017)
+
+{{< figure src="/images/ISLR/figure8-4.jpg">}}
+
+
 Perform 6-fold CV to estimate the CV MSE of the trees as a function of $\alpha$  
 - CV error is minimum at $|T|=3$ based on the best $\alpha$
 
 
-![](https://imgkr2.cn-bj.ufileos.com/86f44856-a01b-4ee9-80aa-386ba0b19c75.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=6mqnGCmTQDG%252BqlugUL5hJlPmWOo%253D&Expires=1605425052)
+{{< figure src="/images/ISLR/figure8-5.jpg">}}
 
 
 ### 2. Classification Trees
@@ -96,7 +100,10 @@ $$D=-\sum_{k=1}^K\hat{p}_{mk}\log (\hat{p}_{mk})$$
 - both are sensitive to *node purity*
 
 **Heart Disease Example**:
-![](https://imgkr2.cn-bj.ufileos.com/cde32f87-d03a-4895-bd6e-c611b7f26575.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=WxY%252BnuIrsPqR1075FGxUa%252BTyVmI%253D&Expires=1605344174)
+
+{{< figure src="/images/ISLR/figure8-6.jpg">}}
+
+
 The splits may yield two *same predicted value*, there are reasons to keep them:
 - because it leads to *increased node purity*
 - improves the Gini Index and the Entropy
@@ -104,7 +111,8 @@ The splits may yield two *same predicted value*, there are reasons to keep them:
 If there is a *highly non-linear complex* relathinship between the features and the response, CARTs may outperform classical approaches
 - However, there may still be linear relationship
 
-![](https://imgkr2.cn-bj.ufileos.com/51bd514e-2f37-4c8a-ad5d-68cf55d48ea3.jpeg?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=UycMCrvdTvR5OOhLdEGqYvf4NCg%253D&Expires=1605344911)
+
+{{< figure src="/images/ISLR/figure8-7.jpg">}}
 ### 4. Pros & Cons of Trees
 **Advantages:** 
 1. Easier to interpret than Linear Regression
