@@ -37,7 +37,7 @@ $$x_1 = \begin{pmatrix}
 
 - and these n observations fall into two classes:
 
-$$ y1, \cdots, y_n \in \{ -1,1 \} $$
+$$ y_1, \cdots, y_n \in \{ -1,1 \} $$
 
 {{< figure src="/images/ISLR/figure9-2.jpg" title="Separating HyperPlane" >}}
 

@@ -1,7 +1,7 @@
-# Svm2
+# SVM 2 - Support Vector Classifiers and Machines
 
 
-### SVM 2. Support Vector Classifiers
+## SVM 2. Support Vector Classifiers and Machines
 
 ### 2.1. Motivation
 
@@ -29,13 +29,30 @@ Rather than seeking the _largest_ possible margin so that every observation is _
   - Soft: margin can be violated by some of the training observations
 
 #### Solve Optimization Problem
-M is the width of the margin, 
+
+M is the width of the margin,  
 
 $$\max_{\beta_0,\beta_1,\cdots,\beta_p,\ \epsilon_1,\cdots,\epsilon_n,\ M} M$$
 $$s.t. \sum_{j=1}^p \beta_j^2 = 1,$$
 $$y_i(\beta_0 + \sum_{k=1}^p\beta_kx_{ik})\geq M(1-\epsilon_i),$$
 $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$
-- C is a nonnegative *tuning parameter*
-- $\epsilon_i$ are *slack variables* that allow individual observations to be on the *wrong side* of the margin or the hyperplane
 
+**Parameters:**  
+
+$\epsilon_i$ is *slack variable* that allows individual observation to be on the *wrong side* of the margin or the hyperplane
+- it tells us where the ith observation is located, relative to the hyperplane and relative to the margin
+    - if $\epsilon_i=0$ then the ith observation is on the correct side of the margin
+    - if $\epsilon_i>0$ then the ith observation is on the wrong side of the margin
+    - if $\epsilon_i>1$ then the ith observation is on the wrong side of the hyperplane
+
+C is a nonnegative *tuning parameter*
+- C *bounds the sum* of the $\epsilon_i$ , 
+- and so it *determines the number of severity of the violations* to the margin (and hyperplane)
+    - C is considered as a *budget* for the amount that the margin can be violated by the n observations
+    - if C = 0, *NO Budget* for violations to the margin, all $\epsilon_i = 0$
+    - if C > 0, *no more than C* observations can be on the wrong side of the hyperplane
+        - since $\epsilon_i>1$ and  $\sum_{i=1}^n\epsilon_i \leq C$
+
+
+### 2.3 Support 
 
