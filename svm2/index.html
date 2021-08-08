@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm2\/"
-        },"genre": "posts","wordcount":  355 ,
+        },"genre": "posts","wordcount":  565 ,
         "url": "https:\/\/yiyangd.github.io\/svm2\/","datePublished": "2021-08-07T23:53:18-07:00","dateModified": "2021-08-07T23:53:18-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,8 +108,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM 2 - Support Vector Classifiers and Machines</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;355 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;565 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -183,7 +183,7 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
 </ul>
 </li>
 </ul>
-<p>C is a nonnegative <em>tuning parameter</em></p>
+<p>C is a nonnegative <em>tuning parameter</em> that is chosen via <em>Cross-Validation</em></p>
 <ul>
 <li>C <em>bounds the sum</em> of the $\epsilon_i$ ,</li>
 <li>and so it <em>determines the number of severity of the violations</em> to the margin (and hyperplane)
@@ -195,8 +195,48 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
 <li>since $\epsilon_i&gt;1$ and  $\sum_{i=1}^n\epsilon_i \leq C$</li>
 </ul>
 </li>
+<li>As C increases, <em>more tolerant of violations</em> to the margin
+<ul>
+<li>the margin will <em>widen</em> so <em>fit the data less hard</em></li>
+<li><strong>Low Variance but More Bias</strong>
+<ul>
+<li>since many observations are support vectors that determine the hyperplane</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>As C decreases, the margin narrows so is rarely violated
+<ul>
+<li>this amounts to a classifiers that is <em>highly fit</em> to the data</li>
+<li><strong>Low Bias but High Variance</strong>
+<ul>
+<li>fewer support vectors</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure><img src="/images/ISLR/figure9-7.jpg"/>
+</figure>
+
+<p><strong>Property：</strong></p>
+<p>ONLY observations that <em>either lie on</em> the margin <em>or violate</em> the margin will affect hyperplane and hence the classifier obtained.</p>
+<ul>
+<li>those observations are known as <strong>Support Vectors</strong> and do affect Support Vector Classifier</li>
+<li>an observation that <em>lies strictly on the correct side</em> of the margin does NOT affect the Support Vector Classifier</li>
+</ul>
+<p>SVC&rsquo;s <em>decision rule</em> is based ONLY on the <em>support vectors</em> （a small subset of the training observations）</p>
+<ul>
+<li>it is quite <em>Robust</em> to the behavior of observations that are <em>far away</em> from the hyperplane</li>
+<li>vs LDA （different）： classification rule depends on <em>the mean of ALL of the observations</em> within each class
+<ul>
+<li>as well as the within-class <em>covariance matrix</em> computed using ALL of the observations</li>
+</ul>
+</li>
+<li>vs Logistic（closely related）： <em>low sensitivity</em> to observations far from the decision boundary.</li>
+<li>A detailed comparison of Classification Methods will be seen in next note！</li>
 </ul>
 <h3 id="23-support">2.3 Support</h3>
 </div><div class="post-footer" id="post-footer">

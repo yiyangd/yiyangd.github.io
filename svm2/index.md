@@ -45,14 +45,37 @@ $\epsilon_i$ is *slack variable* that allows individual observation to be on the
     - if $\epsilon_i>0$ then the ith observation is on the wrong side of the margin
     - if $\epsilon_i>1$ then the ith observation is on the wrong side of the hyperplane
 
-C is a nonnegative *tuning parameter*
+C is a nonnegative *tuning parameter* that is chosen via *Cross-Validation*
 - C *bounds the sum* of the $\epsilon_i$ , 
 - and so it *determines the number of severity of the violations* to the margin (and hyperplane)
     - C is considered as a *budget* for the amount that the margin can be violated by the n observations
     - if C = 0, *NO Budget* for violations to the margin, all $\epsilon_i = 0$
     - if C > 0, *no more than C* observations can be on the wrong side of the hyperplane
         - since $\epsilon_i>1$ and  $\sum_{i=1}^n\epsilon_i \leq C$
+    - As C increases, *more tolerant of violations* to the margin
+        - the margin will *widen* so *fit the data less hard*
+        - **Low Variance but More Bias**
+            - since many observations are support vectors that determine the hyperplane
+    - As C decreases, the margin narrows so is rarely violated
+        - this amounts to a classifiers that is *highly fit* to the data
+        - **Low Bias but High Variance**
+            - fewer support vectors
+
+{{< figure src="/images/ISLR/figure9-7.jpg">}}
 
 
+**Property：**  
+
+ONLY observations that *either lie on* the margin *or violate* the margin will affect hyperplane and hence the classifier obtained.
+- those observations are known as **Support Vectors** and do affect Support Vector Classifier
+- an observation that *lies strictly on the correct side* of the margin does NOT affect the Support Vector Classifier
+
+
+SVC's *decision rule* is based ONLY on the *support vectors* （a small subset of the training observations）
+- it is quite *Robust* to the behavior of observations that are *far away* from the hyperplane
+- vs LDA （different）： classification rule depends on *the mean of ALL of the observations* within each class
+    - as well as the within-class *covariance matrix* computed using ALL of the observations
+- vs Logistic（closely related）： *low sensitivity* to observations far from the decision boundary.
+- A detailed comparison of Classification Methods will be seen in next note！
 ### 2.3 Support 
 
