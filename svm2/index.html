@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm2\/"
-        },"genre": "posts","wordcount":  663 ,
+        },"genre": "posts","wordcount":  715 ,
         "url": "https:\/\/yiyangd.github.io\/svm2\/","datePublished": "2021-08-07T23:53:18-07:00","dateModified": "2021-08-07T23:53:18-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM 2 - Support Vector Classifiers and Machines</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;663 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;715 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -233,7 +233,7 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
 <li>those observations are known as <strong>Support Vectors</strong> and do affect Support Vector Classifier</li>
 <li>an observation that <em>lies strictly on the correct side</em> of the margin does NOT affect the Support Vector Classifier</li>
 </ul>
-<p>SVC&rsquo;s <em>decision rule</em> is based ONLY on the <em>support vectors</em> （a small subset of the training observations）</p>
+<p>SVC&rsquo;s <em>decision rule</em> is based ONLY on the <em>support vectors</em> (a small subset of the training observations）</p>
 <ul>
 <li>it is quite <em>Robust</em> to the behavior of observations that are <em>far away</em> from the hyperplane</li>
 <li>vs LDA （different): classification rule depends on <em>the mean of ALL of the observations</em> within each class
@@ -258,10 +258,22 @@ $$X_1,X_1^2,X_2,X_2^2\cdots,X_p,X_p^2$$</li>
 </ul>
 <h4 id="solve-optimization-problem-1">Solve Optimization Problem</h4>
 <p>$$\max_{\beta_0,\beta_{11},\beta_{12}, \cdots,\beta_{p1}, \beta_{p2}, \ \epsilon_1,\cdots,\epsilon_n,\ M} M$$
-$$s.t. y_i(\beta_0 + \sum_{j=1}^p\beta_{j1}x_{ij} + \sum_{j=1}^p\beta_{j2}x_{ij}^2)\geq M(1-\epsilon_i),$$
+$$s.t. \ y_i(\beta_0 + \sum_{j=1}^p\beta_{j1}x_{ij} + \sum_{j=1}^p\beta_{j2}x_{ij}^2)\geq M(1-\epsilon_i),$$
 $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C, \sum_{j=1}^p \sum_{k=1}^2 \beta_{jk}^2 = 1,$$</p>
+<p>This leads to a <em>non-linear</em> decision boundary because:</p>
+<ul>
+<li>In the enlarged feature space, the decision boundary is in fact <em>Linear</em></li>
+<li>In the original feature space, the decision boundary is of the form q(x) = 0, where q is a quadratic polynomial
+<ul>
+<li>and its solutions a generally <em>Non-Linear</em></li>
+</ul>
+</li>
+</ul>
 <h4 id="using-kernels-to-enlarge-feature-space">Using Kernels to Enlarge Feature Space</h4>
-<p>SVM = SVC + Kernels</p>
+<p>SVM</p>
+<p><strong>Polynomial Kernel</strong></p>
+<p><strong>Radial Kernel</strong></p>
+<p>$$K(x_i,X_{i'} = exp(-\gamma \sum_{j=1}^p(x_{ij}-x{i&rsquo;j})^2)$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

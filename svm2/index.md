@@ -71,7 +71,7 @@ ONLY observations that *either lie on* the margin *or violate* the margin will a
 - an observation that *lies strictly on the correct side* of the margin does NOT affect the Support Vector Classifier
 
 
-SVC's *decision rule* is based ONLY on the *support vectors* （a small subset of the training observations）
+SVC's *decision rule* is based ONLY on the *support vectors* (a small subset of the training observations）
 - it is quite *Robust* to the behavior of observations that are *far away* from the hyperplane
 - vs LDA （different): classification rule depends on *the mean of ALL of the observations* within each class
     - as well as the within-class *covariance matrix* computed using ALL of the observations
@@ -91,11 +91,21 @@ $$X_1,X_1^2,X_2,X_2^2\cdots,X_p,X_p^2$$
 
 #### Solve Optimization Problem
 $$\max_{\beta_0,\beta_{11},\beta_{12}, \cdots,\beta_{p1}, \beta_{p2}, \ \epsilon_1,\cdots,\epsilon_n,\ M} M$$
-$$s.t. y_i(\beta_0 + \sum_{j=1}^p\beta_{j1}x_{ij} + \sum_{j=1}^p\beta_{j2}x_{ij}^2)\geq M(1-\epsilon_i),$$
+$$s.t. \ y_i(\beta_0 + \sum_{j=1}^p\beta_{j1}x_{ij} + \sum_{j=1}^p\beta_{j2}x_{ij}^2)\geq M(1-\epsilon_i),$$
 $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C, \sum_{j=1}^p \sum_{k=1}^2 \beta_{jk}^2 = 1,$$
 
+This leads to a *non-linear* decision boundary because:
+- In the enlarged feature space, the decision boundary is in fact *Linear*
+- In the original feature space, the decision boundary is of the form q(x) = 0, where q is a quadratic polynomial
+    - and its solutions a generally *Non-Linear*
 
 #### Using Kernels to Enlarge Feature Space
-SVM = SVC + Kernels
+SVM
 
 
+**Polynomial Kernel**  
+
+
+**Radial Kernel**  
+
+$$K(x_i,X_{i'} = exp(-\gamma \sum_{j=1}^p(x_{ij}-x{i'j})^2)$$
