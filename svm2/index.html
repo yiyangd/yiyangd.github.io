@@ -5,32 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>3D Vision - Intel® RealSense™ depth camera and IMU - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="3D Vision - Intel® RealSense™ depth camera and IMU" />
-<meta property="og:description" content="daas" />
+        <title>Svm2 - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Svm2" />
+<meta property="og:description" content="SVM 2. Support Vector Classifiers 2.1. Motivation Disadvantages of Maximal Margin Classifier: A classifier based on a separating hyperplane will necessarily perfectly classify ALL of the training observations
+ this can lead to sensitivity to individual observations  a change in a single observation may lead to a dramatic change in the hyperplane   it may have overfit the training data  Improvement: Consider a classifier based on a hyperplane that does NOT perfectly separate the two classes, in the interest of:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/open3d-1/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-06T16:20:08-07:00" />
-<meta property="article:modified_time" content="2021-08-06T16:20:08-07:00" />
+<meta property="og:url" content="https://yiyangd.github.io/svm2/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-07T23:53:18-07:00" />
+<meta property="article:modified_time" content="2021-08-07T23:53:18-07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="3D Vision - Intel® RealSense™ depth camera and IMU"/>
-<meta name="twitter:description" content="daas"/>
+<meta name="twitter:title" content="Svm2"/>
+<meta name="twitter:description" content="SVM 2. Support Vector Classifiers 2.1. Motivation Disadvantages of Maximal Margin Classifier: A classifier based on a separating hyperplane will necessarily perfectly classify ALL of the training observations
+ this can lead to sensitivity to individual observations  a change in a single observation may lead to a dramatic change in the hyperplane   it may have overfit the training data  Improvement: Consider a classifier based on a hyperplane that does NOT perfectly separate the two classes, in the interest of:"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/open3d-1/" /><link rel="prev" href="https://yiyangd.github.io/svm01/" /><link rel="next" href="https://yiyangd.github.io/svm2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/svm2/" /><link rel="prev" href="https://yiyangd.github.io/open3d-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "3D Vision - Intel® RealSense™ depth camera and IMU",
+        "headline": "Svm2",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/open3d-1\/"
-        },"genre": "posts","wordcount":  1 ,
-        "url": "https:\/\/yiyangd.github.io\/open3d-1\/","datePublished": "2021-08-06T16:20:08-07:00","dateModified": "2021-08-06T16:20:08-07:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/svm2\/"
+        },"genre": "posts","wordcount":  208 ,
+        "url": "https:\/\/yiyangd.github.io\/svm2\/","datePublished": "2021-08-07T23:53:18-07:00","dateModified": "2021-08-07T23:53:18-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -104,31 +106,90 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">3D Vision - Intel® RealSense™ depth camera and IMU</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Svm2</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;One word&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;208 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>daas</p>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#svm-2-support-vector-classifiers">SVM 2. Support Vector Classifiers</a></li>
+        <li><a href="#21-motivation">2.1. Motivation</a>
+          <ul>
+            <li><a href="#disadvantages-of-maximal-margin-classifier">Disadvantages of Maximal Margin Classifier:</a></li>
+            <li><a href="#improvement">Improvement:</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-support-vector-classifier">2.2. Support Vector Classifier</a>
+          <ul>
+            <li><a href="#solve-optimization-problem">Solve Optimization Problem</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="svm-2-support-vector-classifiers">SVM 2. Support Vector Classifiers</h3>
+<h3 id="21-motivation">2.1. Motivation</h3>
+<h4 id="disadvantages-of-maximal-margin-classifier">Disadvantages of Maximal Margin Classifier:</h4>
+<p>A classifier based on a separating hyperplane will necessarily perfectly classify <em>ALL</em> of the training observations</p>
+<ul>
+<li>this can lead to <em>sensitivity</em> to individual observations
+<ul>
+<li>a change in a single observation may lead to a dramatic change in the hyperplane</li>
+</ul>
+</li>
+<li>it may have overfit the training data</li>
+</ul>
+<h4 id="improvement">Improvement:</h4>
+<p>Consider a classifier based on a hyperplane that does <em>NOT perfectly separate</em> the two classes, in the interest of:</p>
+<ul>
+<li>Greater Robustness to individual observations, and</li>
+<li>Better Classification of <em>most</em> of the training observations
+<ul>
+<li>may misclassify a few training data but may be worthwhile for trade-off</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-support-vector-classifier">2.2. Support Vector Classifier</h3>
+<p>Rather than seeking the <em>largest</em> possible margin so that every observation is <em>perfectly on the correct side</em>,</p>
+<ul>
+<li>Support Vector Classifier (Soft Margin Classifier) instead allows some observations to be <em>on the incorrect side</em>
+<ul>
+<li>Soft: margin can be violated by some of the training observations</li>
+</ul>
+</li>
+</ul>
+<h4 id="solve-optimization-problem">Solve Optimization Problem</h4>
+<p>M is the width of the margin,</p>
+<p>$$\max_{\beta_0,\beta_1,\cdots,\beta_p,\ \epsilon_1,\cdots,\epsilon_n,\ M} M$$
+$$s.t. \sum_{j=1}^p \beta_j^2 = 1,$$
+$$y_i(\beta_0 + \sum_{k=1}^p\beta_kx_{ik})\geq M(1-\epsilon_i),$$
+$$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
+<ul>
+<li>C is a nonnegative <em>tuning parameter</em></li>
+<li>$\epsilon_i$ are <em>slack variables</em> that allow individual observations to be on the <em>wrong side</em> of the margin or the hyperplane</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-08-06</span>
+                <span>Updated on 2021-08-07</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/open3d-1/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/svm2/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/open3d-1/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/open3d-1/" data-title="3D Vision - Intel® RealSense™ depth camera and IMU"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/svm2/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/svm2/" data-title="Svm2"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -140,8 +201,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/svm01/" class="prev" rel="prev" title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fas fa-angle-left fa-fw"></i>SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</a>
-            <a href="/svm2/" class="next" rel="next" title="Svm2">Svm2<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/open3d-1/" class="prev" rel="prev" title="3D Vision - Intel® RealSense™ depth camera and IMU"><i class="fas fa-angle-left fa-fw"></i>3D Vision - Intel® RealSense™ depth camera and IMU</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
