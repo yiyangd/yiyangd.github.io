@@ -1,7 +1,7 @@
 # SVM 2 - Support Vector Classifiers and Machines
 
 
-## SVM 2. Support Vector Classifiers and Machines
+## Support Vector Classifiers
 
 ### 2.1. Motivation
 
@@ -77,5 +77,17 @@ SVC's *decision rule* is based ONLY on the *support vectors* （a small subset o
     - as well as the within-class *covariance matrix* computed using ALL of the observations
 - vs Logistic（closely related）： *low sensitivity* to observations far from the decision boundary.
 - A detailed comparison of Classification Methods will be seen in next note！
-### 2.3 Support 
 
+## Support Vector Machines = Classifiers + Kernel
+### 2.3 Support Vector Machines
+#### Classification with Non-Linear Decision Boundaries
+Support Vector Classifiers are *useless* if the boundary between the two classes is *Non-Linear*.
+
+{{< figure src="/images/ISLR/figure9-8.jpg">}}
+
+TO address non-linear boundaries problem, we could **enlarging the feature space** using quadratic, cubic and even higher-order polynomial functions of the predictors
+- rather than fitting a SVC using p features: $X_1,X_2,\cdots,X_p$
+- we could instead fit a SVC using 2p features:
+$$X_1,X_1^2,X_2,X_2^2\cdots,X_p,X_p^2$$
+
+#### Solve Optimization Problem

@@ -65,7 +65,7 @@ The training observations that are *equidistant* from the *Maximal Margin Hyperp
 - they **"support"** the Maximal Margin Hyperplane since if these points of support vectors were *moved slightly* then the Maximal Hyperplane would *move as well*!!!
     - property for later SVC and SVM: the maximal margin hyperplane *depends directly on ONLY* a small subset of observations (support vectors)
 
-{{< figure src="/images/ISLR/figure9-3.jpg" title="Maximal Margin Classifier" >}}
+{{< figure src="/images/ISLR/figure9-3.jpg">}}
 
 The Maximal Margin Hyperplane is the *solution* to the *optimization problem* :
 -  M represents the margin of hyperplane
