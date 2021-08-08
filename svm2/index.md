@@ -108,4 +108,4 @@ SVM
 
 **Radial Kernel**  
 
-$$K(x_i,X_{i'} = exp(-\gamma \sum_{j=1}^p(x_{ij}-x{i'j})^2)$$
+$$K(x_i,x_{i'} = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i'j})^2)$$
