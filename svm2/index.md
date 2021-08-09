@@ -99,13 +99,18 @@ This leads to a *non-linear* decision boundary because:
 - In the original feature space, the decision boundary is of the form q(x) = 0, where q is a quadratic polynomial
     - and its solutions a generally *Non-Linear*
 
-#### Using Kernels to Enlarge Feature Space
-SVM
-
+#### Using Kernels to Enlarge Feature Space  
+A kernel is a function that quantifies the similarity of two observations
+- Linear Kernel: $K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x{i'j} = <x_i, x_{i'}>$ (inner product)
 
 **Polynomial Kernel**  
 
 
 **Radial Kernel**  
 
-$$K(x_i,x_{i'} = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i'j})^2)$$
+$$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i'j})^2)$$
+
+**Advantages of Kernels**  
+- Efficient Computations
+    - ONLY compute $K(x_i,x_{i'}) $ for all n(n-1)/2 distinct pairs i, i'.
+        - this can be done
