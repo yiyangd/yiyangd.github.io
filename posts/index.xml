@@ -5,6 +5,16 @@
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
             <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 07 Aug 2021 23:53:18 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>eShopApp 01 - FrontEnd, React, UI Design</title>
+    <link>https://yiyangd.github.io/ecommerceapp/</link>
+    <pubDate>Sat, 07 Aug 2021 23:53:18 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/ecommerceapp/</guid>
+    <description><![CDATA[Header and Footer Create a folder /eshop and set up React
+1 2 3 4  eShop % npx create-react-app frontend eShop % cd frontend frontend % npm start frontend % rm -rf .git   Move .gitignore from /frontend to /eshop
+Create frontend/src/components/Header.js and Footer.js
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27  // Header.]]></description>
+</item><item>
     <title>SVM 2 - Support Vector Classifiers and Machines</title>
     <link>https://yiyangd.github.io/svm2/</link>
     <pubDate>Sat, 07 Aug 2021 23:53:18 -0700</pubDate>

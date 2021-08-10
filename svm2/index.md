@@ -101,10 +101,11 @@ This leads to a *non-linear* decision boundary because:
 
 #### Using Kernels to Enlarge Feature Space  
 A kernel is a function that quantifies the similarity of two observations
-- Linear Kernel: $K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x{i'j} = <x_i, x_{i'}>$ (inner product)
+- Linear Kernel: $K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i'j} = <x_i, x_{i'}>$ (inner product)
+
 
 **Polynomial Kernel**  
-
+$$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$
 
 **Radial Kernel**  
 
