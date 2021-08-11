@@ -207,6 +207,7 @@ const Rating = ({ value, text, color }) => {
 
 Rating.defaultProps = {
   color: "#f8e825", // yellow stars
+  value: 0,
 };
 Rating.propTypes = {
   value: PropTypes.number.isRequired,

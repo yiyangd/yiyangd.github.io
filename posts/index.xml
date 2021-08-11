@@ -4,7 +4,15 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 07 Aug 2021 23:53:18 -0700</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 10 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</title>
+    <link>https://yiyangd.github.io/ecommerceapp02/</link>
+    <pubDate>Tue, 10 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/ecommerceapp02/</guid>
+    <description><![CDATA[Backend Setup Create eShop/package.json
+ backend setup for ES Module: &quot;type&quot;: &quot;module&quot;,  1  eshop % npm init   1 2 3 4 5 6 7 8 9 10 11 12  { &#34;name&#34;: &#34;eshop&#34;, &#34;version&#34;: &#34;1.0.0&#34;, &#34;description&#34;: &#34;MERN eCommerce Platform&#34;, &#34;main&#34;: &#34;server.js&#34;, &#34;type&#34;: &#34;module&#34;, &#34;author&#34;: &#34;Yiyang Dong&#34;, &#34;license&#34;: &#34;MIT&#34;, &#34;dependencies&#34;: { &#34;express&#34;: &#34;^4.17.1&#34; } }   Nodemon &amp; Concurrently 1  eshop % npm i -D nodemon concurrently   In eshop/package.]]></description>
+</item><item>
     <title>eCommerce Platform 01 - FrontEnd, React, UI Design</title>
     <link>https://yiyangd.github.io/ecommerceapp/</link>
     <pubDate>Sat, 07 Aug 2021 23:53:18 -0700</pubDate>
