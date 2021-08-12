@@ -1,6 +1,8 @@
 # eCommerce Platform 02 - Backend, Node.js, Fetch Data from React
 
 
+{{< figure src="/images/eShop/front-back-end-workflow.png">}}
+
 ### Backend Setup
 
 Create eShop/package.json

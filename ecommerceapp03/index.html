@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>eCommerce Platform 03 - Database, MongoDB, Postman - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="eCommerce Platform 03 - Database, MongoDB, Postman" />
+<meta property="og:description" content="Mongo DB Atlas &amp; Compass Setup Download Compass
+ https://www.mongodb.com/try/download/compass  Create Database(Cluster) in mongodb.com
+ Security =&gt; Database Access =&gt; Add new database user Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm Databases =&gt; Browse Collections =&gt; Add my Own Data  db name: eshop collection name: products   Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass  Copy the connection string, and paste in MongoDB Compass App modify  and /test =&gt; /eshop   Databases =&gt; Connect =&gt; Connect your application (Node." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/ecommerceapp03/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-11T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="eCommerce Platform 03 - Database, MongoDB, Postman"/>
+<meta name="twitter:description" content="Mongo DB Atlas &amp; Compass Setup Download Compass
+ https://www.mongodb.com/try/download/compass  Create Database(Cluster) in mongodb.com
+ Security =&gt; Database Access =&gt; Add new database user Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm Databases =&gt; Browse Collections =&gt; Add my Own Data  db name: eshop collection name: products   Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass  Copy the connection string, and paste in MongoDB Compass App modify  and /test =&gt; /eshop   Databases =&gt; Connect =&gt; Connect your application (Node."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/ecommerceapp03/" /><link rel="prev" href="https://yiyangd.github.io/ecommerceapp02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "eCommerce Platform 03 - Database, MongoDB, Postman",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/ecommerceapp03\/"
+        },"genre": "posts","wordcount":  897 ,
+        "url": "https:\/\/yiyangd.github.io\/ecommerceapp03\/","datePublished": "2021-08-11T00:00:00+00:00","dateModified": "2021-08-11T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">eCommerce Platform 03 - Database, MongoDB, Postman</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-11">2021-08-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;897 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#mongo-db-atlas--compass-setup">Mongo DB Atlas &amp; Compass Setup</a></li>
+        <li><a href="#connecting-to-the-database">Connecting to the Database</a></li>
+        <li><a href="#create-data-models">Create Data Models</a></li>
+        <li><a href="#sample-data-for-users-and-products">Sample Data for users and products</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="mongo-db-atlas--compass-setup">Mongo DB Atlas &amp; Compass Setup</h3>
+<p>Download Compass</p>
+<ul>
+<li><a href="https://www.mongodb.com/try/download/compass" target="_blank" rel="noopener noreffer">https://www.mongodb.com/try/download/compass</a></li>
+</ul>
+<p>Create Database(Cluster) in mongodb.com</p>
+<ul>
+<li>Security =&gt; Database Access =&gt; Add new database user</li>
+<li>Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm</li>
+<li>Databases =&gt; Browse Collections =&gt; Add my Own Data
+<ul>
+<li>db name: eshop</li>
+<li>collection name: products</li>
+</ul>
+</li>
+<li>Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass
+<ul>
+<li>Copy the connection string, and paste in MongoDB Compass App</li>
+<li>modify <password> and /test =&gt; /eshop</li>
+</ul>
+</li>
+<li>Databases =&gt; Connect =&gt; Connect your application (Node.js)
+<ul>
+<li>copy the connection string into Node.js Code</li>
+<li>paste to <code>.env</code> with prefix <code>MONGO_URI = </code>
+<ul>
+<li>modify <passowrd> and <dbname> before <code>?</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="connecting-to-the-database">Connecting to the Database</h3>
+<p>mongoose: elegant mongodb object modeling for node.js</p>
+<ul>
+<li><a href="https://mongoosejs.com/" target="_blank" rel="noopener noreffer">https://mongoosejs.com/</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">eshop % npm install mongoose --save
+</code></pre></td></tr></table>
+</div>
+</div><p>Create backend/config/db.js</p>
+<ul>
+<li>async: since <code>.connect</code>, <code>.find</code> or <code>.create</code> will return a promise</li>
+<li>await: since mongoose.connect() returns a promise</li>
+<li>host: cluster0-shard-00-01.qvmrm.mongodb.net</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s2">&#34;mongoose&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">connectDB</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">conn</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MONGO_URI</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">useUnifiedTopology</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">useNewUrlParser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">useCreateIndex</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`MongoDB Connected: </span><span class="si">${</span><span class="nx">conn</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">host</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Error: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="c1">// exit with failure
+</span><span class="c1"></span>    <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">connectDB</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Connect DB in server.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">connectDB</span> <span class="nx">from</span> <span class="s2">&#34;./config/db.js&#34;</span><span class="p">;</span>
+<span class="nx">connectDB</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="create-data-models">Create Data Models</h3>
+<p>Create backend/models/userModel.js, productModel.js, orderModel.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// userModel.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s2">&#34;mongoose&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">userSchema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">isAdmin</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">timestampes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s2">&#34;User&#34;</span><span class="p">,</span> <span class="nx">userSchema</span><span class="p">);</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">User</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// productModel.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s2">&#34;mongoose&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">reviewSchema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+    <span class="nx">rating</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+    <span class="nx">comment</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">timestampes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">productSchema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">user</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">ref</span><span class="o">:</span> <span class="s2">&#34;User&#34;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">brand</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">category</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">description</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">reviews</span><span class="o">:</span> <span class="p">[</span><span class="nx">reviewSchema</span><span class="p">],</span>
+    <span class="nx">rating</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">numReviews</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">price</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">countInStock</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">timestampes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">Product</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s2">&#34;Product&#34;</span><span class="p">,</span> <span class="nx">productSchema</span><span class="p">);</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Product</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// orderModel.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s2">&#34;mongoose&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">orderSchema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">user</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">ref</span><span class="o">:</span> <span class="s2">&#34;User&#34;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">orderItems</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="nx">qty</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="nx">image</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="nx">price</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="nx">product</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">type</span><span class="o">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+          <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nx">ref</span><span class="o">:</span> <span class="s2">&#34;Product&#34;</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="nx">shippingAddress</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">address</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+      <span class="nx">city</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+      <span class="nx">postalCode</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+      <span class="nx">country</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="nx">paymentMethod</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">paymentResult</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span> <span class="p">},</span>
+      <span class="nx">status</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span> <span class="p">},</span>
+      <span class="nx">update_time</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span> <span class="p">},</span>
+      <span class="nx">email_address</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="nx">taxPrice</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">shippingPrice</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">totalPrice</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">isPaid</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">paidAt</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Date</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">isDelivered</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+      <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">deliveredAt</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Date</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">timestampes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">Order</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s2">&#34;Order&#34;</span><span class="p">,</span> <span class="nx">orderSchema</span><span class="p">);</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Order</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="sample-data-for-users-and-products">Sample Data for users and products</h3>
+<p>Create backend/data/users.js</p>
+<ul>
+<li>Use hashSync method to hash the password synchronously</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">eShop % npm i bcryptjs
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">bcrypt</span> <span class="nx">from</span> <span class="s2">&#34;bcryptjs&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Admin User&#34;</span><span class="p">,</span>
+    <span class="nx">email</span><span class="o">:</span> <span class="s2">&#34;admin@example.com&#34;</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hashSync</span><span class="p">(</span><span class="s2">&#34;123456&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="nx">isAdimin</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;John Doe&#34;</span><span class="p">,</span>
+    <span class="nx">email</span><span class="o">:</span> <span class="s2">&#34;john@example.com&#34;</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hashSync</span><span class="p">(</span><span class="s2">&#34;123456&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Jane Doe&#34;</span><span class="p">,</span>
+    <span class="nx">email</span><span class="o">:</span> <span class="s2">&#34;jane@example.com&#34;</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span> <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hashSync</span><span class="p">(</span><span class="s2">&#34;123456&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+  <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">users</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When data is entered into MongoDB, it automatically creates an <code>_id</code></p>
+<ul>
+<li>delete <code>_id</code>s in products.js</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-11</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ecommerceapp03/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/ecommerceapp03/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/ecommerceapp03/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ecommerceapp02/" class="prev" rel="prev" title="eCommerce Platform 02 - Backend, Node.js, Fetch Data from React"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
