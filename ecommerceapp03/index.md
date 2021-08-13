@@ -16,11 +16,11 @@ Create Database(Cluster) in mongodb.com
   - collection name: products
 - Databases => Connect => Connect using MongoDB Compass => I have MongoDB Compass
   - Copy the connection string, and paste in MongoDB Compass App
-  - modify <password> and /test => /eshop
+  - modify `<password>` and /test => /eshop
 - Databases => Connect => Connect your application (Node.js)
   - copy the connection string into Node.js Code
   - paste to `.env` with prefix `MONGO_URI = `
-    - modify <passowrd> and <dbname> before `?`
+    - modify `<passowrd>` and `<dbname>` before `?`
 
 ### Connecting to the Database
 
@@ -299,4 +299,209 @@ export default users;
 When data is entered into MongoDB, it automatically creates an `_id`
 
 - delete `_id`s in products.js
+
+### Data Seeder Script
+
+Create backend/seeder.js
+
+- easily import some sample data
+- deleteMany before import data because we don't want to import anything with stuff already in the database
+
+```js
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import users from "./data/users.js";
+import products from "./data/products.js";
+import User from "./models/userModel.js";
+import Product from "./models/productModel.js";
+import Order from "./models/orderModel.js";
+
+import connectDB from "./config/db.js";
+
+dotenv.config();
+
+connectDB();
+
+const importData = async () => {
+  try {
+    await Order.deleteMany();
+    await Product.deleteMany();
+    await User.deleteMany();
+
+    const createdUsers = await User.insertMany(users);
+
+    const adminUser = createdUsers[0]._id;
+
+    // ...:speread operator which will spread across all of the data
+    // that's already there
+    const sampleProducts = products.map((product) => {
+      return { ...product, user: adminUser };
+    });
+    // take product into model
+    await Product.insertMany(sampleProducts);
+
+    console.log("Data Imported!");
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`);
+    process.exit(1);
+  }
+};
+const destroyData = async () => {
+  try {
+    await Order.deleteMany();
+    await Product.deleteMany();
+    await User.deleteMany();
+
+    console.log("Data Destroyed!");
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`);
+    process.exit(1);
+  }
+};
+
+if (process.argv[2] === "-d") {
+  destroyData();
+} else {
+  importData();
+}
+```
+
+In package.json
+
+```json
+{
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  }
+}
+```
+
+In terminal, run
+
+- check data imported in `eshop.products` and `eshop.users` collections in `MongoDB Compass`
+
+```Bash
+eshop % npm run data:import
+eshop % npm run data:destroy
+```
+
+### Fetch Products from Database
+
+Create backend/routes/productRoutes.js
+
+- move routes from `server.js`
+- add `express-async-handler`: Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers.
+  - https://www.npmjs.com/package/express-async-handler
+
+```Bash
+npm install --save express-async-handler
+```
+
+```js
+// productRoutes.js
+import express from "express";
+import asyncHandler from "express-async-handler";
+const router = express.Router();
+import Product from "../models/productModel.js";
+
+// @desc Fetch all products
+// @route GET /api/products
+// @access Public
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const products = await Product.find({});
+
+    res.json(products);
+  })
+);
+
+// @desc Fetch single products
+// @route GET /api/products
+// @access Public
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  })
+);
+
+export default router;
+```
+
+In server.js
+
+```js
+import productRoutes from "./routes/productRoutes.js";
+
+const app = express();
+
+app.use("/api/products", productRoutes);
+```
+
+### Postman
+
+Download and create a new collection `eshop`
+
+- Add Environment Variable: `eShop Env`
+  - VARIABLE: `URL`
+  - INITIAL VALUE: `http://localhost:5000`
+  - env var is in `{{}}` in request
+- create folder `Products`
+  - Add `request`: `GET /api/products`
+    - GET: `{{URL}}/api/products`
+    - Click Send and get data
+
+### Custom Error Handling
+
+We want to send back an error message in JSON format rather than in HTML format when the `:id` format is wrong
+
+Create backend/middleware/errorMiddleware.js: functions that has access to the request-response cycle
+
+- 500: server error
+
+```js
+// errorMiddleware.js
+const notFound = (req, res, next) => {
+  const error = new Error(`Not Found - ${req.originalUrl}`);
+  res.status(404);
+  next(error);
+};
+
+const errorHandler = (err, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+  });
+};
+
+export { notFound, errorHandler };
+```
+
+In server.js
+
+```js
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+app.use(notFound); // 404: url not be found
+app.use(errorHandler); // 500: is not required format
+```
+
+Now fetch products from component,
+
+- will do: use Redux so that have global state to get products and then pass them down
+  - create `reducer` and `action`
 
