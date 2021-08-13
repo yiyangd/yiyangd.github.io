@@ -91,5 +91,12 @@ Bootstrap Aggregation (or bagging) can reduce the high-variance of decision tree
     <description><![CDATA[0. Tree-based methods Involving stratifying / segmenting the predictor space into a number of simple regions
  Use the mean/mode of the training data in the region as prediction for test data  1. Regression Decision Tree 1.1 Motivation Making Prediction via Stratification of the Feature Space：
  Divide the predictor space &ndash; that is, the set of possible response $Y$ for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$ For every test data which will fall into the region $R_j$, we make the same prediction, which is simply the mean of the response $Y$ for the training observations in $R_j$  1.]]></description>
+</item><item>
+    <title>SQL Basics</title>
+    <link>https://yiyangd.github.io/sql-basics/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/sql-basics/</guid>
+    <description><![CDATA[Just notes]]></description>
 </item></channel>
 </rss>
