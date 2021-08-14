@@ -19,8 +19,9 @@
     <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/ecommerceapp04/</guid>
-    <description><![CDATA[Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is global-state rather than component-level state
- the way that state is changed is through reducers: functions that except action  responsible for manipulating and passing the state down to components    ]]></description>
+    <description><![CDATA[Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
+ It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
+1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.]]></description>
 </item><item>
     <title>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</title>
     <link>https://yiyangd.github.io/ecommerceapp02/</link>
@@ -95,6 +96,7 @@ Bootstrap Aggregation (or bagging) can reduce the high-variance of decision tree
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/sql-basics/</guid>
-    <description><![CDATA[Just notes]]></description>
+    <description><![CDATA[Create Table 1 2 3 4 5  CREATE TABLE tableName ( col1 &lt;dataType&gt; &lt;Restrictions&gt;, col2 &lt;dataType&gt; &lt;Restrictions&gt;, col3 &lt;dataType&gt; &lt;Restrictions&gt;, &lt;Primary Key or Index definitions&gt;);   Create Table Actors
+1 2 3 4 5 6 7  CREATETABLEActors(FirstNameVARCHAR(20),SecondNameVARCHAR(20),DoBDATE,GenderENUM(&#39;Male&#39;,&#39;Female&#39;,&#39;Other&#39;),MaritalStatusENUM(&#39;Married&#39;,&#39;Divorced&#39;,&#39;Single&#39;),NetWorthInMillionsDECIMAL);  ]]></description>
 </item></channel>
 </rss>
