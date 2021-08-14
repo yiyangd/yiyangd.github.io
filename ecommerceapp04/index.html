@@ -11,8 +11,8 @@
 1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/ecommerceapp04/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-08-11T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-08-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-14T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
@@ -24,7 +24,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/ecommerceapp04/" /><link rel="prev" href="https://yiyangd.github.io/ecommerceapp02/" /><link rel="next" href="https://yiyangd.github.io/ecommerceapp03/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/ecommerceapp04/" /><link rel="prev" href="https://yiyangd.github.io/ecommerceapp03/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/ecommerceapp04\/"
-        },"genre": "posts","wordcount":  495 ,
-        "url": "https:\/\/yiyangd.github.io\/ecommerceapp04\/","datePublished": "2021-08-11T00:00:00+00:00","dateModified": "2021-08-11T00:00:00+00:00","publisher": {
+        },"genre": "posts","wordcount":  601 ,
+        "url": "https:\/\/yiyangd.github.io\/ecommerceapp04\/","datePublished": "2021-08-14T00:00:00+00:00","dateModified": "2021-08-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">eCommerce Platform 04 - Redux for State Management</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-11">2021-08-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;495 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-14">2021-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;601 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -122,6 +122,7 @@
     <li>
       <ul>
         <li><a href="#redux-overview">Redux Overview</a></li>
+        <li><a href="#product-list-reducer--action">Product List Reducer &amp; Action</a></li>
         <li><a href="#create-a-redux-store">Create a Redux Store</a></li>
       </ul>
     </li>
@@ -155,7 +156,64 @@
 </ul>
 </li>
 </ul>
-<h3 id="create-a-redux-store">Create a Redux Store</h3>
+<h3 id="product-list-reducer--action">Product List Reducer &amp; Action</h3>
+<p>Create a <code>src/constants/productConstant.js</code> to store the Strings</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">PRODUCT_LIST_REQUEST</span> <span class="o">=</span> <span class="s2">&#34;PRODUCT_LIST_REQUEST&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">PRODUCT_LIST_SUCCESS</span> <span class="o">=</span> <span class="s2">&#34;PRODUCT_LIST_SUCCESS&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">PRODUCT_LIST_FAIL</span> <span class="o">=</span> <span class="s2">&#34;PRODUCT_LIST_FAIL&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Create <code>src/reducers/productReducers.js</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">PRODUCT_LIST_REQUEST</span><span class="p">,</span>
+  <span class="nx">PRODUCT_LIST_SUCCESS</span><span class="p">,</span>
+  <span class="nx">PRODUCT_LIST_FAIL</span><span class="p">,</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;../constants/productConstants&#34;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">productListReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">products</span><span class="o">:</span> <span class="p">[]</span> <span class="p">},</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">PRODUCT_LIST_REQUEST</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">loading</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">products</span><span class="o">:</span> <span class="p">[]</span> <span class="p">};</span>
+    <span class="k">case</span> <span class="nx">PRODUCT_LIST_SUCCESS</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">loading</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">productions</span><span class="o">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span> <span class="p">};</span>
+    <span class="k">case</span> <span class="nx">PRODUCT_LIST_FAIL</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">loading</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span> <span class="p">};</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="create-a-redux-store">Create a Redux Store</h3>
 <p>Create frontend/src/store.js</p>
 <ul>
 <li>
@@ -259,7 +317,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-08-11</span>
+                <span>Updated on 2021-08-14</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -280,8 +338,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/ecommerceapp02/" class="prev" rel="prev" title="eCommerce Platform 02 - Backend, Node.js, Fetch Data from React"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</a>
-            <a href="/ecommerceapp03/" class="next" rel="next" title="eCommerce Platform 03 - Database, MongoDB, Postman">eCommerce Platform 03 - Database, MongoDB, Postman<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/ecommerceapp03/" class="prev" rel="prev" title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 03 - Database, MongoDB, Postman</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

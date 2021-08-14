@@ -4,7 +4,16 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 14 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>eCommerce Platform 04 - Redux for State Management</title>
+    <link>https://yiyangd.github.io/ecommerceapp04/</link>
+    <pubDate>Sat, 14 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/ecommerceapp04/</guid>
+    <description><![CDATA[Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
+ It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
+1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.]]></description>
+</item><item>
     <title>eCommerce Platform 03 - Database, MongoDB, Postman</title>
     <link>https://yiyangd.github.io/ecommerceapp03/</link>
     <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
@@ -13,15 +22,6 @@
     <description><![CDATA[Mongo DB Atlas &amp; Compass Setup Download Compass
  https://www.mongodb.com/try/download/compass  Create Database(Cluster) in mongodb.com
  Security =&gt; Database Access =&gt; Add new database user Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm Databases =&gt; Browse Collections =&gt; Add my Own Data  db name: eshop collection name: products   Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass  Copy the connection string, and paste in MongoDB Compass App modify &lt;password&gt; and /test =&gt; /eshop   Databases =&gt; Connect =&gt; Connect your application (Node.]]></description>
-</item><item>
-    <title>eCommerce Platform 04 - Redux for State Management</title>
-    <link>https://yiyangd.github.io/ecommerceapp04/</link>
-    <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/ecommerceapp04/</guid>
-    <description><![CDATA[Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
- It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
-1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.]]></description>
 </item><item>
     <title>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</title>
     <link>https://yiyangd.github.io/ecommerceapp02/</link>

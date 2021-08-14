@@ -21,6 +21,39 @@ frontend % npm i redux react-redux redux-thunk redux-devtools-extension
 - Redux Thunk middleware allows you to write `action creators` that return a `function` instead of an `action`. The thunk can be used to `delay the dispatch` of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
   - With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. Middleware extends the store's abilities, and lets you write `async logic` that interacts with the store.
 
+### Product List Reducer & Action
+
+Create a `src/constants/productConstant.js` to store the Strings
+
+```js
+export const PRODUCT_LIST_REQUEST = "PRODUCT_LIST_REQUEST";
+export const PRODUCT_LIST_SUCCESS = "PRODUCT_LIST_SUCCESS";
+export const PRODUCT_LIST_FAIL = "PRODUCT_LIST_FAIL";
+```
+
+Create `src/reducers/productReducers.js`
+
+```js
+import {
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_LIST_FAIL,
+} from "../constants/productConstants";
+
+export const productListReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_LIST_REQUEST:
+      return { loading: true, products: [] };
+    case PRODUCT_LIST_SUCCESS:
+      return { loading: false, productions: action.payload };
+    case PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+```
+
 ### Create a Redux Store
 
 Create frontend/src/store.js
