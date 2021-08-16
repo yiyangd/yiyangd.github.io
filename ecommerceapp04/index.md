@@ -1,6 +1,8 @@
 # eCommerce Platform 04 - Redux for State Management
 
 
+Notes on Aug 15th: lots of stuff I haven't understanded, just try to learn some whole framework
+
 ### Redux Overview
 
 {{< figure src="/images/eShop/redux-pattern.jpg">}}
@@ -54,6 +56,38 @@ export const productListReducer = (state = { products: [] }, action) => {
 };
 ```
 
+Create `src/actions/productActions.js`
+
+```js
+import axios from "axios";
+import {
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_LIST_FAIL,
+} from "../constants/productConstants";
+
+export const listProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_LIST_REQUEST });
+
+    const { data } = await axios.get("/api/products");
+
+    dispatch({
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+```
+
 ### Create a Redux Store
 
 Create frontend/src/store.js
@@ -74,7 +108,9 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const reducer = combineReducers({});
+const reducer = combineReducers({
+  productList: productListReducer,
+});
 
 const initialState = {};
 
@@ -106,4 +142,105 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+
+### Message and Loader Components
+
+Create `frontend/src/components/Message.js`
+
+```js
+import React from "react";
+import { Alert } from "react-bootstrap";
+
+const Message = ({ variant, children }) => {
+  return <Alert variant={variant}>{children}</Alert>;
+};
+
+Message.defaultProps = {
+  variant: "info",
+};
+
+export default Message;
+```
+
+Create `frontend/src/components/Loader.js`
+
+```js
+import React from "react";
+import { Spinner } from "react-bootstrap";
+const Loader = () => {
+  return (
+    <Spinner
+      animation="border"
+      role="status"
+      style={{
+        width: "100px",
+        height: "100px",
+        margin: "auto",
+        display: "block",
+      }}
+    >
+      <span class="sr-only">Loading...</span>
+    </Spinner>
+  );
+};
+
+export default Loader;
+```
+
+### Bring Redux State into HomeScreen
+
+In HomeScreen.js
+
+- import `useDispatch` and `useSelector`
+- no need `axios` and `useState()`
+- clear everything in `useEffect()`
+- add `message` & `loader` components
+
+```js
+// import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col } from "react-bootstrap";
+import Product from "../components/Product";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { listProducts } from "../actions/productActions";
+
+const HomeScreen = () => {
+  //const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  return (
+    <>
+      <h1>Latest Products</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
+    </>
+  );
+};
+
+export default HomeScreen;
+```
+
+Resources and tutorial for Redux:
+
+- ![Counter with Increment and Decrement](https://www.youtube.com/watch?v=iBUJVy8phqw)
 

@@ -10,9 +10,10 @@
     <pubDate>Sat, 14 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/ecommerceapp04/</guid>
-    <description><![CDATA[Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
+    <description><![CDATA[Notes on Aug 15th: lots of stuff I haven&rsquo;t understanded, just try to learn some whole framework
+Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
  It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
-1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.]]></description>
+1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux.]]></description>
 </item><item>
     <title>eCommerce Platform 03 - Database, MongoDB, Postman</title>
     <link>https://yiyangd.github.io/ecommerceapp03/</link>
