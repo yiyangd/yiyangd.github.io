@@ -421,5 +421,5 @@ export default ProductScreen;
 
 ### Resources and tutorial for Redux:
 
-- ![Counter with Increment and Decrement](https://www.youtube.com/watch?v=iBUJVy8phqw)
+- [Counter with Increment and Decrement](https://www.youtube.com/watch?v=iBUJVy8phqw)
 
