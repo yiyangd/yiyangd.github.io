@@ -5,34 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>SQL Basics - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="SQL Basics" />
-<meta property="og:description" content="Create Table 1 2 3 4 5  CREATE TABLE tableName ( col1 &lt;dataType&gt; &lt;Restrictions&gt;, col2 &lt;dataType&gt; &lt;Restrictions&gt;, col3 &lt;dataType&gt; &lt;Restrictions&gt;, &lt;Primary Key or Index definitions&gt;);   Create Table Actors
-1 2 3 4 5 6 7  CREATETABLEActors(FirstNameVARCHAR(20),SecondNameVARCHAR(20),DoBDATE,GenderENUM(&#39;Male&#39;,&#39;Female&#39;,&#39;Other&#39;),MaritalStatusENUM(&#39;Married&#39;,&#39;Divorced&#39;,&#39;Single&#39;),NetWorthInMillionsDECIMAL);  " />
+        <title>eCommerce Platform 03 - Database, MongoDB, Postman - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="eCommerce Platform 03 - Database, MongoDB, Postman" />
+<meta property="og:description" content="Qty Select &amp; Add to Cart Button In ProductScreen.js
+ import useState add qty  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/sql-basics/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-
-
+<meta property="og:url" content="https://yiyangd.github.io/ecommerceapp05-cart/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-16T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="SQL Basics"/>
-<meta name="twitter:description" content="Create Table 1 2 3 4 5  CREATE TABLE tableName ( col1 &lt;dataType&gt; &lt;Restrictions&gt;, col2 &lt;dataType&gt; &lt;Restrictions&gt;, col3 &lt;dataType&gt; &lt;Restrictions&gt;, &lt;Primary Key or Index definitions&gt;);   Create Table Actors
-1 2 3 4 5 6 7  CREATETABLEActors(FirstNameVARCHAR(20),SecondNameVARCHAR(20),DoBDATE,GenderENUM(&#39;Male&#39;,&#39;Female&#39;,&#39;Other&#39;),MaritalStatusENUM(&#39;Married&#39;,&#39;Divorced&#39;,&#39;Single&#39;),NetWorthInMillionsDECIMAL);  "/>
+<meta name="twitter:title" content="eCommerce Platform 03 - Database, MongoDB, Postman"/>
+<meta name="twitter:description" content="Qty Select &amp; Add to Cart Button In ProductScreen.js
+ import useState add qty  "/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/sql-basics/" /><link rel="next" href="https://yiyangd.github.io/decisiontree1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/ecommerceapp05-cart/" /><link rel="prev" href="https://yiyangd.github.io/ecommerceapp04-redux/" /><link rel="next" href="https://yiyangd.github.io/sql-notes-01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "SQL Basics",
+        "headline": "eCommerce Platform 03 - Database, MongoDB, Postman",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/sql-basics\/"
-        },"genre": "posts","wordcount":  36 ,
-        "url": "https:\/\/yiyangd.github.io\/sql-basics\/","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/ecommerceapp05-cart\/"
+        },"genre": "posts","wordcount":  13 ,
+        "url": "https:\/\/yiyangd.github.io\/ecommerceapp05-cart\/","datePublished": "2021-08-16T00:00:00+00:00","dateModified": "2021-08-16T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -106,9 +106,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">SQL Basics</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">eCommerce Platform 03 - Database, MongoDB, Postman</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;36 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-16">2021-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;13 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -119,63 +119,31 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#create-table">Create Table</a></li>
+        <li><a href="#qty-select--add-to-cart-button">Qty Select &amp; Add to Cart Button</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="create-table">Create Table</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CREATE TABLE tableName (
-col1 &lt;dataType&gt; &lt;Restrictions&gt;,
-col2 &lt;dataType&gt; &lt;Restrictions&gt;,
-col3 &lt;dataType&gt; &lt;Restrictions&gt;,
-&lt;Primary Key or Index definitions&gt;);
-</code></pre></td></tr></table>
-</div>
-</div><p>Create Table <code>Actors</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Actors</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span><span class="w"></span><span class="n">FirstName</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
-</span><span class="w"></span><span class="n">SecondName</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
-</span><span class="w"></span><span class="n">DoB</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="n">Gender</span><span class="w"> </span><span class="n">ENUM</span><span class="p">(</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span><span class="s1">&#39;Other&#39;</span><span class="p">),</span><span class="w">
-</span><span class="w"></span><span class="n">MaritalStatus</span><span class="w"> </span><span class="n">ENUM</span><span class="p">(</span><span class="s1">&#39;Married&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Divorced&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Single&#39;</span><span class="p">),</span><span class="w">
-</span><span class="w"></span><span class="n">NetWorthInMillions</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">);</span><span class="w">
-</span></code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"><h3 id="qty-select--add-to-cart-button">Qty Select &amp; Add to Cart Button</h3>
+<p>In <code>ProductScreen.js</code></p>
+<ul>
+<li>import <code>useState</code></li>
+<li>add <code>qty</code></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2021-08-16</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/sql-basics/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/ecommerceapp05-cart/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/sql-basics/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/sql-basics/" data-title="SQL Basics"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/ecommerceapp05-cart/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/ecommerceapp05-cart/" data-title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -187,8 +155,8 @@ col3 &lt;dataType&gt; &lt;Restrictions&gt;,
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/decisiontree1/" class="next" rel="next" title="Decision Tree 1 - Regression and Classification Trees">Decision Tree 1 - Regression and Classification Trees<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/ecommerceapp04-redux/" class="prev" rel="prev" title="eCommerce Platform 04 - Redux for State Management"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 04 - Redux for State Management</a>
+            <a href="/sql-notes-01/" class="next" rel="next" title="SQL Practices 01">SQL Practices 01<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
