@@ -15,7 +15,7 @@
     <description><![CDATA[175. Combine Two Table  Write a SQL query for a report that provides FirstName, LastName, City, State for each person in the Person table, regardless if there is an address for each of those people
  PersonId and AddressId are primary keys   1 2 3 4 5 6  CreatetablePerson(PersonIdint,FirstNamevarchar(255),LastNamevarchar(255))CreatetableAddress(AddressIdint,PersonIdint,Cityvarchar(255),Statevarchar(255))TruncatetablePersoninsertintoPerson(PersonId,LastName,FirstName)values(&#39;1&#39;,&#39;Wang&#39;,&#39;Allen&#39;)TruncatetableAddressinsertintoAddress(AddressId,PersonId,City,State)values(&#39;1&#39;,&#39;2&#39;,&#39;New York City&#39;,&#39;New York&#39;)  Solution: Outter Join Since the PersonId in table Address is the foreign key of table Person, we can join this two table to get the address information of a person.]]></description>
 </item><item>
-    <title>eCommerce Platform 03 - Database, MongoDB, Postman</title>
+    <title>eCommerce Platform 05 - Shopping Cart</title>
     <link>https://yiyangd.github.io/ecommerceapp05-cart/</link>
     <pubDate>Mon, 16 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>

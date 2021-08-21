@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sql-notes-01\/"
-        },"genre": "posts","wordcount":  212 ,
+        },"genre": "posts","wordcount":  397 ,
         "url": "https:\/\/yiyangd.github.io\/sql-notes-01\/","datePublished": "2021-08-19T00:00:00+00:00","dateModified": "2021-08-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,8 +108,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SQL Practices 01</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;212 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;397 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -130,7 +130,28 @@
             <li><a href="#solution-2---using-ifnull-and-limit-clause">Solution 2 - Using IFNULL and LIMIT clause</a></li>
           </ul>
         </li>
-        <li><a href="#177-nth-highest-salary">177. Nth Highest Salary</a></li>
+        <li><a href="#177-nth-highest-salary">177. Nth Highest Salary</a>
+          <ul>
+            <li><a href="#solution">Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#178-rank-scores">178. Rank Scores</a>
+          <ul>
+            <li><a href="#solution-1---window-function-dense_rank">Solution 1 - Window Function dense_rank()</a></li>
+            <li><a href="#solution-2---general">Solution 2 - General</a></li>
+          </ul>
+        </li>
+        <li><a href="#180-consecutive-numbers">180. Consecutive Numbers</a>
+          <ul>
+            <li><a href="#solution-1">Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#181-employees-earning-more-than-their-managers">181. Employees Earning More Than Their Managers</a>
+          <ul>
+            <li><a href="#solution---use-join-on-or-where">Solution - Use JOIN ON or WHERE</a></li>
+          </ul>
+        </li>
+        <li><a href="#heading"></a></li>
       </ul>
     </li>
   </ul>
@@ -246,6 +267,126 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><h3 id="177-nth-highest-salary">177. Nth Highest Salary</h3>
+<blockquote>
+<p>Write a SQL query to get the nth highest salary from the <code>Employee</code> table.</p>
+</blockquote>
+<h4 id="solution">Solution</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">getNthHighestSalary</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span><span class="w">
+</span><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span><span class="w"></span><span class="k">DECLARE</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">M</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span><span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Salary</span><span class="w">
+</span><span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w">
+</span><span class="w">      </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span><span class="w">      </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="n">M</span><span class="w">
+</span><span class="w">  </span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="k">END</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="178-rank-scores">178. Rank Scores</h3>
+<blockquote>
+<p>Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking.</p>
+</blockquote>
+<h4 id="solution-1---window-function-dense_rank">Solution 1 - Window Function dense_rank()</h4>
+<p>The difference between <code>dense_rank()</code> and <code>rank()</code> is that after a tie, the next ranking number should be the next consecutive integer value when using <code>dense_rank()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">Score</span><span class="p">,</span><span class="w">
+</span><span class="w">       </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="o">`</span><span class="n">Rank</span><span class="o">`</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Scores</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="solution-2---general">Solution 2 - General</h4>
+<p>A Score&rsquo;s Rank is the count of <code>Distinct</code> Score(includes itself) larger or equal to it</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">S1</span><span class="p">.</span><span class="n">Score</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">S2</span><span class="p">.</span><span class="n">Score</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="o">`</span><span class="n">Rank</span><span class="o">`</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Scores</span><span class="w"> </span><span class="n">S1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Score</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Scores</span><span class="p">)</span><span class="w"> </span><span class="n">S2</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">S2</span><span class="p">.</span><span class="n">Score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">S1</span><span class="p">.</span><span class="n">Score</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">S1</span><span class="p">.</span><span class="n">Id</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">S1</span><span class="p">.</span><span class="n">Score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="180-consecutive-numbers">180. Consecutive Numbers</h3>
+<blockquote>
+<p>Write an SQL query to find all <code>numbers</code> that appear <em>at least three times consecutively</em>.</p>
+</blockquote>
+<h4 id="solution-1">Solution</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Logs</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Num</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">l1</span><span class="p">.</span><span class="n">Num</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ConsecutiveNums</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Logs</span><span class="w"> </span><span class="n">l1</span><span class="p">,</span><span class="w"> </span><span class="n">Logs</span><span class="w"> </span><span class="n">l2</span><span class="p">,</span><span class="w"> </span><span class="n">Logs</span><span class="w"> </span><span class="n">l3</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span><span class="w">    </span><span class="n">l1</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l3</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">l1</span><span class="p">.</span><span class="n">Num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="n">Num</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="n">Num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l3</span><span class="p">.</span><span class="n">Num</span><span class="w">
+</span><span class="w"></span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="181-employees-earning-more-than-their-managers">181. Employees Earning More Than Their Managers</h3>
+<blockquote>
+<p>Given the <code>Employee</code> table, write a SQL query that finds out employees who earn more than their managers.</p>
+</blockquote>
+<h4 id="solution---use-join-on-or-where">Solution - Use JOIN ON or WHERE</h4>
+<ul>
+<li><code>JOIN</code> and <code>ON</code> could be <code>,</code> and <code>WHERE</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">ManagerId</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">NAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">e1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">e2</span><span class="w">
+</span><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">ManagerId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Id</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w">
+</span><span class="w"></span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="heading"></h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -271,7 +412,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/ecommerceapp05-cart/" class="prev" rel="prev" title="eCommerce Platform 03 - Database, MongoDB, Postman"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 03 - Database, MongoDB, Postman</a></div>
+    <div class="post-nav"><a href="/ecommerceapp05-cart/" class="prev" rel="prev" title="eCommerce Platform 05 - Shopping Cart"><i class="fas fa-angle-left fa-fw"></i>eCommerce Platform 05 - Shopping Cart</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
