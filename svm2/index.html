@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm2\/"
-        },"genre": "posts","wordcount":  762 ,
+        },"genre": "posts","wordcount":  811 ,
         "url": "https:\/\/yiyangd.github.io\/svm2\/","datePublished": "2021-08-07T23:53:18-07:00","dateModified": "2021-08-07T23:53:18-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM 2 - Support Vector Classifiers and Machines</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;762 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;811 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -189,16 +189,16 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
 </ul>
 </li>
 </ul>
-<p>C is a nonnegative <em>tuning parameter</em> that is chosen via <em>Cross-Validation</em></p>
+<p>C is a nonnegative <em>tuning (or regularization) parameter</em> that is chosen via <em>Cross-Validation</em></p>
 <ul>
 <li>C <em>bounds the sum</em> of the $\epsilon_i$ ,</li>
 <li>and so it <em>determines the number of severity of the violations</em> to the margin (and hyperplane)
 <ul>
-<li>C is considered as a <em>budget</em> for the amount that the margin can be violated by the n observations</li>
+<li>C is considered as a <strong>Budget</strong> for the amount that the margin can be violated by the n observations</li>
 <li>if C = 0, <em>NO Budget</em> for violations to the margin, all $\epsilon_i = 0$</li>
 <li>if C &gt; 0, <em>no more than C</em> observations can be on the wrong side of the hyperplane
 <ul>
-<li>since $\epsilon_i&gt;1$ and  $\sum_{i=1}^n\epsilon_i \leq C$</li>
+<li>since $\epsilon_i&gt;1$ and $\sum_{i=1}^n\epsilon_i \leq C$</li>
 </ul>
 </li>
 <li>As C increases, <em>more tolerant of violations</em> to the margin
@@ -268,13 +268,22 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C, \sum_{j=1}^p \sum_{k=1}^2 
 <li>and its solutions a generally <em>Non-Linear</em></li>
 </ul>
 </li>
+<li>Con: polynomials are wild but inefficient to enlarge feature space
+<ul>
+<li>unmanageable computations</li>
+</ul>
+</li>
 </ul>
 <h4 id="using-kernels-to-enlarge-feature-space">Using Kernels to Enlarge Feature Space</h4>
 <p>A kernel is a function that quantifies the similarity of two observations</p>
 <ul>
-<li>Linear Kernel: $K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i&rsquo;j} = &lt;x_i, x_{i'}&gt;$ (inner product)</li>
+<li>more elegant and controlled way to introduce <em>nonlinearities</em> and efficient computations in SVC</li>
 </ul>
-<p><strong>Polynomial Kernel</strong><br>
+<p><strong>Linear Kernel</strong>:<br>
+$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i&rsquo;j} = &lt;x_i, x_{i'}&gt;$ &mdash; (inner product between two vectors)</p>
+<p>The Linear SVC can be represented as
+$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i &lt;x,xi&gt;  \ \ &ndash; \text{n parameters}$$
+**Polynomial Kernel**<br>
 $$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$</p>
 <p><strong>Radial Kernel</strong></p>
 <p>$$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>
@@ -282,7 +291,7 @@ $$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$</p>
 <ul>
 <li>Efficient Computations
 <ul>
-<li>ONLY compute $K(x_i,x_{i'}) $ for all n(n-1)/2 distinct pairs i, i'.
+<li>ONLY compute $K(x<em>i,x</em>{i'}) $ for all n(n-1)/2 distinct pairs i, i'.
 <ul>
 <li>this can be done</li>
 </ul>

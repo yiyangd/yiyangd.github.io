@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm01\/"
-        },"genre": "posts","wordcount":  561 ,
+        },"genre": "posts","wordcount":  564 ,
         "url": "https:\/\/yiyangd.github.io\/svm01\/","datePublished": "2021-08-06T15:20:08-07:00","dateModified": "2021-08-06T15:20:08-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;561 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;564 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -167,15 +167,17 @@ $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$</p>
 </figure>
 
 <h4 id="12-classification-using-a-separating-hyperplane">1.2. Classification using a Separating HyperPlane</h4>
-<p>Suppose that we have a $n \times p$ data matrix  $X$</p>
+<p>Suppose that we have a $n \times p$ data matrix $X$</p>
 <ul>
 <li>that consists of <em>n training observations</em> in <em>p-dimensional space</em></li>
 </ul>
-<p>$$x_1 = \begin{pmatrix}
+<p>$$
+x_1 = \begin{pmatrix}
 x_{11}  \<br>
 \vdots   \<br>
 x_{1p}
-\end{pmatrix}$$</p>
+\end{pmatrix}
+$$</p>
 <ul>
 <li>and these n observations fall into two classes:</li>
 </ul>
@@ -224,7 +226,7 @@ The training observations that are <em>equidistant</em> from the <em>Maximal Mar
 <figure><img src="/images/ISLR/figure9-3.jpg"/>
 </figure>
 
-<p>The Maximal Margin Hyperplane is the <em>solution</em> to the <em>optimization problem</em> :</p>
+<p>The Maximal Margin Hyperplane is the <em>solution</em> to the <em>constrained optimization problem</em> :</p>
 <ul>
 <li>M represents the margin of hyperplane</li>
 </ul>
