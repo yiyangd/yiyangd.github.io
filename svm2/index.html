@@ -280,10 +280,10 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C, \sum_{j=1}^p \sum_{k=1}^2 
 <li>more elegant and controlled way to introduce <em>nonlinearities</em> and efficient computations in SVC</li>
 </ul>
 <p><strong>Linear Kernel</strong>:<br>
-$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i&rsquo;j} = &lt;x_i, x_{i'}&gt;$ &mdash; (inner product between two vectors)</p>
+$$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i&rsquo;j} = &lt;x_i, x_{i'}&gt; - - \text{inner product between two vectors}$$</p>
 <p>The Linear SVC can be represented as
-$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i &lt;x,xi&gt;  \ \ &ndash; \text{n parameters}$$
-**Polynomial Kernel**<br>
+$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i &lt;x,xi&gt;  - - \text{n parameters}$$</p>
+<p><strong>Polynomial Kernel</strong>:<br>
 $$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$</p>
 <p><strong>Radial Kernel</strong></p>
 <p>$$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>

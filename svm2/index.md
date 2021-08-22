@@ -115,11 +115,12 @@ A kernel is a function that quantifies the similarity of two observations
 - more elegant and controlled way to introduce _nonlinearities_ and efficient computations in SVC
 
 **Linear Kernel**:  
-$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i'j} = <x_i, x_{i'}>$ --- (inner product between two vectors)
+$$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i'j} = <x_i, x_{i'}> \- \- \text{inner product between two vectors}$$
 
 The Linear SVC can be represented as
-$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i <x,xi>  \ \ -- \text{n parameters}$$
-**Polynomial Kernel**  
+$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i <x,xi>  \- \- \text{n parameters}$$
+
+**Polynomial Kernel**:  
 $$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$
 
 **Radial Kernel**
