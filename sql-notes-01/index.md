@@ -147,5 +147,99 @@ AND e1.Salary > e2.Salary
 ;
 ```
 
-###
+### 182. Duplicate Emails
+
+> Write a SQL query to find all duplicate emails in a table named `Person`.
+
+#### Solution - GROUP BY and HAVING
+
+```sql
+# Person (Id int, Email varchar(255))
+SELECT Email
+FROM Person
+GROUP BY Email
+HAVING count(Email) > 1;
+```
+
+### 183. Customers Who Never Order
+
+> Suppose that a website contains two tables, the `Customers` table and the `Orders` table. Write a SQL query to find all `customers` who never order anything.
+
+#### Solution 1 - NOT IN
+
+```sql
+# Customers (Id int, Name varchar(255))
+# Orders (Id int, CustomerId int)
+SELECT Customers.Name AS Customers
+FROM Customers
+WHERE Customers.Id NOT IN (SELECT Customerid FROM Orders);
+```
+
+#### Solution 2 - LEFT JOIN
+
+```sql
+# Customers (Id int, Name varchar(255))
+# Orders (Id int, CustomerId int)
+SELECT Customers.Name as Customers
+FROM Customers
+LEFT JOIN Orders
+ON Customers.Id=Orders.CustomerId
+WHERE Orders.CustomerId IS NULL;
+```
+
+### 184. Department Highest Salary
+
+> Write a SQL query to find employees who have the highest salary in each of the departments.
+
+#### Solution - Inner Join
+
+`Employee` cannot find the empty `Department` when using `LEFT JOIN`
+
+```sql
+# Employee (Id int, Name varchar(255), Salary int, DepartmentId int)
+# Department (Id int, Name varchar(255))
+SELECT
+    Department.name AS 'Department',
+    Employee.name AS 'Employee',
+    Salary
+FROM Employee JOIN Department
+ON Employee.DepartmentId = Department.Id
+WHERE (Employee.DepartmentId , Salary) IN
+    (   SELECT DepartmentId, MAX(Salary)
+        FROM Employee
+        GROUP BY DepartmentId
+    )
+;
+```
+
+### 185. Department Top Three Salaries
+
+> Write an SQL query to find the employees who has a salary in the top three unique salaries in each of the departments.
+
+#### Solution 1 - Using JOIN and sub-query
+
+A top 3 salary in this company means there is no more than 3 salary bigger than itself in the company.
+
+```sql
+# Employee (Id int, Name varchar(255), Salary int, DepartmentId int)
+# Department (Id int, Name varchar(255))
+SELECT Department.Name AS Department, e1.Name AS Employee, e1.Salary
+FROM Employee e1 JOIN Department ON e1.DepartmentId = Department.Id
+WHERE
+    3 > (SELECT COUNT(DISTINCT e2.Salary)
+        FROM Employee e2
+        WHERE e2.Salary > e1.Salary
+        AND e1.DepartmentId = e2.DepartmentId
+        )
+;
+# e.g.e1 = e2 = [4,5,6,7,8]
+# - e1.Salary = 4，e2.Salary => [5,6,7,8]，count(DISTINCT e2.Salary) = 4
+# - e1.Salary = 5，e2.Salary => [6,7,8]，count(DISTINCT e2.Salary) = 3
+# - e1.Salary = 6，e2.Salary => [7,8]，count(DISTINCT e2.Salary) = 2 `< 3`
+# - e1.Salary = 7，e2.Salary => [8]，count(DISTINCT e2.Salary) = 1 `< 3`
+# - e1.Salary = 8，e2.Salary =>  []，count(DISTINCT e2.Salary) = 0 `< 3`
+# - 3 > count(DISTINCT e2.Salary)， Top3 = [6,7,8]
+```
+
+#### Solution 2 -
 

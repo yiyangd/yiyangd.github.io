@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sql-notes-01\/"
-        },"genre": "posts","wordcount":  397 ,
+        },"genre": "posts","wordcount":  609 ,
         "url": "https:\/\/yiyangd.github.io\/sql-notes-01\/","datePublished": "2021-08-19T00:00:00+00:00","dateModified": "2021-08-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,8 +108,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SQL Practices 01</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;397 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;609 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -151,7 +151,28 @@
             <li><a href="#solution---use-join-on-or-where">Solution - Use JOIN ON or WHERE</a></li>
           </ul>
         </li>
-        <li><a href="#heading"></a></li>
+        <li><a href="#182-duplicate-emails">182. Duplicate Emails</a>
+          <ul>
+            <li><a href="#solution---group-by-and-having">Solution - GROUP BY and HAVING</a></li>
+          </ul>
+        </li>
+        <li><a href="#183-customers-who-never-order">183. Customers Who Never Order</a>
+          <ul>
+            <li><a href="#solution-1---not-in">Solution 1 - NOT IN</a></li>
+            <li><a href="#solution-2---left-join">Solution 2 - LEFT JOIN</a></li>
+          </ul>
+        </li>
+        <li><a href="#184-department-highest-salary">184. Department Highest Salary</a>
+          <ul>
+            <li><a href="#solution---inner-join">Solution - Inner Join</a></li>
+          </ul>
+        </li>
+        <li><a href="#185-department-top-three-salaries">185. Department Top Three Salaries</a>
+          <ul>
+            <li><a href="#solution-1---using-join-and-sub-query">Solution 1 - Using JOIN and sub-query</a></li>
+            <li><a href="#solution-2--">Solution 2 -</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -386,7 +407,158 @@
 </span><span class="w"></span><span class="p">;</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="heading"></h3>
+</div><h3 id="182-duplicate-emails">182. Duplicate Emails</h3>
+<blockquote>
+<p>Write a SQL query to find all duplicate emails in a table named <code>Person</code>.</p>
+</blockquote>
+<h4 id="solution---group-by-and-having">Solution - GROUP BY and HAVING</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Email</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Email</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Person</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Email</span><span class="w">
+</span><span class="w"></span><span class="k">HAVING</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">Email</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="183-customers-who-never-order">183. Customers Who Never Order</h3>
+<blockquote>
+<p>Suppose that a website contains two tables, the <code>Customers</code> table and the <code>Orders</code> table. Write a SQL query to find all <code>customers</code> who never order anything.</p>
+</blockquote>
+<h4 id="solution-1---not-in">Solution 1 - NOT IN</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerId</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customers</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Customerid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="solution-2---left-join">Solution 2 - LEFT JOIN</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerId</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Customers</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="w">
+</span><span class="w"></span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w">
+</span><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">Id</span><span class="o">=</span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerId</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerId</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="184-department-highest-salary">184. Department Highest Salary</h3>
+<blockquote>
+<p>Write a SQL query to find employees who have the highest salary in each of the departments.</p>
+</blockquote>
+<h4 id="solution---inner-join">Solution - Inner Join</h4>
+<p><code>Employee</code> cannot find the empty <code>Department</code> when using <code>LEFT JOIN</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">DepartmentId</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span><span class="w">    </span><span class="n">Department</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Department&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">Employee</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Employee&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">Salary</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Department</span><span class="w">
+</span><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="n">Employee</span><span class="p">.</span><span class="n">DepartmentId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Department</span><span class="p">.</span><span class="n">Id</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">Employee</span><span class="p">.</span><span class="n">DepartmentId</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="k">IN</span><span class="w">
+</span><span class="w">    </span><span class="p">(</span><span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="n">DepartmentId</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Salary</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w">
+</span><span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">DepartmentId</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="185-department-top-three-salaries">185. Department Top Three Salaries</h3>
+<blockquote>
+<p>Write an SQL query to find the employees who has a salary in the top three unique salaries in each of the departments.</p>
+</blockquote>
+<h4 id="solution-1---using-join-and-sub-query">Solution 1 - Using JOIN and sub-query</h4>
+<p>A top 3 salary in this company means there is no more than 3 salary bigger than itself in the company.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">DepartmentId</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="p">(</span><span class="n">Id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Department</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">e1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">DepartmentId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Department</span><span class="p">.</span><span class="n">Id</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">e2</span><span class="w">
+</span><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w">
+</span><span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">DepartmentId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">DepartmentId</span><span class="w">
+</span><span class="w">        </span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">g</span><span class="p">.</span><span class="n">e1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="err">，</span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="err">，</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="err">，</span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="err">，</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="err">，</span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="err">，</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">`&lt;</span><span class="w"> </span><span class="mi">3</span><span class="o">`</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="err">，</span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="err">，</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">`&lt;</span><span class="w"> </span><span class="mi">3</span><span class="o">`</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="err">，</span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="w"> </span><span class="o">=&gt;</span><span class="w">  </span><span class="p">[]</span><span class="err">，</span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">`&lt;</span><span class="w"> </span><span class="mi">3</span><span class="o">`</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">Salary</span><span class="p">)</span><span class="err">，</span><span class="w"> </span><span class="n">Top3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="solution-2--">Solution 2 -</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
