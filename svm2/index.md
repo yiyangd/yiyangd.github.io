@@ -157,7 +157,7 @@ $$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i'j})^2)$$
   - lower training error rates but higher testing error rates - overfit!
     {{< figure src="/images/ISLR/RBF-Gamma.png">}}
 
-If a given test observation $x = (x_1,/cdots,/x_p)^T$ is _far_ from a training observation $x_i$ in terms of _Euclidean Distance_,
+If a given test observation $x = (x_1,\ldots,x_p)^T$ is _far_ from a training observation $x_i$ in terms of _Euclidean Distance_,
 
 - then $\sum_{j=1}^p(x_j-x_{ij})^2$ will be _large_
 - and so $K(x,x_{i}) = exp(-\gamma \sum_{j=1}^p(x_j-x_{ij})^2)$ will be _tiny_
@@ -168,7 +168,7 @@ Radial Kernel has very _Local Behavior_, ONLY Nearby training observations have 
 
 #### Advantage of Kernels
 
-Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs i, i'.
+Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs $x_i, x_i'$.
 
 - this can be done WITHOUT explicitly working in the enlarged feature space, which may be so large that computations are intractable
 

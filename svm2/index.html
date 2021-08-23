@@ -344,7 +344,7 @@ $$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>
 </ul>
 </li>
 </ul>
-<p>If a given test observation $x = (x_1,/cdots,/x_p)^T$ is <em>far</em> from a training observation $x_i$ in terms of <em>Euclidean Distance</em>,</p>
+<p>If a given test observation $x = (x_1,\ldots,x_p)^T$ is <em>far</em> from a training observation $x_i$ in terms of <em>Euclidean Distance</em>,</p>
 <ul>
 <li>then $\sum_{j=1}^p(x_j-x_{ij})^2$ will be _large_</li>
 <li>and so $K(x,x_{i}) = exp(-\gamma \sum_{j=1}^p(x_j-x_{ij})^2)$ will be _tiny_</li>
@@ -356,7 +356,7 @@ $$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>
 </ul>
 <p>Radial Kernel has very <em>Local Behavior</em>, ONLY Nearby training observations have an effect on how we classify a new test observation</p>
 <h4 id="advantage-of-kernels">Advantage of Kernels</h4>
-<p>Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs i, i'.</p>
+<p>Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs $x_i, x_i'$.</p>
 <ul>
 <li>this can be done WITHOUT explicitly working in the enlarged feature space, which may be so large that computations are intractable</li>
 </ul>

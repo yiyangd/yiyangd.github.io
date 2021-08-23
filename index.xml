@@ -4,9 +4,16 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 19 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>LDA 1 - Linear Discriminant Analysis </title>
+    <link>https://yiyangd.github.io/lda-01/</link>
+    <pubDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/lda-01/</guid>
+    <description><![CDATA[0. LDA vs Logistic Regression     When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )  1.]]></description>
+</item><item>
     <title>SQL Practices 01</title>
     <link>https://yiyangd.github.io/sql-notes-01/</link>
     <pubDate>Thu, 19 Aug 2021 00:00:00 &#43;0000</pubDate>
@@ -83,22 +90,5 @@ Create frontend/src/components/Header.js and Footer.js
     <guid>https://yiyangd.github.io/svm01/</guid>
     <description><![CDATA[SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
  affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$]]></description>
-</item><item>
-    <title>Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</title>
-    <link>https://yiyangd.github.io/decisiontree2/</link>
-    <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/decisiontree2/</guid>
-    <description><![CDATA[1.Bagging
-&ndash; Out-of-Bag (OOB) Error Estimation
-&ndash; Variable Importance Measures
-2.Random Forest &ndash; Decorrelating the Trees
-3.boosting
-&ndash; Algorithm
-&ndash; Three Tuning Parameters
-These three ensemble methods use trees as building blocks to construct more powerful prediction models
-1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
-Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
- high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$]]></description>
 </item></channel>
 </rss>
