@@ -80,7 +80,7 @@ SVC's _decision rule_ is based ONLY on the _support vectors_ (a small subset of 
 - vs Logistic（closely related): _low sensitivity_ to observations far from the decision boundary.
 - A detailed comparison of Classification Methods will be seen in next note！
 
-### 2.3 Support Vector Machines
+### 2.3. Support Vector Machines
 
 #### Classification with Non-Linear Decision Boundaries
 
@@ -117,19 +117,58 @@ A kernel is a function that quantifies the similarity of two observations
 **Linear Kernel**:  
 $$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i'j} = <x_i, x_{i'}> \- \- \text{inner product between two vectors}$$
 
+- The Linear Kernel quantifies the similarity of a pair of observations _using Pearson(standard) Correlation_
+
 The Linear SVC can be represented as
-$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i <x,xi>  \- \- \text{n parameters}$$
+$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i <x,x_i>  \- \- \text{n parameters}$$
+
+- To _Estimate the Parameters_ $\beta_0, \alpha_0, \cdots, \alpha_n$, we need ALL
+  - $\binom{n}{2}$ inner products $<x_i, x_{i'}>$ between ALL pairs of n training observations
+- Solution: $\alpha_i > 0$ ONLY for the _Support Vectors_
+  - and the other $\alpha_i = 0$ if a training observation is NOT a support vector
+- Summary: to represent the linear classifier f(x), and to _compute its coefficient_ - all we need are _inner products_
 
 **Polynomial Kernel**:  
-$$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$
+$$K(x_i,x_{i'}) = (1 + \sum_{j=1}^p x_{ij}x_{i'j})^d$$
 
-**Radial Kernel**
+- using such a kernel with _degree d > 1_ leads to a MUCH MORE **flexible decision boundary**
+- when SVC is combined with a _Non-Linear Kernel_,
+  - the resulting classifier is known as **Support Vector Machine**
 
+To compute the inner-products needed for _d dimensional polynomials_
+
+- $\binom{p+d}{d}$ basis functions, we get the non-linear function with the form:
+  $$f(x) = \beta_0 + \sum_{i \in S}\alpha_i K(x,x_i)$$
+- S is the _collection of indices of Support Vectors_
+
+{{< figure src="/images/ISLR/figure9-9.jpg">}}
+
+**Radial Kernel**  
 $$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i'j})^2)$$
 
-**Advantages of Kernels**
+- part of Multivariate Gaussian Distribution
+- the feature space is _infinite-dimensional and implicit_
+  - because Taylor Series Expansion for $e^{x_1,x_2}$ can be represented by infinite inner product
+  - when fitting the data, many of the dimensions are squashed down heavily
+- _smaller_ $\gamma$ => lower variance, higher biase=> smoother(simpler) decision boundaries
+  - because Larger RBF kernel bandwidths produce smoother feature space mappings
+- _larger_ $\gamma$ => higher variance => more flexible(complex) decision boundaries (less smooth)
+  - fit becomes _more non-linear_
+  - lower training error rates but higher testing error rates - overfit!
+    {{< figure src="/images/ISLR/RBF-Gamma.png">}}
 
-- Efficient Computations
-  - ONLY compute $K(x*i,x*{i'}) $ for all n(n-1)/2 distinct pairs i, i'.
-    - this can be done
+If a given test observation $x = (x_1,/cdots,/x_p)^T$ is _far_ from a training observation $x_i$ in terms of _Euclidean Distance_,
+
+- then $\sum_{j=1}^p(x_j-x_{ij})^2$ will be _large_
+- and so $K(x,x_{i}) = exp(-\gamma \sum_{j=1}^p(x_j-x_{ij})^2)$ will be _tiny_
+- recall that the _predicted class label_ for the test observation $x$ is _based on the sign_ of f(x)
+  - _far_ training observations _do not have an effect_ on the test observation x
+
+Radial Kernel has very _Local Behavior_, ONLY Nearby training observations have an effect on how we classify a new test observation
+
+#### Advantage of Kernels
+
+Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs i, i'.
+
+- this can be done WITHOUT explicitly working in the enlarged feature space, which may be so large that computations are intractable
 

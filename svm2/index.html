@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/svm2\/"
-        },"genre": "posts","wordcount":  811 ,
+        },"genre": "posts","wordcount":  1149 ,
         "url": "https:\/\/yiyangd.github.io\/svm2\/","datePublished": "2021-08-07T23:53:18-07:00","dateModified": "2021-08-07T23:53:18-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,8 +108,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SVM 2 - Support Vector Classifiers and Machines</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;811 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-07">2021-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1149 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -130,11 +130,12 @@
             <li><a href="#solve-optimization-problem">Solve Optimization Problem</a></li>
           </ul>
         </li>
-        <li><a href="#23-support-vector-machines">2.3 Support Vector Machines</a>
+        <li><a href="#23-support-vector-machines">2.3. Support Vector Machines</a>
           <ul>
             <li><a href="#classification-with-non-linear-decision-boundaries">Classification with Non-Linear Decision Boundaries</a></li>
             <li><a href="#solve-optimization-problem-1">Solve Optimization Problem</a></li>
             <li><a href="#using-kernels-to-enlarge-feature-space">Using Kernels to Enlarge Feature Space</a></li>
+            <li><a href="#advantage-of-kernels">Advantage of Kernels</a></li>
           </ul>
         </li>
       </ul>
@@ -244,7 +245,7 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C,$$</p>
 <li>vs Logistic（closely related): <em>low sensitivity</em> to observations far from the decision boundary.</li>
 <li>A detailed comparison of Classification Methods will be seen in next note！</li>
 </ul>
-<h3 id="23-support-vector-machines">2.3 Support Vector Machines</h3>
+<h3 id="23-support-vector-machines">2.3. Support Vector Machines</h3>
 <h4 id="classification-with-non-linear-decision-boundaries">Classification with Non-Linear Decision Boundaries</h4>
 <p>Support Vector Classifiers are <em>useless</em> if the boundary between the two classes is <em>Non-Linear</em>.</p>
 <figure><img src="/images/ISLR/figure9-8.jpg"/>
@@ -281,23 +282,83 @@ $$\epsilon_i \geq 0, \ \sum_{i=1}^n\epsilon_i \leq C, \sum_{j=1}^p \sum_{k=1}^2 
 </ul>
 <p><strong>Linear Kernel</strong>:<br>
 $$K(x_i,x_{i'}) = \sum_{j=1}^p x_{ij}x_{i&rsquo;j} = &lt;x_i, x_{i'}&gt; - - \text{inner product between two vectors}$$</p>
+<ul>
+<li>The Linear Kernel quantifies the similarity of a pair of observations <em>using Pearson(standard) Correlation</em></li>
+</ul>
 <p>The Linear SVC can be represented as
-$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i &lt;x,xi&gt;  - - \text{n parameters}$$</p>
+$$f(x) = \beta_0 + \sum^n_{i=1}\alpha_i &lt;x,x_i&gt;  - - \text{n parameters}$$</p>
+<ul>
+<li>To <em>Estimate the Parameters</em> $\beta_0, \alpha_0, \cdots, \alpha_n$, we need ALL
+<ul>
+<li>$\binom{n}{2}$ inner products $&lt;x_i, x_{i'}&gt;$ between ALL pairs of n training observations</li>
+</ul>
+</li>
+<li>Solution: $\alpha_i &gt; 0$ ONLY for the <em>Support Vectors</em>
+<ul>
+<li>and the other $\alpha_i = 0$ if a training observation is NOT a support vector</li>
+</ul>
+</li>
+<li>Summary: to represent the linear classifier f(x), and to <em>compute its coefficient</em> - all we need are <em>inner products</em></li>
+</ul>
 <p><strong>Polynomial Kernel</strong>:<br>
-$$K(x_i,x_{i'}) = (1 + \sum_{j=1})$$</p>
-<p><strong>Radial Kernel</strong></p>
-<p>$$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>
-<p><strong>Advantages of Kernels</strong></p>
+$$K(x_i,x_{i'}) = (1 + \sum_{j=1}^p x_{ij}x_{i&rsquo;j})^d$$</p>
 <ul>
-<li>Efficient Computations
+<li>using such a kernel with <em>degree d &gt; 1</em> leads to a MUCH MORE <strong>flexible decision boundary</strong></li>
+<li>when SVC is combined with a <em>Non-Linear Kernel</em>,
 <ul>
-<li>ONLY compute $K(x<em>i,x</em>{i'}) $ for all n(n-1)/2 distinct pairs i, i'.
-<ul>
-<li>this can be done</li>
+<li>the resulting classifier is known as <strong>Support Vector Machine</strong></li>
 </ul>
 </li>
 </ul>
+<p>To compute the inner-products needed for <em>d dimensional polynomials</em></p>
+<ul>
+<li>$\binom{p+d}{d}$ basis functions, we get the non-linear function with the form:
+$$f(x) = \beta_0 + \sum_{i \in S}\alpha_i K(x,x_i)$$</li>
+<li>S is the <em>collection of indices of Support Vectors</em></li>
+</ul>
+<figure><img src="/images/ISLR/figure9-9.jpg"/>
+</figure>
+
+<p><strong>Radial Kernel</strong><br>
+$$K(x_i,x_{i'}) = exp(-\gamma \sum_{j=1}^p(x_{ij}-x_{i&rsquo;j})^2)$$</p>
+<ul>
+<li>part of Multivariate Gaussian Distribution</li>
+<li>the feature space is <em>infinite-dimensional and implicit</em>
+<ul>
+<li>because Taylor Series Expansion for $e^{x_1,x_2}$ can be represented by infinite inner product</li>
+<li>when fitting the data, many of the dimensions are squashed down heavily</li>
+</ul>
 </li>
+<li><em>smaller</em> $\gamma$ =&gt; lower variance, higher biase=&gt; smoother(simpler) decision boundaries
+<ul>
+<li>because Larger RBF kernel bandwidths produce smoother feature space mappings</li>
+</ul>
+</li>
+<li><em>larger</em> $\gamma$ =&gt; higher variance =&gt; more flexible(complex) decision boundaries (less smooth)
+<ul>
+<li>fit becomes <em>more non-linear</em></li>
+<li>lower training error rates but higher testing error rates - overfit!
+<figure><img src="/images/ISLR/RBF-Gamma.png"/>
+</figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>If a given test observation $x = (x_1,/cdots,/x_p)^T$ is <em>far</em> from a training observation $x_i$ in terms of <em>Euclidean Distance</em>,</p>
+<ul>
+<li>then $\sum_{j=1}^p(x_j-x_{ij})^2$ will be _large_</li>
+<li>and so $K(x,x_{i}) = exp(-\gamma \sum_{j=1}^p(x_j-x_{ij})^2)$ will be _tiny_</li>
+<li>recall that the <em>predicted class label</em> for the test observation $x$ is <em>based on the sign</em> of f(x)
+<ul>
+<li><em>far</em> training observations <em>do not have an effect</em> on the test observation x</li>
+</ul>
+</li>
+</ul>
+<p>Radial Kernel has very <em>Local Behavior</em>, ONLY Nearby training observations have an effect on how we classify a new test observation</p>
+<h4 id="advantage-of-kernels">Advantage of Kernels</h4>
+<p>Efficient Computations ONLY compute $K(x_i,x_{i'})$ for all n(n-1)/2 distinct pairs i, i'.</p>
+<ul>
+<li>this can be done WITHOUT explicitly working in the enlarged feature space, which may be so large that computations are intractable</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
