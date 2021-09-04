@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>LDA 1 - Linear Discriminant Analysis  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="LDA 1 - Linear Discriminant Analysis " />
-<meta property="og:description" content="0. LDA vs Logistic Regression     When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )  1." />
+<meta property="og:description" content="ISLR4.4 - LDA 0. LDA vs Logistic Regression  When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable than Logistic Regression  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )   because it also provides low-dimensional views of the data  1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/lda-01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-21T00:00:00+00:00" />
@@ -16,11 +16,11 @@
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="LDA 1 - Linear Discriminant Analysis "/>
-<meta name="twitter:description" content="0. LDA vs Logistic Regression     When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )  1."/>
+<meta name="twitter:description" content="ISLR4.4 - LDA 0. LDA vs Logistic Regression  When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable than Logistic Regression  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )   because it also provides low-dimensional views of the data  1."/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/lda-01/" /><link rel="prev" href="https://yiyangd.github.io/sql-notes-01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/lda-01/" /><link rel="prev" href="https://yiyangd.github.io/lda-02/" /><link rel="next" href="https://yiyangd.github.io/victoria-trip/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/lda-01\/"
-        },"genre": "posts","wordcount":  131 ,
+        },"genre": "posts","wordcount":  659 ,
         "url": "https:\/\/yiyangd.github.io\/lda-01\/","datePublished": "2021-08-21T00:00:00+00:00","dateModified": "2021-08-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">LDA 1 - Linear Discriminant Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;131 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;659 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -115,24 +115,38 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#islr44---lda">ISLR4.4 - LDA</a>
       <ul>
         <li><a href="#0-lda-vs-logistic-regression">0. LDA vs Logistic Regression</a></li>
-        <li><a href="#1-bayes-theorem-for-classification">1. Bayes' Theorem for Classification</a></li>
-        <li><a href="#2-lda-for-p1">2. LDA for p=1</a></li>
+        <li><a href="#1-bayes-theorem-for-classification">1. Bayes' Theorem for Classification</a>
+          <ul>
+            <li><a href="#bayes-theorem-for-lda">Bayes Theorem for LDA:</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-lda-for-single-predictor">2. LDA for Single Predictor</a>
+          <ul>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#estimating-the-parameters">Estimating the Parameters</a></li>
+            <li><a href="#discriminant-functions">Discriminant Functions</a></li>
+            <li><a href="#evaluation">Evaluation</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-lda-for-multiple-predictors">3. LDA for Multiple Predictors</a>
+          <ul>
+            <li><a href="#next">Next:</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="0-lda-vs-logistic-regression">0. LDA vs Logistic Regression</h3>
-<ul>
-<li></li>
-</ul>
+            </div><div class="content" id="content"><h2 id="islr44---lda">ISLR4.4 - LDA</h2>
+<h3 id="0-lda-vs-logistic-regression">0. LDA vs Logistic Regression</h3>
 <ol>
 <li>When the classes are <em>well-separated</em>, the <em>parameter estimates</em> for the logistic regression model are <em>surprisingly unstable</em></li>
 </ol>
 <ul>
-<li>LDA is more stable</li>
+<li>LDA is more stable than Logistic Regression</li>
 </ul>
 <ol start="2">
 <li>If n is small and distribution X ~ Normal in each of the classes,</li>
@@ -143,14 +157,132 @@
 <ol start="3">
 <li>LDA is more common when we have more than two response classes ($K \geq 2 $ )</li>
 </ol>
+<ul>
+<li>because it also provides <em>low-dimensional views</em> of the data</li>
+</ul>
 <h3 id="1-bayes-theorem-for-classification">1. Bayes' Theorem for Classification</h3>
-<p>Let $\pi_k$ represent the overall or <em>prior probability</em> that a randomly chosen observation comes from the <em>kth</em> class;</p>
-<p>Let $f_k(x)=\Pr(X=x\ |\ Y=k)$ denote the <em>density function</em> of X for an observation that comes from the <em>kth</em> class.</p>
-<p><strong>Bayes' Theorem:</strong>
-$$\Pr(Y=k\ |\ X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^K\pi_lf_l(x)}$$</p>
-<p>Recall that the Bayes Classifier classifies an observation to the class for which $p_k(X)$ is largest,</p>
-<h3 id="2-lda-for-p1">2. LDA for p=1</h3>
-<p>$\delta—$</p>
+<p>Modeling the distribution of X in each of the classes separately,</p>
+<ul>
+<li>and then use <em>Bayes Theorem</em> to <em>flip things around</em> and <em>obtain $Pr(Y|X)$</em></li>
+</ul>
+<p>Using Normal(Gaussian) distributions for each class,</p>
+<ul>
+<li>leads to Linear or Quadratic Discriminant Analysis</li>
+</ul>
+<h4 id="bayes-theorem-for-lda">Bayes Theorem for LDA:</h4>
+<p>Let <em>$\pi_k$</em> represent the <em>prior probability</em></p>
+<ul>
+<li>that a randomly chosen observation comes from the <em>kth class</em>;</li>
+</ul>
+<p>Let <em>$f_k(x)=\Pr(X=x|Y=k)$</em> denote the <em>density function</em> of X</p>
+<ul>
+<li>
+<p>for an observation that comes from the <em>kth class</em>.</p>
+</li>
+<li>
+<p><em>larger $f_k(x)$ =&gt; higher probability</em> that an observation in the <em>kth class</em> has <em>$X\approx x$</em></p>
+</li>
+<li>
+<p>$\Pr(Y=k\ |\ X=x)=\frac{Pr(Y=k) · Pr(X=x|Y=k)}{Pr(X=x)}$
+$$\Downarrow$$
+$$p_k(x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^K\pi_lf_l(x)}$$</p>
+</li>
+<li>
+<p>$p_k(x)=\Pr(Y=k\ |\ X=x)$ is <em>the posterior probability</em> that an observation $X=x$ belongs to the <em>kth class</em></p>
+</li>
+</ul>
+<p><em>Estimating $\pi_k$ is Easy</em> if we have a random sample from the population:</p>
+<ul>
+<li>simply <em>compute the fraction</em> of the training observations that belong to the <em>kth class</em></li>
+</ul>
+<p><em>Estimating $f_k(x)$ is Challenging</em></p>
+<ul>
+<li>have to make some <em>simplifying assumptions</em></li>
+<li>LDA, QDA and Naive Bayes are three classifiers that use different estimates of $f_k(x)$ to approximate the Bayes classifier</li>
+</ul>
+<h3 id="2-lda-for-single-predictor">2. LDA for Single Predictor</h3>
+<p><em>LDA Classifier results from assuming that $f_k(k)$ has the form of Normal (Gaussian) Density</em>:</p>
+<p>$$f_k(x)=\frac{1}{\sqrt{2\pi} \ \sigma_k}\exp{(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)}$$</p>
+<ul>
+<li>$\mu_k$ is the mean, $\sigma_k^2$ is the variance <em>in class k</em></li>
+<li>assume that all $\sigma_k^2 = \sigma^2$ are the same
+<ul>
+<li>different class-specific variance =&gt; QDA</li>
+</ul>
+</li>
+</ul>
+<p>So the posterior probability is:
+$$p_k(x)=\frac{\pi_k \frac{1}{\sqrt{2\pi} \sigma}e^{(-\frac{1}{2\sigma^2}(x-\mu_k)^2)}}{\sum_{l=1}^K \pi_l \frac{1}{\sqrt{2\pi} \sigma}e^{(-\frac{1}{2\sigma^2}(x-\mu_l)^2)}}$$</p>
+<ul>
+<li>The <strong>Bayes Classifier</strong> involves assigning an observation $X = x$ to the class for which <em>$p_k(x)$ is Largest</em></li>
+<li><strong>Simplify</strong>: Taking Logs, and discarding terms that do not depend on k, we simplify the goal to get the <em>Largest Discriminant Score</em></li>
+</ul>
+<p>$$\delta_k(x)=x\cdot\frac{\mu_k}{\sigma^2}-\frac{\mu_k^2}{2\sigma^2}+\ln(\pi_k)$$</p>
+<h4 id="example">Example</h4>
+<p>If K = 2, and $\pi_1=\pi_2=0.5$, the <em>Bayes decision boundary</em> is at
+$$x = \frac{\mu_1^2-\mu_2^2}{2(\mu_1-\mu_2)}=\frac{\mu_1+\mu_2}{2}$$</p>
+<ul>
+<li>Let $\mu_1 = -1.25, \mu_2=1.25 \ and \  \sigma=1$, Bayes classifier
+<ul>
+<li>assigns class 1 if x &lt; 0</li>
+<li>assigns class 2 if x &gt; 0</li>
+</ul>
+</li>
+</ul>
+<p>In real-life we don&rsquo;t know the distribution and parameters, we JUST have the training data</p>
+<ul>
+<li>not able to calculate the Bayes Classifier</li>
+<li>need to estimate the parameters and approximate the optimal Bayes Classifier</li>
+</ul>
+<h4 id="estimating-the-parameters">Estimating the Parameters</h4>
+<p>The LDA method approxiates the Bayes Classifier by using the following estimates:
+$$\hat{\pi}<em>k=n_k/n$$
+$$\hat{\mu}<em>k=\frac{1}{n_k}\sum</em>{i:y_i-k}x_i$$
+$$\hat{\sigma}^2=\frac{1}{n-K}\sum^K</em>{k=1}\sum_{i:y_i=k}(x_i-\hat{\mu}_k)^2$$
+$$=\sum_{k=1}^K\frac{n_k-1}{n-K}\cdot\hat{\sigma}_k^2$$<br>
+where estimated variance in the kth class
+$$\hat{\sigma}_k^2=\frac{1}{n_k-1}\sum_{i:y_i=k}(x_i-\hat{\mu}_k)^2$$</p>
+<ul>
+<li>LDA estimates $\pi_k$ using the <em>proportion</em> of the training observations that <em>belong to the kth class</em></li>
+<li>the estimate for $\mu_k$ is the average of all the training data from the kth class</li>
+<li>$\hat{\sigma}^2$ can be seen as a <em>weighted average</em> of the sample variances for each of the K classes.</li>
+</ul>
+<h4 id="discriminant-functions">Discriminant Functions</h4>
+<p>LDA classifiers plugs the estimates given above into the <strong>discriminant functions $\delta_k(x)$</strong>
+$$\hat{\delta}_k(x)=x\cdot\frac{\hat{\mu}_k}{\hat{\sigma}^2}-\frac{\hat{\mu}_k^2}{2\hat{\sigma}^2}+\ln(\hat{\pi}_k)$$</p>
+<ul>
+<li>and _assigns an observation X=x to the class k for which $\hat{\delta}<em>k(x)$ is largest</em></li>
+<li>$\hat{\delta}_k(x)$ are linear functions of x</li>
+</ul>
+<h4 id="evaluation">Evaluation</h4>
+<figure><img src="/images/ISLR/figure4-4.jpg"/>
+</figure>
+
+<h3 id="3-lda-for-multiple-predictors">3. LDA for Multiple Predictors</h3>
+<p>Assume that $X=(X_1,X_2,\cdots,X_p) $ in the kth class is drawn from a <em>MultiVariate Gaussian (normal) Distribution</em>, $X \sim N(\mu_k,\Sigma)$:</p>
+<p>$$f_k(x)=\frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}e^{(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu))}$$</p>
+<ul>
+<li>$\mu_k=E(X)$ is a class-specific mean vector of X</li>
+<li>$\Sigma = Cov(X)$ is the <em>$p \times p$ covariance matrix</em> that is common to ALL K classes</li>
+</ul>
+<p>MultiVariate Gaussian Distribution assumes that <em>each individual predictor follows a 1-dimensional normal distribution</em></p>
+<ul>
+<li>with some <em>correlation</em> between each pair of predictors</li>
+</ul>
+<figure><img src="/images/ISLR/figure4-5.jpg"/>
+</figure>
+
+<p>Plugging the density function for the kth class, $f_k(X=x)$ into <em>Bayes Theorem</em> and performing algebra reveals that</p>
+<ul>
+<li>Bayes Classifier assigns an observation X=x to the class for which the <em>Discriminant function is largest</em>:
+$$\delta_k(x)=x^T\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+\log\pi_k$$</li>
+<li>by Estimating unknown Parameters in the same way in 1-dim case</li>
+</ul>
+<figure><img src="/images/ISLR/figure4-6.png"/>
+</figure>
+
+<h4 id="next">Next:</h4>
+<p>LDA on Credit Dataset, ROC, AUC</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -176,7 +308,8 @@ $$\Pr(Y=k\ |\ X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^K\pi_lf_l(x)}$$</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sql-notes-01/" class="prev" rel="prev" title="SQL Practices 01"><i class="fas fa-angle-left fa-fw"></i>SQL Practices 01</a></div>
+    <div class="post-nav"><a href="/lda-02/" class="prev" rel="prev" title="LDA 1 - Linear Discriminant Analysis "><i class="fas fa-angle-left fa-fw"></i>LDA 1 - Linear Discriminant Analysis </a>
+            <a href="/victoria-trip/" class="next" rel="next" title="Victoria Trip! Sep 2 - 5">Victoria Trip! Sep 2 - 5<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

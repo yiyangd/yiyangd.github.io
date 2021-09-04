@@ -4,13 +4,27 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 02 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Victoria Trip! Sep 2 - 5</title>
+    <link>https://yiyangd.github.io/victoria-trip/</link>
+    <pubDate>Thu, 02 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/victoria-trip/</guid>
+    <description><![CDATA[Day 1 - Sep 2 10:00 - 12:00 上船喽  12:00 - 14:00 去吃  Day 2 - Sep 3 ]]></description>
+</item><item>
     <title>LDA 1 - Linear Discriminant Analysis </title>
     <link>https://yiyangd.github.io/lda-01/</link>
     <pubDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/lda-01/</guid>
-    <description><![CDATA[0. LDA vs Logistic Regression     When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )  1.]]></description>
+    <description><![CDATA[ISLR4.4 - LDA 0. LDA vs Logistic Regression  When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable than Logistic Regression  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )   because it also provides low-dimensional views of the data  1.]]></description>
+</item><item>
+    <title>LDA 1 - Linear Discriminant Analysis </title>
+    <link>https://yiyangd.github.io/lda-02/</link>
+    <pubDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/lda-02/</guid>
+    <description><![CDATA[ISLR4.4 - LDA on Credit， ROC， AUC  Types of Errors ]]></description>
 </item><item>
     <title>SQL Practices 01</title>
     <link>https://yiyangd.github.io/sql-notes-01/</link>
@@ -25,8 +39,8 @@
     <pubDate>Mon, 16 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/ecommerceapp05-cart/</guid>
-    <description><![CDATA[Qty Select &amp; Add to Cart Button In ProductScreen.js
- import useState add qty  ]]></description>
+    <description><![CDATA[1. Qty Select &amp; Add to Cart Button In ProductScreen.js
+ import useState add qty, history, addToCartHandler  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46  import React, { useState, useEffect } from &#34;react&#34;; const ProductScreen = ({ history, match }) =&gt; { const [qty, setQty] = useState(0) const addToCartHandler = () =&gt; { history.]]></description>
 </item><item>
     <title>eCommerce Platform 04 - Redux for State Management</title>
     <link>https://yiyangd.github.io/ecommerceapp04-redux/</link>
@@ -73,20 +87,5 @@ Create frontend/src/components/Header.js and Footer.js
     <guid>https://yiyangd.github.io/svm2/</guid>
     <description><![CDATA[Support Vector Classifiers 2.1. Motivation Disadvantages of Maximal Margin Classifier: A classifier based on a separating hyperplane will necessarily perfectly classify ALL of the training observations
  this can lead to sensitivity to individual observations  a change in a single observation may lead to a dramatic change in the hyperplane   it may have overfit the training data  Improvement: Consider a classifier based on a hyperplane that does NOT perfectly separate the two classes, in the interest of:]]></description>
-</item><item>
-    <title>3D Vision - Intel® RealSense™ depth camera and IMU</title>
-    <link>https://yiyangd.github.io/open3d-1/</link>
-    <pubDate>Fri, 06 Aug 2021 16:20:08 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/open3d-1/</guid>
-    <description><![CDATA[daas]]></description>
-</item><item>
-    <title>SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</title>
-    <link>https://yiyangd.github.io/svm01/</link>
-    <pubDate>Fri, 06 Aug 2021 15:20:08 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/svm01/</guid>
-    <description><![CDATA[SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
- affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$]]></description>
 </item></channel>
 </rss>
