@@ -60,6 +60,61 @@ const ProductScreen = ({ history, match }) => {
 ### 2. Cart Reducer & Add-to-Cart Action
 
 Create frontend/src/constants/cartConstants.js
+
+```js
+export const CART_ADD_ITEM = "CART_ADD_ITEM";
+export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
+```
+
+Create frontend/src/reducers/cartReducers.js
+
+```js
+import { CART_ADD_ITEM } from "../constants/cartConstants";
+
+export const cartReducer = (state = { cartItems: [] }, action) => {
+  switch (action.type) {
+    case CART_ADD_ITEM:
+      const item = action.payload;
+
+      const existItem = state.cartItems.find((x) => x.product === item.product);
+
+      if (existItem) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((x) =>
+            x.product === existItem.product ? item : x
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
+      }
+    default:
+      return state;
+  }
+};
+```
+
+Add `cartReducer` in frontend/src/store.js
+
+```js
+import { cartReducer } from "./reducers/cartReducers";
+
+const reducer = combineReducers({
+  cart: cartReducer,
+});
+```
+
+Create frontend/src/actions/cartActions.js
+
+- `axios`: when we add an item to the cart, we want to make a request to API products and then the id to get the data for that particular product to add to our cart
+
+```js
+
+```
+
 Create frontend/src/screens/CartScreen.js
 
 - import to App.js and add routes
