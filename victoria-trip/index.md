@@ -5,11 +5,11 @@
 
 #### 10:00 - 12:00 上船喽
 
-{{< figure src="/images/victoria2021/day1-onboard.jpg" width="100">}}
+{{< figure src="/images/victoria2021/day1-onboard.jpg" width="400">}}
 
 #### 12:00 - 14:00 去吃 Brunch
 
-{{< figure src="/images/victoria2021/day1-bluefox.jpeg">}}
+{{< figure src="/images/victoria2021/day1-bluefox.jpeg" width="1000">}}
 
 #### 14:00 - 17:30 SkyWalk
 
