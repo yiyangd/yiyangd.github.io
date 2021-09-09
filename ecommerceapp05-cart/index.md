@@ -1,4 +1,4 @@
-# eCommerce Platform 05 - Shopping Cart
+# eCommerce Platform 05 - Shopping Cart Implementation
 
 
 ### 1. Qty Select & Add to Cart Button
@@ -97,22 +97,57 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
 };
 ```
 
-Add `cartReducer` in frontend/src/store.js
-
-```js
-import { cartReducer } from "./reducers/cartReducers";
-
-const reducer = combineReducers({
-  cart: cartReducer,
-});
-```
-
 Create frontend/src/actions/cartActions.js
 
 - `axios`: when we add an item to the cart, we want to make a request to API products and then the id to get the data for that particular product to add to our cart
 
 ```js
+import axios from "axios";
+import { CART_ADD_ITEM } from "../constants/cartConstants";
 
+export const addToCart = (id, qty) => async (dispatch) => {
+  const { data } = await axios.get(`/api/products/${id}`);
+
+  dispatch({
+    type: CART_ADD_ITEM,
+    payload: {
+      product: data._id,
+      name: data.name,
+      image: data.image,
+      price: data.price,
+      countInStock: data.countInStock,
+      qty,
+    },
+  });
+
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+```
+
+Add `cartReducer` in frontend/src/store.js
+
+- get item by `cartItemsFromStorage`
+
+```js
+import {
+  productListReducer,
+  productDetailsReducer,
+} from "./reducers/productReducers";
+import { cartReducer } from "./reducers/cartReducers";
+
+const reducer = combineReducers({
+  productList: productListReducer,
+  productDetails: productDetailsReducer,
+  cart: cartReducer,
+});
+
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const initialState = {
+  cart: { cartItems: cartItemsFromStorage },
+};
 ```
 
 Create frontend/src/screens/CartScreen.js

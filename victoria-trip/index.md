@@ -5,7 +5,7 @@
 
 #### 10:00 - 12:00 上船喽
 
-{{< figure src="/images/victoria2021/day1-onboard.jpg">}}
+{{< figure src="/images/victoria2021/day1-onboard.jpg" width="100">}}
 
 #### 12:00 - 14:00 去吃 Brunch
 

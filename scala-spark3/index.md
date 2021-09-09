@@ -1,6 +1,25 @@
 # Scala-Spark3 Study Notes
 
 
+### 0. Introduction on Spark and Scala
+
+#### Spark
+
+Spark: a unified analytics engine for large-scale data processing.
+
+- fast: Run programs up to 100x faster than Hadoop Mapreduce in memory, or 10x faster on disk
+  - DAG(direct acyclic graph) Engine optimizes workflows
+
+{{< figure src="/images/scala-spark/spark-scalable.png">}}
+
+Apache Spark consists of Spark Core Engine, Spark SQL, Spark Streaming, MLlib, GraphX and Spark R.
+
+- Spark Core: provides the in-built memory computing and referencing datasets stored in external storage systems and uses RDD data structure to speed up the data sharing in distributed processing systems like MapReduce from permanent storage like HDFS or S3 which may be slow due to the serialization and deserialization of I/O steps.
+- Spark SQL: allows users to perform ETL(extract, transform and load) functions on data from a variety of sources in different formats like JSON, Parquet or Hive and then execute ad-hoc queries.
+- Spark Streaming
+- MLlib
+- GraphX
+
 ### 1. Installation on MacOS
 
 In https://spark.apache.org/docs/latest/ (updated on Sep 7, 2021)
@@ -86,4 +105,8 @@ Hello world! The u.data file has 100000 lines.
 Process finished with exit code 0
 */
 ```
+
+#### Reference:
+
+- https://www.udemy.com/course/apache-spark-with-scala-hands-on-with-big-data/
 
