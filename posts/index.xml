@@ -4,13 +4,29 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 09 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Financial Time Series Analysis </title>
+    <link>https://yiyangd.github.io/financial-time-series/</link>
+    <pubDate>Thu, 09 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/financial-time-series/</guid>
+    <description><![CDATA[1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
+ A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
+ Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods]]></description>
+</item><item>
     <title>SAS | SFU STAT342 Course Notes </title>
     <link>https://yiyangd.github.io/sas-note/</link>
     <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/sas-note/</guid>
     <description><![CDATA[01. Thursday | Sep 8. Introduction]]></description>
+</item><item>
+    <title>Statistical Theory | SFU STAT450 Course Notes (Hand Written) </title>
+    <link>https://yiyangd.github.io/stat-theory/</link>
+    <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/stat-theory/</guid>
+    <description><![CDATA[Sep 9 - Thursday     Sep 13 - Monday   ]]></description>
 </item><item>
     <title>Scala-Spark3 Study Notes</title>
     <link>https://yiyangd.github.io/scala-spark3/</link>
@@ -68,22 +84,5 @@ Day 2 - Sep 3 ]]></description>
 Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
  It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
 1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux.]]></description>
-</item><item>
-    <title>eCommerce Platform 03 - Database, MongoDB, Postman</title>
-    <link>https://yiyangd.github.io/ecommerceapp03/</link>
-    <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/ecommerceapp03/</guid>
-    <description><![CDATA[Mongo DB Atlas &amp; Compass Setup Download Compass
- https://www.mongodb.com/try/download/compass  Create Database(Cluster) in mongodb.com
- Security =&gt; Database Access =&gt; Add new database user Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm Databases =&gt; Browse Collections =&gt; Add my Own Data  db name: eshop collection name: products   Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass  Copy the connection string, and paste in MongoDB Compass App modify &lt;password&gt; and /test =&gt; /eshop   Databases =&gt; Connect =&gt; Connect your application (Node.]]></description>
-</item><item>
-    <title>eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</title>
-    <link>https://yiyangd.github.io/ecommerceapp02/</link>
-    <pubDate>Tue, 10 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/ecommerceapp02/</guid>
-    <description><![CDATA[Backend Setup Create eShop/package.json
- backend setup for ES Module: &quot;type&quot;: &quot;module&quot;,  1  eshop % npm init   1 2 3 4 5 6 7 8 9 10 11 12  { &#34;name&#34;: &#34;eshop&#34;, &#34;version&#34;: &#34;1.0.0&#34;, &#34;description&#34;: &#34;MERN eCommerce Platform&#34;, &#34;main&#34;: &#34;server.js&#34;, &#34;type&#34;: &#34;module&#34;, &#34;author&#34;: &#34;Yiyang Dong&#34;, &#34;license&#34;: &#34;MIT&#34;, &#34;dependencies&#34;: { &#34;express&#34;: &#34;^4.17.1&#34; } }   Nodemon &amp; Concurrently 1  eshop % npm i -D nodemon concurrently   In eshop/package.]]></description>
 </item></channel>
 </rss>

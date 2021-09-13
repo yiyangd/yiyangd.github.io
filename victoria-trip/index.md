@@ -9,7 +9,7 @@
 
 #### 12:00 - 14:00 去吃 Brunch
 
-{{< figure src="/images/victoria2021/day1-bluefox.jpeg" width="1000">}}
+{{< figure src="/images/victoria2021/day1-bluefox.jpeg" width="400">}}
 
 #### 14:00 - 17:30 SkyWalk
 
