@@ -20,5 +20,32 @@ All time-periods must be **equal and clearly defined**, which would result in a 
 - from a machine learning perspective, this is inconvenient for train/test data split
   - we need pick a cut-off point and let the period before the cut-off point be the training set and the period after the cutoff point be the testing set
 
-#### Code
+### 2. Python Practice
+
+Step1: Import the library and read the file
+
+- Create a copy of original data in case we erase certain values and read the csv file again
+- `df.head()` shows the information of the top five observations for the data set
+
+```python
+import pandas as pd
+import numpy as np
+
+raw_csv_data = pd.read_csv("Index2018.csv")
+df_comp = raw_csv_data.copy()
+
+df_comp.head()
+```
+
+Output:
+{{< figure src="/images/financial-time-series/df_head.jpg">}}
+
+- `date`: represents the day when the values of the other columns (closing prices of four market indexes) were recorded
+- Each market index is a portfolio of the most traded companies on the respective stock exchange markets:
+- `spx`: S&P 500 measures the stability of the US stock exchanges
+- `dax`: DAX 30 measures the stability of the German stock exchanges
+- `ftse`: FTSE 100 measures the stability of the London Stock exchanges
+- `nikkei`: NIKKEI 225 measures the stability of the Japanese stock exchanges
+
+Step2: Visualize the data
 

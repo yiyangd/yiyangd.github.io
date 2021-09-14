@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  141 ,
+        },"genre": "posts","wordcount":  289 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;141 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;289 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -124,9 +124,9 @@
         <li><a href="#1-introduction-to-time-series-in-python">1. Introduction to Time Series in Python</a>
           <ul>
             <li><a href="#properties">Properties</a></li>
-            <li><a href="#code">Code</a></li>
           </ul>
         </li>
+        <li><a href="#2-python-practice">2. Python Practice</a></li>
       </ul>
     </li>
   </ul>
@@ -151,7 +151,45 @@
 </ul>
 </li>
 </ul>
-<h4 id="code">Code</h4>
+<h3 id="2-python-practice">2. Python Practice</h3>
+<p>Step1: Import the library and read the file</p>
+<ul>
+<li>Create a copy of original data in case we erase certain values and read the csv file again</li>
+<li><code>df.head()</code> shows the information of the top five observations for the data set</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">raw_csv_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;Index2018.csv&#34;</span><span class="p">)</span>
+<span class="n">df_comp</span> <span class="o">=</span> <span class="n">raw_csv_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">df_comp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/df_head.jpg"/>
+</figure>
+</p>
+<ul>
+<li><code>date</code>: represents the day when the values of the other columns (closing prices of four market indexes) were recorded</li>
+<li>Each market index is a portfolio of the most traded companies on the respective stock exchange markets:</li>
+<li><code>spx</code>: S&amp;P 500 measures the stability of the US stock exchanges</li>
+<li><code>dax</code>: DAX 30 measures the stability of the German stock exchanges</li>
+<li><code>ftse</code>: FTSE 100 measures the stability of the London Stock exchanges</li>
+<li><code>nikkei</code>: NIKKEI 225 measures the stability of the Japanese stock exchanges</li>
+</ul>
+<p>Step2: Visualize the data</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
