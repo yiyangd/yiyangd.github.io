@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  289 ,
+        },"genre": "posts","wordcount":  443 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;289 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;443 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -152,7 +152,7 @@
 </li>
 </ul>
 <h3 id="2-python-practice">2. Python Practice</h3>
-<p>Step1: Import the library and read the file</p>
+<p><strong>Step1</strong>: Import the library and read the file</p>
 <ul>
 <li>Create a copy of original data in case we erase certain values and read the csv file again</li>
 <li><code>df.head()</code> shows the information of the top five observations for the data set</li>
@@ -178,7 +178,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>Output:
-<figure><img src="/images/financial-time-series/df_head.jpg"/>
+<figure><img src="/images/financial-time-series/df_head.jpg" width="200"/>
 </figure>
 </p>
 <ul>
@@ -189,7 +189,51 @@
 <li><code>ftse</code>: FTSE 100 measures the stability of the London Stock exchanges</li>
 <li><code>nikkei</code>: NIKKEI 225 measures the stability of the Japanese stock exchanges</li>
 </ul>
-<p>Step2: Visualize the data</p>
+<p><strong>Step2</strong>: Transform &ldquo;dd/mm/yyyy&rdquo; format to &ldquo;yyyy-mm-dd&rdquo; <code>datetime</code> format</p>
+<ul>
+<li>set <code>date</code> as index: <code>inplace = True</code> lets date replace the integer index
+<ul>
+<li>Once &ldquo;date&rdquo; becomes an index, we no longer save/modify its values as a seperate attribute in the data frame</li>
+</ul>
+</li>
+<li>set frequency:
+<ul>
+<li>arguments: &lsquo;h&rsquo; - hourly, &lsquo;w&rsquo; - weekly, &rsquo;d' - daily, &rsquo;m' - monthly</li>
+<li>not interested in any weekends or holidays =&gt; missing values NaN</li>
+<li>&lsquo;b&rsquo; - business days</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df_comp</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_comp</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">dayfirst</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_comp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;date&#34;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_comp</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">df_comp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/date_index_head.jpg" width="200"/>
+</figure>
+</p>
+<p><strong>Step3</strong>: Handling Missing Values</p>
+<ul>
+<li>For each attribute, <code>df_comp.isna().sum()</code> will show the number of instances without available information for each column</li>
+<li>Setting the frequency to &ldquo;business days&rdquo; must have generated 8 dates, for which we have no data available</li>
+<li><code>fillna()</code> method:
+<ul>
+<li>front filling: assigns the value of the previous period</li>
+<li>back filling: assigns the value for the next period</li>
+<li>assigning the same average to all the missing values (bad approach)</li>
+</ul>
+</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
