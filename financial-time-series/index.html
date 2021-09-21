@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  443 ,
+        },"genre": "posts","wordcount":  908 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;443 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;908 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -126,7 +126,13 @@
             <li><a href="#properties">Properties</a></li>
           </ul>
         </li>
-        <li><a href="#2-python-practice">2. Python Practice</a></li>
+        <li><a href="#2-python-implementation">2. Python Implementation</a></li>
+        <li><a href="#3-white-noise">3. White Noise</a>
+          <ul>
+            <li><a href="#python">Python</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-random-walk">4. Random Walk</a></li>
       </ul>
     </li>
   </ul>
@@ -151,8 +157,41 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-python-practice">2. Python Practice</h3>
-<p><strong>Step1</strong>: Import the library and read the file</p>
+<h3 id="2-python-implementation">2. Python Implementation</h3>
+<p><strong>Step0</strong>: Scrape the data off of <code>Yahoo Finance</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">yfinance</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&#34;ignore&#34;</span><span class="p">)</span>
+
+<span class="c1"># using the .download() method to scrape our data from the Yahoo Finance webpage</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">yfinance</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span> <span class="o">=</span> <span class="s2">&#34;^GSPC ^FTSE ^N225 ^GDAXI&#34;</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s2">&#34;1994-01-07&#34;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&#34;2021-09-20&#34;</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="s2">&#34;1d&#34;</span><span class="p">,</span> <span class="n">group_by</span> <span class="o">=</span> <span class="s2">&#34;ticker&#34;</span><span class="p">,</span> <span class="n">auto_adjust</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">treads</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># tickers =&gt; the time series we are interested in</span>
+<span class="c1"># interval =&gt; the distance in time between two recorded observations. Since we&#39;re using daily closing prices, we set it equal to &#34;1d&#34;, which indicates 1 day.</span>
+<span class="c1"># group_by =&gt; the way we want to group the scraped data. Usually we want it to be &#34;ticker&#34;, so that we have all the information about a time series in 1 variable</span>
+<span class="c1"># auto_adjuest =&gt; Automatically adjust the closing prices for each period</span>
+<span class="c1"># treads =&gt; whether to use threads for mass downloading</span>
+
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Step1</strong>: Import the library and read the file</p>
 <ul>
 <li>Create a copy of original data in case we erase certain values and read the csv file again</li>
 <li><code>df.head()</code> shows the information of the top five observations for the data set</li>
@@ -178,7 +217,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>Output:
-<figure><img src="/images/financial-time-series/df_head.jpg" width="200"/>
+<figure><img src="/images/financial-time-series/df_head.jpg" width="400"/>
 </figure>
 </p>
 <ul>
@@ -219,7 +258,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>Output:
-<figure><img src="/images/financial-time-series/date_index_head.jpg" width="200"/>
+<figure><img src="/images/financial-time-series/date_index_head.jpg" width="400"/>
 </figure>
 </p>
 <p><strong>Step3</strong>: Handling Missing Values</p>
@@ -234,7 +273,136 @@
 </ul>
 </li>
 </ul>
-</div><div class="post-footer" id="post-footer">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df_comp</span><span class="o">.</span><span class="n">spx</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">spx</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&#34;ffill&#34;</span><span class="p">)</span>
+<span class="n">df_comp</span><span class="o">.</span><span class="n">ftse</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">ftse</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&#34;bfill&#34;</span><span class="p">)</span>
+<span class="n">df_comp</span><span class="o">.</span><span class="n">dax</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">dax</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">dax</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="c1"># to count the missing values</span>
+<span class="n">df_comp</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Step4</strong>: Adding and Removing Columns</p>
+<ul>
+<li>just keep the index <code>time</code> and <code>spx</code> as <code>market_value</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;market_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">spx</span>
+<span class="k">del</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;spx&#39;</span><span class="p">],</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;dax&#39;</span><span class="p">],</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;ftse&#39;</span><span class="p">],</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;nikkei&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Step5</strong>: Splitting the Time-Series data</p>
+<ul>
+<li>since time series data relies on keeping the chronological order of the values
+<ul>
+<li>cannot &ldquo;shuffle&rdquo; the data before splitting</li>
+</ul>
+</li>
+<li><code>Training Set</code>: From the beginning up to some cut off point</li>
+<li><code>Testing Set</code>: From the cut off point until the end</li>
+<li><code>80-20</code> split is resonable
+<ul>
+<li>training set too large: performs poorly with new data</li>
+<li>training set too small: cannot create an accurate model</li>
+</ul>
+</li>
+<li><code>iloc</code> comes from <code>index location</code></li>
+<li><code>len</code> comes from <code>length</code></li>
+<li><code>int</code> ensures that the <code>train_size</code> will be integer</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_comp</span><span class="p">)</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
+<span class="c1"># check if there is overlapping data</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="n">df_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Step6</strong>: Data Visualization</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;S&amp;P Prices&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/sp_price_plot.jpg" width="400"/>
+</figure>
+</p>
+<h3 id="3-white-noise">3. White Noise</h3>
+<p>Definition: A sequence of random data, where every value has a time-period associated with it</p>
+<ul>
+<li>it behaves sporadically, not predictable</li>
+</ul>
+<p>Conditions:</p>
+<ul>
+<li>constant mean $\mu$</li>
+<li>constant variance $\sigma^2$</li>
+<li>no autocorrelation in any period: NO clear relationship between past and present values
+<ul>
+<li>autocorrelation measures how correlated a series is with past versions of itself</li>
+<li>$\rho = corr(x_t,x_{t-1})$</li>
+</ul>
+</li>
+</ul>
+<h4 id="python">Python</h4>
+<p><strong>Step 1</strong>: Generate White Noise data and plot its values</p>
+<ul>
+<li>compare with the graph of the <code>S&amp;P</code> closing prices</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-random-walk">4. Random Walk</h3>
+<p>Definition: A special type of time-series, where values tend to persist over time and the differences between periods are simply <strong>white noise</strong></p>
+<ul>
+<li>$P_t = P_{t-1} + \epsilon_t$, where $\epsilon_t ~ WN(\mu,\sigma^2)$</li>
+</ul>
+<p>The <em>random walk data</em> is much more similar to <code>S&amp;P</code> prices than to <em>white noise values</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
