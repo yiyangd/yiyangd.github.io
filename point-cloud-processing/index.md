@@ -1,4 +1,4 @@
-# Note | Point Clouds Processing 01 | Introduction
+# Course Notes | Point Clouds Processing 01 | Introduction
 
 
 ### 1. Introduction and Basic Algorithm
@@ -7,10 +7,10 @@
 
 #### Classical Algorithms vs Deep Learning
 
-| | Object Classification| Object Registration | Object Detection|
-|| ----------- | ----------- |---|
-|Classical| Keypoint Detection<br> |Nearest Neighbor Search<br>Iterative Closest Point(ICP)|Background Removal<br>Clustering<br>Classification|
-|Deep Learning|Data Collection<br>Data Labeling<br>Train a Network|Data Collection<br>Data Labeling<br>Train a Network|Data Collection<br>Data Labeling<br>Train a Network|
+| -             | Object Classification                               | Object Registration                                     | Object Detection                                    |
+| ------------- | --------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------- |
+| Classical     | Keypoint Detection<br>Keypoint Description<br>SVM   | Nearest Neighbor Search<br>Iterative Closest Point(ICP) | Background Removal<br>Clustering<br>Classification  |
+| Deep Learning | Data Collection<br>Data Labeling<br>Train a Network | Data Collection<br>Data Labeling<br>Train a Network     | Data Collection<br>Data Labeling<br>Train a Network |
 
 Note Lists:
 

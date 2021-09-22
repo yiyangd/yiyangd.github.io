@@ -5,24 +5,23 @@
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
             <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>Note | Point Clouds Processing 01 | Introduction</title>
+    <title>Course Notes | Point Clouds Processing 01 | Introduction</title>
     <link>https://yiyangd.github.io/point-cloud-processing/</link>
     <pubDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/point-cloud-processing/</guid>
-    <description><![CDATA[1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning | | Object Classification| Object Registration | Object Detection| || &mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash; |&mdash;| |Classical| Keypoint Detection
-|Nearest Neighbor Search
-Iterative Closest Point(ICP)|Background Removal
+    <description><![CDATA[1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning    - Object Classification Object Registration Object Detection     Classical Keypoint Detection
+Keypoint Description
+SVM Nearest Neighbor Search
+Iterative Closest Point(ICP) Background Removal
 Clustering
-Classification| |Deep Learning|Data Collection
+Classification   Deep Learning Data Collection
 Data Labeling
-Train a Network|Data Collection
+Train a Network Data Collection
 Data Labeling
-Train a Network|Data Collection
+Train a Network Data Collection
 Data Labeling
-Train a Network|
-Note Lists:
- Introduction and Basics Algorithms   PCA and Kernel PCA Smoothing, Filtering and Downsampling  Nearest Neighbor Problem   Binary Search Tree KD-Tree Octree  Clustering   K-Means Gaussian Mixture Model (GMM) Expectation-Maximization (EM) Spectral Clustering  Model Fitting Deep Learning on Point Cloud 3D Object Detection 3D Feature Detection   harris 2d, 3d, 6d ISS: Intrinsic Shape Signatures USIP SO-Net  3D Feature Description   PFH &amp; FPFH SHOT 3D Match &amp; Pe  Registration (!]]></description>
+Train a Network    Note Lists:]]></description>
 </item><item>
     <title>Note | Financial Time Series Analysis </title>
     <link>https://yiyangd.github.io/financial-time-series/</link>
@@ -47,7 +46,7 @@ Note Lists:
     <guid>https://yiyangd.github.io/stat-theory/</guid>
     <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday  ]]></description>
 </item><item>
-    <title>Scala-Spark3 Study Notes</title>
+    <title>Course Notes | Scala Spark 3 </title>
     <link>https://yiyangd.github.io/scala-spark3/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>

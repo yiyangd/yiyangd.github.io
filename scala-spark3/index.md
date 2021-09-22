@@ -1,4 +1,4 @@
-# Scala-Spark3 Study Notes
+# Course Notes | Scala Spark 3 
 
 
 ### 0. Introduction on Spark and Scala
