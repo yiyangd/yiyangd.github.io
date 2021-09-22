@@ -6,7 +6,19 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Note | Point Clouds Processing 01 | Introduction - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Note | Point Clouds Processing 01 | Introduction" />
-<meta property="og:description" content="1. Introduction and Basic Algorithm  " />
+<meta property="og:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning | | Object Classification| Object Registration | Object Detection| || &mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash; |&mdash;| |Classical| Keypoint Detection
+|Nearest Neighbor Search
+Iterative Closest Point(ICP)|Background Removal
+Clustering
+Classification| |Deep Learning|Data Collection
+Data Labeling
+Train a Network|Data Collection
+Data Labeling
+Train a Network|Data Collection
+Data Labeling
+Train a Network|
+Note Lists:
+ Introduction and Basics Algorithms   PCA and Kernel PCA Smoothing, Filtering and Downsampling  Nearest Neighbor Problem   Binary Search Tree KD-Tree Octree  Clustering   K-Means Gaussian Mixture Model (GMM) Expectation-Maximization (EM) Spectral Clustering  Model Fitting Deep Learning on Point Cloud 3D Object Detection 3D Feature Detection   harris 2d, 3d, 6d ISS: Intrinsic Shape Signatures USIP SO-Net  3D Feature Description   PFH &amp; FPFH SHOT 3D Match &amp; Pe  Registration (!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/point-cloud-processing/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-21T00:00:00+00:00" />
@@ -16,7 +28,19 @@
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Note | Point Clouds Processing 01 | Introduction"/>
-<meta name="twitter:description" content="1. Introduction and Basic Algorithm  "/>
+<meta name="twitter:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning | | Object Classification| Object Registration | Object Detection| || &mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash; |&mdash;| |Classical| Keypoint Detection
+|Nearest Neighbor Search
+Iterative Closest Point(ICP)|Background Removal
+Clustering
+Classification| |Deep Learning|Data Collection
+Data Labeling
+Train a Network|Data Collection
+Data Labeling
+Train a Network|Data Collection
+Data Labeling
+Train a Network|
+Note Lists:
+ Introduction and Basics Algorithms   PCA and Kernel PCA Smoothing, Filtering and Downsampling  Nearest Neighbor Problem   Binary Search Tree KD-Tree Octree  Clustering   K-Means Gaussian Mixture Model (GMM) Expectation-Maximization (EM) Spectral Clustering  Model Fitting Deep Learning on Point Cloud 3D Object Detection 3D Feature Detection   harris 2d, 3d, 6d ISS: Intrinsic Shape Signatures USIP SO-Net  3D Feature Description   PFH &amp; FPFH SHOT 3D Match &amp; Pe  Registration (!"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +53,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/point-cloud-processing\/"
-        },"genre": "posts","wordcount":  5 ,
+        },"genre": "posts","wordcount":  139 ,
         "url": "https:\/\/yiyangd.github.io\/point-cloud-processing\/","datePublished": "2021-09-21T00:00:00+00:00","dateModified": "2021-09-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +130,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Note | Point Clouds Processing 01 | Introduction</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;139 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -117,15 +141,78 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</a></li>
+        <li><a href="#1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</a>
+          <ul>
+            <li><a href="#classical-algorithms-vs-deep-learning">Classical Algorithms vs Deep Learning</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</h3>
-<figure><img src="/images/pcd/pcd-1-1"/>
+<figure><img src="/images/pcd/pcd-1-1.jpg"/>
 </figure>
 
+<h4 id="classical-algorithms-vs-deep-learning">Classical Algorithms vs Deep Learning</h4>
+<p>| | Object Classification| Object Registration | Object Detection|
+|| &mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash; |&mdash;|
+|Classical| Keypoint Detection<br> |Nearest Neighbor Search<br>Iterative Closest Point(ICP)|Background Removal<br>Clustering<br>Classification|
+|Deep Learning|Data Collection<br>Data Labeling<br>Train a Network|Data Collection<br>Data Labeling<br>Train a Network|Data Collection<br>Data Labeling<br>Train a Network|</p>
+<p>Note Lists:</p>
+<ol>
+<li>Introduction and Basics Algorithms</li>
+</ol>
+<ul>
+<li>PCA and Kernel PCA</li>
+<li>Smoothing, Filtering and Downsampling</li>
+</ul>
+<ol start="2">
+<li>Nearest Neighbor Problem</li>
+</ol>
+<ul>
+<li>Binary Search Tree</li>
+<li>KD-Tree</li>
+<li>Octree</li>
+</ul>
+<ol start="3">
+<li>Clustering</li>
+</ol>
+<ul>
+<li>K-Means</li>
+<li>Gaussian Mixture Model (GMM)</li>
+<li>Expectation-Maximization (EM)</li>
+<li>Spectral Clustering</li>
+</ul>
+<ol start="4">
+<li>Model Fitting</li>
+<li>Deep Learning on Point Cloud</li>
+<li>3D Object Detection</li>
+<li>3D Feature Detection</li>
+</ol>
+<ul>
+<li>harris 2d, 3d, 6d</li>
+<li>ISS: Intrinsic Shape Signatures</li>
+<li>USIP</li>
+<li>SO-Net</li>
+</ul>
+<ol start="8">
+<li>3D Feature Description</li>
+</ol>
+<ul>
+<li>PFH &amp; FPFH</li>
+<li>SHOT</li>
+<li>3D Match &amp; Pe</li>
+</ul>
+<ol start="9">
+<li>Registration (!!!!)</li>
+</ol>
+<ul>
+<li>ICP:</li>
+<li>NDT: Normal Distribution Transform</li>
+<li>Registration by RANSAC with feature detection, description, matching</li>
+</ul>
+<p>深度学习：简单却不可控; 要理解传统方法</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

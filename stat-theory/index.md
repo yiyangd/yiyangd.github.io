@@ -15,9 +15,9 @@
 
 ### Lec03: Sep 16 - Thursday
 
-{{< figure src="/images/stat-theory/STAT450-Notes-7.jpg" width="800">}}
-{{< figure src="/images/stat-theory/STAT450-Notes-8.jpg" width="800">}}
-{{< figure src="/images/stat-theory/STAT450-Notes-9.jpg" width="800">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-07.jpg" width="800">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-08.jpg" width="800">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-09.jpg" width="800">}}
 
 ### Lec04: Sep 20 - Monday
 
