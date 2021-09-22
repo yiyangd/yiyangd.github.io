@@ -5,32 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Statistical Theory | SFU STAT450 Course Notes (Hand Written)  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Statistical Theory | SFU STAT450 Course Notes (Hand Written) " />
-<meta property="og:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday  " />
+        <title>Note | Point Clouds Processing 01 | Introduction - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Note | Point Clouds Processing 01 | Introduction" />
+<meta property="og:description" content="1. Introduction and Basic Algorithm  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/stat-theory/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-08T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-08T00:00:00+00:00" />
+<meta property="og:url" content="https://yiyangd.github.io/point-cloud-processing/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-21T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Statistical Theory | SFU STAT450 Course Notes (Hand Written) "/>
-<meta name="twitter:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday  "/>
+<meta name="twitter:title" content="Note | Point Clouds Processing 01 | Introduction"/>
+<meta name="twitter:description" content="1. Introduction and Basic Algorithm  "/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/stat-theory/" /><link rel="prev" href="https://yiyangd.github.io/scala-spark3/" /><link rel="next" href="https://yiyangd.github.io/sas-note/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/point-cloud-processing/" /><link rel="prev" href="https://yiyangd.github.io/financial-time-series/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Statistical Theory | SFU STAT450 Course Notes (Hand Written) ",
+        "headline": "Note | Point Clouds Processing 01 | Introduction",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/stat-theory\/"
-        },"genre": "posts","wordcount":  20 ,
-        "url": "https:\/\/yiyangd.github.io\/stat-theory\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/point-cloud-processing\/"
+        },"genre": "posts","wordcount":  5 ,
+        "url": "https:\/\/yiyangd.github.io\/point-cloud-processing\/","datePublished": "2021-09-21T00:00:00+00:00","dateModified": "2021-09-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -104,9 +104,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Theory | SFU STAT450 Course Notes (Hand Written) </h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Note | Point Clouds Processing 01 | Introduction</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;20 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -117,62 +117,29 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#lec01-sep-9---thursday">Lec01: Sep 9 - Thursday</a></li>
-        <li><a href="#lec02-sep-13---monday">Lec02: Sep 13 - Monday</a></li>
-        <li><a href="#lec03-sep-16---thursday">Lec03: Sep 16 - Thursday</a></li>
-        <li><a href="#lec04-sep-20---monday">Lec04: Sep 20 - Monday</a></li>
+        <li><a href="#1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="lec01-sep-9---thursday">Lec01: Sep 9 - Thursday</h3>
-<p><figure><img src="/images/stat-theory/STAT450-Notes-1.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-2.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-3.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-4.jpg" width="800"/>
-</figure>
-</p>
-<h3 id="lec02-sep-13---monday">Lec02: Sep 13 - Monday</h3>
-<p><figure><img src="/images/stat-theory/STAT450-Notes-5.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-6.jpg" width="800"/>
-</figure>
-</p>
-<h3 id="lec03-sep-16---thursday">Lec03: Sep 16 - Thursday</h3>
-<p><figure><img src="/images/stat-theory/STAT450-Notes-7.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-8.jpg" width="800"/>
-</figure>
-
-<figure><img src="/images/stat-theory/STAT450-Notes-9.jpg" width="800"/>
-</figure>
-</p>
-<h3 id="lec04-sep-20---monday">Lec04: Sep 20 - Monday</h3>
-<figure><img src="/images/stat-theory/STAT450-Notes-10.jpg" width="800"/>
+            </div><div class="content" id="content"><h3 id="1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</h3>
+<figure><img src="/images/pcd/pcd-1-1"/>
 </figure>
 
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-09-08</span>
+                <span>Updated on 2021-09-21</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/stat-theory/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/point-cloud-processing/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) "><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/stat-theory/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) " data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) " data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/stat-theory/" data-title="Statistical Theory | SFU STAT450 Course Notes (Hand Written) "><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/point-cloud-processing/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Note | Point Clouds Processing 01 | Introduction"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -184,8 +151,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/scala-spark3/" class="prev" rel="prev" title="Scala-Spark3 Study Notes"><i class="fas fa-angle-left fa-fw"></i>Scala-Spark3 Study Notes</a>
-            <a href="/sas-note/" class="next" rel="next" title="SAS | SFU STAT342 Course Notes ">SAS | SFU STAT342 Course Notes <i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/financial-time-series/" class="prev" rel="prev" title="Note | Financial Time Series Analysis "><i class="fas fa-angle-left fa-fw"></i>Note | Financial Time Series Analysis </a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

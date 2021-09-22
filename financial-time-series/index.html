@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Financial Time Series Analysis  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Financial Time Series Analysis " />
+        <title>Note | Financial Time Series Analysis  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Note | Financial Time Series Analysis " />
 <meta property="og:description" content="1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods" />
@@ -17,23 +17,23 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Financial Time Series Analysis "/>
+<meta name="twitter:title" content="Note | Financial Time Series Analysis "/>
 <meta name="twitter:description" content="1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/financial-time-series/" /><link rel="prev" href="https://yiyangd.github.io/sas-note/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/financial-time-series/" /><link rel="prev" href="https://yiyangd.github.io/sas-note/" /><link rel="next" href="https://yiyangd.github.io/point-cloud-processing/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Financial Time Series Analysis ",
+        "headline": "Note | Financial Time Series Analysis ",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  908 ,
+        },"genre": "posts","wordcount":  1617 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,10 +108,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Financial Time Series Analysis </h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Note | Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;908 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1617 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -124,15 +124,19 @@
         <li><a href="#1-introduction-to-time-series-in-python">1. Introduction to Time Series in Python</a>
           <ul>
             <li><a href="#properties">Properties</a></li>
+            <li><a href="#python-implementation">Python Implementation</a></li>
           </ul>
         </li>
-        <li><a href="#2-python-implementation">2. Python Implementation</a></li>
-        <li><a href="#3-white-noise">3. White Noise</a>
-          <ul>
-            <li><a href="#python">Python</a></li>
-          </ul>
-        </li>
+        <li><a href="#3-white-noise">3. White Noise</a></li>
         <li><a href="#4-random-walk">4. Random Walk</a></li>
+        <li><a href="#5-stationarity">5. Stationarity</a>
+          <ul>
+            <li><a href="#strict-stationarity">Strict Stationarity</a></li>
+            <li><a href="#weak-formcovariance-stationarity">Weak-form/Covariance Stationarity</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-seasonality">6. Seasonality</a></li>
+        <li><a href="#7-the-autocorrelation-function-acf">7. The Autocorrelation Function (ACF)</a></li>
       </ul>
     </li>
   </ul>
@@ -157,41 +161,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-python-implementation">2. Python Implementation</h3>
-<p><strong>Step0</strong>: Scrape the data off of <code>Yahoo Finance</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">yfinance</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&#34;ignore&#34;</span><span class="p">)</span>
-
-<span class="c1"># using the .download() method to scrape our data from the Yahoo Finance webpage</span>
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">yfinance</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span> <span class="o">=</span> <span class="s2">&#34;^GSPC ^FTSE ^N225 ^GDAXI&#34;</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s2">&#34;1994-01-07&#34;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&#34;2021-09-20&#34;</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="s2">&#34;1d&#34;</span><span class="p">,</span> <span class="n">group_by</span> <span class="o">=</span> <span class="s2">&#34;ticker&#34;</span><span class="p">,</span> <span class="n">auto_adjust</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">treads</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="c1"># tickers =&gt; the time series we are interested in</span>
-<span class="c1"># interval =&gt; the distance in time between two recorded observations. Since we&#39;re using daily closing prices, we set it equal to &#34;1d&#34;, which indicates 1 day.</span>
-<span class="c1"># group_by =&gt; the way we want to group the scraped data. Usually we want it to be &#34;ticker&#34;, so that we have all the information about a time series in 1 variable</span>
-<span class="c1"># auto_adjuest =&gt; Automatically adjust the closing prices for each period</span>
-<span class="c1"># treads =&gt; whether to use threads for mass downloading</span>
-
-
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>Step1</strong>: Import the library and read the file</p>
+<h4 id="python-implementation">Python Implementation</h4>
+<p><strong>Step1</strong>: Import the library and read the file</p>
 <ul>
 <li>Create a copy of original data in case we erase certain values and read the csv file again</li>
 <li><code>df.head()</code> shows the information of the top five observations for the data set</li>
@@ -356,10 +327,69 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>Output:
-<figure><img src="/images/financial-time-series/sp_price_plot.jpg" width="400"/>
+<figure><img src="/images/financial-time-series/sp_price_plot.jpg" width="800"/>
 </figure>
 </p>
-<h3 id="3-white-noise">3. White Noise</h3>
+<p><strong>Extra Step</strong>: Scrape the real-time data off of <code>Yahoo Finance</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">yfinance</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&#34;ignore&#34;</span><span class="p">)</span>
+
+<span class="c1"># using the .download() method to scrape our data from the Yahoo Finance webpage</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">yfinance</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span> <span class="o">=</span> <span class="s2">&#34;^GSPC ^FTSE ^N225 ^GDAXI&#34;</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="s2">&#34;1994-01-07&#34;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&#34;2021-09-20&#34;</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="s2">&#34;1d&#34;</span><span class="p">,</span> <span class="n">group_by</span> <span class="o">=</span> <span class="s2">&#34;ticker&#34;</span><span class="p">,</span> <span class="n">auto_adjust</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">treads</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># tickers =&gt; the time series we are interested in</span>
+<span class="c1"># interval =&gt; the distance in time between two recorded observations. Since we&#39;re using daily closing prices, we set it equal to &#34;1d&#34;, which indicates 1 day.</span>
+<span class="c1"># group_by =&gt; the way we want to group the scraped data. Usually we want it to be &#34;ticker&#34;, so that we have all the information about a time series in 1 variable</span>
+<span class="c1"># auto_adjuest =&gt; Automatically adjust the closing prices for each period</span>
+<span class="c1"># treads =&gt; whether to use threads for mass downloading</span>
+
+<span class="n">df_comp</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;market_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;^GSPC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">Close</span>
+
+<span class="k">del</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;^N225&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;^GSPC&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;^GDAXI&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">df_comp</span><span class="p">[</span><span class="s1">&#39;^FTSE&#39;</span><span class="p">]</span>
+<span class="n">df_comp</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">df_comp</span> <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+<span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_comp</span><span class="p">)</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span>  <span class="o">=</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">df_comp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-white-noise">3. White Noise</h3>
 <p>Definition: A sequence of random data, where every value has a time-period associated with it</p>
 <ul>
 <li>it behaves sporadically, not predictable</li>
@@ -375,34 +405,253 @@
 </ul>
 </li>
 </ul>
-<h4 id="python">Python</h4>
-<p><strong>Step 1</strong>: Generate White Noise data and plot its values</p>
+<p>Generate White Noise data and plot its values</p>
 <ul>
 <li>compare with the graph of the <code>S&amp;P</code> closing prices</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">wn</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;white noise time-series&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="4-random-walk">4. Random Walk</h3>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/wn_plot.jpg" width="800"/>
+</figure>
+</p>
+<h3 id="4-random-walk">4. Random Walk</h3>
 <p>Definition: A special type of time-series, where values tend to persist over time and the differences between periods are simply <strong>white noise</strong></p>
 <ul>
-<li>$P_t = P_{t-1} + \epsilon_t$, where $\epsilon_t ~ WN(\mu,\sigma^2)$</li>
+<li>$P_t = P_{t-1} + \epsilon_t$, where the residual $\epsilon_t \sim WN(\mu,\sigma^2)$</li>
 </ul>
-<p>The <em>random walk data</em> is much more similar to <code>S&amp;P</code> prices than to <em>white noise values</em></p>
+<p>The <em>random walk data</em> is much more similar to <code>S&amp;P prices</code> than to <em>white noise values</em></p>
+<ul>
+<li>both have small <strong>variations</strong> between consecutive time periods</li>
+<li>both have <strong>cyclical increases and decreases</strong> in short periods of time</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">rw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;RandWalk.csv&#34;</span><span class="p">)</span>
+<span class="n">rw</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">rw</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">dayfirst</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">rw</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;date&#34;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">rw</span> <span class="o">=</span> <span class="n">rw</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;rw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rw</span><span class="o">.</span><span class="n">price</span>
+
+<span class="n">df_train</span><span class="o">.</span><span class="n">rw</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Random Walk vs S&amp;P&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/rw_vs_sp_plot.jpg" width="800"/>
+</figure>
+</p>
+<p>Market Efficiency: measures the level of difficulty in forecasting correct future values</p>
+<ul>
+<li>in general, if a time series resembles a random walk, the prices can&rsquo;t be predicted with great accuracy</li>
+<li>conversely, if future prices can be predicted with great accuracy, then there are <strong>arbitrage opportunities</strong>
+<ul>
+<li>we can speak of <em>arbitrage</em> when investors manage to buy and sell commodities and make a safe profit while the price adjusts</li>
+<li>if such opportunities exist within a market, investors are bound to take advantage, which would eventually lead to a price that matches the expected one, as a result, prices adjust accordingly</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-stationarity">5. Stationarity</h3>
+<h4 id="strict-stationarity">Strict Stationarity</h4>
+<p>Rarely observed in nature</p>
+<ul>
+<li>$(x_t,x_{t+k}) \sim Dist(\mu, \sigma^2)$</li>
+<li>$(x_{t+a},x_{t+a+k}) \sim Dist(\mu, \sigma^2)$</li>
+</ul>
+<h4 id="weak-formcovariance-stationarity">Weak-form/Covariance Stationarity</h4>
+<p>Assumptions:</p>
+<ul>
+<li>Constant $\mu$</li>
+<li>Constant $\sigma^2$</li>
+<li>$Cov(x_n,x_{n+k}) = Cov(x_m, x_{m+k})$
+<ul>
+<li>consistent covariance between periods at an identical distance</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dickey-Fuller Test</strong>: to check whether a data set comes from a stationary process</p>
+<ul>
+<li>Null Hypothesis: assumes non-stationarity
+<ul>
+<li>autocorrelation coefficient $\varphi &lt; 1$</li>
+</ul>
+</li>
+<li>Alternative Hypothesis: $\varphi = 1$</li>
+<li>reject the Null if <code>test statistic</code> &lt; <code>critical value</code> in the D-F Table
+<ul>
+<li>stationarity</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="k">as</span> <span class="nn">sgt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="k">as</span> <span class="nn">sts</span>
+
+<span class="n">sts</span><span class="o">.</span><span class="n">adfuller</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">)</span>
+
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">(-0.9614956416665502,        # test statistic is greater than the 1%, 5%, 10</span><span class="si">% c</span><span class="s1">ritical values
+</span><span class="s1"> 0.7670476494835043,         # p-value: there are 76</span><span class="si">% c</span><span class="s1">hance of not rejecting the null (non-stationary process)
+</span><span class="s1"> 18,                         # there are some autocorrelation going back 18 periods
+</span><span class="s1"> 5761,                       # number of observations
+</span><span class="s1"> {&#39;1%&#39;: -3.4314856042568302, # we do not find sufficient evidence of stationary in the data set
+</span><span class="s1">  &#39;5%&#39;: -2.862041828874895,
+</span><span class="s1">  &#39;10%&#39;: -2.567037121608915},
+</span><span class="s1"> 46348.31943803983)          # maximized information criteria provided, lower value =&gt; easier to predict the future
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="c1"># white noise has p-value = 0 =&gt; Covariance Stationarity</span>
+<span class="n">sts</span><span class="o">.</span><span class="n">adfuller</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">wn</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">(-30.308232415812835,
+</span><span class="s1"> 0.0,
+</span><span class="s1"> 6,
+</span><span class="s1"> 5773,
+</span><span class="s1"> {&#39;1%&#39;: -3.4314832426913315,
+</span><span class="s1">  &#39;5%&#39;: -2.8620407854868493,
+</span><span class="s1">  &#39;10%&#39;: -2.5670365661831696},
+</span><span class="s1"> 84971.11094405118)
+</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="c1"># random walk seems to be a non-stationary process</span>
+<span class="n">sts</span><span class="o">.</span><span class="n">adfuller</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">rw</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">(-1.3286073927689719,     # greater than critical values
+</span><span class="s1"> 0.6159849181617385,
+</span><span class="s1"> 24,
+</span><span class="s1"> 4996,
+</span><span class="s1"> {&#39;1%&#39;: -3.4316595802782865,
+</span><span class="s1">  &#39;5%&#39;: -2.8621186927706463,
+</span><span class="s1">  &#39;10%&#39;: -2.567078038881065},
+</span><span class="s1"> 46299.333497595144)
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-seasonality">6. Seasonality</h3>
+<p>Trends will appear on a cyclical basis.</p>
+<p><strong>Ways to test for seasonality</strong>:</p>
+<ul>
+<li>Decompose the sequence by splitting the time series into 3 effects:
+<ul>
+<li>Trend: represents the pattern consistent throughout the data and explains most of the variability of the data</li>
+<li>Seasonal: expresses all cyclical effects due to seasonality</li>
+<li>Residual: the difference between true values and predictions for any period</li>
+</ul>
+</li>
+</ul>
+<p><strong>Naive Decomposition</strong>：
+Decomposition function uses the previous period values as a trend-setter.</p>
+<ul>
+<li>Additive: observed = trend + seasonal + residual</li>
+<li>Multiplicative: observed = trend x seasonal x residual</li>
+</ul>
+<p>Seasonal looks like a <code>rectangle</code></p>
+<ul>
+<li>values are constantly oscillating back and forth and the figure size is too small</li>
+<li>no concrete cyclical pattern =&gt; no seasonality in the data</li>
+</ul>
+<p>The residuals vary greatly around 2000 and 2008, this can be explained by the <strong>instability</strong> caused by the <code>.com</code> and <code>housing prices</code> bubbles respectively</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">seasonal_decompose</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">season_decomp_additive</span> <span class="o">=</span> <span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="s2">&#34;additive&#34;</span><span class="p">)</span>
+<span class="n">season_decomp_additive</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><p>Both Output:
+<figure><img src="/images/financial-time-series/seasonal_decompose.jpg" width="800"/>
+</figure>
+</p>
+<h3 id="7-the-autocorrelation-function-acf">7. The Autocorrelation Function (ACF)</h3>
+<p>Correlation measures the similarity in the change of values of two series</p>
+<ul>
+<li>$\rho(x,y)$ only have a single variable</li>
+</ul>
+<p>Autocorrelation is the correlation between a sequence and itself</p>
+<ul>
+<li>measures the <em>level of resemblance</em> between a sequence from several periods ago and the actual data</li>
+<li><code>Lagged</code> is a delayed series of the original one</li>
+<li>how much of yesterday&rsquo;s values resemble today&rsquo;s values, or similarities from year to year</li>
+</ul>
+<p>Partial Autocorrelation Function (PACF)</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -415,7 +664,7 @@
                             <a class="link-to-markdown" href="/financial-time-series/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis "><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/financial-time-series/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis " data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis " data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Financial Time Series Analysis "><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/financial-time-series/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -427,7 +676,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sas-note/" class="prev" rel="prev" title="SAS | SFU STAT342 Course Notes "><i class="fas fa-angle-left fa-fw"></i>SAS | SFU STAT342 Course Notes </a></div>
+    <div class="post-nav"><a href="/sas-note/" class="prev" rel="prev" title="SAS | SFU STAT342 Course Notes "><i class="fas fa-angle-left fa-fw"></i>SAS | SFU STAT342 Course Notes </a>
+            <a href="/point-cloud-processing/" class="next" rel="next" title="Note | Point Clouds Processing 01 | Introduction">Note | Point Clouds Processing 01 | Introduction<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
