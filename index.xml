@@ -7,7 +7,7 @@
             <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Course Notes | Point Clouds Processing 01 | Introduction</title>
+    <title>3D Vision Notes | Point Clouds Processing 01 | Introduction</title>
     <link>https://yiyangd.github.io/point-cloud-processing/</link>
     <pubDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -25,7 +25,7 @@ Train a Network Data Collection
 Data Labeling
 Train a Network    Note Lists:]]></description>
 </item><item>
-    <title>Note | Financial Time Series Analysis </title>
+    <title>Time Series Note | Financial Time Series Analysis </title>
     <link>https://yiyangd.github.io/financial-time-series/</link>
     <pubDate>Thu, 09 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -34,21 +34,21 @@ Train a Network    Note Lists:]]></description>
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods]]></description>
 </item><item>
-    <title>SAS | SFU STAT342 Course Notes </title>
+    <title>Course Notes | SFU STAT342 - SAS </title>
     <link>https://yiyangd.github.io/sas-note/</link>
     <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/sas-note/</guid>
     <description><![CDATA[01. Thursday | Sep 8. Introduction]]></description>
 </item><item>
-    <title>Statistical Theory | SFU STAT450 Course Notes (Hand Written) </title>
+    <title>Course Notes | SFU STAT450 - Statistical Theory (Hand Written) </title>
     <link>https://yiyangd.github.io/stat-theory/</link>
     <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/stat-theory/</guid>
-    <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday  ]]></description>
+    <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     ]]></description>
 </item><item>
-    <title>Course Notes | Scala Spark 3 </title>
+    <title>Data Engineering Notes | Scala Spark 3 </title>
     <link>https://yiyangd.github.io/scala-spark3/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -65,14 +65,14 @@ Train a Network    Note Lists:]]></description>
     <description><![CDATA[Day 1 - Sep 2 10:00 - 12:00 上船喽  12:00 - 14:00 去吃 Brunch  14:00 - 17:30 SkyWalk 我们去了今年新开的 skywalk 和滑滑梯！
 Day 2 - Sep 3 ]]></description>
 </item><item>
-    <title>LDA 2 - LDA on Credit Card Data </title>
+    <title>Statistical Learning Notes | LDA 2 - LDA on Credit Card Data </title>
     <link>https://yiyangd.github.io/lda-02/</link>
     <pubDate>Sun, 29 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/lda-02/</guid>
     <description><![CDATA[ISLR4.4 - LDA on Credit， ROC， AUC  Types of Errors ]]></description>
 </item><item>
-    <title>LDA 1 - Linear Discriminant Analysis </title>
+    <title>Statistical Learning Notes | LDA 1 - Linear Discriminant Analysis </title>
     <link>https://yiyangd.github.io/lda-01/</link>
     <pubDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>

@@ -1,4 +1,4 @@
-# LDA 2 - LDA on Credit Card Data 
+# Statistical Learning Notes | LDA 2 - LDA on Credit Card Data 
 
 
 ## ISLR4.4 - LDA on Credit， ROC， AUC

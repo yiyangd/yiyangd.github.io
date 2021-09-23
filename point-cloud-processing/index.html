@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Course Notes | Point Clouds Processing 01 | Introduction - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Course Notes | Point Clouds Processing 01 | Introduction" />
+        <title>3D Vision Notes | Point Clouds Processing 01 | Introduction - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="3D Vision Notes | Point Clouds Processing 01 | Introduction" />
 <meta property="og:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning    - Object Classification Object Registration Object Detection     Classical Keypoint Detection
 Keypoint Description
 SVM Nearest Neighbor Search
@@ -26,7 +26,7 @@ Train a Network    Note Lists:" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Course Notes | Point Clouds Processing 01 | Introduction"/>
+<meta name="twitter:title" content="3D Vision Notes | Point Clouds Processing 01 | Introduction"/>
 <meta name="twitter:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning    - Object Classification Object Registration Object Detection     Classical Keypoint Detection
 Keypoint Description
 SVM Nearest Neighbor Search
@@ -46,12 +46,12 @@ Train a Network    Note Lists:"/>
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Course Notes | Point Clouds Processing 01 | Introduction",
+        "headline": "3D Vision Notes | Point Clouds Processing 01 | Introduction",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/point-cloud-processing\/"
-        },"genre": "posts","wordcount":  139 ,
+        },"genre": "posts","wordcount":  163 ,
         "url": "https:\/\/yiyangd.github.io\/point-cloud-processing\/","datePublished": "2021-09-21T00:00:00+00:00","dateModified": "2021-09-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -126,9 +126,9 @@ Train a Network    Note Lists:"/>
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | Point Clouds Processing 01 | Introduction</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">3D Vision Notes | Point Clouds Processing 01 | Introduction</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;139 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;163 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -204,8 +204,31 @@ Train a Network    Note Lists:"/>
 </ul>
 <ol start="4">
 <li>Model Fitting</li>
+</ol>
+<ul>
+<li>Meanshift &amp; dbscan</li>
+<li>Robust Least Square</li>
+<li>Hough Transform</li>
+<li>RANSAC</li>
+</ul>
+<ol start="5">
 <li>Deep Learning on Point Cloud</li>
+</ol>
+<ul>
+<li>PointNet &amp; PointNet++</li>
+<li>GCN</li>
+<li>Supplementary</li>
+</ul>
+<ol start="6">
 <li>3D Object Detection</li>
+</ol>
+<ul>
+<li>RCNN, FastRCNN, FasterRCNN, SSD</li>
+<li>VoxelNet, PointPillars</li>
+<li>PointRCNN</li>
+<li>Frustum PointNet, PointPainting</li>
+</ul>
+<ol start="7">
 <li>3D Feature Detection</li>
 </ol>
 <ul>
@@ -230,7 +253,7 @@ Train a Network    Note Lists:"/>
 <li>NDT: Normal Distribution Transform</li>
 <li>Registration by RANSAC with feature detection, description, matching</li>
 </ul>
-<p>深度学习：简单却不可控; 要理解传统方法</p>
+<p>深度学习：简单却不太容易解释; 要理解传统方法</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -244,7 +267,7 @@ Train a Network    Note Lists:"/>
                             <a class="link-to-markdown" href="/point-cloud-processing/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/point-cloud-processing/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="Course Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/point-cloud-processing/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -256,7 +279,7 @@ Train a Network    Note Lists:"/>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/financial-time-series/" class="prev" rel="prev" title="Note | Financial Time Series Analysis "><i class="fas fa-angle-left fa-fw"></i>Note | Financial Time Series Analysis </a></div>
+    <div class="post-nav"><a href="/financial-time-series/" class="prev" rel="prev" title="Time Series Note | Financial Time Series Analysis "><i class="fas fa-angle-left fa-fw"></i>Time Series Note | Financial Time Series Analysis </a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

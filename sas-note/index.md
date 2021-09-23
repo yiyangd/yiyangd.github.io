@@ -1,4 +1,4 @@
-# SAS | SFU STAT342 Course Notes 
+# Course Notes | SFU STAT342 - SAS 
 
 
 ## 01. Thursday | Sep 8.

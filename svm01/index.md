@@ -1,4 +1,4 @@
-# SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification
+# Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification
 
 
 ### SVM 1. Maximal Margin Classifier

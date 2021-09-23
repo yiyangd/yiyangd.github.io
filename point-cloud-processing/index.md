@@ -1,4 +1,4 @@
-# Course Notes | Point Clouds Processing 01 | Introduction
+# 3D Vision Notes | Point Clouds Processing 01 | Introduction
 
 
 ### 1. Introduction and Basic Algorithm
@@ -33,8 +33,25 @@ Note Lists:
 - Spectral Clustering
 
 4. Model Fitting
+
+- Meanshift & dbscan
+- Robust Least Square
+- Hough Transform
+- RANSAC
+
 5. Deep Learning on Point Cloud
+
+- PointNet & PointNet++
+- GCN
+- Supplementary
+
 6. 3D Object Detection
+
+- RCNN, FastRCNN, FasterRCNN, SSD
+- VoxelNet, PointPillars
+- PointRCNN
+- Frustum PointNet, PointPainting
+
 7. 3D Feature Detection
 
 - harris 2d, 3d, 6d
@@ -54,5 +71,5 @@ Note Lists:
 - NDT: Normal Distribution Transform
 - Registration by RANSAC with feature detection, description, matching
 
-深度学习：简单却不可控; 要理解传统方法
+深度学习：简单却不太容易解释; 要理解传统方法
 

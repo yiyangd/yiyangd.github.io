@@ -1,4 +1,4 @@
-# eCommerce Platform 04 - Redux for State Management
+# Full Stack Notes | eCommerce Platform 04 - Redux for State Management
 
 
 Notes on Aug 15th: lots of stuff I haven't understanded, just try to learn some whole framework

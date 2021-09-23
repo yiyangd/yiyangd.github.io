@@ -1,4 +1,4 @@
-# Note | Financial Time Series Analysis 
+# Time Series Note | Financial Time Series Analysis 
 
 
 ### 1. Introduction to Time Series in Python
@@ -335,5 +335,48 @@ Autocorrelation is the correlation between a sequence and itself
 - `Lagged` is a delayed series of the original one
 - how much of yesterday's values resemble today's values, or similarities from year to year
 
-Partial Autocorrelation Function (PACF)
+#### ACF for S&P market value
+
+```python
+sgt.plot_acf(df_train.market_value, zero = False)
+# In time series analysis, common practice dictates analyzing the first 40 lags
+# zero: Flag indicating whether to include the 0-lag autocorrelation. Default is True.
+## indicates whether we include current period values in the graph
+plt.title("ACF S&P", size = 24)
+plt.show()
+```
+
+Output:  
+{{< figure src="/images/financial-time-series/ACF_SP.jpg" width="600">}}
+
+Explaination:
+
+- x-axis: represents lags,
+- y-axis: indicates the possible values for the autocorrelation coefficient
+- correlation can only take values between -1 and 1,
+- lines across the plot represent the autocorrelation between the time series and a lagged copy of itself
+- the first line represents the autocorrelation coefficient for one time period ago
+- the `blue area` around the x-axis represents `significance`, the values situated _outside are significantly different from zero_ which suggests the _existence of autocorrelation_ for that specific lag
+- the _greater the distance_ in time, the _more UNLIKELY_ it is that this autocorrelation persists
+  - e.g. today's prices are usually closer to yesterday's prices than the prices a month ago
+- therefore, we need to make sure the autocorrelation coefficient in higher lags is sufficiently greater to be significantly different from zero
+- notice how all the lines are positive and higher than the blue region, this suggests the coefficients are significant, which is an indicator of time dependence in the data
+  - also, we can see that autocorrelation barely diminishes as the lags increase, this suggests that prices even a month back (40 days ago) can still serve as decent estimators for tomorrow
+
+#### ACF for White Noise
+
+```python
+# Since white noise series is generated randomly
+# there are patterns of positive and negative autocorrelation
+# All the lines fall within the blue area, thus the coefficients are NOT significant across the entire plot
+# No autocorrelation for any lag
+sgt.plot_acf(df_train.wn, zero = False)
+plt.title("ACF WN", size = 24)
+plt.show()
+```
+
+Output:  
+{{< figure src="/images/financial-time-series/ACF_WN.jpg" width="600">}}
+
+### 8. The Partial Autocorrelation Function (PACF)
 

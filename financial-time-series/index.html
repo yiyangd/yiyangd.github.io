@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Note | Financial Time Series Analysis  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Note | Financial Time Series Analysis " />
+        <title>Time Series Note | Financial Time Series Analysis  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Time Series Note | Financial Time Series Analysis " />
 <meta property="og:description" content="1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Note | Financial Time Series Analysis "/>
+<meta name="twitter:title" content="Time Series Note | Financial Time Series Analysis "/>
 <meta name="twitter:description" content="1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods"/>
@@ -28,12 +28,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Note | Financial Time Series Analysis ",
+        "headline": "Time Series Note | Financial Time Series Analysis ",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  1617 ,
+        },"genre": "posts","wordcount":  1931 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,10 +108,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Note | Financial Time Series Analysis </h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1617 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1931 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -136,7 +136,13 @@
           </ul>
         </li>
         <li><a href="#6-seasonality">6. Seasonality</a></li>
-        <li><a href="#7-the-autocorrelation-function-acf">7. The Autocorrelation Function (ACF)</a></li>
+        <li><a href="#7-the-autocorrelation-function-acf">7. The Autocorrelation Function (ACF)</a>
+          <ul>
+            <li><a href="#acf-for-sp-market-value">ACF for S&amp;P market value</a></li>
+            <li><a href="#acf-for-white-noise">ACF for White Noise</a></li>
+          </ul>
+        </li>
+        <li><a href="#8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</a></li>
       </ul>
     </li>
   </ul>
@@ -650,7 +656,75 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <li><code>Lagged</code> is a delayed series of the original one</li>
 <li>how much of yesterday&rsquo;s values resemble today&rsquo;s values, or similarities from year to year</li>
 </ul>
-<p>Partial Autocorrelation Function (PACF)</p>
+<h4 id="acf-for-sp-market-value">ACF for S&amp;P market value</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="c1"># In time series analysis, common practice dictates analyzing the first 40 lags</span>
+<span class="c1"># zero: Flag indicating whether to include the 0-lag autocorrelation. Default is True.</span>
+<span class="c1">## indicates whether we include current period values in the graph</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;ACF S&amp;P&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:<br>
+<figure><img src="/images/financial-time-series/ACF_SP.jpg" width="600"/>
+</figure>
+</p>
+<p>Explaination:</p>
+<ul>
+<li>x-axis: represents lags,</li>
+<li>y-axis: indicates the possible values for the autocorrelation coefficient</li>
+<li>correlation can only take values between -1 and 1,</li>
+<li>lines across the plot represent the autocorrelation between the time series and a lagged copy of itself</li>
+<li>the first line represents the autocorrelation coefficient for one time period ago</li>
+<li>the <code>blue area</code> around the x-axis represents <code>significance</code>, the values situated <em>outside are significantly different from zero</em> which suggests the <em>existence of autocorrelation</em> for that specific lag</li>
+<li>the <em>greater the distance</em> in time, the <em>more UNLIKELY</em> it is that this autocorrelation persists
+<ul>
+<li>e.g. today&rsquo;s prices are usually closer to yesterday&rsquo;s prices than the prices a month ago</li>
+</ul>
+</li>
+<li>therefore, we need to make sure the autocorrelation coefficient in higher lags is sufficiently greater to be significantly different from zero</li>
+<li>notice how all the lines are positive and higher than the blue region, this suggests the coefficients are significant, which is an indicator of time dependence in the data
+<ul>
+<li>also, we can see that autocorrelation barely diminishes as the lags increase, this suggests that prices even a month back (40 days ago) can still serve as decent estimators for tomorrow</li>
+</ul>
+</li>
+</ul>
+<h4 id="acf-for-white-noise">ACF for White Noise</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Since white noise series is generated randomly</span>
+<span class="c1"># there are patterns of positive and negative autocorrelation</span>
+<span class="c1"># All the lines fall within the blue area, thus the coefficients are NOT significant across the entire plot</span>
+<span class="c1"># No autocorrelation for any lag</span>
+<span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">wn</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;ACF WN&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:<br>
+<figure><img src="/images/financial-time-series/ACF_WN.jpg" width="600"/>
+</figure>
+</p>
+<h3 id="8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -664,7 +738,7 @@ Decomposition function uses the previous period values as a trend-setter.</p>
                             <a class="link-to-markdown" href="/financial-time-series/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/financial-time-series/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis " data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Note | Financial Time Series Analysis "><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis "><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/financial-time-series/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis " data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis " data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/financial-time-series/" data-title="Time Series Note | Financial Time Series Analysis "><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -676,8 +750,8 @@ Decomposition function uses the previous period values as a trend-setter.</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sas-note/" class="prev" rel="prev" title="SAS | SFU STAT342 Course Notes "><i class="fas fa-angle-left fa-fw"></i>SAS | SFU STAT342 Course Notes </a>
-            <a href="/point-cloud-processing/" class="next" rel="next" title="Course Notes | Point Clouds Processing 01 | Introduction">Course Notes | Point Clouds Processing 01 | Introduction<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/sas-note/" class="prev" rel="prev" title="Course Notes | SFU STAT342 - SAS "><i class="fas fa-angle-left fa-fw"></i>Course Notes | SFU STAT342 - SAS </a>
+            <a href="/point-cloud-processing/" class="next" rel="next" title="3D Vision Notes | Point Clouds Processing 01 | Introduction">3D Vision Notes | Point Clouds Processing 01 | Introduction<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

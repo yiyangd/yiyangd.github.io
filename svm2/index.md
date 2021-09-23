@@ -1,4 +1,4 @@
-# SVM 2 - Support Vector Classifiers and Machines
+# Statistical Learning Notes | SVM 2 - Support Vector Classifiers and Machines
 
 
 ## Support Vector Classifiers

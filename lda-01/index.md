@@ -1,4 +1,4 @@
-# LDA 1 - Linear Discriminant Analysis 
+# Statistical Learning Notes | LDA 1 - Linear Discriminant Analysis 
 
 
 ## ISLR4.4 - LDA

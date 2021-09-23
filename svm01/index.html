@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" />
+        <title>Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" />
 <meta property="og:description" content="SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
  affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 &#43; &hellip; &#43; \beta_pX_p= 0$$" />
 <meta property="og:type" content="article" />
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"/>
+<meta name="twitter:title" content="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"/>
 <meta name="twitter:description" content="SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
  affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 &#43; \beta_1X_1 &#43; \beta_2X_2 &#43; &hellip; &#43; \beta_pX_p= 0$$"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
@@ -26,7 +26,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification",
+        "headline": "Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -106,7 +106,7 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;564 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
@@ -266,7 +266,7 @@ The generalization of the Maximal Margin Classifier to the <em>Non-Separable</em
                             <a class="link-to-markdown" href="/svm01/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/svm01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/svm01/" data-title="SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/svm01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/svm01/" data-title="Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -278,7 +278,7 @@ The generalization of the Maximal Margin Classifier to the <em>Non-Separable</em
         </section>
     </div>
 
-    <div class="post-nav"><a href="/decisiontree2/" class="prev" rel="prev" title="Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"><i class="fas fa-angle-left fa-fw"></i>Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</a>
+    <div class="post-nav"><a href="/decisiontree2/" class="prev" rel="prev" title="Statistical Learning Notes | Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting"><i class="fas fa-angle-left fa-fw"></i>Statistical Learning Notes | Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</a>
             <a href="/open3d-1/" class="next" rel="next" title="3D Vision - Intel® RealSense™ depth camera and IMU">3D Vision - Intel® RealSense™ depth camera and IMU<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>

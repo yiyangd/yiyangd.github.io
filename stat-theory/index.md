@@ -1,4 +1,4 @@
-# Statistical Theory | SFU STAT450 Course Notes (Hand Written) 
+# Course Notes | SFU STAT450 - Statistical Theory (Hand Written) 
 
 
 ### Lec01: Sep 9 - Thursday
@@ -22,4 +22,12 @@
 ### Lec04: Sep 20 - Monday
 
 {{< figure src="/images/stat-theory/STAT450-Notes-10.jpg" width="800">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-11.jpg" width="800">}}
+
+### Lec05: Sep 23 - Thursday
+
+{{< figure src="/images/stat-theory/STAT450-Notes-12.jpg" width="600">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-13.jpg" width="500">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-10.jpg" width="300">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-10.jpg" width="400">}}
 

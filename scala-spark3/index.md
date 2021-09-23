@@ -1,4 +1,4 @@
-# Course Notes | Scala Spark 3 
+# Data Engineering Notes | Scala Spark 3 
 
 
 ### 0. Introduction on Spark and Scala
