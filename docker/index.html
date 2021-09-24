@@ -6,17 +6,21 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Full Stack Notes | Dockers - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Full Stack Notes | Dockers" />
-<meta property="og:description" content="1. What is Docker？ " />
+<meta property="og:description" content="1. What is Docker？ Docker is a platform for building, running and shipping applications in a consistent manner
+2. Virtual Machines vs Containers 3. Docker Architecture 4. Installing Docker  5. Development WorkFlow Take an application and dockerize so that it can be run by docker
+ add Dockerfile which is a plain text file that includes instructions that docker uses to package up this application into an image  The image contains everything our application needs to run:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/docker/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-09-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-09-18T00:00:00+00:00" />
+<meta property="article:published_time" content="2020-09-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-23T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Full Stack Notes | Dockers"/>
-<meta name="twitter:description" content="1. What is Docker？ "/>
+<meta name="twitter:description" content="1. What is Docker？ Docker is a platform for building, running and shipping applications in a consistent manner
+2. Virtual Machines vs Containers 3. Docker Architecture 4. Installing Docker  5. Development WorkFlow Take an application and dockerize so that it can be run by docker
+ add Dockerfile which is a plain text file that includes instructions that docker uses to package up this application into an image  The image contains everything our application needs to run:"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +33,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/docker\/"
-        },"genre": "posts","wordcount":  4 ,
-        "url": "https:\/\/yiyangd.github.io\/docker\/","datePublished": "2020-09-18T00:00:00+00:00","dateModified": "2020-09-18T00:00:00+00:00","publisher": {
+        },"genre": "posts","wordcount":  136 ,
+        "url": "https:\/\/yiyangd.github.io\/docker\/","datePublished": "2020-09-23T00:00:00+00:00","dateModified": "2020-09-23T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -106,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Full Stack Notes | Dockers</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-18">2020-09-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-23">2020-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;136 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -118,16 +122,49 @@
     <li>
       <ul>
         <li><a href="#1-what-is-docker">1. What is Docker？</a></li>
+        <li><a href="#2-virtual-machines-vs-containers">2. Virtual Machines vs Containers</a></li>
+        <li><a href="#3-docker-architecture">3. Docker Architecture</a></li>
+        <li><a href="#4-installing-docker">4. Installing Docker</a></li>
+        <li><a href="#5-development-workflow">5. Development WorkFlow</a></li>
+        <li><a href="#6-docker-in-action">6. Docker in Action</a></li>
+        <li><a href="#7">7.</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="1-what-is-docker">1. What is Docker？</h3>
+<p>Docker is a platform for building, running and shipping applications in a consistent manner</p>
+<h3 id="2-virtual-machines-vs-containers">2. Virtual Machines vs Containers</h3>
+<h3 id="3-docker-architecture">3. Docker Architecture</h3>
+<h3 id="4-installing-docker">4. Installing Docker</h3>
+<figure><img src="/images/docker/docker_version.jpg" width="600"/>
+</figure>
+
+<h3 id="5-development-workflow">5. Development WorkFlow</h3>
+<p>Take an application and dockerize so that it can be run by docker</p>
+<ul>
+<li>add Dockerfile which is a plain text file that includes instructions that docker uses to <strong>package up</strong> this application into an <code>image</code></li>
+</ul>
+<p>The <strong>image</strong> contains everything our application needs to run:</p>
+<ul>
+<li>a cut-down OS</li>
+<li>a runtime environment (eg. Node)</li>
+<li>application files</li>
+<li>third-party libraries</li>
+<li>environment variables</li>
+</ul>
+<p>Use Docker to start a <code>container</code> using that image</p>
+<ul>
+<li>container is a special kind of process because it has its own <em>file system</em> which is provided by the image</li>
+</ul>
+<p>Run application locally on development machine by getting loaded inside a container/process</p>
+<h3 id="6-docker-in-action">6. Docker in Action</h3>
+<h3 id="7">7.</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2020-09-18</span>
+                <span>Updated on 2020-09-23</span>
             </div>
             <div class="post-info-license"></div>
         </div>
