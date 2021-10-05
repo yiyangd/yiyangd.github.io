@@ -4,7 +4,15 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Mon, 04 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Statistical Learning Notes | Deep Learning</title>
+    <link>https://yiyangd.github.io/deeplearning-01/</link>
+    <pubDate>Mon, 04 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/deeplearning-01/</guid>
+    <description><![CDATA[1. Neural Network A neural network takes an input vector of p variables ($X = (X_1, X_2, X_3, \cdots, X_p)$) and builds a Nonlinear Function $f(X)$ to predict the response Y.
+ ]]></description>
+</item><item>
     <title>3D Vision Notes | Point Clouds Processing 01 | Introduction</title>
     <link>https://yiyangd.github.io/point-cloud-processing/</link>
     <pubDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</pubDate>
@@ -44,7 +52,7 @@ Train a Network    Note Lists:]]></description>
     <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/stat-theory/</guid>
-    <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     ]]></description>
+    <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   ]]></description>
 </item><item>
     <title>Data Engineering Notes | Scala Spark 3 </title>
     <link>https://yiyangd.github.io/scala-spark3/</link>
@@ -84,13 +92,5 @@ Day 2 - Sep 3 ]]></description>
     <guid>https://yiyangd.github.io/sql-notes-01/</guid>
     <description><![CDATA[175. Combine Two Table  Write a SQL query for a report that provides FirstName, LastName, City, State for each person in the Person table, regardless if there is an address for each of those people
  PersonId and AddressId are primary keys   1 2 3 4 5 6  CreatetablePerson(PersonIdint,FirstNamevarchar(255),LastNamevarchar(255))CreatetableAddress(AddressIdint,PersonIdint,Cityvarchar(255),Statevarchar(255))TruncatetablePersoninsertintoPerson(PersonId,LastName,FirstName)values(&#39;1&#39;,&#39;Wang&#39;,&#39;Allen&#39;)TruncatetableAddressinsertintoAddress(AddressId,PersonId,City,State)values(&#39;1&#39;,&#39;2&#39;,&#39;New York City&#39;,&#39;New York&#39;)  Solution: Outter Join Since the PersonId in table Address is the foreign key of table Person, we can join this two table to get the address information of a person.]]></description>
-</item><item>
-    <title>eCommerce Platform 05 - Shopping Cart Implementation</title>
-    <link>https://yiyangd.github.io/ecommerceapp05-cart/</link>
-    <pubDate>Mon, 16 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/ecommerceapp05-cart/</guid>
-    <description><![CDATA[1. Qty Select &amp; Add to Cart Button In ProductScreen.js
- import useState add qty, history, addToCartHandler  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46  import React, { useState, useEffect } from &#34;react&#34;; const ProductScreen = ({ history, match }) =&gt; { const [qty, setQty] = useState(1) const addToCartHandler = () =&gt; { history.]]></description>
 </item></channel>
 </rss>

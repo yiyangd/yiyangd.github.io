@@ -28,6 +28,16 @@
 
 {{< figure src="/images/stat-theory/STAT450-Notes-12.jpg" width="400">}}
 {{< figure src="/images/stat-theory/STAT450-Notes-13.jpg" width="400">}}
-{{< figure src="/images/stat-theory/STAT450-Notes-10.jpg" width="400">}}
-{{< figure src="/images/stat-theory/STAT450-Notes-10.jpg" width="400">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-14.jpg" width="400">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-15.jpg" width="400">}}
+
+### Lec06: Sep 27 - Monday
+
+{{< figure src="/images/stat-theory/STAT450-Notes-16.jpg" width="400">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-17.jpg" width="400">}}
+
+### Lec07: Oct 4 - Monday
+
+{{< figure src="/images/stat-theory/STAT450-Notes-18.jpg" width="400">}}
+{{< figure src="/images/stat-theory/STAT450-Notes-19.jpg" width="400">}}
 
