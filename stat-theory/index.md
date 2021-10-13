@@ -41,3 +41,7 @@
 {{< figure src="/images/stat-theory/STAT450-Notes-18.jpg" width="400">}}
 {{< figure src="/images/stat-theory/STAT450-Notes-19.jpg" width="400">}}
 
+### Lec08: Oct 7 - Thursday
+
+### Lec09: Oct 13 - Thursday
+
