@@ -60,7 +60,7 @@ run;*/
 
 {{< figure src="/images/sas/proc_content.jpg" width="600">}}
 
-#### Input Styles
+### Week 2: Input Styles (2021-9-16)
 
 `infile` statement reads the data stored in an external file
 
@@ -68,11 +68,11 @@ run;*/
 
 Four ways to describe values of a dataset in the input statement
 
-1. List Input
+#### Example 2: Infile & List Input
 
 - raw data is _separated by at least one spaces_
 - all missing data must be indicated by `.`
-- `$` should be after the chacter variable
+- `$` should be after the character variable
 
 ```sas
 data Students;
@@ -81,9 +81,10 @@ data Students;
 run;
 ```
 
-2. Column Input
+#### Example 3: Column Input
 
-- use when data file _does not have spaces_ between values
+Column Input can be used when data file _does not have spaces_ between values but in fixed columms
+
 - missing data left blank
 
 ```sas
@@ -93,9 +94,102 @@ data Students;
 run;
 ```
 
-3. Formatted Input
+#### Example 4: Print Specific Variables with title without observation column
 
-### Week 4. Reading data from external files
+- `noobs`
+- `var`
+- `title`: global variables
+
+```sas
+title 'Data Table';
+
+proc print data = Student noobs;
+  var Name Height Weight;
+run;
+```
+
+#### Example 5: Formatted Input using column pointer
+
+`@n` pointer moves the input pointer to specific column `n`  
+`+n` moves the pointer forward n columns that is relative to the current position
+
+```sas
+data student;
+  input @6 name $11. /* start with col1 an read next 4 cols */
+        @27 height 2.
+        +5 DOB mmddyy8.
+        +1 calorie comma5.;
+datalines;
+1302 Benedictine Arnold 2 68 190 11/30/95 2,432
+;
+run;
+```
+
+#### Example 6: Named Input with "="
+
+```sas
+data info;
+  input @1 id 4.
+        @9 name = $ 6. /* Once the input start to read with Named Input, all remaining values must be read with Named Input */
+        @6 height = 2.;
+datalines;
+1024 height=65 name=Smith
+/* index
+12345|xxxxx|678|xxx|90123
+*/
+```
+
+#### Example 7: Show the Frequency Table
+
+- `proc freq`
+- `tables`
+
+```sas
+title 'Frequencies by Major`;
+proc freq data = Students;
+     tables Major;
+run;
+```
+
+#### Example 8: Computes the mean, std, min/max of variables
+
+- `proc means`
+
+```sas
+title 'Summary Statistics'
+proc means data = Students;
+  var Age Weight Height;
+run;
+```
+
+#### Example 9: Compute and Add a new variable
+
+```sas
+data Students;
+  infle ".../student_data.txt";
+  input Height Weight;
+  BMI = Weight/(Height/100)**2;
+run;
+```
+
+### Week 3 - 4. Reading data from external files
+
+#### Example 10: Read Data from .csv files
+
+`dsd` option performs serveral functions:
+
+- changes the default delimiter from a blank to comma,
+- treats two-co,,a in a row (, ,) as missing value
+- strips "quotes" from the character values
+
+```sas
+filename CSVfile '...path/data.csv'; /*alias*/
+
+data CSVimport;
+  infile CSVfile dsd;
+  input Name $ Age Height Weight;
+run;
+```
 
 #### Example 11: Read Data from other delimiters
 

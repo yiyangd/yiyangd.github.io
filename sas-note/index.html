@@ -37,7 +37,7 @@ Tips:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sas-note\/"
-        },"genre": "posts","wordcount":  1402 ,
+        },"genre": "posts","wordcount":  1722 ,
         "url": "https:\/\/yiyangd.github.io\/sas-note\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -114,8 +114,8 @@ Tips:
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT342 - SAS </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1402 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1722 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -129,11 +129,23 @@ Tips:
           <ul>
             <li><a href="#variables-in-sas">Variables in SAS</a></li>
             <li><a href="#example-1-basic-steps-in-sas-programs">Example 1: Basic Steps in SAS programs</a></li>
-            <li><a href="#input-styles">Input Styles</a></li>
           </ul>
         </li>
-        <li><a href="#week-4-reading-data-from-external-files">Week 4. Reading data from external files</a>
+        <li><a href="#week-2-input-styles-2021-9-16">Week 2: Input Styles (2021-9-16)</a>
           <ul>
+            <li><a href="#example-2-infile--list-input">Example 2: Infile &amp; List Input</a></li>
+            <li><a href="#example-3-column-input">Example 3: Column Input</a></li>
+            <li><a href="#example-4-print-specific-variables-with-title-without-observation-column">Example 4: Print Specific Variables with title without observation column</a></li>
+            <li><a href="#example-5-formatted-input-using-column-pointer">Example 5: Formatted Input using column pointer</a></li>
+            <li><a href="#example-6-named-input-with-">Example 6: Named Input with &ldquo;=&rdquo;</a></li>
+            <li><a href="#example-7-show-the-frequency-table">Example 7: Show the Frequency Table</a></li>
+            <li><a href="#example-8-computes-the-mean-std-minmax-of-variables">Example 8: Computes the mean, std, min/max of variables</a></li>
+            <li><a href="#example-9-compute-and-add-a-new-variable">Example 9: Compute and Add a new variable</a></li>
+          </ul>
+        </li>
+        <li><a href="#week-3---4-reading-data-from-external-files">Week 3 - 4. Reading data from external files</a>
+          <ul>
+            <li><a href="#example-10-read-data-from-csv-files">Example 10: Read Data from .csv files</a></li>
             <li><a href="#example-11-read-data-from-other-delimiters">Example 11: Read Data from other delimiters</a></li>
             <li><a href="#example-12-reading-data-values-by-specifying-infile-options-with-the-datalines-statement">Example 12: Reading data values by specifying infile options with the datalines statement</a></li>
             <li><a href="#example-13-read-data-using-informats-with-list-input">Example 13: Read data using Informats with list input</a></li>
@@ -244,19 +256,17 @@ Tips:
 </div><figure><img src="/images/sas/proc_content.jpg" width="600"/>
 </figure>
 
-<h4 id="input-styles">Input Styles</h4>
+<h3 id="week-2-input-styles-2021-9-16">Week 2: Input Styles (2021-9-16)</h3>
 <p><code>infile</code> statement reads the data stored in an external file</p>
 <ul>
 <li>must execute before the <code>input</code> statement</li>
 </ul>
 <p>Four ways to describe values of a dataset in the input statement</p>
-<ol>
-<li>List Input</li>
-</ol>
+<h4 id="example-2-infile--list-input">Example 2: Infile &amp; List Input</h4>
 <ul>
 <li>raw data is <em>separated by at least one spaces</em></li>
 <li>all missing data must be indicated by <code>.</code></li>
-<li><code>$</code> should be after the chacter variable</li>
+<li><code>$</code> should be after the character variable</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -272,11 +282,9 @@ Tips:
 </span><span class="kr">run;</span>
 </code></pre></td></tr></table>
 </div>
-</div><ol start="2">
-<li>Column Input</li>
-</ol>
+</div><h4 id="example-3-column-input">Example 3: Column Input</h4>
+<p>Column Input can be used when data file <em>does not have spaces</em> between values but in fixed columms</p>
 <ul>
-<li>use when data file <em>does not have spaces</em> between values</li>
 <li>missing data left blank</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -293,11 +301,161 @@ Tips:
 </span><span class="kr">run;</span>
 </code></pre></td></tr></table>
 </div>
-</div><ol start="3">
-<li>Formatted Input</li>
-</ol>
-<h3 id="week-4-reading-data-from-external-files">Week 4. Reading data from external files</h3>
-<h4 id="example-11-read-data-from-other-delimiters">Example 11: Read Data from other delimiters</h4>
+</div><h4 id="example-4-print-specific-variables-with-title-without-observation-column">Example 4: Print Specific Variables with title without observation column</h4>
+<ul>
+<li><code>noobs</code></li>
+<li><code>var</code></li>
+<li><code>title</code>: global variables</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="k">title</span> <span class="s">&#39;Data Table&#39;</span><span class="kr">;
+</span><span class="kr">
+</span><span class="kr">proc print </span>data = Student noobs;
+  var Name Height Weight<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-5-formatted-input-using-column-pointer">Example 5: Formatted Input using column pointer</h4>
+<p><code>@n</code> pointer moves the input pointer to specific column <code>n</code><br>
+<code>+n</code> moves the pointer forward n columns that is relative to the current position</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>student;
+  <span class="k">input</span> @<span class="m">6</span> name $<span class="m">11</span>. <span class="c">/* start with col1 an read next 4 cols */</span>
+        @<span class="m">27</span> height <span class="m">2</span>.
+        +<span class="m">5</span> DOB mmddyy8.
+        +<span class="m">1</span> calorie comma5.;
+<span class="k">datalines;</span><span class="x">
+</span><span class="x">1302 Benedictine Arnold 2 68 190 11/30/95 2,432
+</span><span class="x">;</span>
+<span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-6-named-input-with-">Example 6: Named Input with &ldquo;=&rdquo;</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>info;
+  <span class="k">input</span> @<span class="m">1</span> id <span class="m">4</span>.
+        @<span class="m">9</span> name = $ <span class="m">6</span>. <span class="c">/* Once the input start to read with Named Input, all remaining values must be read with Named Input */</span>
+        @<span class="m">6</span> height = <span class="m">2</span>.;
+<span class="k">datalines;</span>
+<span class="m">1024</span> height=<span class="m">65</span> name=Smith
+<span class="cm">/* index
+</span><span class="cm">12345|xxxxx|678|xxx|90123
+</span><span class="cm">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-7-show-the-frequency-table">Example 7: Show the Frequency Table</h4>
+<ul>
+<li><code>proc freq</code></li>
+<li><code>tables</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="k">title</span> <span class="s">&#39;Frequencies by Major`;
+</span><span class="s">proc freq data = Students;
+</span><span class="s">     tables Major;
+</span><span class="s">run;
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="example-8-computes-the-mean-std-minmax-of-variables">Example 8: Computes the mean, std, min/max of variables</h4>
+<ul>
+<li><code>proc means</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="k">title</span> <span class="s">&#39;Summary Statistics&#39;</span>
+<span class="kr">proc means </span>data = Students;
+  var Age Weight Height<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-9-compute-and-add-a-new-variable">Example 9: Compute and Add a new variable</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>Students;
+  infle <span class="s">&#34;.../student_data.txt&#34;</span>;
+  <span class="k">input</span> Height Weight;
+  BMI = Weight/(Height/<span class="m">100</span>)**<span class="m">2</span><span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="week-3---4-reading-data-from-external-files">Week 3 - 4. Reading data from external files</h3>
+<h4 id="example-10-read-data-from-csv-files">Example 10: Read Data from .csv files</h4>
+<p><code>dsd</code> option performs serveral functions:</p>
+<ul>
+<li>changes the default delimiter from a blank to comma,</li>
+<li>treats two-co,,a in a row (, ,) as missing value</li>
+<li>strips &ldquo;quotes&rdquo; from the character values</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="k">filename</span> CSVfile <span class="s">&#39;...path/data.csv&#39;</span>; <span class="c">/*alias*/</span>
+<span class="kr">
+</span><span class="kr">data </span>CSVimport;
+  <span class="k">infile</span> CSVfile dsd;
+  <span class="k">input</span> Name $ Age Height Weight<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-11-read-data-from-other-delimiters">Example 11: Read Data from other delimiters</h4>
 <p><code>'09'x</code> represents the TAB in hexadecimal value</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
