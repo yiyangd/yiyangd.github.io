@@ -13,7 +13,13 @@ Tips:
 - Use `.` to replace the missing values
 - Case **IN**sensitive
 
-#### Basic Steps in SAS programs
+Invalid Names:
+
+- 1_begins_with_a_number
+- contains blanks
+- contains-invalid-characters%
+
+#### Example 1: Basic Steps in SAS programs
 
 1. `DATA`: read/write/manipuplate the data and perform calculations
 
@@ -41,8 +47,8 @@ datalines;
 ;
 run;  /*end the data step*/
 
-PROC print data = studgrade; /* proc step: perform any analysis and  print the dataset.
-                              Here we are only printing the dataset*/
+proc print data = studgrade;
+/* proc step: perform any analysis and  print the dataset. Here we are only printing the dataset*/
 run;
 
 
@@ -51,6 +57,8 @@ run;
 /*proc contents data = Studgrade;
 run;*/
 ```
+
+{{< figure src="/images/sas/proc_content.jpg" width="600">}}
 
 #### Input Styles
 
@@ -87,9 +95,138 @@ run;
 
 3. Formatted Input
 
+### Week 4. Reading data from external files
+
+#### Example 11: Read Data from other delimiters
+
+`'09'x` represents the TAB in hexadecimal value
+
+```sas
+data other_dlm;
+infile '.../other_dlm.txt' dlm=':';
+/* infile '.../other_dlm.txt' dlm='09'x; */
+input Age Height;
+run;
+```
+
+#### Example 12: Reading data values by specifying infile options with the datalines statement
+
+```sas
+data dsd_datalines;
+  infile datalines dsd;
+  /* dsd could drop the "quote" vs "dlm,=','"*/
+  input Age Height Weight;
+datalines;
+"Black" 50, 68, 155
+;
+```
+
+#### Example 13: Read data using Informats with list input
+
+`Colon :` enables us to use List Input (blank) with an Informat after a variable name
+
+```sas
+data informats_list;
+  infile ".../.csv" dsd;
+  input subj : 1.
+      Name : $19.
+      DOB  : mmddyy10.
+      Salary: dollar8.;
+  format DOB date9. Salary dollar8.;
+run;
+```
+
+Uncommon Case: csv file using blanks instead of commas as delimiter
+
+- `&` modifier is like the colon, let SAS use supplied informat but the delimiter is now ( >= 2) spaces instead of 1.
+- Therefore, there should be more than one space between Name and DOB
+
+```sas
+input Subj : 1.
+      Name & $19.
+```
+
+#### Example 14: Read Data using PROC IMPORT
+
+PROC IMPORT Options:
+
+- datafile: file path that we want to import
+- out: assign name
+- dbms: option to identify the type of file being imported
+  - CSV
+  - DLM: for delimited file (default is a blank)
+  - JMP
+  - TAB: tab-delimited values, .txt
+  - XLSX: excel file
+- replace: overwrite the exisiting file
+- getnames: if yes, read the first row of data as variable names
+
+```sas
+proc import datafile = "...path/auto.csv"
+            out = automob
+            dbms = csv replace;
+            getnames = yes;
+run;
+```
+
+#### Example 15: Create a new variable after PROC IMPORT
+
+```sas
+data auto;
+  set automob; /* Copy all obs from automob dataset*/
+  TOT_MILATE = MPG*TANK_VOL; /* Create a new variable column */
+run;
+```
+
+#### Example 16: Read Data from Excel files
+
+```sas
+proc import out = auto1 datafile = "path/auto.xlsx"
+            dbms = xlsx replace;
+            sheet = "auto"; /* specify which sheet of the excel file should be imported */
+            getnames = yes;
+run;
+```
+
+#### Example 17: Read Data from URL
+
+```sas
+/* filename probly TEMP; */
+filename probly 'path/download.csv';
+
+proc http
+  url='http://.../probly.csv'
+  method="GET"
+  out=probly;
+run;
+
+proc import file = probly out = probly replace dbms = csv;
+run;
+
+proc print data = probly;
+run;
+
+```
+
 ### Week 5. Working with Dates （2021-10-14）
 
-#### Example 18
+#### Example 18: Read Date from Raw
+
+```sas
+data fourdates;
+input @1 Subject $3.
+      @5 DOB mmddyy10.
+      @16 VisitDate mmddyy8.
+      @25 TwoDigit mmddyy8.
+      @34 LastDate date9.;
+format DOB VistDate TwoDigit mmddyy10.
+       LastDate date9.;
+datalines;
+001 10/21/1950 05122003 08/10/65 23Dec2005
+002 01/01/1960 11122009 09/13/02 02Jan1960
+;
+run;
+```
 
 #### Example 19: Compute the difference between two dates
 
@@ -103,8 +240,8 @@ Age = yrdif(DOB, visitDate, 'Actual');
 /* Age = (visitDate - DOB) / 365 */
 run;
 title 'Listing of Ages';
-proc print data = ages;
-  var Subject DOB Age;
+proc print data = ages noobs;
+  var Subject DOB VisitDate Age;
   format Age 5.1 /*Value of Age in 5 bytes, with one position to the right of the decimal place*/
 run;
 ```
