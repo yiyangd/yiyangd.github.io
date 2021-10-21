@@ -7,7 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Course Notes | SFU STAT342 - SAS  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Course Notes | SFU STAT342 - SAS " />
 <meta property="og:description" content="SAS: Statistical Analysis System
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  /* Lecture 1, example 1: Read the dataset and print */ data DCStudgrade; /* data step: assign a name for the dataset and enter the data */ input StudID Midterm Final Grade $; /*Variables in the dataset and enter the data*/ datalines;101 98 86 A 102 49 60 C 103 98 80 A 104 90 98 A&#43; 105 60 80 B&#43; 106 ." />
+Variables in SAS SAS has only two types of variables: character and numeric
+Tips:
+ Use $ after the character variable Use . to replace the missing values Case INsensitive  Basic Steps in SAS programs  DATA: read/write/manipuplate the data and perform calculations   after data step, SAS stores the data in its own special form called a SAS data set  PROC: process SAS datasets in analyzing   proc contents shows the descriptor portion of SAS data set proc print shows the data portion in a table  RUN  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  /* Example 1: Read the dataset and print */ data Studgrade; /* data step: assign a name for the dataset and enter the data */ input StudID Midterm Final Grade $; /*Variables in the dataset and enter the data*/ datalines;101 98 86 A 102 49 60 C 103 98 80 A 104 90 98 A&#43; 105 60 80 B&#43; 106 ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/sas-note/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-08T00:00:00+00:00" />
@@ -18,7 +20,9 @@
 
 <meta name="twitter:title" content="Course Notes | SFU STAT342 - SAS "/>
 <meta name="twitter:description" content="SAS: Statistical Analysis System
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  /* Lecture 1, example 1: Read the dataset and print */ data DCStudgrade; /* data step: assign a name for the dataset and enter the data */ input StudID Midterm Final Grade $; /*Variables in the dataset and enter the data*/ datalines;101 98 86 A 102 49 60 C 103 98 80 A 104 90 98 A&#43; 105 60 80 B&#43; 106 ."/>
+Variables in SAS SAS has only two types of variables: character and numeric
+Tips:
+ Use $ after the character variable Use . to replace the missing values Case INsensitive  Basic Steps in SAS programs  DATA: read/write/manipuplate the data and perform calculations   after data step, SAS stores the data in its own special form called a SAS data set  PROC: process SAS datasets in analyzing   proc contents shows the descriptor portion of SAS data set proc print shows the data portion in a table  RUN  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  /* Example 1: Read the dataset and print */ data Studgrade; /* data step: assign a name for the dataset and enter the data */ input StudID Midterm Final Grade $; /*Variables in the dataset and enter the data*/ datalines;101 98 86 A 102 49 60 C 103 98 80 A 104 90 98 A&#43; 105 60 80 B&#43; 106 ."/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sas-note\/"
-        },"genre": "posts","wordcount":  136 ,
+        },"genre": "posts","wordcount":  347 ,
         "url": "https:\/\/yiyangd.github.io\/sas-note\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,15 +112,55 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT342 - SAS </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;136 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;347 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#variables-in-sas">Variables in SAS</a></li>
+            <li><a href="#basic-steps-in-sas-programs">Basic Steps in SAS programs</a></li>
+            <li><a href="#input-styles">Input Styles</a></li>
+            <li><a href="#example-19-compute-the-difference-between-two-dates">Example 19: Compute the difference between two dates</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>SAS: Statistical Analysis System</p>
+<h4 id="variables-in-sas">Variables in SAS</h4>
+<p>SAS has only two types of variables: <code>character</code> and <code>numeric</code></p>
+<p>Tips:</p>
+<ul>
+<li>Use <code>$</code> after the <code>character</code> variable</li>
+<li>Use <code>.</code> to replace the missing values</li>
+<li>Case <strong>IN</strong>sensitive</li>
+</ul>
+<h4 id="basic-steps-in-sas-programs">Basic Steps in SAS programs</h4>
+<ol>
+<li><code>DATA</code>: read/write/manipuplate the data and perform calculations</li>
+</ol>
+<ul>
+<li>after <code>data</code> step, SAS stores the data in its own special form called a <code>SAS data set</code></li>
+</ul>
+<ol start="2">
+<li><code>PROC</code>: process SAS datasets in analyzing</li>
+</ol>
+<ul>
+<li><code>proc contents</code> shows the <code>descriptor</code> portion of SAS data set</li>
+<li><code>proc print</code> shows the <code>data</code> portion in a table</li>
+</ul>
+<ol start="3">
+<li><code>RUN</code></li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -142,12 +186,11 @@
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
-</span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="c">/* Lecture 1, example 1: Read the dataset and print */</span>
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="c">/* Example 1: Read the dataset and print */</span>
 <span class="kr">
-</span><span class="kr">data </span>DCStudgrade; <span class="c">/* data step: assign a name for the dataset and enter the data */</span>
+</span><span class="kr">data </span>Studgrade; <span class="c">/* data step: assign a name for the dataset and enter the data */</span>
 <span class="k">input</span> StudID Midterm Final Grade $; <span class="c">/*Variables in the dataset and enter the data*/</span>
 <span class="k">datalines;</span><span class="x">
 </span><span class="x">101 98 86 A
@@ -159,7 +202,7 @@
 </span><span class="x">;</span>
 <span class="kr">run;</span>  <span class="c">/*end the data step*/</span>
 <span class="kr">
-</span><span class="kr">PROC print </span>data = dcstudgrade; <span class="cm">/* proc step: perform any analysis and  print the dataset.
+</span><span class="kr">PROC print </span>data = studgrade; <span class="cm">/* proc step: perform any analysis and  print the dataset.
 </span><span class="cm">                              Here we are only printing the dataset*/</span>
 <span class="kr">run;</span>
 
@@ -168,7 +211,73 @@
 
 <span class="cm">/*proc contents data = Studgrade;
 </span><span class="cm">run;*/</span>
-
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="input-styles">Input Styles</h4>
+<p><code>infile</code> statement reads the data stored in an external file</p>
+<ul>
+<li>must execute before the <code>input</code> statement</li>
+</ul>
+<p>Four ways to describe values of a dataset in the input statement</p>
+<ol>
+<li>List Input</li>
+</ol>
+<ul>
+<li>raw data is <em>separated by at least one spaces</em></li>
+<li>all missing data must be indicated by <code>.</code></li>
+<li><code>$</code> should be after the chacter variable</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>Students;
+    <span class="k">infile</span> <span class="s">&#34;...path/data.txt&#34;</span>;
+    <span class="k">input</span> Major $ Age Height Weight<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Column Input</li>
+</ol>
+<ul>
+<li>use when data file <em>does not have spaces</em> between values</li>
+<li>missing data left blank</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>Students;
+    <span class="k">infile</span> <span class="s">&#34;...path/column_data.txt&#34;</span>;
+    <span class="k">input</span> Major $ <span class="m">1-4</span> Age <span class="m">5-6</span> Height <span class="m">7-9</span> Weight <span class="m">10-12</span><span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Formatted Input</li>
+</ol>
+<h4 id="example-19-compute-the-difference-between-two-dates">Example 19: Compute the difference between two dates</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>ages;
+<span class="k">set</span> fourdates;
+Age = yrdif(DOB, visitDate, <span class="s">&#39;Actual&#39;</span>)<span class="kr">;
+</span><span class="kr">run;</span>
 </code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
