@@ -35,7 +35,7 @@ Tips:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sas-note\/"
-        },"genre": "posts","wordcount":  471 ,
+        },"genre": "posts","wordcount":  927 ,
         "url": "https:\/\/yiyangd.github.io\/sas-note\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -112,8 +112,8 @@ Tips:
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT342 - SAS </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;471 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;927 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -130,10 +130,14 @@ Tips:
             <li><a href="#input-styles">Input Styles</a></li>
           </ul>
         </li>
-        <li><a href="#week-5-working-with-dates">Week 5. Working with Dates</a>
+        <li><a href="#week-5-working-with-dates-2021-10-14">Week 5. Working with Dates （2021-10-14）</a>
           <ul>
             <li><a href="#example-18">Example 18</a></li>
             <li><a href="#example-19-compute-the-difference-between-two-dates">Example 19: Compute the difference between two dates</a></li>
+            <li><a href="#example-20-extract-the-date">Example 20: Extract the date</a></li>
+            <li><a href="#example-21-create-a-sas-date">Example 21: Create a SAS date</a></li>
+            <li><a href="#example-22-compute-date-intervals">Example 22: Compute Date Intervals</a></li>
+            <li><a href="#example-23-us-presidential-inaugurations-and-deaths">Example 23: US Presidential Inaugurations and deaths</a></li>
           </ul>
         </li>
       </ul>
@@ -270,7 +274,7 @@ Tips:
 </div><ol start="3">
 <li>Formatted Input</li>
 </ol>
-<h3 id="week-5-working-with-dates">Week 5. Working with Dates</h3>
+<h3 id="week-5-working-with-dates-2021-10-14">Week 5. Working with Dates （2021-10-14）</h3>
 <h4 id="example-18">Example 18</h4>
 <h4 id="example-19-compute-the-difference-between-two-dates">Example 19: Compute the difference between two dates</h4>
 <ul>
@@ -311,12 +315,10 @@ Age = yrdif(DOB, visitDate, <span class="s">&#39;Actual&#39;</span>);
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas">Age = <span class="nb">int(</span>yrdif(DOB, visitDate, <span class="s">&#39;Actual&#39;</span>));
 Age = <span class="nb">round(</span>yrdif(DOB, visitDate, <span class="s">&#39;Actual&#39;</span>));
-
 </code></pre></td></tr></table>
 </div>
 </div><p>For Constant Date</p>
@@ -347,6 +349,212 @@ Age = <span class="nb">round(</span>yrdif(DOB, visitDate, <span class="s">&#39;A
 </code></pre></td></tr></table>
 </div>
 </div><figure><img src="/images/sas/date_formats.jpg" width="600"/>
+</figure>
+
+<h4 id="example-20-extract-the-date">Example 20: Extract the date</h4>
+<p>There are SAS fuctions to extract the day of the week, day of the month, month, and year from a SAS date.</p>
+<figure><img src="/images/sas/date_functions.jpg" width="600"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>extract;
+  <span class="k">set</span> four_dates;
+  Day = <span class="nb">weekday(</span>DOB); <span class="c">/* Sunday: 1, Monday: 2 */</span>
+  DayofMonth = <span class="nb">day(</span>DOB); <span class="c">/*1-31*/</span>
+  Month = <span class="nb">month(</span>DOB); <span class="c">/*1-12*/</span>
+  Year = <span class="nb">year(</span>DOB); <span class="c">/* xxxx */</span>
+<span class="kr">run;</span>
+<span class="kr">
+</span><span class="kr">proc print </span>data = extract noobs;
+  var DOB Day -- Year; <span class="c">/* Include all of the variables from Day through Year in the order they are stored in the SAS dataset*/</span>
+<span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-21-create-a-sas-date">Example 21: Create a SAS date</h4>
+<ul>
+<li>Use <code>mdy()</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>mdy;
+  <span class="k">input</span> Month Day Year;
+  Date = <span class="nb">mdy(</span>Monty, Day, Year);
+  <span class="k">format</span> Date mmddyy10.;
+<span class="k">
+</span><span class="k">datalines;</span><span class="x">
+</span><span class="x">10 21 1950
+</span><span class="x">1 15 5
+</span><span class="x">3 . 2005
+</span><span class="x">5 7 2000
+</span><span class="x">;</span>
+<span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>For Missing date</p>
+<ul>
+<li><code>missing()</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>substitute;
+  <span class="k">set</span> mdy;
+  <span class="k">if</span> <span class="k">missing</span>(Day) <span class="k">then</span> Date = <span class="nb">mdy(</span>Month,<span class="m">15</span>,Year);
+  <span class="k">else</span> Date = <span class="nb">mdy(</span>Month,Day,Year);
+  <span class="k">format</span> Date worddate.<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-22-compute-date-intervals">Example 22: Compute Date Intervals</h4>
+<p><strong>INTCK</strong>: computes the <code>number</code> of intervals between two dates</p>
+<ul>
+<li><code>INTCK('interval', from, to)</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="c">/* _NULL_ dataset is used to execute Data Step without observations*/</span>
+<span class="kr">data </span><span class="kc">_null_</span>;
+  days = <span class="nb">intck(</span><span class="s">&#39;day&#39;</span>, <span class="nb">today(</span>), <span class="s">&#39;25dec2021&#39;</span>d); <span class="c">/* How many days till Chrismas Day. */</span><span class="k">
+</span><span class="k">  put </span><span class="err">days; /* Write to the SAS log. i</span><span class="m">.</span><span class="err">e. results will be displayed </span><span class="k">in</span><span class="err"> SAS log. */</span>
+<span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>INTNX</strong>: computes a <code>date</code> after a given number of intervals</p>
+<ul>
+<li><code>INTNX('interval', from, to)</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span><span class="kc">_null_</span>;
+  date = <span class="nb">intnx(</span><span class="s">&#39;month&#39;</span>, <span class="s">&#39;24dec2017&#39;</span>d, <span class="m">2</span>, <span class="s">&#39;sameday&#39;</span>);
+  <span class="k">format</span> date date9.;<span class="k">
+</span><span class="k">  put </span><span class="err">date;</span>
+<span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="example-23-us-presidential-inaugurations-and-deaths">Example 23: US Presidential Inaugurations and deaths</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>year_days;
+<span class="k">input</span> @<span class="m">1</span> Date anydtdte11. <span class="c">/* Informats that is a alternative to other formats such as DATEw. , MMDDYYw. and YYMMDDw. */</span>
+      @<span class="m">13</span> Event $<span class="m">28</span>.;
+
+Prev_date = <span class="nb">lag(</span>Date); <span class="c">/* Shift downward Date by one row as a new column */</span>
+Years = <span class="nb">intck(</span><span class="s">&#39;year&#39;</span>, Prev_date, Date, <span class="s">&#39;continues&#39;</span>); <span class="c">/* number of completed years */</span>
+Anniv = <span class="nb">intnx(</span><span class="s">&#39;year&#39;</span>, Prev_date, Years, <span class="s">&#39;sameday&#39;</span>);
+
+Days = <span class="nb">intck(</span><span class="s">&#39;day&#39;</span>, Anniv, Date);
+
+Anniv_v2 = <span class="k">put</span>(Anniv, ddmmyy10.); <span class="c">/* Convert variable type*/</span>
+
+<span class="k">format</span> Date Prev_date Anniv Date9.;
+<span class="k">
+</span><span class="k">datalines;</span>
+Apr <span class="m">30</span>,<span class="m">1789</span> Washington Inaug
+Mar <span class="m">4</span>, <span class="m">1797</span> J Adams Inaug
+Dec <span class="m">14</span>,<span class="m">1799</span> Washington Death
+Mar <span class="m">4</span>, <span class="m">1801</span> Jefferson Inaug
+Mar <span class="m">4</span>, <span class="m">1909</span> Madison Inaug
+Mar <span class="m">4</span>, <span class="m">1917</span> Moroe Inaug
+Mar <span class="m">4</span>, <span class="m">1825</span> JQ Adams Inaug
+Jul <span class="m">4</span>, <span class="m">1826</span> Jefferson Death
+Jul <span class="m">4</span>, <span class="m">1826</span> J Adams Death<span class="kr">;
+</span><span class="kr">run;</span>
+
+<span class="c">/* PDF Output */</span>
+ods pdf <span class="k">file</span>=<span class="s">&#34;...\intck_intnk_out.pdf&#34;</span><span class="kr">;
+</span><span class="kr">proc print </span>data = year_days;
+var Event Date Prev_date -- Anniv_v2<span class="kr">;
+</span><span class="kr">run;</span>
+
+ods pdf close;
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/sas/pdf_output.jpg" width="600"/>
 </figure>
 
 </div><div class="post-footer" id="post-footer">
