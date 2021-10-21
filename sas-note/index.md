@@ -87,12 +87,54 @@ run;
 
 3. Formatted Input
 
+### Week 5. Working with Dates
+
+#### Example 18
+
 #### Example 19: Compute the difference between two dates
+
+- `yrdif()` computes the difference
+  - `'Actual'` lets SAS compute the decial number of days between two dates
 
 ```sas
 data ages;
 set fourdates;
 Age = yrdif(DOB, visitDate, 'Actual');
+/* Age = (visitDate - DOB) / 365 */
+run;
+title 'Listing of Ages';
+proc print data = ages;
+  var Subject DOB Age;
+  format Age 5.1 /*Value of Age in 5 bytes, with one position to the right of the decimal place*/
 run;
 ```
+
+We can compute the age as an integer
+
+```sas
+Age = int(yrdif(DOB, visitDate, 'Actual'));
+Age = round(yrdif(DOB, visitDate, 'Actual'));
+
+```
+
+For Constant Date
+
+- one/two-digit day
+- three-character month abbreviation
+- four-digit year
+- single/double quotation followed by `d`
+
+```sas
+Age = yrdif(DOB, '01Jan2006'd, 'Actual');
+```
+
+For Current Date
+
+- use `today()`
+
+```
+CurAge = int(yrdif(DOB, today(), 'Actual'));
+```
+
+{{< figure src="/images/sas/date_formats.jpg" width="600">}}
 
