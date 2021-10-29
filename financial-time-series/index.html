@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  2043 ,
+        },"genre": "posts","wordcount":  2222 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2043 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2222 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -143,7 +143,15 @@
           </ul>
         </li>
         <li><a href="#8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</a></li>
-        <li><a href="#9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</a></li>
+        <li><a href="#9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</a>
+          <ul>
+            <li><a href="#fitting-an-ar1-model-for-index-prices">Fitting an AR(1) Model for Index Prices</a></li>
+            <li><a href="#fitting-higher-lag-ar-models-for-prices">Fitting Higher-Lag AR Models for Prices</a></li>
+            <li><a href="#using-returns-instead-of-prices">Using Returns instead of Prices</a></li>
+            <li><a href="#acf-and-pacf-of-returns">ACF and PACF of Returns</a></li>
+            <li><a href="#fitting-an-ar1">Fitting an AR(1)</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -689,7 +697,7 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <figure><img src="/images/financial-time-series/ACF_SP.jpg" width="600"/>
 </figure>
 </p>
-<p>Explaination:</p>
+<p>Explanation:</p>
 <ul>
 <li>x-axis: represents lags,</li>
 <li>y-axis: indicates the possible values for the autocorrelation coefficient</li>
@@ -740,13 +748,15 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 </li>
 </ul>
 <h3 id="8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</h3>
-<p>Prices 3 days ago, affecting values of 1 and 2 days ago, which in turn affect present prices indirectly</p>
+<p>ACF: Prices 3 days ago,</p>
 <ul>
-<li>PACF cancels out ALL additional channels a previous period value affects the present one</li>
+<li>affecting values of 1 and 2 days ago, which in turn affect present prices indirectly</li>
+<li>affecting present prices directly</li>
 </ul>
-<p>PACF: $X_{t-2}$ =&gt; $X_t$</p>
+<p>PACF cancels out ALL additional channels a previous period value affects the present one</p>
 <ul>
-<li>Cancel Out ACF: $X_{t-2}$ =&gt; $X_{t-1}$ =&gt; $X_t$</li>
+<li>$X_{t-2}$ =&gt; $X_t$</li>
+<li>Cancel Out: $X_{t-2}$ =&gt; $X_{t-1}$ =&gt; $X_t$</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -764,14 +774,67 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <figure><img src="/images/financial-time-series/PACF_SP.jpg" width="600"/>
 </figure>
 </p>
-<p>Explaination:</p>
+<p>Explanation:</p>
 <ul>
-<li>Not significantly different from 0</li>
-<li>Numeric values attached to them are not important</li>
-<li>Being positive or negative is somewhat random without any lasting effects</li>
+<li>PACF and ACF values for the first lag should be indentical</li>
+<li>Not significantly different from 0 except the first several lags
+<ul>
+<li>a tremendous contrast to the ACF plot (all 40 lags are significant)</li>
+</ul>
+</li>
+<li>Being positive or negative is somewhat random <em>without any lasting effects</em>
+<ul>
+<li>negative values may be caused from Weekends.</li>
+</ul>
+</li>
 </ul>
 <h3 id="9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</h3>
 <p>Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor</p>
+<ul>
+<li>AR(2): $ x*{t} = C + \phi_1 x*{t-1} + \phi*2 x*{t-2} + \epsilon_t $</li>
+<li>$ -1 &lt; \phi &lt; 1 $</li>
+<li>$\epsilon_t$: Residuals represent the <code>unpredictable</code> differences between our prediction for period &ldquo;t&rdquo; and the correct value</li>
+<li>More lags -&gt; More complicated model -&gt; more coefficients -&gt; some of them are more likely not significant</li>
+</ul>
+<h4 id="fitting-an-ar1-model-for-index-prices">Fitting an AR(1) Model for Index Prices</h4>
+<p>Fitting the model: Find the most appropriate coefficients</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARMA</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">Parameters:
+</span><span class="s1">  order: The (p,d,q) order of the model for the autoregressive, residual values, and moving average components.
+</span><span class="s1">
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">model_ar</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">results_ar</span> <span class="o">=</span> <span class="n">model_ar</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results_ar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/financial-time-series/ar1_summary.jpg" width="600"/>
+</figure>
+
+<p>Explanation:<br>
+For AR(1) Model: $ x<em>t = C + \phi_1 x</em>{t-1} + \epsilon_t $</p>
+<ul>
+<li>C = 5261.8083</li>
+<li>$\phi_1</li>
+</ul>
+<h4 id="fitting-higher-lag-ar-models-for-prices">Fitting Higher-Lag AR Models for Prices</h4>
+<h4 id="using-returns-instead-of-prices">Using Returns instead of Prices</h4>
+<h4 id="acf-and-pacf-of-returns">ACF and PACF of Returns</h4>
+<h4 id="fitting-an-ar1">Fitting an AR(1)</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

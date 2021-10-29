@@ -353,7 +353,7 @@ plt.show()
 Output:  
 {{< figure src="/images/financial-time-series/ACF_SP.jpg" width="600">}}
 
-Explaination:
+Explanation:
 
 - x-axis: represents lags,
 - y-axis: indicates the possible values for the autocorrelation coefficient
@@ -387,13 +387,15 @@ Explanation:
 
 ### 8. The Partial Autocorrelation Function (PACF)
 
-Prices 3 days ago, affecting values of 1 and 2 days ago, which in turn affect present prices indirectly
+ACF: Prices 3 days ago,
 
-- PACF cancels out ALL additional channels a previous period value affects the present one
+- affecting values of 1 and 2 days ago, which in turn affect present prices indirectly
+- affecting present prices directly
 
-PACF: $X_{t-2}$ => $X_t$
+PACF cancels out ALL additional channels a previous period value affects the present one
 
-- Cancel Out ACF: $X_{t-2}$ => $X_{t-1}$ => $X_t$
+- $X_{t-2}$ => $X_t$
+- Cancel Out: $X_{t-2}$ => $X_{t-1}$ => $X_t$
 
 ```python
 sgt.plot_pacf(df_train.market_value, zero = False, method = ('ols'))
@@ -404,13 +406,52 @@ plt.show()
 Output:
 {{< figure src="/images/financial-time-series/PACF_SP.jpg" width="600">}}
 
-Explaination:
+Explanation:
 
-- Not significantly different from 0
-- Numeric values attached to them are not important
-- Being positive or negative is somewhat random without any lasting effects
+- PACF and ACF values for the first lag should be indentical
+- Not significantly different from 0 except the first several lags
+  - a tremendous contrast to the ACF plot (all 40 lags are significant)
+- Being positive or negative is somewhat random _without any lasting effects_
+  - negative values may be caused from Weekends.
 
 ### 9. The Autoregressive (AR) Model
 
 Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor
+
+- AR(2): $ x*{t} = C + \phi_1 x*{t-1} + \phi*2 x*{t-2} + \epsilon_t $
+- $ -1 < \phi < 1 $
+- $\epsilon_t$: Residuals represent the `unpredictable` differences between our prediction for period "t" and the correct value
+- More lags -> More complicated model -> more coefficients -> some of them are more likely not significant
+
+#### Fitting an AR(1) Model for Index Prices
+
+Fitting the model: Find the most appropriate coefficients
+
+```python
+from statsmodels.tsa.arima_model import ARMA
+'''
+Parameters:
+  order: The (p,d,q) order of the model for the autoregressive, residual values, and moving average components.
+
+'''
+model_ar = ARMA(df.market_value, order = (1,0))
+results_ar = model_ar.fit()
+results_ar.summary()
+```
+
+{{< figure src="/images/financial-time-series/ar1_summary.jpg" width="600">}}
+
+Explanation:  
+For AR(1) Model: $ x*t = C + \phi_1 x*{t-1} + \epsilon_t $
+
+- C = 5261.8083
+- $\phi_1
+
+#### Fitting Higher-Lag AR Models for Prices
+
+#### Using Returns instead of Prices
+
+#### ACF and PACF of Returns
+
+#### Fitting an AR(1)
 
