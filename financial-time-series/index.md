@@ -305,13 +305,6 @@ Decomposition function uses the previous period values as a trend-setter.
 - Additive: observed = trend + seasonal + residual
 - Multiplicative: observed = trend x seasonal x residual
 
-Seasonal looks like a `rectangle`
-
-- values are constantly oscillating back and forth and the figure size is too small
-- no concrete cyclical pattern => no seasonality in the data
-
-The residuals vary greatly around 2000 and 2008, this can be explained by the **instability** caused by the `.com` and `housing prices` bubbles respectively
-
 ```python
 from statsmodels.tsa.seasonal import seasonal_decompose
 import matplotlib.pyplot as plt
@@ -321,11 +314,21 @@ plt.show()
 ```
 
 Both Output:
-{{< figure src="/images/financial-time-series/seasonal_decompose.jpg" width="800">}}
+{{< figure src="/images/financial-time-series/seasonal_decompose.jpg" width="600">}}
+
+The residuals vary greatly around 2000 and 2008,
+
+- this can be explained by the **instability** caused by the `.com` and `housing prices` bubbles respectively
+
+Seasonal looks like a `rectangle`:
+
+- values are constantly oscillating back and forth and the figure size is too small
+- no concrete cyclical pattern
+  - => **no seasonality in the S&P data**
 
 ### 7. The Autocorrelation Function (ACF)
 
-Correlation measures the similarity in the change of values of two series
+Correlation measures the _similarity_ in the change of values of two series
 
 - $\rho(x,y)$ only have a single variable
 
@@ -338,6 +341,7 @@ Autocorrelation is the correlation between a sequence and itself
 #### ACF for S&P market value
 
 ```python
+import statsmodels.graphics.tsaplots as sgt
 sgt.plot_acf(df_train.market_value, zero = False)
 # In time series analysis, common practice dictates analyzing the first 40 lags
 # zero: Flag indicating whether to include the 0-lag autocorrelation. Default is True.
@@ -366,10 +370,6 @@ Explaination:
 #### ACF for White Noise
 
 ```python
-# Since white noise series is generated randomly
-# there are patterns of positive and negative autocorrelation
-# All the lines fall within the blue area, thus the coefficients are NOT significant across the entire plot
-# No autocorrelation for any lag
 sgt.plot_acf(df_train.wn, zero = False)
 plt.title("ACF WN", size = 24)
 plt.show()
@@ -378,5 +378,39 @@ plt.show()
 Output:  
 {{< figure src="/images/financial-time-series/ACF_WN.jpg" width="600">}}
 
+Explanation:
+
+- Since white noise series is generated randomly
+  - there are patterns of positive and negative autocorrelation
+- All the lines fall within the `blue area`, thus the coefficients are `NOT significant` across the entire plot
+  - No autocorrelation for any lag
+
 ### 8. The Partial Autocorrelation Function (PACF)
+
+Prices 3 days ago, affecting values of 1 and 2 days ago, which in turn affect present prices indirectly
+
+- PACF cancels out ALL additional channels a previous period value affects the present one
+
+PACF: $X_{t-2}$ => $X_t$
+
+- Cancel Out ACF: $X_{t-2}$ => $X_{t-1}$ => $X_t$
+
+```python
+sgt.plot_pacf(df_train.market_value, zero = False, method = ('ols'))
+plt.title("PACF S&P", size = 24)
+plt.show()
+```
+
+Output:
+{{< figure src="/images/financial-time-series/PACF_SP.jpg" width="600">}}
+
+Explaination:
+
+- Not significantly different from 0
+- Numeric values attached to them are not important
+- Being positive or negative is somewhat random without any lasting effects
+
+### 9. The Autoregressive (AR) Model
+
+Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor
 

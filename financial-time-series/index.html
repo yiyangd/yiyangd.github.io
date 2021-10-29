@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  1931 ,
+        },"genre": "posts","wordcount":  2043 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1931 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2043 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -143,6 +143,7 @@
           </ul>
         </li>
         <li><a href="#8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</a></li>
+        <li><a href="#9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</a></li>
       </ul>
     </li>
   </ul>
@@ -619,12 +620,6 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <li>Additive: observed = trend + seasonal + residual</li>
 <li>Multiplicative: observed = trend x seasonal x residual</li>
 </ul>
-<p>Seasonal looks like a <code>rectangle</code></p>
-<ul>
-<li>values are constantly oscillating back and forth and the figure size is too small</li>
-<li>no concrete cyclical pattern =&gt; no seasonality in the data</li>
-</ul>
-<p>The residuals vary greatly around 2000 and 2008, this can be explained by the <strong>instability</strong> caused by the <code>.com</code> and <code>housing prices</code> bubbles respectively</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -642,11 +637,24 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Both Output:
-<figure><img src="/images/financial-time-series/seasonal_decompose.jpg" width="800"/>
+<figure><img src="/images/financial-time-series/seasonal_decompose.jpg" width="600"/>
 </figure>
 </p>
+<p>The residuals vary greatly around 2000 and 2008,</p>
+<ul>
+<li>this can be explained by the <strong>instability</strong> caused by the <code>.com</code> and <code>housing prices</code> bubbles respectively</li>
+</ul>
+<p>Seasonal looks like a <code>rectangle</code>:</p>
+<ul>
+<li>values are constantly oscillating back and forth and the figure size is too small</li>
+<li>no concrete cyclical pattern
+<ul>
+<li>=&gt; <strong>no seasonality in the S&amp;P data</strong></li>
+</ul>
+</li>
+</ul>
 <h3 id="7-the-autocorrelation-function-acf">7. The Autocorrelation Function (ACF)</h3>
-<p>Correlation measures the similarity in the change of values of two series</p>
+<p>Correlation measures the <em>similarity</em> in the change of values of two series</p>
 <ul>
 <li>$\rho(x,y)$ only have a single variable</li>
 </ul>
@@ -665,9 +673,11 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="k">as</span> <span class="nn">sgt</span>
+<span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="c1"># In time series analysis, common practice dictates analyzing the first 40 lags</span>
 <span class="c1"># zero: Flag indicating whether to include the 0-lag autocorrelation. Default is True.</span>
 <span class="c1">## indicates whether we include current period values in the graph</span>
@@ -705,17 +715,9 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Since white noise series is generated randomly</span>
-<span class="c1"># there are patterns of positive and negative autocorrelation</span>
-<span class="c1"># All the lines fall within the blue area, thus the coefficients are NOT significant across the entire plot</span>
-<span class="c1"># No autocorrelation for any lag</span>
-<span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">wn</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">wn</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;ACF WN&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
@@ -724,7 +726,52 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <figure><img src="/images/financial-time-series/ACF_WN.jpg" width="600"/>
 </figure>
 </p>
+<p>Explanation:</p>
+<ul>
+<li>Since white noise series is generated randomly
+<ul>
+<li>there are patterns of positive and negative autocorrelation</li>
+</ul>
+</li>
+<li>All the lines fall within the <code>blue area</code>, thus the coefficients are <code>NOT significant</code> across the entire plot
+<ul>
+<li>No autocorrelation for any lag</li>
+</ul>
+</li>
+</ul>
 <h3 id="8-the-partial-autocorrelation-function-pacf">8. The Partial Autocorrelation Function (PACF)</h3>
+<p>Prices 3 days ago, affecting values of 1 and 2 days ago, which in turn affect present prices indirectly</p>
+<ul>
+<li>PACF cancels out ALL additional channels a previous period value affects the present one</li>
+</ul>
+<p>PACF: $X_{t-2}$ =&gt; $X_t$</p>
+<ul>
+<li>Cancel Out ACF: $X_{t-2}$ =&gt; $X_{t-1}$ =&gt; $X_t$</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sgt</span><span class="o">.</span><span class="n">plot_pacf</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ols&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;PACF S&amp;P&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/PACF_SP.jpg" width="600"/>
+</figure>
+</p>
+<p>Explaination:</p>
+<ul>
+<li>Not significantly different from 0</li>
+<li>Numeric values attached to them are not important</li>
+<li>Being positive or negative is somewhat random without any lasting effects</li>
+</ul>
+<h3 id="9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</h3>
+<p>Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

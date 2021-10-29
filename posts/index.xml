@@ -4,7 +4,18 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 26 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Stats Notes | Probability Distribution  </title>
+    <link>https://yiyangd.github.io/prob-distribution/</link>
+    <pubDate>Tue, 26 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/prob-distribution/</guid>
+    <description><![CDATA[概率分布的应用 1. 随机变量与概率分布 随机变量： 把随机事件所有可能的结果抽象成一个个随机变化的数字，每个数字都对应一个概率。
+ 抛硬币的结果：正面 = 1， 反面 = 2， 1 和 2 就是随机变量，而它们对应的概率都是 1/2  概率分布： 由随机变量的所有结果以及它们分别对应的概率构成
+ 不同的概率分布模型代表着不同的变化规律 在概率学家眼里，随机变量只有两类：  已经找到变化规律，可以用概率分布模型描述的随机变量 没有找到变化规律，无法用概率分布模型描述的随机变量   同一类现象可以用同一个概率分布模型，只是模型中的参数有所不同：  正态分布：人的身高和智商 幂律分布：不同震级的概率（低震级概率大），个人财富的分布（中低收入人群最多） 泊松分布：一场比赛的进球数（在一段时间内随机事件发生的次数的概率分布）    2. 正态分布 中心极限定理： 大量独立的随机变量相加，无论各个随机变量的分布是怎样的，它们相加的结果必定会趋向于正态分布。
+正态分布是所有分布的参照系，当我们不知道某个随机事件服从什么概率分布模型时，最常见的方法就是假设它服从正态分布，然后再用数据验证
+所有概率分布最终都会变成正态分布，无论是对数分布，幂律分布，指数分布，只要自身不断演化，不断叠加自己，最终都会变成正态分布。]]></description>
+</item><item>
     <title>Algorithm Notes | Dynamic Programming</title>
     <link>https://yiyangd.github.io/dp-0_1knapsack/</link>
     <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate>
@@ -88,12 +99,5 @@ Day 2 - Sep 3 ]]></description>
     <author>Author</author>
     <guid>https://yiyangd.github.io/lda-02/</guid>
     <description><![CDATA[ISLR4.4 - LDA on Credit， ROC， AUC  Types of Errors ]]></description>
-</item><item>
-    <title>Statistical Learning Notes | LDA 1 - Linear Discriminant Analysis </title>
-    <link>https://yiyangd.github.io/lda-01/</link>
-    <pubDate>Sat, 21 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/lda-01/</guid>
-    <description><![CDATA[ISLR4.4 - LDA 0. LDA vs Logistic Regression  When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable   LDA is more stable than Logistic Regression  If n is small and distribution X ~ Normal in each of the classes,   LDA is more accurate than Logistic Regression  LDA is more common when we have more than two response classes ($K \geq 2 $ )   because it also provides low-dimensional views of the data  1.]]></description>
 </item></channel>
 </rss>
