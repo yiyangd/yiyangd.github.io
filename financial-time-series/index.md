@@ -126,6 +126,26 @@ plt.show()
 Output:
 {{< figure src="/images/financial-time-series/sp_price_plot.jpg" width="800">}}
 
+The QQ Plot is a tool used to determine whether a data set is distributed a certain way (normal)
+
+```python
+import scipy.stats
+import pylab
+scipy.stats.probplot(df_comp.spx, plot = pylab)
+pylab.show()
+```
+
+Output:
+{{< figure src="/images/financial-time-series/qqplot.jpg" width="400">}}
+
+Explanation:
+
+- QQ plot takes all the values and arranges them in accending order.
+- y represents how many standard deviations away from the mean
+- The red diagonal line represents what the data points should follow if they are Normal Distributed
+- In this case, since more values are arond 500, the data is not normally distributed
+  - and we cannot use the elegant statistics of Normal Distributions to make successful forecasts
+
 **Extra Step**: Scrape the real-time data off of `Yahoo Finance`
 
 ```python
@@ -418,7 +438,9 @@ Explanation:
 
 Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor
 
-- AR(2): $ x*{t} = C + \phi_1 x*{t-1} + \phi*2 x*{t-2} + \epsilon_t $
+- "autoregressive" because the model uses a lagged version of itself (auto) to conduct the regression
+- use PACF to select the correct AR model because it shows the individual direct effect each past value has on the current one
+- AR(2): $x_{t} = C + \phi_1 x_{t-1} + \phi_2 x_{t-2} + \epsilon_t$
 - $ -1 < \phi < 1 $
 - $\epsilon_t$: Residuals represent the `unpredictable` differences between our prediction for period "t" and the correct value
 - More lags -> More complicated model -> more coefficients -> some of them are more likely not significant
@@ -439,19 +461,39 @@ results_ar = model_ar.fit()
 results_ar.summary()
 ```
 
-{{< figure src="/images/financial-time-series/ar1_summary.jpg" width="600">}}
+{{< figure src="/images/financial-time-series/ar1_summary.jpg" width="400">}}
 
 Explanation:  
-For AR(1) Model: $ x*t = C + \phi_1 x*{t-1} + \epsilon_t $
+For AR(1) Model: $x*t = C + \phi_1 x*{t-1} + \epsilon_t $
 
 - C = 5261.8083
-- $\phi_1
+- $\phi_1$ = 0.9986
+- `std error` represents how far away, on average, the model's predictions are from the true values
+- p = 0 means that the coefficients are significantly different from zero
 
-#### Fitting Higher-Lag AR Models for Prices
+#### Fitting Higher-Lag AR Models and LLR
+
+Fit AR(2) Model: $x*t = C + \phi_1 x*{t-1} + \phi_2 x\*{t-2} + \epsilon_t $
+
+```py
+model_ar_2 = ARMA(df.market_value, order = (2,0))
+results_ar_2 = model_ar_2.fit()
+results_ar_2.summary()
+```
+
+{{< figure src="/images/financial-time-series/ar2_summary.jpg" width="400">}}
+Explanation:
+
+- p = 0.226 > 0.05, reject the H0, $\phi_2$ is NOT significantly different from 0
+  - the prices two days ago do not significantly affect today's prices
+
+Use Log-Likelihood Ratio (LLR) Test to determine whether a more complex model makes better predictions
 
 #### Using Returns instead of Prices
 
 #### ACF and PACF of Returns
 
 #### Fitting an AR(1)
+
+###
 

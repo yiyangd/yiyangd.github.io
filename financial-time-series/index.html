@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  2222 ,
+        },"genre": "posts","wordcount":  2458 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2222 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2458 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -146,12 +146,13 @@
         <li><a href="#9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</a>
           <ul>
             <li><a href="#fitting-an-ar1-model-for-index-prices">Fitting an AR(1) Model for Index Prices</a></li>
-            <li><a href="#fitting-higher-lag-ar-models-for-prices">Fitting Higher-Lag AR Models for Prices</a></li>
+            <li><a href="#fitting-higher-lag-ar-models-and-llr">Fitting Higher-Lag AR Models and LLR</a></li>
             <li><a href="#using-returns-instead-of-prices">Using Returns instead of Prices</a></li>
             <li><a href="#acf-and-pacf-of-returns">ACF and PACF of Returns</a></li>
             <li><a href="#fitting-an-ar1">Fitting an AR(1)</a></li>
           </ul>
         </li>
+        <li><a href="#heading"></a></li>
       </ul>
     </li>
   </ul>
@@ -345,6 +346,36 @@
 <figure><img src="/images/financial-time-series/sp_price_plot.jpg" width="800"/>
 </figure>
 </p>
+<p>The QQ Plot is a tool used to determine whether a data set is distributed a certain way (normal)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">df_comp</span><span class="o">.</span><span class="n">spx</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">pylab</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/financial-time-series/qqplot.jpg" width="400"/>
+</figure>
+</p>
+<p>Explanation:</p>
+<ul>
+<li>QQ plot takes all the values and arranges them in accending order.</li>
+<li>y represents how many standard deviations away from the mean</li>
+<li>The red diagonal line represents what the data points should follow if they are Normal Distributed</li>
+<li>In this case, since more values are arond 500, the data is not normally distributed
+<ul>
+<li>and we cannot use the elegant statistics of Normal Distributions to make successful forecasts</li>
+</ul>
+</li>
+</ul>
 <p><strong>Extra Step</strong>: Scrape the real-time data off of <code>Yahoo Finance</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -791,7 +822,9 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <h3 id="9-the-autoregressive-ar-model">9. The Autoregressive (AR) Model</h3>
 <p>Autoregressive Model is a linear model, where current period values are a sum of past outcomes multiplied by a numeric factor</p>
 <ul>
-<li>AR(2): $ x*{t} = C + \phi_1 x*{t-1} + \phi*2 x*{t-2} + \epsilon_t $</li>
+<li>&ldquo;autoregressive&rdquo; because the model uses a lagged version of itself (auto) to conduct the regression</li>
+<li>use PACF to select the correct AR model because it shows the individual direct effect each past value has on the current one</li>
+<li>AR(2): $x_{t} = C + \phi_1 x_{t-1} + \phi_2 x_{t-2} + \epsilon_t$</li>
 <li>$ -1 &lt; \phi &lt; 1 $</li>
 <li>$\epsilon_t$: Residuals represent the <code>unpredictable</code> differences between our prediction for period &ldquo;t&rdquo; and the correct value</li>
 <li>More lags -&gt; More complicated model -&gt; more coefficients -&gt; some of them are more likely not significant</li>
@@ -822,19 +855,47 @@ Decomposition function uses the previous period values as a trend-setter.</p>
 <span class="n">results_ar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><figure><img src="/images/financial-time-series/ar1_summary.jpg" width="600"/>
+</div><figure><img src="/images/financial-time-series/ar1_summary.jpg" width="400"/>
 </figure>
 
 <p>Explanation:<br>
-For AR(1) Model: $ x<em>t = C + \phi_1 x</em>{t-1} + \epsilon_t $</p>
+For AR(1) Model: $x<em>t = C + \phi_1 x</em>{t-1} + \epsilon_t $</p>
 <ul>
 <li>C = 5261.8083</li>
-<li>$\phi_1</li>
+<li>$\phi_1$ = 0.9986</li>
+<li><code>std error</code> represents how far away, on average, the model&rsquo;s predictions are from the true values</li>
+<li>p = 0 means that the coefficients are significantly different from zero</li>
 </ul>
-<h4 id="fitting-higher-lag-ar-models-for-prices">Fitting Higher-Lag AR Models for Prices</h4>
+<h4 id="fitting-higher-lag-ar-models-and-llr">Fitting Higher-Lag AR Models and LLR</h4>
+<p>Fit AR(2) Model: $x<em>t = C + \phi_1 x</em>{t-1} + \phi_2 x*{t-2} + \epsilon_t $</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">model_ar_2</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">market_value</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">results_ar_2</span> <span class="o">=</span> <span class="n">model_ar_2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results_ar_2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><figure><img src="/images/financial-time-series/ar2_summary.jpg" width="400"/>
+</figure>
+
+Explanation:</p>
+<ul>
+<li>p = 0.226 &gt; 0.05, reject the H0, $\phi_2$ is NOT significantly different from 0
+<ul>
+<li>the prices two days ago do not significantly affect today&rsquo;s prices</li>
+</ul>
+</li>
+</ul>
+<p>Use Log-Likelihood Ratio (LLR) Test to determine whether a more complex model makes better predictions</p>
 <h4 id="using-returns-instead-of-prices">Using Returns instead of Prices</h4>
 <h4 id="acf-and-pacf-of-returns">ACF and PACF of Returns</h4>
 <h4 id="fitting-an-ar1">Fitting an AR(1)</h4>
+<h3 id="heading"></h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
