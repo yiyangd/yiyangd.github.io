@@ -5,54 +5,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>3D Vision Notes | Point Clouds Processing 01 | Introduction - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="3D Vision Notes | Point Clouds Processing 01 | Introduction" />
-<meta property="og:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning    - Object Classification Object Registration Object Detection     Classical Keypoint Detection
-Keypoint Description
-SVM Nearest Neighbor Search
-Iterative Closest Point(ICP) Background Removal
-Clustering
-Classification   Deep Learning Data Collection
-Data Labeling
-Train a Network Data Collection
-Data Labeling
-Train a Network Data Collection
-Data Labeling
-Train a Network    Note Lists:" />
+        <title>ROS Note | Install and First ROS2 Program - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="ROS Note | Install and First ROS2 Program" />
+<meta property="og:description" content="ROS2 is expected to become mature and fully replace ROS1 by 2023.
+ ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023) ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022  ROS2 provides a standard for Robotic Applications
+ any robots can be powered by ROS2  ROS2 provides a way of separating code into reusable blocks" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/point-cloud-processing/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-21T00:00:00+00:00" />
+<meta property="og:url" content="https://yiyangd.github.io/robot-operating-system/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-01T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="3D Vision Notes | Point Clouds Processing 01 | Introduction"/>
-<meta name="twitter:description" content="1. Introduction and Basic Algorithm  Classical Algorithms vs Deep Learning    - Object Classification Object Registration Object Detection     Classical Keypoint Detection
-Keypoint Description
-SVM Nearest Neighbor Search
-Iterative Closest Point(ICP) Background Removal
-Clustering
-Classification   Deep Learning Data Collection
-Data Labeling
-Train a Network Data Collection
-Data Labeling
-Train a Network Data Collection
-Data Labeling
-Train a Network    Note Lists:"/>
+<meta name="twitter:title" content="ROS Note | Install and First ROS2 Program"/>
+<meta name="twitter:description" content="ROS2 is expected to become mature and fully replace ROS1 by 2023.
+ ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023) ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022  ROS2 provides a standard for Robotic Applications
+ any robots can be powered by ROS2  ROS2 provides a way of separating code into reusable blocks"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/point-cloud-processing/" /><link rel="prev" href="https://yiyangd.github.io/financial-time-series/" /><link rel="next" href="https://yiyangd.github.io/deeplearning-01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/robot-operating-system/" /><link rel="prev" href="https://yiyangd.github.io/prob-distribution/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "3D Vision Notes | Point Clouds Processing 01 | Introduction",
+        "headline": "ROS Note | Install and First ROS2 Program",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/point-cloud-processing\/"
-        },"genre": "posts","wordcount":  163 ,
-        "url": "https:\/\/yiyangd.github.io\/point-cloud-processing\/","datePublished": "2021-09-21T00:00:00+00:00","dateModified": "2021-09-21T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/robot-operating-system\/"
+        },"genre": "posts","wordcount":  199 ,
+        "url": "https:\/\/yiyangd.github.io\/robot-operating-system\/","datePublished": "2021-11-01T00:00:00+00:00","dateModified": "2021-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -126,9 +108,9 @@ Train a Network    Note Lists:"/>
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">3D Vision Notes | Point Clouds Processing 01 | Introduction</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">ROS Note | Install and First ROS2 Program</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-21">2021-09-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;163 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;199 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -139,135 +121,92 @@ Train a Network    Note Lists:"/>
   <ul>
     <li>
       <ul>
-        <li><a href="#1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</a>
+        <li><a href="#installation">Installation</a>
           <ul>
-            <li><a href="#classical-algorithms-vs-deep-learning">Classical Algorithms vs Deep Learning</a></li>
+            <li><a href="#1-setup-locale">1. Setup Locale</a></li>
+            <li><a href="#2-setup-sources">2. Setup Sources</a></li>
+            <li><a href="#3-install-ros-2-packages">3. Install ROS 2 Packages</a></li>
+            <li><a href="#reference">Reference:</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="1-introduction-and-basic-algorithm">1. Introduction and Basic Algorithm</h3>
-<figure><img src="/images/pcd/pcd-1-1.jpg"/>
-</figure>
+            </div><div class="content" id="content"><p>ROS2 is expected to become mature and fully replace ROS1 by 2023.</p>
+<ul>
+<li>ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023)</li>
+<li>ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022</li>
+</ul>
+<p>ROS2 provides a <code>standard</code> for Robotic Applications</p>
+<ul>
+<li>any robots can be powered by ROS2</li>
+</ul>
+<p>ROS2 provides a way of separating code into <em>reusable blocks</em></p>
+<ul>
+<li>along with a set of <em>communication tools</em> between programs</li>
+<li>&ldquo;Plug and Play&rdquo; Libraries =&gt; prevent us from reinventing the wheel</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<ul>
+<li><a href="https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html" target="_blank" rel="noopener noreffer">https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html</a></li>
+</ul>
+<h4 id="1-setup-locale">1. Setup Locale</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo apt update <span class="o">&amp;&amp;</span> sudo apt install locales
+$ sudo locale-gen en_US en_US.UTF-8
+$ sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+$ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
 
-<h4 id="classical-algorithms-vs-deep-learning">Classical Algorithms vs Deep Learning</h4>
-<table>
-<thead>
-<tr>
-<th>-</th>
-<th>Object Classification</th>
-<th>Object Registration</th>
-<th>Object Detection</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Classical</td>
-<td>Keypoint Detection<br>Keypoint Description<br>SVM</td>
-<td>Nearest Neighbor Search<br>Iterative Closest Point(ICP)</td>
-<td>Background Removal<br>Clustering<br>Classification</td>
-</tr>
-<tr>
-<td>Deep Learning</td>
-<td>Data Collection<br>Data Labeling<br>Train a Network</td>
-<td>Data Collection<br>Data Labeling<br>Train a Network</td>
-<td>Data Collection<br>Data Labeling<br>Train a Network</td>
-</tr>
-</tbody>
-</table>
-<p>Note Lists:</p>
-<ol>
-<li>Introduction and Basics Algorithms</li>
-</ol>
-<ul>
-<li>PCA and Kernel PCA</li>
-<li>Smoothing, Filtering and Downsampling</li>
-</ul>
-<ol start="2">
-<li>Nearest Neighbor Problem</li>
-</ol>
-<ul>
-<li>Binary Search Tree</li>
-<li>KD-Tree</li>
-<li>Octree</li>
-</ul>
-<ol start="3">
-<li>Clustering</li>
-</ol>
-<ul>
-<li>K-Means</li>
-<li>Gaussian Mixture Model (GMM)</li>
-<li>Expectation-Maximization (EM)</li>
-<li>Spectral Clustering</li>
-</ul>
-<ol start="4">
-<li>Model Fitting</li>
-</ol>
-<ul>
-<li>Meanshift &amp; dbscan</li>
-<li>Robust Least Square</li>
-<li>Hough Transform</li>
-<li>RANSAC</li>
-</ul>
-<ol start="5">
-<li>Deep Learning on Point Cloud</li>
-</ol>
-<ul>
-<li>PointNet &amp; PointNet++</li>
-<li>GCN</li>
-<li>Supplementary</li>
-</ul>
-<ol start="6">
-<li>3D Object Detection</li>
-</ol>
-<ul>
-<li>RCNN, FastRCNN, FasterRCNN, SSD</li>
-<li>VoxelNet, PointPillars</li>
-<li>PointRCNN</li>
-<li>Frustum PointNet, PointPainting</li>
-</ul>
-<ol start="7">
-<li>3D Feature Detection</li>
-</ol>
-<ul>
-<li>harris 2d, 3d, 6d</li>
-<li>ISS: Intrinsic Shape Signatures</li>
-<li>USIP</li>
-<li>SO-Net</li>
-</ul>
-<ol start="8">
-<li>3D Feature Description</li>
-</ol>
-<ul>
-<li>PFH &amp; FPFH</li>
-<li>SHOT</li>
-<li>3D Match &amp; Pe</li>
-</ul>
-<ol start="9">
-<li>Registration (!!!!)</li>
-</ol>
-<ul>
-<li>ICP:</li>
-<li>NDT: Normal Distribution Transform</li>
-<li>Registration by RANSAC with feature detection, description, matching</li>
-</ul>
-<p>深度学习：简单却不太容易解释; 要理解传统方法</p>
+$ locale  <span class="c1"># verify settings</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2-setup-sources">2. Setup Sources</h4>
+<p>You will need to add the ROS 2 apt repositories to your system. To do so, first authorize our GPG key with apt like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install curl gnupg2 lsb-release
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
+</code></pre></td></tr></table>
+</div>
+</div><p>And then add the repository to your sources list:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3-install-ros-2-packages">3. Install ROS 2 Packages</h4>
+<h4 id="reference">Reference:</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-09-21</span>
+                <span>Updated on 2021-11-01</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/point-cloud-processing/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/robot-operating-system/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/point-cloud-processing/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/point-cloud-processing/" data-title="3D Vision Notes | Point Clouds Processing 01 | Introduction"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/robot-operating-system/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/robot-operating-system/" data-title="ROS Note | Install and First ROS2 Program"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -279,8 +218,7 @@ Train a Network    Note Lists:"/>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/financial-time-series/" class="prev" rel="prev" title="Time Series Note | Financial Time Series Analysis"><i class="fas fa-angle-left fa-fw"></i>Time Series Note | Financial Time Series Analysis</a>
-            <a href="/deeplearning-01/" class="next" rel="next" title="Statistical Learning Notes | Deep Learning">Statistical Learning Notes | Deep Learning<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/prob-distribution/" class="prev" rel="prev" title="Stats Notes | Probability Distribution  "><i class="fas fa-angle-left fa-fw"></i>Stats Notes | Probability Distribution  </a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

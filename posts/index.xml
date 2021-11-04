@@ -4,7 +4,16 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 26 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>ROS Note | Install and First ROS2 Program</title>
+    <link>https://yiyangd.github.io/robot-operating-system/</link>
+    <pubDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/robot-operating-system/</guid>
+    <description><![CDATA[ROS2 is expected to become mature and fully replace ROS1 by 2023.
+ ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023) ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022  ROS2 provides a standard for Robotic Applications
+ any robots can be powered by ROS2  ROS2 provides a way of separating code into reusable blocks]]></description>
+</item><item>
     <title>Stats Notes | Probability Distribution  </title>
     <link>https://yiyangd.github.io/prob-distribution/</link>
     <pubDate>Tue, 26 Oct 2021 00:00:00 &#43;0000</pubDate>
@@ -49,7 +58,7 @@ Train a Network Data Collection
 Data Labeling
 Train a Network    Note Lists:]]></description>
 </item><item>
-    <title>Time Series Note | Financial Time Series Analysis </title>
+    <title>Time Series Note | Financial Time Series Analysis</title>
     <link>https://yiyangd.github.io/financial-time-series/</link>
     <pubDate>Thu, 09 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -92,12 +101,5 @@ Tips:
     <guid>https://yiyangd.github.io/victoria-trip/</guid>
     <description><![CDATA[Day 1 - Sep 2 10:00 - 12:00 上船喽  12:00 - 14:00 去吃 Brunch  14:00 - 17:30 SkyWalk 我们去了今年新开的 skywalk 和滑滑梯！
 Day 2 - Sep 3 ]]></description>
-</item><item>
-    <title>Statistical Learning Notes | LDA 2 - LDA on Credit Card Data </title>
-    <link>https://yiyangd.github.io/lda-02/</link>
-    <pubDate>Sun, 29 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/lda-02/</guid>
-    <description><![CDATA[ISLR4.4 - LDA on Credit， ROC， AUC  Types of Errors ]]></description>
 </item></channel>
 </rss>

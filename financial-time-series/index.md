@@ -1,4 +1,4 @@
-# Time Series Note | Financial Time Series Analysis 
+# Time Series Note | Financial Time Series Analysis
 
 
 ### 1. Introduction to Time Series in Python
@@ -464,7 +464,7 @@ results_ar.summary()
 {{< figure src="/images/financial-time-series/ar1_summary.jpg" width="400">}}
 
 Explanation:  
-For AR(1) Model: $x*t = C + \phi_1 x*{t-1} + \epsilon_t $
+For AR(1) Model: $x_{t} = C + \phi_1 x_{t-1} + \epsilon_t$
 
 - C = 5261.8083
 - $\phi_1$ = 0.9986
@@ -473,7 +473,7 @@ For AR(1) Model: $x*t = C + \phi_1 x*{t-1} + \epsilon_t $
 
 #### Fitting Higher-Lag AR Models and LLR
 
-Fit AR(2) Model: $x*t = C + \phi_1 x*{t-1} + \phi_2 x\*{t-2} + \epsilon_t $
+**Fit AR(2) Model:** $x_t = C + \phi_1 x_{t-1} + \phi_2 x\_*_{t-2} + \epsilon_t$
 
 ```py
 model_ar_2 = ARMA(df.market_value, order = (2,0))
@@ -487,13 +487,222 @@ Explanation:
 - p = 0.226 > 0.05, reject the H0, $\phi_2$ is NOT significantly different from 0
   - the prices two days ago do not significantly affect today's prices
 
-Use Log-Likelihood Ratio (LLR) Test to determine whether a more complex model makes better predictions
+**Fit AR(3) Model:**
+
+- `ar.L2.market_value` from 0.0166 to -0.0292
+  - its p-value 0.112 is still greater than 0.05
+- `Log Likelihood` from -31919.399 to -31913.087
+  - higher Log-Likelihood => Lower Information criterion (AIC, BIC, HQIC)
+
+Use **Log-Likelihood Ratio (LLR) Test** to determine whether a more complex model makes better predictions
+
+```python
+from scipy.stats import chi2
+def LLR_test(mod_1, mod_2, DF=1):
+    L1 = mod_1.fit().llf
+    L2 = mod_2.fit().llf
+    LR = (2*(L2 - L1))
+    p = chi2.sf(LR,DF).round(3)
+    return p
+
+LLR_test(model_ar_2, model_ar_3) # Return 0.0
+LLR_test(model_ar_3, model_ar_4) # Return 0.0
+```
+
+Fitting more complicated models and checking if it gives us Distinguishably Greater Log-Likelihood, then stop before the model that satisfies:
+
+- Non-significant p-value for the LLR Test (> 0.05)
+- Non-significant p-value for the highest lag coefficient
+
+```python
+# Fit model_ar_5,6,7 and get significant p-value, higher Log-Likelihhod and lower Information Criteria
+model_ar_8 = ARMA(df.market_value, order=(8,0))
+results_ar_8 = model_ar_8.fit()
+print(results_ar_8.summary())
+print("\nLLR Test p-value = " + str(LLR_test(model_ar_7, model_ar_8)))
+```
+
+Output:
+
+{{< figure src="/images/financial-time-series/ar8_summary.jpg" width="400">}}
+
+Explanation:
+
+- AR(8) fails the LLR Test => does NOT provide significantly higher Log-Likelihood
+- AR(8) has higher Information Criteria
+- Including prices from eight periods ago does NOT improve the AR model
+- We stop with the AR(7), even though it may contain some non-significant values
 
 #### Using Returns instead of Prices
 
+Since the `market_value` extracted from a `non-stationary` process (by DF-Test)
+
+- we shouldn't rely on AR Models to make accurate forecasts
+- Solution: transform the data set, so that it fits the `stationary` assumptions
+  - the common approach is to use `returns` instead of `prices` when measuring financial indices
+  - `returns`: the % change (percentage values) between the values for _two consecutive periods_
+
+```python
+df['returns'] = df.market_value.pct_change(1).mul(100)
+df = df.iloc[1:] # the first one is Null
+sts.adfuller(df.returns)
+'''
+(-14.549198252857844,    # test statistic is smaller than the 1% critical value
+ 4.998853863158876e-27,  # p-value <<< 0.05 => stationary
+ 34,
+ 5767,
+ {'1%': -3.431484422245044,
+  '5%': -2.862041306637962,
+  '10%': -2.567036843607018},
+ 17870.834869069306)
+'''
+```
+
 #### ACF and PACF of Returns
 
-#### Fitting an AR(1)
+```python
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4), tight_layout=True)
+sgt.plot_acf(df.returns, ax = ax1, lags = 40, title = "ACF of FTSE Returns",zero = False)
+sgt.plot_pacf(df.returns, ax = ax2,lags = 40, title = "PACF of FTSE Returns",zero = False, method = ('ols'))
+plt.show()
+```
 
-###
+Output:  
+{{< figure src="/images/financial-time-series/acf_pacf_returns.jpg" width="600">}}
+
+Explanation:
+
+- ACF: Not ALL coefficients are positive or significant (as ACF for `Prices`)
+  - values greatly vary in magnitude instead of being close to 1
+- Consecutive values move in different directions
+  - this suggests that `returns` over the entire week are relevant to those of the current one
+  - negative relationship may have some form of _natural adjustment_ occuring in the market
+    - to avoid falling in a big trend (avoid clustering)
+- PACF: Prices today often move in the opposite direction of prices yesterday
+  - Price increases following price decreases
+- The majority of effects they have on current values should already be accounted for
+
+#### Fitting an AR(1) Model for Returns
+
+```python
+model_ret_ar_1 = ARMA(df.returns, order = (1,0))
+results_ret_ar_1 = model_ret_ar_1.fit()
+results_ret_ar_1.summary()
+# p-value for constant: 0.265
+# p-value for ar.L1.returns:  0.077 > 0.05
+
+# Neither coefficients is significantly different from 0
+# This AR(1) Model holds no real predictive power
+# The more easily yesterday's price is affected by higher lags,
+# the more inaccurate its coefficient becomes.
+```
+
+#### Fitting an Higher-Lag AR Model For Returns
+
+```python
+# Fit model_ret_ar_2,3,4,5,6,
+# The more complicated model provides significantly greater Log-Likelihood to justify its greater complexity
+model_ret_ar_7 = ARMA(df.returns, order=(7,0))
+results_ret_ar_7 = model_ret_ar_7.fit()
+print(results_ret_ar_7.summary())
+print("\nLLR Test p-value = " + str(LLR_test(model_ret_ar_6, model_ret_ar_7)))
+# 0.633, higher information criteria, take model_ret_ar_6
+```
+
+#### Normalizing Values
+
+Map every value of the sample space to the percentage of the `benchmark` (first value of the set)
+
+- the resulting series is much easier to compare with other Time Series
+- this gives us a better understanding of which ones to invest and which ones to avoid
+
+```python
+benchmark = df.market_value.iloc[0]
+df['norm'] = df.market_value.div(benchmark).mul(100)
+sts.adfuller(df.norm)
+# p-value = 0.23, smaller than non-normalized prices, but still => non-stationary
+```
+
+Suppose historically, the `S&P` provides significantly _higher returns (3%)_ than `NIKKEI` (which yields a steady 2% increase over a given period)
+
+- then if both returns are around 3% for the period we are observing, `NIKKEI` is significantly outperforming its expectations
+
+To _avoid any biased comparision_ when analyzing the two sets, we often rely on _normalized returns_
+
+- which account for the **absolute profitability** of the investment _in contrast to prices_
+- they allows to compare the **relative profitability** as opposed to _non-normalized returns_
+
+```python
+bench_ret = df.returns.iloc[0]
+df['norm_ret'] = df.returns.div(bench_ret).mul(100)
+sts.adfuller(df.norm_ret)
+```
+
+- Normalizing does NOT affect stationarity and model selection
+
+#### Analysing the Residuals
+
+Ideally, the `residuals` should follow a Random Walk Process, so they should be `stationary`
+
+**Residuals of Prices**
+
+```python
+df['res_price'] = results_ar_7.resid
+df.res_price.mean() # 0.53671587730958 => 0, which suggests that on average, our model performs well
+df.res_price.var() # 3479.256211055214 => high variance indicates the Residuals are not concentrated around the mean
+# Use DF Test to check stationarity
+sts.adfuller(df.res_price) # test statistics = -76.16262235181671 < critical values
+# p-value = 0  => stationary
+```
+
+**Residuals for Return**
+
+```python
+df['res_ret'] = results_ret_ar_6.resid
+print(df.res_ret.mean()) # -4.143527999821654e-05 => 0
+print(df.res_ret.var())  # 1.293500958426552 => 1
+sts.adfuller(df.res_ret) # p-value = 0, residuals stationary
+```
+
+**ACF of Residuals**
+
+Recall: the coefficients for the ACF of White Noise should ALL be 0
+
+- Examine the ACF of the Residuals from a fitted model to make sure _the errors of predictions are Random_
+- if the residuals are non-random, then there is a _pattern_ that needs to be accounted for
+
+```python
+sgt.plot_acf(df.res_price, zero = False, lags = 40)
+plt.title("ACF of Residuals for Prices", size = 24)
+plt.show()
+```
+
+Output:  
+{{< figure src="/images/financial-time-series/acf_residuals.jpg" width="600">}}
+
+Explanation:
+
+- The majority of coefficients fall within the blue region
+  - NOT significantly different from 0, which _fits the characteristics of white noise_
+- The few points outside the blue area lead us to `believe there's a better predictor`
+
+#### Unexpected Shocks from Past Periods
+
+AutoRegressive Models need time to adjust from a Big, Unexpected Shock
+
+- because AR models rely on past data, regardless of how close predictions are
+
+**Self-Correcting Models** take into account _past residuals_, adjust to unexpected shocks more quickly
+
+- because the predictions are corrected immediately following a big error
+- the more errors examined, the more adapted model is to handle unforeseen errors
+
+**Moving Average(MA) Models** perform well at predicting Random Walk datasets
+
+- because they always adjust from the error of the previous period
+- because absorbing shocks allows the mean to move accordingly
+
+This gives the model prediction a much greater chance to move in a similar direction to the values it is trying to predict
+
+- it also stops the model from greatly diverging, which is useful for non-stationary data
 
