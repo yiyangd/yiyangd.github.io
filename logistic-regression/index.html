@@ -8,7 +8,7 @@
         <title>Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent" />
 <meta property="og:description" content="Recall: Logistic Regression is an Algorithm for Binary Classification
 An image is store in the computer in three separate matrices
- corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.  Set up Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$" />
+ corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.   Set up Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/logistic-regression/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-10-03T00:00:00+00:00" />
@@ -20,7 +20,7 @@ An image is store in the computer in three separate matrices
 <meta name="twitter:title" content="Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent"/>
 <meta name="twitter:description" content="Recall: Logistic Regression is an Algorithm for Binary Classification
 An image is store in the computer in three separate matrices
- corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.  Set up Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$"/>
+ corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.   Set up Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@ An image is store in the computer in three separate matrices
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/logistic-regression\/"
-        },"genre": "posts","wordcount":  83 ,
+        },"genre": "posts","wordcount":  121 ,
         "url": "https:\/\/yiyangd.github.io\/logistic-regression\/","datePublished": "2021-10-03T00:00:00+00:00","dateModified": "2021-10-03T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@ An image is store in the computer in three separate matrices
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;83 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;121 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -136,10 +136,20 @@ An image is store in the computer in three separate matrices
 <li>corresponding to the <em>Red, Green, and Blue color channels</em> of the image.</li>
 <li>The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.</li>
 </ul>
+<figure><img src="/images/deeplearning/log1.jpeg" width="600"/>
+</figure>
+
 <h4 id="set-up">Set up</h4>
 <p>Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$</p>
 <ul>
-<li>Parameters: $w \in \R^{n_x}</li>
+<li>Parameters: $w \in \R^{n_x}, b \in \R$</li>
+<li>Let $z = w^T x + b$</li>
+<li>Output:</li>
+</ul>
+<p>$$\hat{y} = \sigma (z) = \frac{1}{1+e^}$$</p>
+<ul>
+<li>if z positive infinity: $\sigma (z) \approx \frac{1}{1+0} = 1$</li>
+<li>if z negative infinity: $\sigma (z) \approx \frac{1}{1+\infinity} = 0 $</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
