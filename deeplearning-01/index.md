@@ -7,3 +7,6 @@ A neural network takes an input vector of **p variables**, $X = (X_1, X_2, X_3, 
 
 {{< figure src="/images/ISLR/figure10-1.jpg" width="600">}}
 
+- nodes represent inputs, activations or outputs
+- edges represent weights or biases
+

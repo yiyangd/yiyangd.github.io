@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  3545 ,
+        },"genre": "posts","wordcount":  3617 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3545 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3617 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -156,6 +156,7 @@
             <li><a href="#unexpected-shocks-from-past-periods">Unexpected Shocks from Past Periods</a></li>
           </ul>
         </li>
+        <li><a href="#10-the-moving-average-ma-model">10. The Moving Average (MA) Model</a></li>
       </ul>
     </li>
   </ul>
@@ -1229,6 +1230,16 @@ Explanation:</p>
 <p>This gives the model prediction a much greater chance to move in a similar direction to the values it is trying to predict</p>
 <ul>
 <li>it also stops the model from greatly diverging, which is useful for non-stationary data</li>
+</ul>
+<h3 id="10-the-moving-average-ma-model">10. The Moving Average (MA) Model</h3>
+<p>A Simple MA Model is equivalent to an <em>infinite AR</em> model with certain <em>restrictions</em></p>
+<ul>
+<li>difference: MA models determine the <strong>maximum amount</strong> of lags based on ACF (AR models rely on PACF) becaused the MA models aren&rsquo;t based on past period returns</li>
+</ul>
+<p>$$r_t = c + \theta_1\epsilon_{t-1}+\epsilon_t$$</p>
+<ul>
+<li>$|\theta_n| &lt; 1$ to prevent compounded effects exploding in magnitude</li>
+<li>$\epsilon_t$ and $\epsilon_{t-1}$: Residuals for the current and past period</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

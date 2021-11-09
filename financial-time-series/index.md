@@ -706,3 +706,14 @@ This gives the model prediction a much greater chance to move in a similar direc
 
 - it also stops the model from greatly diverging, which is useful for non-stationary data
 
+### 10. The Moving Average (MA) Model
+
+A Simple MA Model is equivalent to an _infinite AR_ model with certain _restrictions_
+
+- difference: MA models determine the **maximum amount** of lags based on ACF (AR models rely on PACF) becaused the MA models aren't based on past period returns
+
+$$r_t = c + \theta_1\epsilon_{t-1}+\epsilon_t$$
+
+- $|\theta_n| < 1$ to prevent compounded effects exploding in magnitude
+- $\epsilon_t$ and $\epsilon_{t-1}$: Residuals for the current and past period
+

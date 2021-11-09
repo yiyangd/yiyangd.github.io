@@ -38,7 +38,16 @@
     <author>Author</author>
     <guid>https://yiyangd.github.io/deeplearning-01/</guid>
     <description><![CDATA[1. Neural Network A neural network takes an input vector of p variables, $X = (X_1, X_2, X_3, \cdots, X_p)$, and builds a Nonlinear Function $f(X)$ to predict the response Y.
- ]]></description>
+  nodes represent inputs, activations or outputs edges represent weights or biases  ]]></description>
+</item><item>
+    <title>Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</title>
+    <link>https://yiyangd.github.io/logistic-regression/</link>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/logistic-regression/</guid>
+    <description><![CDATA[Recall: Logistic Regression is an Algorithm for Binary Classification
+An image is store in the computer in three separate matrices
+ corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.  Set up Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$]]></description>
 </item><item>
     <title>3D Vision Notes | Point Clouds Processing 01 | Introduction</title>
     <link>https://yiyangd.github.io/point-cloud-processing/</link>
@@ -93,13 +102,5 @@ Tips:
     <description><![CDATA[0. Introduction on Spark and Scala Spark Spark: a unified analytics engine for large-scale data processing.
  fast: Run programs up to 100x faster than Hadoop Mapreduce in memory, or 10x faster on disk  DAG(direct acyclic graph) Engine optimizes workflows     Apache Spark consists of Spark Core Engine, Spark SQL, Spark Streaming, MLlib, GraphX and Spark R.
  Spark Core: provides the in-built memory computing and referencing datasets stored in external storage systems and uses RDD data structure to speed up the data sharing in distributed processing systems like MapReduce from permanent storage like HDFS or S3 which may be slow due to the serialization and deserialization of I/O steps.]]></description>
-</item><item>
-    <title>Victoria Trip! Sep 2 - 5</title>
-    <link>https://yiyangd.github.io/victoria-trip/</link>
-    <pubDate>Thu, 02 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/victoria-trip/</guid>
-    <description><![CDATA[Day 1 - Sep 2 10:00 - 12:00 上船喽  12:00 - 14:00 去吃 Brunch  14:00 - 17:30 SkyWalk 我们去了今年新开的 skywalk 和滑滑梯！
-Day 2 - Sep 3 ]]></description>
 </item></channel>
 </rss>
