@@ -21,9 +21,14 @@ Given $X \in \R^{n_x}$, we want $\hat{y} = P(y=1|x), \hat{y} \in [0,1]$
 $$\hat{y} = \sigma (z) = \frac{1}{1+e^z}$$
 
 - if z positive infinity: $\sigma (z) \approx \frac{1}{1+0} = 1$
-- if z negative infinity: $\sigma (z) \approx \frac{1}{1+\infinity} = 0 $
+- if z negative infinity: $\sigma (z) \approx \frac{1}{1+\infty} = 0 $
 
 #### Cost Function for Logistic Regression
 
 Given m training data: {$(x^{(1)},y^{(1)}), \dots, (x^{(m)},y^{(m)})$}
+
+- Goal: Let Machine Learn the best w and b to minimize the loss function
+
+$$J(w,b)=\frac{1}{m}\sum^m_{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
+$$=\frac{1}{m}\sum^m_{i=1} (-y^{(i)}\log \hat{y}^{(i)} - (1-y^{(i)}\log (1-\hat{y}^{(i)})))$$
 
