@@ -27,8 +27,14 @@ $$\hat{y} = \sigma (z) = \frac{1}{1+e^z}$$
 
 Given m training data: {$(x^{(1)},y^{(1)}), \dots, (x^{(m)},y^{(m)})$}
 
-- Goal: Let Machine Learn the best w and b to minimize the loss function
+- Goal: Let Machine Learning train the parameters w and b to **minimize the Loss(Error) Function**:
 
+$$L(\hat{y}, y) = - (y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$
+
+- if $y = 1$, $L(\hat{y}, y) = - \log(\hat{y})$, to make L as small as possible, let $\hat{y} \approx 1$
+- if $y = 0$, $L(\hat{y}, y) = - \log(1-\hat{y})$, to make L as small as possible, let $\hat{y} \approx 0$
+
+**Cost Function**
 $$J(w,b)=\frac{1}{m}\sum^m_{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
-$$=\frac{1}{m}\sum^m_{i=1} (-y^{(i)}\log \hat{y}^{(i)} - (1-y^{(i)}\log (1-\hat{y}^{(i)})))$$
+$$=\frac{1}{m}\sum^m_{i=1} [-y^{(i)}\log (\hat{y}^{(i)}) - (1-y^{(i)})\log (1-\hat{y}^{(i)})]$$
 

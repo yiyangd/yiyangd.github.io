@@ -33,7 +33,7 @@ An image is store in the computer in three separate matrices
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/logistic-regression\/"
-        },"genre": "posts","wordcount":  156 ,
+        },"genre": "posts","wordcount":  208 ,
         "url": "https:\/\/yiyangd.github.io\/logistic-regression\/","datePublished": "2021-10-03T00:00:00+00:00","dateModified": "2021-10-03T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@ An image is store in the computer in three separate matrices
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;156 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;208 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -155,10 +155,16 @@ An image is store in the computer in three separate matrices
 <h4 id="cost-function-for-logistic-regression">Cost Function for Logistic Regression</h4>
 <p>Given m training data: {$(x^{(1)},y^{(1)}), \dots, (x^{(m)},y^{(m)})$}</p>
 <ul>
-<li>Goal: Let Machine Learn the best w and b to minimize the loss function</li>
+<li>Goal: Let Machine Learning train the parameters w and b to <strong>minimize the Loss(Error) Function</strong>:</li>
 </ul>
-<p>$$J(w,b)=\frac{1}{m}\sum^m_{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
-$$=\frac{1}{m}\sum^m_{i=1} (-y^{(i)}\log \hat{y}^{(i)} - (1-y^{(i)}\log (1-\hat{y}^{(i)})))$$</p>
+<p>$$L(\hat{y}, y) = - (y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$</p>
+<ul>
+<li>if $y = 1$, $L(\hat{y}, y) = - \log(\hat{y})$, to make L as small as possible, let $\hat{y} \approx 1$</li>
+<li>if $y = 0$, $L(\hat{y}, y) = - \log(1-\hat{y})$, to make L as small as possible, let $\hat{y} \approx 0$</li>
+</ul>
+<p><strong>Cost Function</strong>
+$$J(w,b)=\frac{1}{m}\sum^m_{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
+$$=\frac{1}{m}\sum^m_{i=1} [-y^{(i)}\log (\hat{y}^{(i)}) - (1-y^{(i)})\log (1-\hat{y}^{(i)})]$$</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
