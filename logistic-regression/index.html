@@ -33,7 +33,7 @@ An image is store in the computer in three separate matrices
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/logistic-regression\/"
-        },"genre": "posts","wordcount":  121 ,
+        },"genre": "posts","wordcount":  133 ,
         "url": "https:\/\/yiyangd.github.io\/logistic-regression\/","datePublished": "2021-10-03T00:00:00+00:00","dateModified": "2021-10-03T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@ An image is store in the computer in three separate matrices
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;121 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;133 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -124,6 +124,7 @@ An image is store in the computer in three separate matrices
         <li>
           <ul>
             <li><a href="#set-up">Set up</a></li>
+            <li><a href="#cost-function-for-logistic-regression">Cost Function for Logistic Regression</a></li>
           </ul>
         </li>
       </ul>
@@ -146,11 +147,13 @@ An image is store in the computer in three separate matrices
 <li>Let $z = w^T x + b$</li>
 <li>Output:</li>
 </ul>
-<p>$$\hat{y} = \sigma (z) = \frac{1}{1+e^}$$</p>
+<p>$$\hat{y} = \sigma (z) = \frac{1}{1+e^z}$$</p>
 <ul>
 <li>if z positive infinity: $\sigma (z) \approx \frac{1}{1+0} = 1$</li>
 <li>if z negative infinity: $\sigma (z) \approx \frac{1}{1+\infinity} = 0 $</li>
 </ul>
+<h4 id="cost-function-for-logistic-regression">Cost Function for Logistic Regression</h4>
+<p>Given m training data: {$(x^{(1)},y^{(1)}), \dots, (x^{(m)},y^{(m)})$}</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
