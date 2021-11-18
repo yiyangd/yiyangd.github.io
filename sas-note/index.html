@@ -37,7 +37,7 @@ Tips:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sas-note\/"
-        },"genre": "posts","wordcount":  1722 ,
+        },"genre": "posts","wordcount":  1943 ,
         "url": "https:\/\/yiyangd.github.io\/sas-note\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -114,8 +114,8 @@ Tips:
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT342 - SAS </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1722 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1943 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,6 +163,12 @@ Tips:
             <li><a href="#example-21-create-a-sas-date">Example 21: Create a SAS date</a></li>
             <li><a href="#example-22-compute-date-intervals">Example 22: Compute Date Intervals</a></li>
             <li><a href="#example-23-us-presidential-inaugurations-and-deaths">Example 23: US Presidential Inaugurations and deaths</a></li>
+          </ul>
+        </li>
+        <li><a href="#week-6">Week 6</a>
+          <ul>
+            <li><a href="#example-24-working-with-time">Example 24: Working with time</a></li>
+            <li><a href="#create-permanent-sas-datasets">Create Permanent SAS datasets</a></li>
           </ul>
         </li>
       </ul>
@@ -950,6 +956,101 @@ ods pdf close;
 </div><figure><img src="/images/sas/pdf_output.jpg" width="600"/>
 </figure>
 
+<h3 id="week-6">Week 6</h3>
+<h4 id="example-24-working-with-time">Example 24: Working with time</h4>
+<p>SAS <code>datetime</code> for <em>Dec. 06, 1962 at 11:13:04 am</em> equals <code>92488384 seconds</code> from <em>Jan. 01, 1960 at midnight</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="cm">/*
+</span><span class="cm"> SAS datetime
+</span><span class="cm">*/</span>
+<span class="kr">
+</span><span class="kr">data </span><span class="kc">_null_</span>;
+
+Time=<span class="m">92488384</span>;
+<span class="c">*Time = 1;</span>
+<span class="k">format</span> Time datetime.;<span class="k">
+</span><span class="k">put </span><span class="err">Time; /*06DEC62:</span><span class="m">11</span><span class="err">:</span><span class="m">13</span><span class="err">:</span><span class="m">04</span><span class="err">*/</span>
+<span class="kr">run;</span>
+
+<span class="cm">/************************************************
+</span><span class="cm">             SAS time functions
+</span><span class="cm">************************************************/</span>
+
+<span class="cm">/*
+</span><span class="cm">- time() returns the current time as a SAS time value.
+</span><span class="cm">- hms(h,m,s) returns a SAS time value for the given hour(h), minutes(m), and seconds(s).
+</span><span class="cm">- hour(time) returns the hour portion of a SAS time value(time).
+</span><span class="cm">- minute(time) returns the minute portion of a SAS time value(time).
+</span><span class="cm">- second(time) returns the second portion of a SAS time value(time).
+</span><span class="cm">- (Also, functions intnx( ) and intck( ) that we explored on SAS dates can also be used on SAS times.)
+</span><span class="cm">*/</span>
+<span class="kr">
+</span><span class="kr">data </span>diet2;
+ <span class="k">set</span> diet;
+
+curtime = <span class="nb">time(</span>); <span class="c">/*Current time*/</span>
+wt_hr = <span class="nb">hour(</span>wt_time);
+wt_min = <span class="nb">minute(</span>wt_time);
+wt_sec = <span class="nb">second(</span>wt_time);
+wt_time2 = <span class="nb">hms(</span>wt_hr, wt_min, wt_sec);
+
+<span class="k">format</span> curtime wt_time wt_time2 time8.<span class="kr">;
+</span><span class="kr">
+</span><span class="kr">
+</span><span class="kr">proc print </span>data=diet2;
+	<span class="k">title</span> <span class="s">&#39;The diet data set with five new variables&#39;</span>;
+    var subj curtime wt_time wt_hr wt_min wt_sec wt_time2<span class="kr">;
+</span><span class="kr">run;</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/sas/diet_time.jpg" width="600"/>
+</figure>
+
+<h4 id="create-permanent-sas-datasets">Create Permanent SAS datasets</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

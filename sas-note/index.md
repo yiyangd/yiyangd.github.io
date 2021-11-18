@@ -486,3 +486,57 @@ ods pdf close;
 
 {{< figure src="/images/sas/pdf_output.jpg" width="600">}}
 
+### Week 6
+
+#### Example 24: Working with time
+
+SAS `datetime` for _Dec. 06, 1962 at 11:13:04 am_ equals `92488384 seconds` from _Jan. 01, 1960 at midnight_
+
+```sas
+/*
+ SAS datetime
+*/
+
+data _null_;
+
+Time=92488384;
+*Time = 1;
+format Time datetime.;
+put Time; /*06DEC62:11:13:04*/
+run;
+
+/************************************************
+             SAS time functions
+************************************************/
+
+/*
+- time() returns the current time as a SAS time value.
+- hms(h,m,s) returns a SAS time value for the given hour(h), minutes(m), and seconds(s).
+- hour(time) returns the hour portion of a SAS time value(time).
+- minute(time) returns the minute portion of a SAS time value(time).
+- second(time) returns the second portion of a SAS time value(time).
+- (Also, functions intnx( ) and intck( ) that we explored on SAS dates can also be used on SAS times.)
+*/
+
+data diet2;
+ set diet;
+
+curtime = time(); /*Current time*/
+wt_hr = hour(wt_time);
+wt_min = minute(wt_time);
+wt_sec = second(wt_time);
+wt_time2 = hms(wt_hr, wt_min, wt_sec);
+
+format curtime wt_time wt_time2 time8.;
+
+
+proc print data=diet2;
+	title 'The diet data set with five new variables';
+    var subj curtime wt_time wt_hr wt_min wt_sec wt_time2;
+run;
+```
+
+{{< figure src="/images/sas/diet_time.jpg" width="600">}}
+
+#### Create Permanent SAS datasets
+
