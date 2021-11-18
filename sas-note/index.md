@@ -698,3 +698,343 @@ run;
 
 {{< figure src="/images/sas/select.jpg" width="600">}}
 
+#### 7.5. Logical Operator
+
+```sas
+data grades;
+   	input name $ 1-15 e1 e2 e3 e4 p1 f1;
+	avg = round((e1+e2+e3+e4)/4,0.1);
+		 if ((e1 < e3) and (e1 < e4))
+            or ((e2 < e3) and (e2 < e4)) then adjavg = avg + 2;
+    else adjavg = avg;
+datalines;
+Alexander Smith  78 82 86 69  97 80
+John Simon       88 72 86  . 100 85
+Patricia Jones   98 92 92 99  99 93
+Jack Benedict    54 63 71 49  82 69
+Rene Porter     100 62 88 74  98 92
+;
+run;
+
+proc print data = grades;
+	var name e1 e2 e3 e4 avg adjavg;
+run;
+```
+
+{{< figure src="/images/sas/logical.jpg" width="600">}}
+
+#### 7.6. WHERE
+
+```sas
+data where_ex;
+   	input name $ 1-15 Age Weight;
+
+datalines;
+Alexander Smith  18 82
+John Simon       28 72
+Patricia Jones   .  92
+Jack Benedict    24 63
+Nick Porter      40 62
+;
+run;
+
+proc print data = where_ex noobs;
+   *where Age is missing;
+   *where Age is null;
+   *where Age > 20;
+   *where Weight > 60 and Weight < 80;
+   *where Name contains 'er';
+  * where Name like 'J%'; /*Names start with the letter J */
+   where Name like 'Ja_k%';  /*Result is Jack with Age = 24 and Weight = 63*/
+
+run;
+```
+
+#### 7.7. DO Group
+
+```sas
+data grades_IF;
+ input Age Midterm Quiz $ Final_exam;
+
+ if missing(Age) then delete; /*Prevents missing age from being added to the data set*/
+ if Age <= 39 then Agegrp = "Younger group";
+ if Age <= 39 then Grade = (0.4 * Midterm) + (0.6 * Final_exam);
+ if Age > 39 then Agegrp = "Older group";
+ if Age > 39 then Grade = (Midterm + Final_exam)/2;
+datalines;
+21 80 B- 82
+.  90 A  93
+35 87 B+ 85
+48 .  .  76
+59 95 A+ 97
+15 88 .  93
+67 97 A  91
+.  62 F  67
+35 77 C- 77
+49 59 C  81
+;
+run;
+
+proc print data = grades_IF noobs;
+run;
+
+/*
+Notice that the first two IF statements and the last two IF statements test the same condition.
+We would like to be able to test one condition and then perform several operations.
+By using DO and END statements, we can do this.
+*/
+
+/* Above example can be done using DO group (DO END) */
+
+data grades_DO_END;
+ set grades_IF;
+
+ if missing(Age) then delete;
+ if Age <= 39 then do;          /*When the IF condition is true, all the statements in the DO group execute. */
+    Agegrp = "Younger group";
+	Grade = (0.4 * Midterm) + (0.6 * Final_exam);
+ end;
+ else if Age > 39 then do;
+    Agegrp = "Older group";
+	Grade = (Midterm + Final_exam)/2;
+ end;
+ /*
+ A good way to think of this structure is �If the condition is true,
+ do the following statements until you reach the end.�
+ */
+run;
+
+proc print data = grades_DO_END noobs;
+run;
+
+```
+
+{{< figure src="/images/sas/dogroup.jpg" width="600">}}
+
+#### 7.8. DO Loop
+
+```sas
+/*DO loop*/
+
+/*Type1: Numeric index variable*/
+/*Example 1: */
+
+/* Say, you want to compute the total amount of money you will have,
+if the you start with $100 and invest it at a 3.75% interest rate for 3 years.
+*/
+
+data DO_loop;
+ Interest = 0.0375;
+ Total = 100;
+ do Year = 1 to 3; /*Iterative DO statement: do index-variable = start to stop by increment (default increment = 1);*/
+    Total = Total + Interest * Total; /*Increment*/
+	output; /* Write out an observation to the output data set. Here,
+	          we want to output an observation each time we compute a new Total*/
+ end;
+ format Total dollar10.2;
+run;
+
+proc print data = DO_loop noobs;
+run;
+
+
+/*Example 2*/
+/*
+ Suppose you want to generate a table of the
+ integers from 1 to 10, along with their squares and square roots.
+*/
+
+data table;
+ *do n = 1 to 10;
+ *do n = 0 to 100 by 10;
+ do n = 10 to 0 by -2; /*negative increment*/
+   Square = n * n;
+   SquareRoot = sqrt(n);
+   output;
+ end;
+run;
+
+proc print data = table noobs;
+run;
+
+
+/*Example 3*/
+
+/*
+ Graph an equation
+*/
+
+data equation;
+ do x = -10 to 10 by 0.01;
+    y = 2*x**3 - 5*x**2 + 15*x -8;
+	output; /*Try withput output*/
+ end;
+run;
+
+title 'Plot of Y versus X';
+proc gplot data = equation;
+     plot y * x;
+run;
+quit;
+
+/*Type2: Character index variable*/
+
+/*
+You have five scores for patients on a placebo drug and five scores for patients on an active drug.
+An easy way to read these values is to use a DO loop with character values, as follows:
+*/
+
+
+data drug;
+ do Group = 'Placebo','Active'; /* Character index variable */
+    do Subj = 1 to 5;
+	   input Score;
+	   output;
+	end;
+ end;
+
+ datalines;
+ 250
+ 222
+ 230
+ 210
+ 199
+ 166
+ 183
+ 123
+ 129
+ 234
+ ;
+ run;
+
+ proc print data = drug;
+ run;
+
+
+data drug;
+ do Group = 'Placebo','Active'; /* Character index variable */
+    do Subj = 1 to 5;
+	   input Score @; /*@: hold the line for another INPUT statement in the DATA step.
+	                       Otherwise each time SAS executes an INPUT statement, it goes to a new line of data.*/
+	   output;
+	end;
+ end;
+
+ datalines;
+ 250 222 230 210 199
+ 166 183 123 129 234
+ ;
+ run;
+
+ proc print data = drug;
+ run;
+
+```
+
+#### 7.9. DO Until
+
+```sas
+/*DO UNTIL*/
+
+/*
+Let�s revisit the compound interest problem.
+Instead of asking how much money you have after x years, you want to know how many years
+you need to keep your $100 in the bank at 3.75% interest to double your money.
+*/
+
+data double_money;
+ Interest = 0.0375;
+ Total = 100;
+ Year = 0;
+ do until (Total ge 200);
+    Year = Year + 1; *or Year + 1;
+	Total = Total + Total * Interest;
+    output;
+ end;
+ format Total dollar10.2;
+run;
+/*
+An important point to remember about DO UNTIL is that the condition,
+placed in parentheses after the keyword UNTIL, is tested at the bottom of the loop.
+Therefore, a DO UNTIL loop always executes at least once.
+
+To make this clear, suppose you started with $300. What happens when you run the program?
+*/
+proc print data = double_money noobs;
+run;
+
+/*
+CAUTION: It is very important that the condition you place on a DO UNTIL statement
+becomes true at some point. For example, if you change the DO UNTIL statement as follows:
+
+                  do until (Total eq 200);
+
+ the condition is never true and you have what is called an infinite loop.
+
+*/
+
+```
+
+#### 7.10. DO While
+
+```sas
+/*DO WHILE*/
+
+/*Consider compound interest problem again.*/
+
+data double_money;
+ Interest = 0.0375;
+ Total = 100;
+ Year = 0;
+ do while (Total le 200); /*executes as long as Total is less than or equal to 200*/
+    Year = Year + 1; *or Year + 1;
+	Total = Total + Total * Interest;
+    output;
+ end;
+ format Total dollar10.2;
+run;
+
+proc print data = double_money noobs;
+run;
+
+```
+
+#### 7.11. Leave and Continue
+
+```sas
+/*LEAVE and CONTINUE*/
+
+data leave_it;
+ Interest = 0.0375;
+ Total = 100;
+ do Year = 1 to 100;
+    Total = Total + Total * Interest;
+	output;
+	if Total ge 200 then leave;
+ end;
+ format Total dollar10.2;
+run;
+
+proc print data = leave_it;
+run;
+
+
+/* CONTINUE */
+
+data continue_on;
+ Interest = 0.0375;
+ Total = 100;
+ do Year = 1 to 100 until (Total ge 200);
+    Total = Total + Total * Interest;
+	if Total le 150 then continue;
+    output;
+ end;
+ format Total dollar10.2;
+run;
+
+proc print data = continue_on;
+run;
+```
+
+#### 8.1.
+
