@@ -37,7 +37,7 @@ Tips:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/sas-note\/"
-        },"genre": "posts","wordcount":  1943 ,
+        },"genre": "posts","wordcount":  2457 ,
         "url": "https:\/\/yiyangd.github.io\/sas-note\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -114,8 +114,8 @@ Tips:
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT342 - SAS </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1943 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2457 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -168,7 +168,14 @@ Tips:
         <li><a href="#week-6">Week 6</a>
           <ul>
             <li><a href="#example-24-working-with-time">Example 24: Working with time</a></li>
+            <li><a href="#example-25-export-sas-code-with-output-in-the-log-to-a-pdf-file">Example 25: Export SAS code with output in the log to a PDF file</a></li>
             <li><a href="#create-permanent-sas-datasets">Create Permanent SAS datasets</a></li>
+          </ul>
+        </li>
+        <li><a href="#week-7">Week 7</a>
+          <ul>
+            <li><a href="#71-if-conditions">7.1. IF conditions</a></li>
+            <li><a href="#72-subsetting-if">7.2. Subsetting IF</a></li>
           </ul>
         </li>
       </ul>
@@ -1050,8 +1057,194 @@ wt_time2 = <span class="nb">hms(</span>wt_hr, wt_min, wt_sec);
 </div><figure><img src="/images/sas/diet_time.jpg" width="600"/>
 </figure>
 
-<h4 id="create-permanent-sas-datasets">Create Permanent SAS datasets</h4>
-</div><div class="post-footer" id="post-footer">
+<h4 id="example-25-export-sas-code-with-output-in-the-log-to-a-pdf-file">Example 25: Export SAS code with output in the log to a PDF file</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="c">/*Export SAS code in the log to a PDF file*/</span>
+ods pdf <span class="k">file</span> = <span class="s">&#34;Time_ex_code_.pdf&#34;</span><span class="kr">;
+</span><span class="kr">proc document </span>name = temp;
+   <span class="c">/*imports any text file, or a SAS program */</span>
+   import textfile = <span class="s">&#34;C:\dropbox\Dropbox\functional\stat342\STAT342 2020\w6 s\Time_ex.sas&#34;</span> to ^ ;
+   <span class="c">/*^ refers current directory of the output document*/</span>
+   replay; <span class="cm">/* we can replay the document whenever we need it and replay only the output items that we are interested in.
+</span><span class="cm">             The document can be replayed using the REPLAY statement*/</span>
+<span class="kr">run;</span>
+<span class="kr">proc print </span>data=diet2;
+	<span class="k">title</span> <span class="s">&#39;The diet data set with five new variables&#39;</span>;
+    var subj curtime wt_time wt_hr wt_min wt_sec wt_time2<span class="kr">;
+</span><span class="kr">run;</span>
+<span class="kr">quit;</span>
+ods pdf close;
+<span class="cm">/*Note that when you are exporting SAS code to a PDF, always start with a fresh SAS program. Otherwise, it will print
+</span><span class="cm">the same SAS code more than one time(depending on the history) in the same document.*/</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="create-permanent-sas-datasets">Create Permanent SAS datasets</h4>
+<h3 id="week-7">Week 7</h3>
+<h4 id="71-if-conditions">7.1. IF conditions</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>conditional;
+ <span class="k">input</span> Age Midterm Quiz $ Final;
+<span class="c">
+</span><span class="c">*if Age &lt; 20 then AgeGroup = 1;</span>
+<span class="c">*if Age lt 20 and Age ne . then AgeGroup = 1;</span>
+ <span class="k">if</span> Age lt <span class="m">20</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(Age) <span class="k">then</span> AgeGroup = <span class="m">1</span>;
+ <span class="k">if</span> Age ge <span class="m">20</span> <span class="k">and</span> Age lt <span class="m">40</span>  <span class="k">then</span> AgeGroup = <span class="m">2</span>;
+ <span class="k">if</span> Age ge <span class="m">40</span> <span class="k">and</span> Age lt <span class="m">60</span> <span class="k">then</span> AgeGroup = <span class="m">3</span>;
+ <span class="k">if</span> Age ge <span class="m">60</span> <span class="k">then</span> AgeGroup = <span class="m">4</span>;
+<span class="k"> datalines;</span><span class="x">
+</span><span class="x"> 21 80 B- 82
+</span><span class="x"> .  90 A  93
+</span><span class="x"> 35 87 B+ 85
+</span><span class="x"> 48 .  C+ 76
+</span><span class="x"> .  62 F  67
+</span><span class="x"> 51 78 C  45
+</span><span class="x">;
+</span><span class="x"></span><span class="kr">
+</span><span class="kr"> proc print </span>data = conditional noobs<span class="kr">;
+</span><span class="kr"> run;</span>
+
+<span class="c">/*Better way to write this program - use IF and ELSE IF statements*/</span>
+<span class="kr">
+</span><span class="kr">data </span>ifelse;
+ <span class="k">set</span> conditional;
+
+ <span class="k">if</span> Age lt <span class="m">20</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(Age) <span class="kr">;
+</span><span class="kr">run;</span>
+<span class="kr">
+</span><span class="kr">proc print </span>data = ifelse<span class="kr">;
+</span><span class="kr">run;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="72-subsetting-if">7.2. Subsetting IF</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sas" data-lang="sas"><span class="kr">data </span>conditional;
+ <span class="k">input</span> Age Midterm Quiz $ Final;
+<span class="c">
+</span><span class="c">*if Age &lt; 20 then AgeGroup = 1;</span>
+<span class="c">*if Age lt 20 and Age ne . then AgeGroup = 1;</span>
+ <span class="k">if</span> Age lt <span class="m">20</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(Age) <span class="k">then</span> AgeGroup = <span class="m">1</span>;
+ <span class="k">if</span> Age ge <span class="m">20</span> <span class="k">and</span> Age lt <span class="m">40</span>  <span class="k">then</span> AgeGroup = <span class="m">2</span>;
+ <span class="k">if</span> Age ge <span class="m">40</span> <span class="k">and</span> Age lt <span class="m">60</span> <span class="k">then</span> AgeGroup = <span class="m">3</span>;
+ <span class="k">if</span> Age ge <span class="m">60</span> <span class="k">then</span> AgeGroup = <span class="m">4</span>;
+<span class="k"> datalines;</span><span class="x">
+</span><span class="x"> 21 80 B- 82
+</span><span class="x"> .  90 A  93
+</span><span class="x"> 35 87 B+ 85
+</span><span class="x"> 48 .  C+ 76
+</span><span class="x"> .  62 F  67
+</span><span class="x"> 51 78 C  45
+</span><span class="x">;
+</span><span class="x"></span><span class="kr">
+</span><span class="kr"> proc print </span>data = conditional noobs<span class="kr">;
+</span><span class="kr"> run;</span>
+
+<span class="c">/*Better way to write this program - use IF and ELSE IF statements*/</span>
+<span class="kr">
+</span><span class="kr">data </span>ifelse;
+ <span class="k">set</span> conditional;
+
+ <span class="k">if</span> Age lt <span class="m">20</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(Age) <span class="kr">;
+</span><span class="kr">run;</span>
+<span class="kr">
+</span><span class="kr">proc print </span>data = ifelse<span class="kr">;
+</span><span class="kr">run;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

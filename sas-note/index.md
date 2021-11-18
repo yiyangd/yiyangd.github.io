@@ -538,5 +538,104 @@ run;
 
 {{< figure src="/images/sas/diet_time.jpg" width="600">}}
 
+#### Example 25: Export SAS code with output in the log to a PDF file
+
+```sas
+/*Export SAS code in the log to a PDF file*/
+ods pdf file = "Time_ex_code_.pdf";
+proc document name = temp;
+   /*imports any text file, or a SAS program */
+   import textfile = "C:\dropbox\Dropbox\functional\stat342\STAT342 2020\w6 s\Time_ex.sas" to ^ ;
+   /*^ refers current directory of the output document*/
+   replay; /* we can replay the document whenever we need it and replay only the output items that we are interested in.
+             The document can be replayed using the REPLAY statement*/
+run;
+proc print data=diet2;
+	title 'The diet data set with five new variables';
+    var subj curtime wt_time wt_hr wt_min wt_sec wt_time2;
+run;
+quit;
+ods pdf close;
+/*Note that when you are exporting SAS code to a PDF, always start with a fresh SAS program. Otherwise, it will print
+the same SAS code more than one time(depending on the history) in the same document.*/
+
+```
+
 #### Create Permanent SAS datasets
+
+### Week 7
+
+#### 7.1. IF conditions
+
+```sas
+data conditional;
+ input Age Midterm Quiz $ Final;
+
+*if Age < 20 then AgeGroup = 1;
+*if Age lt 20 and Age ne . then AgeGroup = 1;
+ if Age lt 20 and not missing(Age) then AgeGroup = 1;
+ if Age ge 20 and Age lt 40  then AgeGroup = 2;
+ if Age ge 40 and Age lt 60 then AgeGroup = 3;
+ if Age ge 60 then AgeGroup = 4;
+ datalines;
+ 21 80 B- 82
+ .  90 A  93
+ 35 87 B+ 85
+ 48 .  C+ 76
+ .  62 F  67
+ 51 78 C  45
+;
+
+ proc print data = conditional noobs;
+ run;
+
+/*Better way to write this program - use IF and ELSE IF statements*/
+
+data ifelse;
+ set conditional;
+
+ if Age lt 20 and not missing(Age) ;
+run;
+
+proc print data = ifelse;
+run;
+
+```
+
+#### 7.2. Subsetting IF
+
+```sas
+data conditional;
+ input Age Midterm Quiz $ Final;
+
+*if Age < 20 then AgeGroup = 1;
+*if Age lt 20 and Age ne . then AgeGroup = 1;
+ if Age lt 20 and not missing(Age) then AgeGroup = 1;
+ if Age ge 20 and Age lt 40  then AgeGroup = 2;
+ if Age ge 40 and Age lt 60 then AgeGroup = 3;
+ if Age ge 60 then AgeGroup = 4;
+ datalines;
+ 21 80 B- 82
+ .  90 A  93
+ 35 87 B+ 85
+ 48 .  C+ 76
+ .  62 F  67
+ 51 78 C  45
+;
+
+ proc print data = conditional noobs;
+ run;
+
+/*Better way to write this program - use IF and ELSE IF statements*/
+
+data ifelse;
+ set conditional;
+
+ if Age lt 20 and not missing(Age) ;
+run;
+
+proc print data = ifelse;
+run;
+
+```
 
