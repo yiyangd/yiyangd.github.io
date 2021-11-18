@@ -605,37 +605,96 @@ run;
 #### 7.2. Subsetting IF
 
 ```sas
-data conditional;
- input Age Midterm Quiz $ Final;
+/*Subsetting IF*/
 
-*if Age < 20 then AgeGroup = 1;
-*if Age lt 20 and Age ne . then AgeGroup = 1;
- if Age lt 20 and not missing(Age) then AgeGroup = 1;
- if Age ge 20 and Age lt 40  then AgeGroup = 2;
- if Age ge 40 and Age lt 60 then AgeGroup = 3;
- if Age ge 60 then AgeGroup = 4;
- datalines;
- 21 80 B- 82
- .  90 A  93
- 35 87 B+ 85
- 48 .  C+ 76
- .  62 F  67
- 51 78 C  45
+data subset_if;
+
+ input ID Age Midterm Quiz $ Final;
+
+ if Quiz eq 'A'; /*Subset those who got A in Quiz.
+                  No THEN following the IF in this program.  */
+
+datalines;
+1001 21 80 B- 82
+1002 .  90 A  93
+1006 35 87 B+ 85
+1007 48 .  .  76
+1010 .  62 F  67
+2010 51 78 C  45
+2006 60 90 A  88
 ;
+proc print data = subset_if noobs;
+run;
+```
 
- proc print data = conditional noobs;
- run;
+#### 7.3. IN Operator
 
-/*Better way to write this program - use IF and ELSE IF statements*/
+```sas
+/*IN Operator*/
 
-data ifelse;
- set conditional;
+data scores;
+  input ID Age Midterm Quiz $ Final;
+datalines;
+1001 21 80 B- 82
+1002 .  90 A  93
+1006 35 87 B+ 85
+1007 48 .  .  76
+1010 .  62 F  67
+2010 51 78 C  45
+2006 60 90 A  88
+;
+data IN_operator;
+ set scores;
 
- if Age lt 20 and not missing(Age) ;
+ if Quiz in ('A+','A','B+','B') then QuizRange = 1;
+ else if Quiz in ('B-','C+','C') then QuizRange = 2;
+ else if not missing(Quiz) then QuizRange = 3;
+
+proc print data = IN_operator noobs;
 run;
 
-proc print data = ifelse;
+/*IN with WHERE statement*/
+/*Subset the data with given ID numbers*/
+data where_ex;
+ set IN_operator;
+
+ *where ID in (1001,1002,1006);
+
+  where ID in (1001:1010,2006);
+  *if ID in (1001:1010,2006);
+
+run;
+
+proc print data = where_ex noobs;
 run;
 
 ```
+
+{{< figure src="/images/sas/in_operator.jpg" width="600">}}
+
+#### 7.4. SELECT
+
+```sas
+/*SELECT statement*/
+
+libname mylib '/home/u59686016/STAT342W07';
+
+data select_statement;
+ set mylib.scores;
+
+ select;
+  when (missing(Age)) AgeGroup = .;
+  when (Age lt 20) AgeGroup = 1;
+  when (Age lt 40) AgeGroup = 2;
+  when (Age lt 60) AgeGroup = 3;
+  when (Age ge 60) AgeGroup = 4;
+  otherwise;
+ end;
+run;
+
+proc print data = select_statement noobs;
+run;
+```
+
+{{< figure src="/images/sas/select.jpg" width="600">}}
 
