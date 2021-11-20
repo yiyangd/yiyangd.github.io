@@ -4,7 +4,39 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 20 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Bayes Notes 02 | Bayesian in Statistical Learning</title>
+    <link>https://yiyangd.github.io/bayes02/</link>
+    <pubDate>Sat, 20 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/bayes02/</guid>
+    <description><![CDATA[当多次重复独立试验不能实现或不包含随机变量的事件发生时，就不存在从频率角度解读概率的理论基础。
+    ]]></description>
+</item><item>
+    <title>Bayes Notes 01 | Frequentist and Maximum Likelihood Estimation</title>
+    <link>https://yiyangd.github.io/bayes01/</link>
+    <pubDate>Fri, 19 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/bayes01/</guid>
+    <description><![CDATA[1. 频率学派视角下的概率与统计 频率学派视角下的概率表示的是事件发生频率的极限值
+ 在无限次的独立重复试验之下才有绝对的精确意义，事件的频率会收敛到真实的概率 这种观点的前提是：概率是一个确定的值，并不会受单次观察结果的影响  频率统计估计参数的核心在于认定待估计的参数是固定不变的常量，讨论参数的概率分布是没有意义的；
+ 而用来估计参数的数据是随机的变量，每个数据都是参数支配下一次独立重复试验的结果。 由于参数本身默认是确定的，那频率的波动就并非来自参数本身的不确定性，而是由有限次观察造成的干扰而导致。  一方面，根据这些不精确的数据就可以对未知参数的精确取值做出有效的推断； 另一方面，数据中包含的只是关于参数不完全的信息，所以从样本估计整体就必然会产生误差。    统计学的目标是根据从总体中抽取出的样本数据来估计未知的总体参数。
+ 参数的最优估计可以通过样本数据的采样分布（Sampling Distribution）来求解，由于 确定采样分布之后，参数估计可以等效成一个最优化问题，即极大似然估计（ Maximum Likelihood Estimation ）  2. 极大似然估计 要点：
+ 频率学派认为概率是随机事件发生频率的极限值 频率学派执行参数估计时，视参数为确定取值，视数据为随机变量！！！！  频率学派主要使用极大似然估计，让数据在给定参数下的似然概率最大化   频率学派对应机器学习中的统计学习，以经验风险最小化作为模型选择的准则  ]]></description>
+</item><item>
+    <title>路加福音｜19 - 24 章</title>
+    <link>https://yiyangd.github.io/luke/</link>
+    <pubDate>Thu, 18 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/luke/</guid>
+    <description><![CDATA[路加福音 - 第 19 章 1. 耶稣寻找、拯救失丧的人 （1 - 10） 【路 19:7】众人看见，都私下议论说：“他竟到罪人家里去住宿。”
+ 我们所有人都不配 【路 19:8】撒该站着对主说：“主啊，我把所有的一半给穷人，我若讹诈了谁，就还他四倍。”
+【路 19:9】耶稣说：“今天救恩到了这家，因为他也是亚伯拉罕的子孙。
+【路 19:10】人子来，为要寻找、拯救失丧的人。”  2. 十锭银子的比喻（11 - 27） 【路 19:20】又有一个来说：‘主啊，看哪，你的一锭银子在这里，我把它包在手巾里存着。 【路 19:21】我原是怕你，因为你是严厉的人。没有放下的，还要去拿；没有种下的，还要去收。’ 【路 19:22】主人对他说：‘你这恶仆，我要凭你的口定你的罪。你既知道我是严厉的人，没有放下的，还要去拿，没有种下的，还要去收，
+ 注解：今天，许多信徒也是按照地上工作的思路来揣摩主的心思，以为多做事多犯错、少做事少犯错、不做事不犯错，所以干脆什么都不做。但神国工作的规则却是：不做事、肯定错，不履行责任的，就是不忠心的「恶仆」（22 节）。 💡：管理财富也是一种能力 问：我就是这样的人，“把主人的「严厉」当作自己懒惰的借口。” 你们有什么共鸣吗？  3. 进入圣城耶路撒冷（28 - 44） 【路 19:37】将近耶路撒冷，正下橄榄山的时候，众门徒因所见过的一切异能，都欢乐起来，大声赞美　神， 【路 19:41】耶稣快到耶路撒冷，看见城，就为它哀哭， 众门徒的欢愉，耶稣的哀哭
+4. 洁净圣殿（45 - 48） 【路 19:46】对他们说：“经上说：‘我的殿必作祷告的殿’，你们倒使它成为贼窝了。”
+路加福音 - 第 20 章 1. 祭司长不服耶稣的权柄（1 - 8） ]]></description>
+</item><item>
     <title>ROS Note | Install and First ROS2 Program</title>
     <link>https://yiyangd.github.io/robot-operating-system/</link>
     <pubDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</pubDate>
@@ -75,32 +107,5 @@ Train a Network    Note Lists:]]></description>
     <description><![CDATA[1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
  A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
  Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods]]></description>
-</item><item>
-    <title>Course Notes | SFU STAT342 - SAS </title>
-    <link>https://yiyangd.github.io/sas-note/</link>
-    <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/sas-note/</guid>
-    <description><![CDATA[SAS: Statistical Analysis System
-Variables in SAS SAS has only two types of variables: character and numeric
-Tips:
- Use $ after the character variable Use . to replace the missing values Case INsensitive  Invalid Names:
- 1_begins_with_a_number contains blanks contains-invalid-characters%  Example 1: Basic Steps in SAS programs  DATA: read/write/manipuplate the data and perform calculations   after data step, SAS stores the data in its own special form called a SAS data set  PROC: process SAS datasets in analyzing   proc contents shows the descriptor portion of SAS data set proc print shows the data portion in a table  RUN  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  /* Example 1: Read the dataset and print */ data Studgrade; /* data step: assign a name for the dataset and enter the data */ input StudID Midterm Final Grade $; /*Variables in the dataset and enter the data*/ datalines;101 98 86 A 102 49 60 C 103 98 80 A 104 90 98 A+ 105 60 80 B+ 106 .]]></description>
-</item><item>
-    <title>Course Notes | SFU STAT450 - Statistical Theory (Hand Written) </title>
-    <link>https://yiyangd.github.io/stat-theory/</link>
-    <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/stat-theory/</guid>
-    <description><![CDATA[Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   Lec08: Oct 7 - Thursday Lec09: Oct 13 - Thursday ]]></description>
-</item><item>
-    <title>Data Engineering Notes | Scala Spark 3 </title>
-    <link>https://yiyangd.github.io/scala-spark3/</link>
-    <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/scala-spark3/</guid>
-    <description><![CDATA[0. Introduction on Spark and Scala Spark Spark: a unified analytics engine for large-scale data processing.
- fast: Run programs up to 100x faster than Hadoop Mapreduce in memory, or 10x faster on disk  DAG(direct acyclic graph) Engine optimizes workflows     Apache Spark consists of Spark Core Engine, Spark SQL, Spark Streaming, MLlib, GraphX and Spark R.
- Spark Core: provides the in-built memory computing and referencing datasets stored in external storage systems and uses RDD data structure to speed up the data sharing in distributed processing systems like MapReduce from permanent storage like HDFS or S3 which may be slow due to the serialization and deserialization of I/O steps.]]></description>
 </item></channel>
 </rss>
