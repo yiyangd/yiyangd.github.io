@@ -13,6 +13,13 @@
     <description><![CDATA[当多次重复独立试验不能实现或不包含随机变量的事件发生时，就不存在从频率角度解读概率的理论基础。
     ]]></description>
 </item><item>
+    <title>使徒行传｜1 - 6章</title>
+    <link>https://yiyangd.github.io/acts/</link>
+    <pubDate>Sat, 20 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/acts/</guid>
+    <description><![CDATA[使徒行传第 1 章 1. ]]></description>
+</item><item>
     <title>Bayes Notes 01 | Frequentist and Maximum Likelihood Estimation</title>
     <link>https://yiyangd.github.io/bayes01/</link>
     <pubDate>Fri, 19 Nov 2021 00:00:00 &#43;0000</pubDate>
@@ -99,14 +106,5 @@ Data Labeling
 Train a Network Data Collection
 Data Labeling
 Train a Network    Note Lists:]]></description>
-</item><item>
-    <title>Time Series Note | Financial Time Series Analysis</title>
-    <link>https://yiyangd.github.io/financial-time-series/</link>
-    <pubDate>Thu, 09 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/financial-time-series/</guid>
-    <description><![CDATA[1. Introduction to Time Series in Python Time Series is a sequence of information which attaches a time period to each value
- A common topic in Time Series Analysis is determining the stability of financial markets and the efficiency protfolios (效率投资组合)  Properties All time-periods must be equal and clearly defined, which would result in a constant frequency
- Frequency: how often values of the data set are recorded if the intervals are not identical =&gt; dealing with missing data  Time-Dependency(时效性): the values for every period are affected by outside factors and by the values of past periods]]></description>
 </item></channel>
 </rss>
