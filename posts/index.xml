@@ -4,14 +4,7 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 20 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>使徒行传｜1 - 6章</title>
-    <link>https://yiyangd.github.io/acts/</link>
-    <pubDate>Sat, 20 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/acts/</guid>
-    <description><![CDATA[使徒行传第 1 章 1. ]]></description>
-</item><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>ROS Note | Install and First ROS2 Program</title>
     <link>https://yiyangd.github.io/robot-operating-system/</link>
     <pubDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</pubDate>
@@ -98,5 +91,13 @@ Tips:
     <description><![CDATA[0. Introduction on Spark and Scala Spark Spark: a unified analytics engine for large-scale data processing.
  fast: Run programs up to 100x faster than Hadoop Mapreduce in memory, or 10x faster on disk  DAG(direct acyclic graph) Engine optimizes workflows     Apache Spark consists of Spark Core Engine, Spark SQL, Spark Streaming, MLlib, GraphX and Spark R.
  Spark Core: provides the in-built memory computing and referencing datasets stored in external storage systems and uses RDD data structure to speed up the data sharing in distributed processing systems like MapReduce from permanent storage like HDFS or S3 which may be slow due to the serialization and deserialization of I/O steps.]]></description>
+</item><item>
+    <title>Victoria Trip! Sep 2 - 5</title>
+    <link>https://yiyangd.github.io/victoria-trip/</link>
+    <pubDate>Thu, 02 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/victoria-trip/</guid>
+    <description><![CDATA[Day 1 - Sep 2 10:00 - 12:00 上船喽  12:00 - 14:00 去吃 Brunch  14:00 - 17:30 SkyWalk 我们去了今年新开的 skywalk 和滑滑梯！
+Day 2 - Sep 3 ]]></description>
 </item></channel>
 </rss>
