@@ -1,10 +1,10 @@
-# ROS Note | Install and First ROS2 Program
+# ROS Note | Install and Launch First ROS2 Program
 
 
 ROS2 is expected to become mature and fully replace ROS1 by 2023.
 
-- ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023)
-- ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022
+- ROS2 `Foxy` Version released in June 2020 is mature and contain several advanced features (EOL: May 2023)
+- ROS2 `Galactic` Version relased in May 2021, but EOL date is Nov 2022
 
 ROS2 provides a `standard` for Robotic Applications
 
@@ -30,6 +30,8 @@ $ export LANG=en_US.UTF-8
 $ locale  # verify settings
 ```
 
+{{< figure src="/images/ros/locale.png" width="500">}}
+
 #### 2. Setup Sources
 
 You will need to add the ROS 2 apt repositories to your system. To do so, first authorize our GPG key with apt like this:
@@ -46,6 +48,25 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 ```
 
 #### 3. Install ROS 2 Packages
+
+Update your apt repository caches after setting up the repositories.
+
+```shell
+sudo apt update
+```
+
+Desktop Install (Recommended): ROS, RViz, demos, tutorials.
+
+- Sourcing the setup script automatically
+
+```shell
+sudo apt install ros-foxy-desktop
+sudo reboot
+source /opt/ros/foxy/setup.bash
+gedit ~/.bashrc
+```
+
+{{< figure src="/images/ros/source.png" width="500">}}
 
 #### Reference:
 

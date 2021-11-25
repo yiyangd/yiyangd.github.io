@@ -24,7 +24,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/robot-operating-system/" /><link rel="prev" href="https://yiyangd.github.io/prob-distribution/" /><link rel="next" href="https://yiyangd.github.io/luke/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/robot-operating-system/" /><link rel="prev" href="https://yiyangd.github.io/dp-0_1knapsack/" /><link rel="next" href="https://yiyangd.github.io/luke/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/robot-operating-system\/"
-        },"genre": "posts","wordcount":  236 ,
+        },"genre": "posts","wordcount":  239 ,
         "url": "https:\/\/yiyangd.github.io\/robot-operating-system\/","datePublished": "2021-11-01T00:00:00+00:00","dateModified": "2021-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">ROS Note | Install and Launch First ROS2 Program</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;236 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;239 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -170,7 +170,10 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 $ locale  <span class="c1"># verify settings</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="2-setup-sources">2. Setup Sources</h4>
+</div><figure><img src="/images/ros/locale.png" width="500"/>
+</figure>
+
+<h4 id="2-setup-sources">2. Setup Sources</h4>
 <p>You will need to add the ROS 2 apt repositories to your system. To do so, first authorize our GPG key with apt like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -210,14 +213,19 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install ros-foxy-desktop
 sudo reboot
 <span class="nb">source</span> /opt/ros/foxy/setup.bash
+gedit ~/.bashrc
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="reference">Reference:</h4>
+</div><figure><img src="/images/ros/source.png" width="500"/>
+</figure>
+
+<h4 id="reference">Reference:</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -243,7 +251,7 @@ sudo reboot
         </section>
     </div>
 
-    <div class="post-nav"><a href="/prob-distribution/" class="prev" rel="prev" title="Stats Notes | Probability Distribution  "><i class="fas fa-angle-left fa-fw"></i>Stats Notes | Probability Distribution  </a>
+    <div class="post-nav"><a href="/dp-0_1knapsack/" class="prev" rel="prev" title="Algorithm Notes | Dynamic Programming"><i class="fas fa-angle-left fa-fw"></i>Algorithm Notes | Dynamic Programming</a>
             <a href="/luke/" class="next" rel="next" title="路加福音｜19 - 24 章">路加福音｜19 - 24 章<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>

@@ -102,19 +102,6 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ecommerceapp04-redux/">Full Stack Notes | eCommerce Platform 04 - Redux for State Management</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-14">2021-08-14</time></span></div><div class="content">Notes on Aug 15th: lots of stuff I haven&rsquo;t understanded, just try to learn some whole framework
-Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
- It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.  Install Redux DevTools in chrome web store
-1  frontend % npm i redux react-redux redux-thunk redux-devtools-extension    React-Redux is the official React UI bindings layer for Redux.</div><div class="post-footer">
-        <a href="/ecommerceapp04-redux/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ecommerceapp03/">eCommerce Platform 03 - Database, MongoDB, Postman</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-11">2021-08-11</time></span></div><div class="content">Mongo DB Atlas &amp; Compass Setup Download Compass
- https://www.mongodb.com/try/download/compass  Create Database(Cluster) in mongodb.com
- Security =&gt; Database Access =&gt; Add new database user Network Access =&gt; Add IP Address =&gt; Allow Access From Anywhere =&gt; Confirm Databases =&gt; Browse Collections =&gt; Add my Own Data  db name: eshop collection name: products   Databases =&gt; Connect =&gt; Connect using MongoDB Compass =&gt; I have MongoDB Compass  Copy the connection string, and paste in MongoDB Compass App modify &lt;password&gt; and /test =&gt; /eshop   Databases =&gt; Connect =&gt; Connect your application (Node.</div><div class="post-footer">
-        <a href="/ecommerceapp03/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ecommerceapp02/">eCommerce Platform 02 - Backend, Node.js, Fetch Data from React</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-10">2021-08-10</time></span></div><div class="content">Backend Setup Create eShop/package.json
  backend setup for ES Module: &quot;type&quot;: &quot;module&quot;,  1  eshop % npm init   1 2 3 4 5 6 7 8 9 10 11 12  { &#34;name&#34;: &#34;eshop&#34;, &#34;version&#34;: &#34;1.0.0&#34;, &#34;description&#34;: &#34;MERN eCommerce Platform&#34;, &#34;main&#34;: &#34;server.js&#34;, &#34;type&#34;: &#34;module&#34;, &#34;author&#34;: &#34;Yiyang Dong&#34;, &#34;license&#34;: &#34;MIT&#34;, &#34;dependencies&#34;: { &#34;express&#34;: &#34;^4.17.1&#34; } }   Nodemon &amp; Concurrently 1  eshop % npm i -D nodemon concurrently   In eshop/package.</div><div class="post-footer">
@@ -136,6 +123,26 @@ Create frontend/src/components/Header.js and Footer.js
         <a href="/open3d-1/">3D Vision - Intel® RealSense™ depth camera and IMU</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-06">2021-08-06</time></span></div><div class="content">daas</div><div class="post-footer">
         <a href="/open3d-1/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/svm01/">Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-06">2021-08-06</time></span></div><div class="content">SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
+ affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$</div><div class="post-footer">
+        <a href="/svm01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/decisiontree2/">Statistical Learning Notes | Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-11-17">2020-11-17</time></span></div><div class="content">1.Bagging
+&ndash; Out-of-Bag (OOB) Error Estimation
+&ndash; Variable Importance Measures
+2.Random Forest
+&ndash; Decorrelating the Trees
+3.boosting
+&ndash; Algorithm
+&ndash; Three Tuning Parameters
+These three ensemble methods use trees as building blocks to construct more powerful prediction models
+1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
+Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
+ high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$</div><div class="post-footer">
+        <a href="/decisiontree2/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -155,10 +162,6 @@ Create frontend/src/components/Header.js and Footer.js
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/5/">5</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/6/">6</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
