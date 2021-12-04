@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/financial-time-series\/"
-        },"genre": "posts","wordcount":  3617 ,
+        },"genre": "posts","wordcount":  4175 ,
         "url": "https:\/\/yiyangd.github.io\/financial-time-series\/","datePublished": "2021-09-09T00:00:00+00:00","dateModified": "2021-09-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Time Series Note | Financial Time Series Analysis</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3617 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-09">2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4175 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;20 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -156,7 +156,15 @@
             <li><a href="#unexpected-shocks-from-past-periods">Unexpected Shocks from Past Periods</a></li>
           </ul>
         </li>
-        <li><a href="#10-the-moving-average-ma-model">10. The Moving Average (MA) Model</a></li>
+        <li><a href="#10-the-moving-average-ma-model">10. The Moving Average (MA) Model</a>
+          <ul>
+            <li><a href="#1-fitting-a-ma1-model-for-returns">1. Fitting a MA(1) Model for Returns</a></li>
+            <li><a href="#2-fitting-higher-lag-ma-models">2. Fitting Higher-Lag MA Models</a></li>
+            <li><a href="#3-examining-the-ma-models-residuals">3. Examining the MA Model&rsquo;s Residuals</a></li>
+            <li><a href="#4-ma-model-selection-for-normalized-returns">4. MA Model Selection for Normalized Returns</a></li>
+            <li><a href="#5-ma-model-for-non-stationary-prices">5. MA Model for Non-Stationary Prices</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -871,7 +879,7 @@ For AR(1) Model: $x_{t} = C + \phi_1 x_{t-1} + \epsilon_t$</p>
 <li>p = 0 means that the coefficients are significantly different from zero</li>
 </ul>
 <h4 id="fitting-higher-lag-ar-models-and-llr">Fitting Higher-Lag AR Models and LLR</h4>
-<p><strong>Fit AR(2) Model:</strong> $x_t = C + \phi_1 x_{t-1} + \phi_2 x_*_{t-2} + \epsilon_t$</p>
+<p><strong>Fit AR(2) Model:</strong> $x_t = C + \phi_1 x_{t-1} + \phi_2 x_{t-2} + \epsilon_t$</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1213,14 +1221,14 @@ Explanation:</p>
 <li>The few points outside the blue area lead us to <code>believe there's a better predictor</code></li>
 </ul>
 <h4 id="unexpected-shocks-from-past-periods">Unexpected Shocks from Past Periods</h4>
-<p>AutoRegressive Models need time to adjust from a Big, Unexpected Shock</p>
+<p>AutoRegressive Models need time to adjust from a <em>Big, Unexpected Shock</em></p>
 <ul>
 <li>because AR models rely on past data, regardless of how close predictions are</li>
 </ul>
-<p><strong>Self-Correcting Models</strong> take into account <em>past residuals</em>, adjust to unexpected shocks more quickly</p>
+<p>There are <strong>Self-Correcting Models</strong> that take into account <em>past residuals</em>, adjust to unexpected shocks more quickly</p>
 <ul>
 <li>because the predictions are corrected immediately following a big error</li>
-<li>the more errors examined, the more adapted model is to handle unforeseen errors</li>
+<li>the more errors examined, the more <strong>adapted model</strong> is to <strong>handle unforeseen errors</strong></li>
 </ul>
 <p><strong>Moving Average(MA) Models</strong> perform well at predicting Random Walk datasets</p>
 <ul>
@@ -1232,15 +1240,210 @@ Explanation:</p>
 <li>it also stops the model from greatly diverging, which is useful for non-stationary data</li>
 </ul>
 <h3 id="10-the-moving-average-ma-model">10. The Moving Average (MA) Model</h3>
-<p>A Simple MA Model is equivalent to an <em>infinite AR</em> model with certain <em>restrictions</em></p>
-<ul>
-<li>difference: MA models determine the <strong>maximum amount</strong> of lags based on ACF (AR models rely on PACF) becaused the MA models aren&rsquo;t based on past period returns</li>
-</ul>
 <p>$$r_t = c + \theta_1\epsilon_{t-1}+\epsilon_t$$</p>
 <ul>
 <li>$|\theta_n| &lt; 1$ to prevent compounded effects exploding in magnitude</li>
 <li>$\epsilon_t$ and $\epsilon_{t-1}$: Residuals for the current and past period</li>
 </ul>
+<p>A Simple MA Model is equivalent to an <em>infinite AR</em> model with certain <em>restrictions</em></p>
+<ul>
+<li>difference: MA models determine the <strong>maximum amount</strong> of lags based on ACF (AR models rely on PACF)
+<ul>
+<li>becaused the MA models aren&rsquo;t based on past period returns</li>
+<li>determine which lagged values have a <strong>significant direct effect</strong> on the present-day ones is NOT <em>relevant</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-fitting-a-ma1-model-for-returns">1. Fitting a MA(1) Model for Returns</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">model_ret_ma_1</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">returns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># order = (AR components, MA components)</span>
+<span class="n">results_ret_ma_1</span> <span class="o">=</span> <span class="n">model_ret_ma_1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results_ret_ma_1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong><br>
+<figure><img src="/images/financial-time-series/ma1_summary.jpg" width="400"/>
+</figure>
+</p>
+<p><strong>Explanation:</strong></p>
+<p>The coefficient for the one-lag-ago residual is significant at 0.10 significant level but not significant 0.05 level</p>
+<ul>
+<li>since the first coefficient of the ACF for Returns is NOT significantly different from 0 (within the blue area)</li>
+</ul>
+<h4 id="2-fitting-higher-lag-ma-models">2. Fitting Higher-Lag MA Models</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># MA(2) Model</span>
+<span class="n">model_ret_ma_2</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">returns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">results_ret_ma_2</span> <span class="o">=</span> <span class="n">model_ret_ma_2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_ret_ma_2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">LLR test p-value = &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">LLR_test</span><span class="p">(</span><span class="n">model_ret_ma_1</span><span class="p">,</span> <span class="n">model_ret_ma_2</span><span class="p">)))</span>
+<span class="c1"># p-values for ma.L2.returns = 0 and ma.L1.returns = 0.023, both significant</span>
+<span class="c1"># Lower IC</span>
+<span class="c1"># MA(2) is better than MA(1)</span>
+
+<span class="c1"># MA(3)</span>
+<span class="n">model_ret_ma_3</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">returns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">results_ret_ma_3</span> <span class="o">=</span> <span class="n">model_ret_ma_3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_ret_ma_3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">LLR test p-value = &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">LLR_test</span><span class="p">(</span><span class="n">model_ret_ma_2</span><span class="p">,</span> <span class="n">model_ret_ma_3</span><span class="p">)))</span>
+<span class="c1"># p-values for ma.L2.returns = 0 and ma.L3.returns = 0, both significant</span>
+<span class="c1"># Lower IC</span>
+<span class="c1"># MA(3) is better than MA(2)</span>
+
+<span class="c1"># MA(6) &gt; MA(5) &gt; MA(4) &gt; MA(3)</span>
+<span class="c1"># because of lower IC and significant LLR test p-value</span>
+
+<span class="c1"># MA(7)</span>
+<span class="n">model_ret_ma_7</span> <span class="o">=</span> <span class="n">ARMA</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">returns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">results_ret_ma_7</span> <span class="o">=</span> <span class="n">model_ret_ma_7</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_ret_ma_7</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">LLR test p-value = &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">LLR_test</span><span class="p">(</span><span class="n">model_ret_ma_6</span><span class="p">,</span> <span class="n">model_ret_ma_7</span><span class="p">)))</span>
+<span class="c1"># p-value = 0.683</span>
+<span class="c1"># MA(7) &lt; MA(6)</span>
+<span class="c1"># Take MA(6) Model</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>ACF for Returns can give us some hints:
+<figure><img src="/images/financial-time-series/acf_returns.jpg" width="600"/>
+</figure>
+</p>
+<h4 id="3-examining-the-ma-models-residuals">3. Examining the MA Model&rsquo;s Residuals</h4>
+<p>We estimate the Standard Deviation of the residual, we can know how far off we can hypothetically be with our predictions</p>
+<ul>
+<li>using the 3 standard deviations rule, we can get a good idea of what interval 99.7% of the data will fall into</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Start by extracting the MA(6) Residuals</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;res_ret_ma_6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_ret_ma_6</span><span class="o">.</span><span class="n">resid</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">res_ret_ma_6</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># Mean = 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">res_ret_ma_6</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># Variance = 1.291</span>
+<span class="n">df</span><span class="o">.</span><span class="n">res_ret_ma_6</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;MA Model Residuals of Returns&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong><br>
+<figure><img src="/images/financial-time-series/ma_residuals.jpg" width="600"/>
+</figure>
+</p>
+<p>Exclude the <code>.com</code> and <code>house price</code> bubbles, the residuals are random</p>
+<ul>
+<li>to test if the residuals resemble a <em>white noise process</em>, we can check for <strong>stationary</strong></li>
+<li>if the data is <strong>non-stationary</strong>, it <em>can&rsquo;t</em> be considered <strong>white noise</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sts</span><span class="o">.</span><span class="n">adfuller</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">res_ret_ma_6</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">(-76.28833323226722,
+</span><span class="s1"> 0.0,   # p-value = 0 =&gt; the Residuals are Stationary
+</span><span class="s1"> 0,
+</span><span class="s1"> 5820,
+</span><span class="s1"> {&#39;1%&#39;: -3.4314740870339353,
+</span><span class="s1">  &#39;5%&#39;: -2.8620367403219062,
+</span><span class="s1">  &#39;10%&#39;: -2.5670344128257816},
+</span><span class="s1"> 17915.49917726831)
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Check ACF</strong></p>
+<ul>
+<li>since a white noise process produces completely random data</li>
+<li>so that ACF coefficients should NOT be significantly different from zero</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sgt</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">res_ret_ma_6</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;ACF of MA Model Residuals for Returns&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong><br>
+<figure><img src="/images/financial-time-series/acf_ma_residuals.jpg" width="600"/>
+</figure>
+</p>
+<p><strong>Explanation:</strong><br>
+None of the first 17 lags are significant</p>
+<ul>
+<li>the first 6 coefficients are incorporated into the MA Model, so they are close to 0.</li>
+<li>the following 11 insignificant lags show that how well MA(6) model perform</li>
+</ul>
+<p>Markets adjust to shocks, so values and errors far in the past lose relevance</p>
+<ul>
+<li>the ACF suggests that the residual data resembles white noise, which means the errors don&rsquo;t follow a pattern</li>
+</ul>
+<h4 id="4-ma-model-selection-for-normalized-returns">4. MA Model Selection for Normalized Returns</h4>
+<p>To compare different market indexes, using the normalized values is important</p>
+<h4 id="5-ma-model-for-non-stationary-prices">5. MA Model for Non-Stationary Prices</h4>
+<p>AR models are less reliable when estimating non-stationary prices</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

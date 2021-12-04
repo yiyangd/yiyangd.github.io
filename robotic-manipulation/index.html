@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Robot Note | Robotic Manipulation (MIT 6.800) - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Robot Note | Robotic Manipulation (MIT 6.800)" />
-<meta property="og:description" content="Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - " />
+<meta property="og:description" content="Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - Let&rsquo;s get you a robot Lec 03 - Basic Pick and Place Lec 04 - Differential Kinematics and Trajectories Lec 05 - Differential Kinematics via Optimization Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!! Lec 07 - Geometric Perception: Partial Views and Outliers Lec 08 - Geometric perception: Non-penetration and free-space constraints Lec 09 - Manipulation in Cluster Lec 10 Lec 12 - Deep Perception: Perceptual Representations for Lec 13 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/robotic-manipulation/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-18T00:00:00+00:00" />
@@ -16,11 +16,11 @@
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Robot Note | Robotic Manipulation (MIT 6.800)"/>
-<meta name="twitter:description" content="Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - "/>
+<meta name="twitter:description" content="Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - Let&rsquo;s get you a robot Lec 03 - Basic Pick and Place Lec 04 - Differential Kinematics and Trajectories Lec 05 - Differential Kinematics via Optimization Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!! Lec 07 - Geometric Perception: Partial Views and Outliers Lec 08 - Geometric perception: Non-penetration and free-space constraints Lec 09 - Manipulation in Cluster Lec 10 Lec 12 - Deep Perception: Perceptual Representations for Lec 13 "/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/robotic-manipulation/" /><link rel="prev" href="https://yiyangd.github.io/luke/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/robotic-manipulation/" /><link rel="prev" href="https://yiyangd.github.io/robot-operating-system/" /><link rel="next" href="https://yiyangd.github.io/modern-robotics/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/robotic-manipulation\/"
-        },"genre": "posts","wordcount":  19 ,
+        },"genre": "posts","wordcount":  91 ,
         "url": "https:\/\/yiyangd.github.io\/robotic-manipulation\/","datePublished": "2021-11-18T00:00:00+00:00","dateModified": "2021-11-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Robot Note | Robotic Manipulation (MIT 6.800)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-18">2021-11-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;19 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-18">2021-11-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;91 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -118,7 +118,17 @@
     <li><a href="#perception-planning-and-control">Perception, Planning and Control</a>
       <ul>
         <li><a href="#lec-01---anatomy-of-a-manipulation-system-202199">Lec 01 - Anatomy of a Manipulation System (2021/9/9)</a></li>
-        <li><a href="#lec-02--">Lec 02 -</a></li>
+        <li><a href="#lec-02---lets-get-you-a-robot">Lec 02 - Let&rsquo;s get you a robot</a></li>
+        <li><a href="#lec-03---basic-pick-and-place">Lec 03 - Basic Pick and Place</a></li>
+        <li><a href="#lec-04---differential-kinematics-and-trajectories">Lec 04 - Differential Kinematics and Trajectories</a></li>
+        <li><a href="#lec-05---differential-kinematics-via-optimization">Lec 05 - Differential Kinematics via Optimization</a></li>
+        <li><a href="#lec-06---geometric-perception-cameras-point-clouds-and-registration">Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!!</a></li>
+        <li><a href="#lec-07---geometric-perception-partial-views-and-outliers">Lec 07 - Geometric Perception: Partial Views and Outliers</a></li>
+        <li><a href="#lec-08---geometric-perception-non-penetration-and-free-space-constraints">Lec 08 - Geometric perception: Non-penetration and free-space constraints</a></li>
+        <li><a href="#lec-09---manipulation-in-cluster">Lec 09 - Manipulation in Cluster</a></li>
+        <li><a href="#lec-10">Lec 10</a></li>
+        <li><a href="#lec-12---deep-perception-perceptual-representations-for">Lec 12 - Deep Perception: Perceptual Representations for</a></li>
+        <li><a href="#lec-13">Lec 13</a></li>
       </ul>
     </li>
   </ul>
@@ -129,7 +139,17 @@
 <li><a href="https://manipulation.csail.mit.edu/Fall2021/" target="_blank" rel="noopener noreffer">https://manipulation.csail.mit.edu/Fall2021/</a></li>
 </ul>
 <h3 id="lec-01---anatomy-of-a-manipulation-system-202199">Lec 01 - Anatomy of a Manipulation System (2021/9/9)</h3>
-<h3 id="lec-02--">Lec 02 -</h3>
+<h3 id="lec-02---lets-get-you-a-robot">Lec 02 - Let&rsquo;s get you a robot</h3>
+<h3 id="lec-03---basic-pick-and-place">Lec 03 - Basic Pick and Place</h3>
+<h3 id="lec-04---differential-kinematics-and-trajectories">Lec 04 - Differential Kinematics and Trajectories</h3>
+<h3 id="lec-05---differential-kinematics-via-optimization">Lec 05 - Differential Kinematics via Optimization</h3>
+<h3 id="lec-06---geometric-perception-cameras-point-clouds-and-registration">Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!!</h3>
+<h3 id="lec-07---geometric-perception-partial-views-and-outliers">Lec 07 - Geometric Perception: Partial Views and Outliers</h3>
+<h3 id="lec-08---geometric-perception-non-penetration-and-free-space-constraints">Lec 08 - Geometric perception: Non-penetration and free-space constraints</h3>
+<h3 id="lec-09---manipulation-in-cluster">Lec 09 - Manipulation in Cluster</h3>
+<h3 id="lec-10">Lec 10</h3>
+<h3 id="lec-12---deep-perception-perceptual-representations-for">Lec 12 - Deep Perception: Perceptual Representations for</h3>
+<h3 id="lec-13">Lec 13</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -155,7 +175,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/luke/" class="prev" rel="prev" title="路加福音｜19 - 24 章"><i class="fas fa-angle-left fa-fw"></i>路加福音｜19 - 24 章</a></div>
+    <div class="post-nav"><a href="/robot-operating-system/" class="prev" rel="prev" title="ROS Note | Install and Launch First ROS2 Program"><i class="fas fa-angle-left fa-fw"></i>ROS Note | Install and Launch First ROS2 Program</a>
+            <a href="/modern-robotics/" class="next" rel="next" title="Robot Note | Robotic Manipulation (MIT 6.800)">Robot Note | Robotic Manipulation (MIT 6.800)<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

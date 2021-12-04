@@ -473,7 +473,7 @@ For AR(1) Model: $x_{t} = C + \phi_1 x_{t-1} + \epsilon_t$
 
 #### Fitting Higher-Lag AR Models and LLR
 
-**Fit AR(2) Model:** $x_t = C + \phi_1 x_{t-1} + \phi_2 x\_*_{t-2} + \epsilon_t$
+**Fit AR(2) Model:** $x_t = C + \phi_1 x_{t-1} + \phi_2 x_{t-2} + \epsilon_t$
 
 ```py
 model_ar_2 = ARMA(df.market_value, order = (2,0))
@@ -688,14 +688,14 @@ Explanation:
 
 #### Unexpected Shocks from Past Periods
 
-AutoRegressive Models need time to adjust from a Big, Unexpected Shock
+AutoRegressive Models need time to adjust from a _Big, Unexpected Shock_
 
 - because AR models rely on past data, regardless of how close predictions are
 
-**Self-Correcting Models** take into account _past residuals_, adjust to unexpected shocks more quickly
+There are **Self-Correcting Models** that take into account _past residuals_, adjust to unexpected shocks more quickly
 
 - because the predictions are corrected immediately following a big error
-- the more errors examined, the more adapted model is to handle unforeseen errors
+- the more errors examined, the more **adapted model** is to **handle unforeseen errors**
 
 **Moving Average(MA) Models** perform well at predicting Random Walk datasets
 
@@ -708,12 +708,139 @@ This gives the model prediction a much greater chance to move in a similar direc
 
 ### 10. The Moving Average (MA) Model
 
-A Simple MA Model is equivalent to an _infinite AR_ model with certain _restrictions_
-
-- difference: MA models determine the **maximum amount** of lags based on ACF (AR models rely on PACF) becaused the MA models aren't based on past period returns
-
 $$r_t = c + \theta_1\epsilon_{t-1}+\epsilon_t$$
 
 - $|\theta_n| < 1$ to prevent compounded effects exploding in magnitude
 - $\epsilon_t$ and $\epsilon_{t-1}$: Residuals for the current and past period
+
+A Simple MA Model is equivalent to an _infinite AR_ model with certain _restrictions_
+
+- difference: MA models determine the **maximum amount** of lags based on ACF (AR models rely on PACF)
+  - becaused the MA models aren't based on past period returns
+  - determine which lagged values have a **significant direct effect** on the present-day ones is NOT _relevant_
+
+#### 1. Fitting a MA(1) Model for Returns
+
+```python
+model_ret_ma_1 = ARMA(df.returns[1:], order=(0,1))
+# order = (AR components, MA components)
+results_ret_ma_1 = model_ret_ma_1.fit()
+results_ret_ma_1.summary()
+```
+
+**Output:**  
+{{< figure src="/images/financial-time-series/ma1_summary.jpg" width="400">}}
+
+**Explanation:**
+
+The coefficient for the one-lag-ago residual is significant at 0.10 significant level but not significant 0.05 level
+
+- since the first coefficient of the ACF for Returns is NOT significantly different from 0 (within the blue area)
+
+#### 2. Fitting Higher-Lag MA Models
+
+```python
+# MA(2) Model
+model_ret_ma_2 = ARMA(df.returns[1:], order=(0,2))
+results_ret_ma_2 = model_ret_ma_2.fit()
+print(results_ret_ma_2.summary())
+print("\nLLR test p-value = " + str(LLR_test(model_ret_ma_1, model_ret_ma_2)))
+# p-values for ma.L2.returns = 0 and ma.L1.returns = 0.023, both significant
+# Lower IC
+# MA(2) is better than MA(1)
+
+# MA(3)
+model_ret_ma_3 = ARMA(df.returns[1:], order=(0,3))
+results_ret_ma_3 = model_ret_ma_3.fit()
+print(results_ret_ma_3.summary())
+print("\nLLR test p-value = " + str(LLR_test(model_ret_ma_2, model_ret_ma_3)))
+# p-values for ma.L2.returns = 0 and ma.L3.returns = 0, both significant
+# Lower IC
+# MA(3) is better than MA(2)
+
+# MA(6) > MA(5) > MA(4) > MA(3)
+# because of lower IC and significant LLR test p-value
+
+# MA(7)
+model_ret_ma_7 = ARMA(df.returns[1:], order=(0,7))
+results_ret_ma_7 = model_ret_ma_7.fit()
+print(results_ret_ma_7.summary())
+print("\nLLR test p-value = " + str(LLR_test(model_ret_ma_6, model_ret_ma_7)))
+# p-value = 0.683
+# MA(7) < MA(6)
+# Take MA(6) Model
+```
+
+ACF for Returns can give us some hints:
+{{< figure src="/images/financial-time-series/acf_returns.jpg" width="600">}}
+
+#### 3. Examining the MA Model's Residuals
+
+We estimate the Standard Deviation of the residual, we can know how far off we can hypothetically be with our predictions
+
+- using the 3 standard deviations rule, we can get a good idea of what interval 99.7% of the data will fall into
+
+```python
+# Start by extracting the MA(6) Residuals
+df['res_ret_ma_6'] = results_ret_ma_6.resid[1:]
+print(round(df.res_ret_ma_6.mean(),3)) # Mean = 0
+print(round(df.res_ret_ma_6.var(),3))  # Variance = 1.291
+df.res_ret_ma_6[1:].plot(figsize = (20,5))
+plt.title("MA Model Residuals of Returns", size = 24)
+plt.show()
+```
+
+**Output:**  
+{{< figure src="/images/financial-time-series/ma_residuals.jpg" width="600">}}
+
+Exclude the `.com` and `house price` bubbles, the residuals are random
+
+- to test if the residuals resemble a _white noise process_, we can check for **stationary**
+- if the data is **non-stationary**, it _can't_ be considered **white noise**
+
+```python
+sts.adfuller(df.res_ret_ma_6[2:])
+'''
+(-76.28833323226722,
+ 0.0,   # p-value = 0 => the Residuals are Stationary
+ 0,
+ 5820,
+ {'1%': -3.4314740870339353,
+  '5%': -2.8620367403219062,
+  '10%': -2.5670344128257816},
+ 17915.49917726831)
+'''
+```
+
+**Check ACF**
+
+- since a white noise process produces completely random data
+- so that ACF coefficients should NOT be significantly different from zero
+
+```python
+sgt.plot_acf(df.res_ret_ma_6[2:], zero = False, lags = 40)
+plt.title("ACF of MA Model Residuals for Returns", size = 24)
+plt.show()
+```
+
+**Output:**  
+{{< figure src="/images/financial-time-series/acf_ma_residuals.jpg" width="600">}}
+
+**Explanation:**  
+None of the first 17 lags are significant
+
+- the first 6 coefficients are incorporated into the MA Model, so they are close to 0.
+- the following 11 insignificant lags show that how well MA(6) model perform
+
+Markets adjust to shocks, so values and errors far in the past lose relevance
+
+- the ACF suggests that the residual data resembles white noise, which means the errors don't follow a pattern
+
+#### 4. MA Model Selection for Normalized Returns
+
+To compare different market indexes, using the normalized values is important
+
+#### 5. MA Model for Non-Stationary Prices
+
+AR models are less reliable when estimating non-stationary prices
 

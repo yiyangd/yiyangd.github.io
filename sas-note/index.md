@@ -179,7 +179,7 @@ run;
 `dsd` option performs serveral functions:
 
 - changes the default delimiter from a blank to comma,
-- treats two-co,,a in a row (, ,) as missing value
+- treats two-comma in a row (, ,) as missing value
 - strips "quotes" from the character values
 
 ```sas

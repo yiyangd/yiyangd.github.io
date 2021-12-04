@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Course Notes | SFU STAT450 - Statistical Theory (Hand Written)  - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Course Notes | SFU STAT450 - Statistical Theory (Hand Written) " />
-<meta property="og:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   Lec08: Oct 7 - Thursday Lec09: Oct 13 - Thursday " />
+<meta property="og:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   Lec08: Oct 7 - Thursday Likelihood function, Minimal sufficient, Completeness Lec09: Oct 14 - Thursday Complete Sufficient Examples Ancillary and Basu&rsquo;s Theorem Lec10: Oct 18 - Monday Chapter 7 - Point Estimation 点估计：利用样本函数的一个具体数值去估计一个未知参数" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/stat-theory/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-08T00:00:00+00:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Course Notes | SFU STAT450 - Statistical Theory (Hand Written) "/>
-<meta name="twitter:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   Lec08: Oct 7 - Thursday Lec09: Oct 13 - Thursday "/>
+<meta name="twitter:description" content="Lec01: Sep 9 - Thursday     Lec02: Sep 13 - Monday   Lec03: Sep 16 - Thursday    Lec04: Sep 20 - Monday   Lec05: Sep 23 - Thursday     Lec06: Sep 27 - Monday   Lec07: Oct 4 - Monday   Lec08: Oct 7 - Thursday Likelihood function, Minimal sufficient, Completeness Lec09: Oct 14 - Thursday Complete Sufficient Examples Ancillary and Basu&rsquo;s Theorem Lec10: Oct 18 - Monday Chapter 7 - Point Estimation 点估计：利用样本函数的一个具体数值去估计一个未知参数"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/stat-theory\/"
-        },"genre": "posts","wordcount":  45 ,
+        },"genre": "posts","wordcount":  98 ,
         "url": "https:\/\/yiyangd.github.io\/stat-theory\/","datePublished": "2021-09-08T00:00:00+00:00","dateModified": "2021-09-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Course Notes | SFU STAT450 - Statistical Theory (Hand Written) </h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;45 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-08">2021-09-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;98 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -124,8 +124,38 @@
         <li><a href="#lec05-sep-23---thursday">Lec05: Sep 23 - Thursday</a></li>
         <li><a href="#lec06-sep-27---monday">Lec06: Sep 27 - Monday</a></li>
         <li><a href="#lec07-oct-4---monday">Lec07: Oct 4 - Monday</a></li>
-        <li><a href="#lec08-oct-7---thursday">Lec08: Oct 7 - Thursday</a></li>
-        <li><a href="#lec09-oct-13---thursday">Lec09: Oct 13 - Thursday</a></li>
+        <li><a href="#lec08-oct-7---thursday">Lec08: Oct 7 - Thursday</a>
+          <ul>
+            <li><a href="#likelihood-function-minimal-sufficient-completeness">Likelihood function, Minimal sufficient, Completeness</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec09-oct-14---thursday">Lec09: Oct 14 - Thursday</a>
+          <ul>
+            <li><a href="#complete-sufficient-examples">Complete Sufficient Examples</a></li>
+            <li><a href="#ancillary-and-basus-theorem">Ancillary and Basu&rsquo;s Theorem</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec10-oct-18---monday">Lec10: Oct 18 - Monday</a>
+          <ul>
+            <li><a href="#chapter-7---point-estimation">Chapter 7 - Point Estimation</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec11-oct-25---monday">Lec11: Oct 25 - Monday</a>
+          <ul>
+            <li><a href="#cramer-rao-lower-bound">Cramer-Rao Lower Bound</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec12-nov-01---monday">Lec12: Nov 01 - Monday</a>
+          <ul>
+            <li><a href="#attainment-of-c-r-lower-bound">Attainment of C-R Lower Bound</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec13-nov-04---thursday">Lec13: Nov 04 - Thursday</a>
+          <ul>
+            <li><a href="#the-mean-squared-error-mse">The Mean Squared Error (MSE)</a></li>
+          </ul>
+        </li>
+        <li><a href="#lec14-nov">Lec14: Nov</a></li>
       </ul>
     </li>
   </ul>
@@ -195,7 +225,20 @@
 </figure>
 </p>
 <h3 id="lec08-oct-7---thursday">Lec08: Oct 7 - Thursday</h3>
-<h3 id="lec09-oct-13---thursday">Lec09: Oct 13 - Thursday</h3>
+<h4 id="likelihood-function-minimal-sufficient-completeness">Likelihood function, Minimal sufficient, Completeness</h4>
+<h3 id="lec09-oct-14---thursday">Lec09: Oct 14 - Thursday</h3>
+<h4 id="complete-sufficient-examples">Complete Sufficient Examples</h4>
+<h4 id="ancillary-and-basus-theorem">Ancillary and Basu&rsquo;s Theorem</h4>
+<h3 id="lec10-oct-18---monday">Lec10: Oct 18 - Monday</h3>
+<h4 id="chapter-7---point-estimation">Chapter 7 - Point Estimation</h4>
+<p>点估计：利用样本函数的一个<strong>具体数值</strong>去估计一个<strong>未知参数</strong></p>
+<h3 id="lec11-oct-25---monday">Lec11: Oct 25 - Monday</h3>
+<h4 id="cramer-rao-lower-bound">Cramer-Rao Lower Bound</h4>
+<h3 id="lec12-nov-01---monday">Lec12: Nov 01 - Monday</h3>
+<h4 id="attainment-of-c-r-lower-bound">Attainment of C-R Lower Bound</h4>
+<h3 id="lec13-nov-04---thursday">Lec13: Nov 04 - Thursday</h3>
+<h4 id="the-mean-squared-error-mse">The Mean Squared Error (MSE)</h4>
+<h3 id="lec14-nov">Lec14: Nov</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

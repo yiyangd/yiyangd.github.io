@@ -43,5 +43,31 @@
 
 ### Lec08: Oct 7 - Thursday
 
-### Lec09: Oct 13 - Thursday
+#### Likelihood function, Minimal sufficient, Completeness
+
+### Lec09: Oct 14 - Thursday
+
+#### Complete Sufficient Examples
+
+#### Ancillary and Basu's Theorem
+
+### Lec10: Oct 18 - Monday
+
+#### Chapter 7 - Point Estimation
+
+点估计：利用样本函数的一个**具体数值**去估计一个**未知参数**
+
+### Lec11: Oct 25 - Monday
+
+#### Cramer-Rao Lower Bound
+
+### Lec12: Nov 01 - Monday
+
+#### Attainment of C-R Lower Bound
+
+### Lec13: Nov 04 - Thursday
+
+#### The Mean Squared Error (MSE)
+
+### Lec14: Nov
 
