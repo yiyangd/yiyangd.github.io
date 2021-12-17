@@ -102,6 +102,32 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/sas-notes2/">SAS Notes 02 | Condition, Loop, Merge, Array</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-12-16">2021-12-16</time></span></div><div class="content">1. Conditional Statements 1.1. IF conditions Use IF and ELSE IF statements, to create the AgeGroup
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  data conditional; input Age Midterm Quiz $ Final; *if Age &lt; 20 then AgeGroup = 1; /*this will let missing value = 1*/ if Age lt 20 and Age ne .</div><div class="post-footer">
+        <a href="/sas-notes2/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/sas-notes3/">SAS Notes 03 | Tutorials and SQL</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-12-16">2021-12-16</time></span></div><div class="content">Week 11 Do Group Read exam data into sas environment.
+ Compute Total_1 = Assignment_20 + Mid_30 + Final_50 Compute Total_2 = (Mid_30 + Final_50) * 100 / 80 Assign higher of Total_1 and Total_2 as the Grand_Total If Grand_Total&gt;50 then pass and if not fail  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  data exam; infile &#34;/home/u59686016/STAT342T/exam.</div><div class="post-footer">
+        <a href="/sas-notes3/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/pose-estimation/">Pose Estimation | 位姿估计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-12-04">2021-12-04</time></span></div><div class="content">Relative Pose Estimation Recent Progress and New Methods
+相对位姿估计的进展和新方法
+深蓝学院公开课，赵季老师
+ 1. Pose Estimation Categorization Pose from 3D - 3D (for point clouds)
+ point cloud registration ICP, NDT, LOAM, ..  Pose from 3D - 2D (for image and map)
+ absolute pose estimation P3P, perspective-n-point (PnP), ..  Pose from 2D - 2D (for image with overlap)
+ relati  </div><div class="post-footer">
+        <a href="/pose-estimation/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/pcd_registration/">Point Cloud Registration | 点云配准</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-12-03">2021-12-03</time></span></div><div class="content">Registration: Find a Transform to align two point clouds
+ A transform consists of Rotation R and Translation t  Applications:
+ Odometry(里程计)/SLAM Mapping Loop Closure Calibration Object Pose Estimation  Problem Definition Given two</div><div class="post-footer">
+        <a href="/pcd_registration/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/sas-vis/">SAS Notes | PROC TABULATE &#43; PROC SGPLOT </a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-27">2021-11-27</time></span></div><div class="content">The tutorial report may consists of separate sections that teach different aspects/options within a SAS procedure. You will write about:
  Explanation in your own word of how a certain options works in the SAS procedure. Example SAS code applied on the any of the three data set Interpretation of the output from the example SAS code. You should be able to explain these clearly in your report.  Final Project 1.</div><div class="post-footer">
@@ -115,25 +141,6 @@
  感受：我对神时常有疑惑，但我对这弯曲的世代一点疑惑都没有！ 我们暂时感受到安全只是因为我们暂时的幸运  2.4. 信徒们共享生活（43 - 47） 使徒行传第三章 3.1. 彼得医好瘸腿的人（1 - 10） 3.2. 彼得在所罗门廊下的讲道（11 - 26） 【徒三 21】「天必留祂，等到万物复兴的时候，就是神从创世以来、借着圣先知的口所说的。」
 使徒行传第四章 4.1. 彼得和约翰在公会受审（1 - 12，门徒第一次被犹太议会审讯） 【徒四 2】「因他们教训百姓，本着耶稣，传说死人复活，就很烦恼，」</div><div class="post-footer">
         <a href="/acts/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/modern-robotics/">Robot Note | Robotic Manipulation (MIT 6.800)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-18">2021-11-18</time></span></div><div class="content">Professor let me read the topics of this book.
-Chapter 2 - Foundations of Robot Motion  DF of a Rigid Body DF of a Robot  Chapter 3 - Introduction to Rigid-Body Motion  Rotation Matrices! Homogeneous Transformation Matrices  Chapter 4 - Forward Kinematics Chapter 5 - Velocity Kinematics and Statics Chapter 6 - Inverse Kinematics Chapter 7 - Kinematics of Closed Chains Chapter 8 - Dynamics of Open Chains Chapter 9 - Chapter Chapter Chapter Chapter </div><div class="post-footer">
-        <a href="/modern-robotics/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/robotic-manipulation/">Robot Note | Robotic Manipulation (MIT 6.800)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-18">2021-11-18</time></span></div><div class="content">Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - Let&rsquo;s get you a robot Lec 03 - Basic Pick and Place Lec 04 - Differential Kinematics and Trajectories Lec 05 - Differential Kinematics via Optimization Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!! Lec 07 - Geometric Perception: Partial Views and Outliers Lec 08 - Geometric perception: Non-penetration and free-space constraints Lec 09 - Manipulation in Cluster Lec 10 Lec 12 - Deep Perception: Perceptual Representations for Lec 13 </div><div class="post-footer">
-        <a href="/robotic-manipulation/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/robot-operating-system/">ROS Note | Install and Launch First ROS2 Program</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-01">2021-11-01</time></span></div><div class="content">ROS2 is expected to become mature and fully replace ROS1 by 2023.
- ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023) ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022  ROS2 provides a standard for Robotic Applications
- any robots can be powered by ROS2  ROS2 provides a way of separating code into reusable blocks</div><div class="post-footer">
-        <a href="/robot-operating-system/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/dp-0_1knapsack/">Algorithm Notes | Dynamic Programming</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-10-08">2021-10-08</time></span></div><div class="content">1. 0/1 KnapSack 494. Target Sum 1 2 3 4 5 6 7 8  Input: nums = [1,1,1,1,1], target = 3 Output: 5 Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3. -1 + 1 + 1 + 1 + 1 = 3 +1 - 1 + 1 + 1 + 1 = 3 +1 + 1 - 1 + 1 + 1 = 3 +1 + 1 + 1 - 1 + 1 = 3 +1 + 1 + 1 + 1 - 1 = 3   Solution 1 - Backtrack 1 2 3 4 5 6 7 8 9 10 11 12 13  int count = 0; public int findTargetSumWays(int[] nums, int target) { backtrack(nums, target, 0, 0); return count; } public void backtrack(int[] nums, int target, int idx, int sum) { if (idx == nums.</div><div class="post-footer">
-        <a href="/dp-0_1knapsack/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

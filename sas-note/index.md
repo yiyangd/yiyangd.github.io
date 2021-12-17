@@ -486,11 +486,17 @@ ods pdf close;
 
 {{< figure src="/images/sas/pdf_output.jpg" width="600">}}
 
-### Week 6
+### Week 6. Working with time
 
-#### Example 24: Working with time
+#### datetime
 
 SAS `datetime` for _Dec. 06, 1962 at 11:13:04 am_ equals `92488384 seconds` from _Jan. 01, 1960 at midnight_
+
+Time `FORMAT`:
+
+- `hhmm.` <=> `0:15`
+- `hour5.2` <=> `0.25` (hours and decimal fractions of hours)
+- `time8.` <=> `0:15:00`
 
 ```sas
 /*
@@ -500,24 +506,22 @@ SAS `datetime` for _Dec. 06, 1962 at 11:13:04 am_ equals `92488384 seconds` from
 data _null_;
 
 Time=92488384;
-*Time = 1;
+*Time = 1; /* 01JAN60:00:00:01 */
 format Time datetime.;
-put Time; /*06DEC62:11:13:04*/
+put Time; /* 06DEC62:11:13:04 */
 run;
+```
 
-/************************************************
-             SAS time functions
-************************************************/
+#### Time Functions
 
-/*
-- time() returns the current time as a SAS time value.
-- hms(h,m,s) returns a SAS time value for the given hour(h), minutes(m), and seconds(s).
-- hour(time) returns the hour portion of a SAS time value(time).
-- minute(time) returns the minute portion of a SAS time value(time).
-- second(time) returns the second portion of a SAS time value(time).
-- (Also, functions intnx( ) and intck( ) that we explored on SAS dates can also be used on SAS times.)
-*/
+- `time()` returns the current time as a SAS time value.
+- `hms(h,m,s)` returns a SAS time value for the given hour(h), minutes(m), and seconds(s).
+- `hour(time)` returns the hour portion of a SAS time value(time).
+- `minute(time)` returns the minute portion of a SAS time value(time).
+- `second(time)` returns the second portion of a SAS time value(time).
+- `intnx( )` and `intck( )` that we explored on SAS dates can also be used on SAS times.
 
+```sas
 data diet2;
  set diet;
 
@@ -529,26 +533,26 @@ wt_time2 = hms(wt_hr, wt_min, wt_sec);
 
 format curtime wt_time wt_time2 time8.;
 
-
 proc print data=diet2;
 	title 'The diet data set with five new variables';
     var subj curtime wt_time wt_hr wt_min wt_sec wt_time2;
 run;
 ```
 
-{{< figure src="/images/sas/diet_time.jpg" width="600">}}
+{{< figure src="/images/sas/diet_time.jpg" width="500">}}
 
-#### Example 25: Export SAS code with output in the log to a PDF file
+#### Export SAS code with output in the log to a PDF file
 
 ```sas
 /*Export SAS code in the log to a PDF file*/
 ods pdf file = "Time_ex_code_.pdf";
 proc document name = temp;
-   /*imports any text file, or a SAS program */
-   import textfile = "C:\dropbox\Dropbox\functional\stat342\STAT342 2020\w6 s\Time_ex.sas" to ^ ;
-   /*^ refers current directory of the output document*/
-   replay; /* we can replay the document whenever we need it and replay only the output items that we are interested in.
-             The document can be replayed using the REPLAY statement*/
+   /* imports any text file, or a SAS program */
+   import textfile = "/home/u59686016/STAT342W06/Time_ex.sas" to ^ ;
+   /* ^ refers [current directory] of the output document */
+   replay;
+   /* we can replay the document whenever we need it and replay only the output items that we are interested in.
+      The document can be replayed using the REPLAY statement*/
 run;
 proc print data=diet2;
 	title 'The diet data set with five new variables';
@@ -556,485 +560,103 @@ proc print data=diet2;
 run;
 quit;
 ods pdf close;
+
 /*Note that when you are exporting SAS code to a PDF, always start with a fresh SAS program. Otherwise, it will print
 the same SAS code more than one time(depending on the history) in the same document.*/
-
 ```
 
-#### Create Permanent SAS datasets
+#### Create， Input, Export Permanent SAS datasets
 
-### Week 7
+SAS datasets can be temporary or permanent.
 
-#### 7.1. IF conditions
-
-```sas
-data conditional;
- input Age Midterm Quiz $ Final;
-
-*if Age < 20 then AgeGroup = 1;
-*if Age lt 20 and Age ne . then AgeGroup = 1;
- if Age lt 20 and not missing(Age) then AgeGroup = 1;
- if Age ge 20 and Age lt 40  then AgeGroup = 2;
- if Age ge 40 and Age lt 60 then AgeGroup = 3;
- if Age ge 60 then AgeGroup = 4;
- datalines;
- 21 80 B- 82
- .  90 A  93
- 35 87 B+ 85
- 48 .  C+ 76
- .  62 F  67
- 51 78 C  45
-;
-
- proc print data = conditional noobs;
- run;
-
-/*Better way to write this program - use IF and ELSE IF statements*/
-
-data ifelse;
- set conditional;
-
- if Age lt 20 and not missing(Age) ;
-run;
-
-proc print data = ifelse;
-run;
-
-```
-
-#### 7.2. Subsetting IF
+- Temporary SAS datasets only exist during the current SAS session.
+  - `data Temp;` ==> `data work.Temp`
+  - SAS uses the default `libref` called `work` that SAS creates automatically every time we open a SAS session.
+- Permanent SAS datasets are saved to a location on the computer and exist after exiting SAS.
+  - use `LIBNAME` statement to create and specify the name of the library followed by the directory or
+    folder where we want to store the permanent dataset.
 
 ```sas
-/*Subsetting IF*/
+libname mylib '/home/u59686016/STAT342W06';
+/* The libref must [not be more than 8] charecters in length */
 
-data subset_if;
-
- input ID Age Midterm Quiz $ Final;
-
- if Quiz eq 'A'; /*Subset those who got A in Quiz.
-                  No THEN following the IF in this program.  */
+data mylib.test_scores;
+  input ID $ Score1-Score3 Name $;
 
 datalines;
-1001 21 80 B- 82
-1002 .  90 A  93
-1006 35 87 B+ 85
-1007 48 .  .  76
-1010 .  62 F  67
-2010 51 78 C  45
-2006 60 90 A  88
+1 90 95 98 Cody
+2 78 77 75 Preston
+3 88 91 92 Russell
 ;
-proc print data = subset_if noobs;
+
+proc print data = mylib.test_scores;
+run;
+
+proc contents data = mylib.test_scores;
+run;
+
+/*List all the SAS datasets in a sas library*/
+
+proc contents data = mylib._all_ nods;
+/*_all_: all dataset names
+  nods: show name of the datasets only, omitting the detail listing for each data set.*/
 run;
 ```
 
-#### 7.3. IN Operator
+Input this permanent library and compute an average score for each subject in Test_score data set.
 
 ```sas
-/*IN Operator*/
+libname mylib '/home/u59686016/STAT342W06/';
 
-data scores;
-  input ID Age Midterm Quiz $ Final;
-datalines;
-1001 21 80 B- 82
-1002 .  90 A  93
-1006 35 87 B+ 85
-1007 48 .  .  76
-1010 .  62 F  67
-2010 51 78 C  45
-2006 60 90 A  88
-;
-data IN_operator;
- set scores;
-
- if Quiz in ('A+','A','B+','B') then QuizRange = 1;
- else if Quiz in ('B-','C+','C') then QuizRange = 2;
- else if not missing(Quiz) then QuizRange = 3;
-
-proc print data = IN_operator noobs;
+data new;
+ set mylib.test_scores;
+ AvgScore = mean(of score1-score3);
 run;
 
-/*IN with WHERE statement*/
-/*Subset the data with given ID numbers*/
-data where_ex;
- set IN_operator;
-
- *where ID in (1001,1002,1006);
-
-  where ID in (1001:1010,2006);
-  *if ID in (1001:1010,2006);
-
-run;
-
-proc print data = where_ex noobs;
+proc print data=new;
 run;
 
 ```
 
-{{< figure src="/images/sas/in_operator.jpg" width="600">}}
+{{< figure src="/images/sas/permanent.jpg" width="400">}}
 
-#### 7.4. SELECT
+Export this permanent library into files of different formats
+
+- `proc export`
+- `outfile`
+- `dbms`
+- `label`
 
 ```sas
-/*SELECT statement*/
+/*Writing txt file*/
 
-libname mylib '/home/u59686016/STAT342W07';
-
-data select_statement;
- set mylib.scores;
-
- select;
-  when (missing(Age)) AgeGroup = .;
-  when (Age lt 20) AgeGroup = 1;
-  when (Age lt 40) AgeGroup = 2;
-  when (Age lt 60) AgeGroup = 3;
-  when (Age ge 60) AgeGroup = 4;
-  otherwise;
- end;
+proc export data=mylib.test_scores
+      outfile='/home/u59686016/STAT342W06/testscore.txt'
+      dbms=dlm;
+      delimiter=' ';
 run;
 
-proc print data = select_statement noobs;
-run;
-```
+/*Writing csv file*/
 
-{{< figure src="/images/sas/select.jpg" width="600">}}
-
-#### 7.5. Logical Operator
-
-```sas
-data grades;
-   	input name $ 1-15 e1 e2 e3 e4 p1 f1;
-	avg = round((e1+e2+e3+e4)/4,0.1);
-		 if ((e1 < e3) and (e1 < e4))
-            or ((e2 < e3) and (e2 < e4)) then adjavg = avg + 2;
-    else adjavg = avg;
-datalines;
-Alexander Smith  78 82 86 69  97 80
-John Simon       88 72 86  . 100 85
-Patricia Jones   98 92 92 99  99 93
-Jack Benedict    54 63 71 49  82 69
-Rene Porter     100 62 88 74  98 92
-;
+proc export data=mylib.test_scores
+      outfile='/home/u59686016/STAT342W06/testscore.csv'
+      dbms=csv replace;
 run;
 
-proc print data = grades;
-	var name e1 e2 e3 e4 avg adjavg;
-run;
-```
+/*Writing a tab separated file*/
 
-{{< figure src="/images/sas/logical.jpg" width="600">}}
-
-#### 7.6. WHERE
-
-```sas
-data where_ex;
-   	input name $ 1-15 Age Weight;
-
-datalines;
-Alexander Smith  18 82
-John Simon       28 72
-Patricia Jones   .  92
-Jack Benedict    24 63
-Nick Porter      40 62
-;
+proc export data=mylib.test_scores
+      outfile='/home/u59686016/STAT342W06/testscore_tabs.txt'
+      dbms=tab replace;
 run;
 
-proc print data = where_ex noobs;
-   *where Age is missing;
-   *where Age is null;
-   *where Age > 20;
-   *where Weight > 60 and Weight < 80;
-   *where Name contains 'er';
-  * where Name like 'J%'; /*Names start with the letter J */
-   where Name like 'Ja_k%';  /*Result is Jack with Age = 24 and Weight = 63*/
+/*Writing an excel file*/
 
-run;
-```
-
-#### 7.7. DO Group
-
-```sas
-data grades_IF;
- input Age Midterm Quiz $ Final_exam;
-
- if missing(Age) then delete; /*Prevents missing age from being added to the data set*/
- if Age <= 39 then Agegrp = "Younger group";
- if Age <= 39 then Grade = (0.4 * Midterm) + (0.6 * Final_exam);
- if Age > 39 then Agegrp = "Older group";
- if Age > 39 then Grade = (Midterm + Final_exam)/2;
-datalines;
-21 80 B- 82
-.  90 A  93
-35 87 B+ 85
-48 .  .  76
-59 95 A+ 97
-15 88 .  93
-67 97 A  91
-.  62 F  67
-35 77 C- 77
-49 59 C  81
-;
-run;
-
-proc print data = grades_IF noobs;
-run;
-
-/*
-Notice that the first two IF statements and the last two IF statements test the same condition.
-We would like to be able to test one condition and then perform several operations.
-By using DO and END statements, we can do this.
-*/
-
-/* Above example can be done using DO group (DO END) */
-
-data grades_DO_END;
- set grades_IF;
-
- if missing(Age) then delete;
- if Age <= 39 then do;          /*When the IF condition is true, all the statements in the DO group execute. */
-    Agegrp = "Younger group";
-	Grade = (0.4 * Midterm) + (0.6 * Final_exam);
- end;
- else if Age > 39 then do;
-    Agegrp = "Older group";
-	Grade = (Midterm + Final_exam)/2;
- end;
- /*
- A good way to think of this structure is �If the condition is true,
- do the following statements until you reach the end.�
- */
-run;
-
-proc print data = grades_DO_END noobs;
+proc export data=mylib.test_scores
+      outfile='/home/u59686016/STAT342W06/testscore.xlsx'
+      dbms=xlsx replace;
+      sheet = "test";
 run;
 
 ```
-
-{{< figure src="/images/sas/dogroup.jpg" width="600">}}
-
-#### 7.8. DO Loop
-
-```sas
-/*DO loop*/
-
-/*Type1: Numeric index variable*/
-/*Example 1: */
-
-/* Say, you want to compute the total amount of money you will have,
-if the you start with $100 and invest it at a 3.75% interest rate for 3 years.
-*/
-
-data DO_loop;
- Interest = 0.0375;
- Total = 100;
- do Year = 1 to 3; /*Iterative DO statement: do index-variable = start to stop by increment (default increment = 1);*/
-    Total = Total + Interest * Total; /*Increment*/
-	output; /* Write out an observation to the output data set. Here,
-	          we want to output an observation each time we compute a new Total*/
- end;
- format Total dollar10.2;
-run;
-
-proc print data = DO_loop noobs;
-run;
-
-
-/*Example 2*/
-/*
- Suppose you want to generate a table of the
- integers from 1 to 10, along with their squares and square roots.
-*/
-
-data table;
- *do n = 1 to 10;
- *do n = 0 to 100 by 10;
- do n = 10 to 0 by -2; /*negative increment*/
-   Square = n * n;
-   SquareRoot = sqrt(n);
-   output;
- end;
-run;
-
-proc print data = table noobs;
-run;
-
-
-/*Example 3*/
-
-/*
- Graph an equation
-*/
-
-data equation;
- do x = -10 to 10 by 0.01;
-    y = 2*x**3 - 5*x**2 + 15*x -8;
-	output; /*Try withput output*/
- end;
-run;
-
-title 'Plot of Y versus X';
-proc gplot data = equation;
-     plot y * x;
-run;
-quit;
-
-/*Type2: Character index variable*/
-
-/*
-You have five scores for patients on a placebo drug and five scores for patients on an active drug.
-An easy way to read these values is to use a DO loop with character values, as follows:
-*/
-
-
-data drug;
- do Group = 'Placebo','Active'; /* Character index variable */
-    do Subj = 1 to 5;
-	   input Score;
-	   output;
-	end;
- end;
-
- datalines;
- 250
- 222
- 230
- 210
- 199
- 166
- 183
- 123
- 129
- 234
- ;
- run;
-
- proc print data = drug;
- run;
-
-
-data drug;
- do Group = 'Placebo','Active'; /* Character index variable */
-    do Subj = 1 to 5;
-	   input Score @; /*@: hold the line for another INPUT statement in the DATA step.
-	                       Otherwise each time SAS executes an INPUT statement, it goes to a new line of data.*/
-	   output;
-	end;
- end;
-
- datalines;
- 250 222 230 210 199
- 166 183 123 129 234
- ;
- run;
-
- proc print data = drug;
- run;
-
-```
-
-#### 7.9. DO Until
-
-```sas
-/*DO UNTIL*/
-
-/*
-Let�s revisit the compound interest problem.
-Instead of asking how much money you have after x years, you want to know how many years
-you need to keep your $100 in the bank at 3.75% interest to double your money.
-*/
-
-data double_money;
- Interest = 0.0375;
- Total = 100;
- Year = 0;
- do until (Total ge 200);
-    Year = Year + 1; *or Year + 1;
-	Total = Total + Total * Interest;
-    output;
- end;
- format Total dollar10.2;
-run;
-/*
-An important point to remember about DO UNTIL is that the condition,
-placed in parentheses after the keyword UNTIL, is tested at the bottom of the loop.
-Therefore, a DO UNTIL loop always executes at least once.
-
-To make this clear, suppose you started with $300. What happens when you run the program?
-*/
-proc print data = double_money noobs;
-run;
-
-/*
-CAUTION: It is very important that the condition you place on a DO UNTIL statement
-becomes true at some point. For example, if you change the DO UNTIL statement as follows:
-
-                  do until (Total eq 200);
-
- the condition is never true and you have what is called an infinite loop.
-
-*/
-
-```
-
-#### 7.10. DO While
-
-```sas
-/*DO WHILE*/
-
-/*Consider compound interest problem again.*/
-
-data double_money;
- Interest = 0.0375;
- Total = 100;
- Year = 0;
- do while (Total le 200); /*executes as long as Total is less than or equal to 200*/
-    Year = Year + 1; *or Year + 1;
-	Total = Total + Total * Interest;
-    output;
- end;
- format Total dollar10.2;
-run;
-
-proc print data = double_money noobs;
-run;
-
-```
-
-#### 7.11. Leave and Continue
-
-```sas
-/*LEAVE and CONTINUE*/
-
-data leave_it;
- Interest = 0.0375;
- Total = 100;
- do Year = 1 to 100;
-    Total = Total + Total * Interest;
-	output;
-	if Total ge 200 then leave;
- end;
- format Total dollar10.2;
-run;
-
-proc print data = leave_it;
-run;
-
-
-/* CONTINUE */
-
-data continue_on;
- Interest = 0.0375;
- Total = 100;
- do Year = 1 to 100 until (Total ge 200);
-    Total = Total + Total * Interest;
-	if Total le 150 then continue;
-    output;
- end;
- format Total dollar10.2;
-run;
-
-proc print data = continue_on;
-run;
-```
-
-#### 8.1.
 

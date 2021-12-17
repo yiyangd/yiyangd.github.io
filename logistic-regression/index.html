@@ -33,7 +33,7 @@ An image is store in the computer in three separate matrices
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/logistic-regression\/"
-        },"genre": "posts","wordcount":  675 ,
+        },"genre": "posts","wordcount":  1507 ,
         "url": "https:\/\/yiyangd.github.io\/logistic-regression\/","datePublished": "2021-10-03T00:00:00+00:00","dateModified": "2021-10-03T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@ An image is store in the computer in three separate matrices
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;675 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-03">2021-10-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1507 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -123,12 +123,15 @@ An image is store in the computer in three separate matrices
       <ul>
         <li><a href="#1-binary-classification-example">1. Binary Classification Example</a></li>
         <li><a href="#2-sigmoid-function-for-lr">2. Sigmoid Function for LR</a></li>
-        <li><a href="#cost-function-for-logistic-regression">Cost Function for Logistic Regression</a></li>
-        <li><a href="#gradient-descent">Gradient Descent</a>
+        <li><a href="#3-cost-function-for-logistic-regression">3. Cost Function for Logistic Regression</a></li>
+        <li><a href="#4-gradient-descent">4. Gradient Descent</a>
           <ul>
             <li><a href="#forward-and-backward-propagation">Forward and Backward Propagation</a></li>
           </ul>
         </li>
+        <li><a href="#5-optimization">5. Optimization</a></li>
+        <li><a href="#6-predict">6. Predict</a></li>
+        <li><a href="#7-merge-all-functions-into-a-model">7. Merge all functions into a Model</a></li>
       </ul>
     </li>
   </ul>
@@ -217,7 +220,7 @@ An image is store in the computer in three separate matrices
     <span class="k">return</span> <span class="n">s</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="cost-function-for-logistic-regression">Cost Function for Logistic Regression</h3>
+</div><h3 id="3-cost-function-for-logistic-regression">3. Cost Function for Logistic Regression</h3>
 <p>Given m training data: {$(x^{(1)},y^{(1)}), \dots, (x^{(m)},y^{(m)})$}</p>
 <p><strong>Loss Function</strong><br>
 $$L(\hat{y}, y) = - (y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$</p>
@@ -227,12 +230,12 @@ $$L(\hat{y}, y) = - (y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$</p>
 </ul>
 <p><strong>Cost Function</strong></p>
 <ul>
-<li>Goal: Use <strong>Gradient Descent</strong> to <em>optimize the _parameters</em> w and b* to **minimize the Cost Function**:
-$$J(w,b)=\frac{1}{m}\sum^m*{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
+<li>Goal: Use <strong>Gradient Descent</strong> to <em>optimize the _parameters</em> w and b* to <strong>minimize the Cost Function</strong>:
+$$J(w,b)=\frac{1}{m}\sum^m_{i=1} L(\hat{y}^{(i)}, y^{(i)})$$
 $$= - \frac{1}{m}\sum^m_{i=1} [y^{(i)}\log (\hat{y}^{(i)}) - (1-y^{(i)})\log (1-\hat{y}^{(i)})]$$</li>
 <li>the cost function is a <strong>Convex Function</strong> that has a Global (Minimum) Optimum point</li>
 </ul>
-<h3 id="gradient-descent">Gradient Descent</h3>
+<h3 id="4-gradient-descent">4. Gradient Descent</h3>
 <p>Start at the <em>Initial Point (w, b)</em> and take a step in the <em>steepest downhill direction</em></p>
 <figure><img src="/images/deeplearning/w2l4.jpeg" width="400"/>
 </figure>
@@ -298,6 +301,9 @@ $$= - \frac{1}{m}\sum^m_{i=1} [y^{(i)}\log (\hat{y}^{(i)}) - (1-y^{(i)})\log (1-
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="forward-and-backward-propagation">Forward and Backward Propagation</h4>
+<figure><img src="/images/deeplearning/forward_backward.jpeg" width="600"/>
+</figure>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -370,6 +376,274 @@ $$= - \frac{1}{m}\sum^m_{i=1} [y^{(i)}\log (\hat{y}^{(i)}) - (1-y^{(i)})\log (1-
              <span class="s2">&#34;db&#34;</span><span class="p">:</span> <span class="n">db</span><span class="p">}</span>
 
     <span class="k">return</span> <span class="n">grads</span><span class="p">,</span> <span class="n">cost</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-optimization">5. Optimization</h3>
+<p>Write down the optimization function. The goal is to learn $w$ and $b$ by minimizing the cost function $J$. For a parameter $\theta$, the update rule is $\theta = \theta - \alpha \text{ } d\theta$, where $\alpha$ is the learning rate.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">print_cost</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    This function optimizes w and b by running a gradient descent algorithm
+</span><span class="s2">
+</span><span class="s2">    Arguments:
+</span><span class="s2">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)
+</span><span class="s2">    b -- bias, a scalar
+</span><span class="s2">    X -- data of shape (num_px * num_px * 3, number of examples)
+</span><span class="s2">    Y -- true &#34;label&#34; vector (containing 0 if non-cat, 1 if cat), of shape (1, number of examples)
+</span><span class="s2">    num_iterations -- number of iterations of the optimization loop
+</span><span class="s2">    learning_rate -- learning rate of the gradient descent update rule
+</span><span class="s2">    print_cost -- True to print the loss every 100 steps
+</span><span class="s2">
+</span><span class="s2">    Returns:
+</span><span class="s2">    params -- dictionary containing the weights w and bias b
+</span><span class="s2">    grads -- dictionary containing the gradients of the weights and bias with respect to the cost function
+</span><span class="s2">    costs -- list of all the costs computed during the optimization, this will be used to plot the learning curve.
+</span><span class="s2">
+</span><span class="s2">    Tips:
+</span><span class="s2">    You basically need to write down two steps and iterate through them:
+</span><span class="s2">        1) Calculate the cost and the gradient for the current parameters. Use propagate().
+</span><span class="s2">        2) Update the parameters using gradient descent rule for w and b.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+
+        <span class="c1"># Cost and gradient calculation</span>
+        <span class="n">grads</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">propagate</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+        <span class="c1"># Retrieve derivatives from grads</span>
+        <span class="n">dw</span> <span class="o">=</span> <span class="n">grads</span><span class="p">[</span><span class="s2">&#34;dw&#34;</span><span class="p">]</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">grads</span><span class="p">[</span><span class="s2">&#34;db&#34;</span><span class="p">]</span>
+
+        <span class="c1"># update rule</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="p">(</span><span class="n">learning_rate</span><span class="o">*</span><span class="n">dw</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">learning_rate</span><span class="o">*</span><span class="n">db</span><span class="p">)</span>
+        <span class="c1"># Record the costs</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
+        <span class="c1"># Print the cost every 100 training iterations</span>
+        <span class="k">if</span> <span class="n">print_cost</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&#34;Cost after iteration </span><span class="si">%i</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;w&#34;</span><span class="p">:</span> <span class="n">w</span><span class="p">,</span>
+              <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="n">b</span><span class="p">}</span>
+
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;dw&#34;</span><span class="p">:</span> <span class="n">dw</span><span class="p">,</span>
+             <span class="s2">&#34;db&#34;</span><span class="p">:</span> <span class="n">db</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">params</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">costs</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-predict">6. Predict</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)
+</span><span class="s1">
+</span><span class="s1">    Arguments:
+</span><span class="s1">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)
+</span><span class="s1">    b -- bias, a scalar
+</span><span class="s1">    X -- data of size (num_px * num_px * 3, number of examples)
+</span><span class="s1">
+</span><span class="s1">    Returns:
+</span><span class="s1">    Y_prediction -- a numpy array (vector) containing all predictions (0/1) for the examples in X
+</span><span class="s1">    &#39;&#39;&#39;</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Y_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">))</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Compute vector &#34;A&#34; predicting the probabilities of a cat being present in the picture</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>           <span class="c1"># Dimentions = (1, m)</span>
+
+    <span class="n">Y_prediction</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="c1"># 1 if A &gt;= 0.5, 0 otherwise</span>
+
+    <span class="k">assert</span><span class="p">(</span><span class="n">Y_prediction</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">Y_prediction</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-merge-all-functions-into-a-model">7. Merge all functions into a Model</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">print_cost</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Builds the logistic regression model by calling the function you&#39;ve implemented previously
+</span><span class="s2">
+</span><span class="s2">    Arguments:
+</span><span class="s2">    X_train -- training set represented by a numpy array of shape (num_px * num_px * 3, m_train)
+</span><span class="s2">    Y_train -- training labels represented by a numpy array (vector) of shape (1, m_train)
+</span><span class="s2">    X_test -- test set represented by a numpy array of shape (num_px * num_px * 3, m_test)
+</span><span class="s2">    Y_test -- test labels represented by a numpy array (vector) of shape (1, m_test)
+</span><span class="s2">    num_iterations -- hyperparameter representing the number of iterations to optimize the parameters
+</span><span class="s2">    learning_rate -- hyperparameter representing the learning rate used in the update rule of optimize()
+</span><span class="s2">    print_cost -- Set to true to print the cost every 100 iterations
+</span><span class="s2">
+</span><span class="s2">    Returns:
+</span><span class="s2">    d -- dictionary containing information about the model.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># initialize parameters with zeros (≈ 1 line of code)</span>
+    <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">initialize_with_zeros</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Gradient descent (≈ 1 line of code)</span>
+    <span class="n">parameters</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">costs</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">print_cost</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve parameters w and b from dictionary &#34;parameters&#34;</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;w&#34;</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&#34;b&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Predict test/train set examples</span>
+    <span class="n">Y_prediction_test</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+    <span class="n">Y_prediction_train</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+
+    <span class="c1"># Print train/test Errors</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;train accuracy: </span><span class="si">{}</span><span class="s2"> %&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Y_prediction_train</span> <span class="o">-</span> <span class="n">Y_train</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test accuracy: </span><span class="si">{}</span><span class="s2"> %&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Y_prediction_test</span> <span class="o">-</span> <span class="n">Y_test</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+
+
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;costs&#34;</span><span class="p">:</span> <span class="n">costs</span><span class="p">,</span>
+         <span class="s2">&#34;Y_prediction_test&#34;</span><span class="p">:</span> <span class="n">Y_prediction_test</span><span class="p">,</span>
+         <span class="s2">&#34;Y_prediction_train&#34;</span> <span class="p">:</span> <span class="n">Y_prediction_train</span><span class="p">,</span>
+         <span class="s2">&#34;w&#34;</span> <span class="p">:</span> <span class="n">w</span><span class="p">,</span>
+         <span class="s2">&#34;b&#34;</span> <span class="p">:</span> <span class="n">b</span><span class="p">,</span>
+         <span class="s2">&#34;learning_rate&#34;</span> <span class="p">:</span> <span class="n">learning_rate</span><span class="p">,</span>
+         <span class="s2">&#34;num_iterations&#34;</span><span class="p">:</span> <span class="n">num_iterations</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">d</span>
 </code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
