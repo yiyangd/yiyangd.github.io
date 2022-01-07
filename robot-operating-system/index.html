@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/robot-operating-system\/"
-        },"genre": "posts","wordcount":  670 ,
+        },"genre": "posts","wordcount":  857 ,
         "url": "https:\/\/yiyangd.github.io\/robot-operating-system\/","datePublished": "2021-11-01T00:00:00+00:00","dateModified": "2021-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,8 +110,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">ROS Note | Install and Launch First ROS2 Program</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;670 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;857 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -138,6 +138,7 @@
           <ul>
             <li><a href="#ros2-node">ROS2 Node</a></li>
             <li><a href="#minimal-code">Minimal Code</a></li>
+            <li><a href="#improve-the-code-structure-with-oop">Improve the Code Structure with OOP</a></li>
             <li><a href="#reference">Reference:</a></li>
           </ul>
         </li>
@@ -290,7 +291,7 @@ $ <span class="nb">source</span> local_setup.bash
 </div>
 </div><p>Add <code>source ~/ros2_workspace/install/setup.bash</code> via <code>gedit .bashrc</code></p>
 <h4 id="23-create-a-python-package">2.3. Create a Python Package</h4>
-<p>A package can be considered a <code>container</code> for your ROS 2 code.</p>
+<p>A <code>package</code> can be considered a <code>container</code> for your ROS 2 code.</p>
 <ul>
 <li>If you want to be able to <code>install</code> your code or <code>share</code> it with others, then you’ll need it organized in a package.</li>
 <li>With packages, you can release your ROS 2 work and allow others to build and use it easily.</li>
@@ -309,7 +310,7 @@ $ <span class="nb">source</span> local_setup.bash
 $ ros2 pkg create my_py_pkg --build-type ament_python --dependencies rclpy
 </code></pre></td></tr></table>
 </div>
-</div><p>Build packages in a workspace is especially valuable because you can build many packages at once by running <code>colcon build</code> in the workspace root.</p>
+</div><p>Build packages in a workspace is especially valuable because you can <strong>build many packages at once</strong> by running <code>colcon build</code> in the workspace root.</p>
 <ul>
 <li>Otherwise, you would have to build each package individually.</li>
 </ul>
@@ -329,17 +330,22 @@ $ colcon build --packages-select my_py_pkg
 <h4 id="ros2-node">ROS2 Node</h4>
 <p>Each <code>node</code> in <code>ROS Network</code> should be responsible for a <strong>single</strong>, <strong>module purpose</strong></p>
 <ul>
-<li>e.g. one node for controlling wheel motors, one node for controlling a laser range-finder, etc.</li>
+<li>e.g. one node for <strong>controlling wheel motors</strong>, one node for <strong>controlling a laser range-finder</strong>, etc.</li>
 <li>Each node can <em>send and receive data</em> to other nodes <em>via topics, services, actions, or parameters</em>.</li>
-<li>A full robotic system is comprised of many nodes working in concert. - In ROS 2, a single executable (C++/Python program..) can contain one or more nodes.
+<li>A full robotic system is comprised of many nodes working in concert.</li>
+<li>In ROS 2, a single executable (C++/Python program..) can contain one or more nodes.</li>
+</ul>
 <figure><img src="/images/ros/ros_network.jpg" width="500"/>
 </figure>
-</li>
-</ul>
+
 <p><strong>Benefits:</strong></p>
 <ul>
 <li>Reduce Code Complexity</li>
-<li>Fault Tolerance</li>
+<li>Fault Tolerance
+<ul>
+<li>if one node crashes, it will NOT make the other nodes crash</li>
+</ul>
+</li>
 </ul>
 <h4 id="minimal-code">Minimal Code</h4>
 <p>Create a new python file by <code>touch</code></p>
@@ -354,6 +360,9 @@ $ touch my_first_node.py
 </code></pre></td></tr></table>
 </div>
 </div><p>In <code>my_first_node.py</code></p>
+<ul>
+<li><code>rcl</code>: ROS Client Library</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -367,9 +376,15 @@ $ touch my_first_node.py
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">&#34;py_test&#34;</span><span class="p">)</span>
     <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Hello ROS2&#34;</span><span class="p">)</span>
@@ -393,7 +408,121 @@ $ touch my_first_node.py
 $ ./my_first_node.py
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="reference">Reference:</h4>
+</div><p>Install the Excutable Node</p>
+<ul>
+<li>specify the executable name in <code>setup.py</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+  <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&#34;py_node = my_py_pkg.my_first_node:main&#34;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then build again, before Executing <code>./py_node</code>, source the workspace</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> ros2_workspace/
+$ colcon build --packages-select my_py_pkg
+$ <span class="nb">cd</span> install/my_py_pkg/lib/my_py_pkg
+$ <span class="nb">source</span> ~/.bashrc
+$ ./py_node
+</code></pre></td></tr></table>
+</div>
+</div><p>The command <code>ros2 run</code> launches an <code>executable</code> from a <code>package</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">source</span> ~/.bashrc
+$ ros2 run my_py_pkg py_node
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>xxx.xxx<span class="o">]</span> <span class="o">[</span>py_test<span class="o">]</span>: Hello ROS2
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="improve-the-code-structure-with-oop">Improve the Code Structure with OOP</h4>
+<p>Add a <code>timer_callback</code> functions</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">MyNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&#34;pytest&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">counter_</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Hello ROS2!&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer_callback</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">counter_</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Hello &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter_</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">MyNode</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong></p>
+<figure><img src="/images/ros/pynode.png" width="500"/>
+</figure>
+
+<h4 id="reference">Reference:</h4>
 <p>[1]https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html#<br>
 [2]https://docs.ros.org/en/foxy/Tutorials/Workspace/Creating-A-Workspace.html<br>
 [3]https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html<br>
@@ -429,7 +558,7 @@ $ ./my_first_node.py
 <div id="comments"></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

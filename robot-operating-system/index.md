@@ -106,7 +106,7 @@ Add `source ~/ros2_workspace/install/setup.bash` via `gedit .bashrc`
 
 #### 2.3. Create a Python Package
 
-A package can be considered a `container` for your ROS 2 code.
+A `package` can be considered a `container` for your ROS 2 code.
 
 - If you want to be able to `install` your code or `share` it with others, then you’ll need it organized in a package.
 - With packages, you can release your ROS 2 work and allow others to build and use it easily.
@@ -120,7 +120,7 @@ $ cd ros2_workspace/src/
 $ ros2 pkg create my_py_pkg --build-type ament_python --dependencies rclpy
 ```
 
-Build packages in a workspace is especially valuable because you can build many packages at once by running `colcon build` in the workspace root.
+Build packages in a workspace is especially valuable because you can **build many packages at once** by running `colcon build` in the workspace root.
 
 - Otherwise, you would have to build each package individually.
 
@@ -136,15 +136,18 @@ $ colcon build --packages-select my_py_pkg
 
 Each `node` in `ROS Network` should be responsible for a **single**, **module purpose**
 
-- e.g. one node for controlling wheel motors, one node for controlling a laser range-finder, etc.
+- e.g. one node for **controlling wheel motors**, one node for **controlling a laser range-finder**, etc.
 - Each node can _send and receive data_ to other nodes _via topics, services, actions, or parameters_.
-- A full robotic system is comprised of many nodes working in concert. - In ROS 2, a single executable (C++/Python program..) can contain one or more nodes.
-  {{< figure src="/images/ros/ros_network.jpg" width="500">}}
+- A full robotic system is comprised of many nodes working in concert.
+- In ROS 2, a single executable (C++/Python program..) can contain one or more nodes.
+
+{{< figure src="/images/ros/ros_network.jpg" width="500">}}
 
 **Benefits:**
 
 - Reduce Code Complexity
 - Fault Tolerance
+  - if one node crashes, it will NOT make the other nodes crash
 
 #### Minimal Code
 
@@ -157,7 +160,12 @@ $ touch my_first_node.py
 
 In `my_first_node.py`
 
+- `rcl`: ROS Client Library
+
 ```py
+import rclpy
+from rclpy.node import Node
+
 def main(args=None):
     rclpy.init(args=args)
     node = Node("py_test")
@@ -177,6 +185,73 @@ Execuate the Python Program
 $ chmod +x my_first_node.py
 $ ./my_first_node.py
 ```
+
+Install the Excutable Node
+
+- specify the executable name in `setup.py`
+
+```python
+entry_points={
+  'console_scripts': [
+    "py_node = my_py_pkg.my_first_node:main"
+  ]
+}
+```
+
+Then build again, before Executing `./py_node`, source the workspace
+
+```shell
+$ cd ros2_workspace/
+$ colcon build --packages-select my_py_pkg
+$ cd install/my_py_pkg/lib/my_py_pkg
+$ source ~/.bashrc
+$ ./py_node
+```
+
+The command `ros2 run` launches an `executable` from a `package`
+
+```shell
+$ source ~/.bashrc
+$ ros2 run my_py_pkg py_node
+[INFO] [xxx.xxx] [py_test]: Hello ROS2
+```
+
+#### Improve the Code Structure with OOP
+
+Add a `timer_callback` functions
+
+```python
+import rclpy
+from rclpy.node import Node
+import time
+
+class MyNode(Node):
+
+  def __init__(self):
+    super().__init__("pytest")
+    self.counter_ = 0
+    self.get_logger().info("Hello ROS2!")
+    self.create_timer(1, self.timer_callback)
+
+  def timer_callback(self):
+    self.counter_ += 1
+    self.get_logger().info("Hello " + str(self.counter_) + " " + str(time.ctime(time.time())))
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+**Output:**
+
+{{< figure src="/images/ros/pynode.png" width="500">}}
 
 #### Reference:
 
