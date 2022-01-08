@@ -4,16 +4,16 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 04 Jan 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Wed, 05 Jan 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Statistical Learning Notes | Deep Learning</title>
     <link>https://yiyangd.github.io/deeplearning-01/</link>
-    <pubDate>Tue, 04 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <pubDate>Wed, 05 Jan 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/deeplearning-01/</guid>
-    <description><![CDATA[1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)
- however, neural networks resurfaced after 2010 with the new name deep learning, with new architectures, the availability of ever-larger training datasets, and a string of success stories on some niche problems such as  image and video classification (by Convolutional Neural Networks) speech and text modeling (by Recurrent Neural Networks)    2.]]></description>
+    <description><![CDATA[Index &ndash; Simple NN &ndash; Deep NN &ndash; CNN, U-Net, YOLO &ndash; PointNets ==&gt; 3D object dection &ndash; Pose Estimation
+1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)]]></description>
 </item><item>
     <title>Pose Estimation | 位姿估计</title>
     <link>https://yiyangd.github.io/pose-estimation/</link>

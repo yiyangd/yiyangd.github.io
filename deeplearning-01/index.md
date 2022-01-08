@@ -1,6 +1,14 @@
 # Statistical Learning Notes | Deep Learning
 
 
+### Index
+
+-- Simple NN
+-- Deep NN
+-- CNN, U-Net, YOLO
+-- PointNets ==> 3D object dection
+-- Pose Estimation
+
 ### 1. Neural Network History
 
 Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some "new methods" such as **SVMs, Boosting, and Random Forests** were more automatic and outperformed **poorly-trained neural networks** on many problems for the _first decade in the new millennium_ (2000 - 2010)
@@ -392,4 +400,6 @@ for i, n_h in enumerate(hidden_layer_sizes):
 
 - The larger models (with _more hidden units_) are able to fit the training set better, until eventually _the largest models overfit the data_.
 - The **best hidden layer size** seems to be around _n_h = 5_. Indeed, a value around here seems to fits the data well without also incurring noticeable overfitting.
+
+#### Complex Neural Networks
 
