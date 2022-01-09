@@ -3,10 +3,10 @@
 
 ### Index
 
--- Simple NN
--- Deep NN
--- CNN, U-Net, YOLO
--- PointNets ==> 3D object dection
+-- Simple NN  
+-- Deep NN  
+-- CNN, U-Net, YOLO  
+-- PointNets ==> 3D object dection  
 -- Pose Estimation
 
 ### 1. Neural Network History
