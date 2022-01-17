@@ -1,4 +1,4 @@
-# Statistical Learning Notes | Deep Learning
+# Deep Learning Notes 01 | Simple Neural Network
 
 
 ### Index
@@ -190,6 +190,8 @@ def forward_propagation(X, parameters):
 ```
 
 #### Step 4. Compute the Cost Function
+
+Fitting a Neural Network requires \*estimating the unknown parameters which could minimize:
 
 $$J = -\frac{1}{m} \sum^m_{i=1}(y^{(i)}\log(a^{[2](i)})+(1-y^{(i)}) \log(1-a^{[2](i)}))$$
 
@@ -400,6 +402,4 @@ for i, n_h in enumerate(hidden_layer_sizes):
 
 - The larger models (with _more hidden units_) are able to fit the training set better, until eventually _the largest models overfit the data_.
 - The **best hidden layer size** seems to be around _n_h = 5_. Indeed, a value around here seems to fits the data well without also incurring noticeable overfitting.
-
-#### Complex Neural Networks
 

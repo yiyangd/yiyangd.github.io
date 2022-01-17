@@ -4,10 +4,44 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Wed, 05 Jan 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Statistical Learning Notes | Deep Learning</title>
+    <title>Install Intel Realsense and Python Setup in 2022</title>
+    <link>https://yiyangd.github.io/realsense-install/</link>
+    <pubDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/realsense-install/</guid>
+    <description><![CDATA[Step 1: Search for IntelRealSense github
+ https://github.com/IntelRealSense/librealsense  Step 2: Click the tag =&gt; release =&gt; latest
+ https://github.com/IntelRealSense/librealsense/releases Click the latest tag (2.50.0 on Jan 16, 2022) and install the SDK on linux https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md  Step 3: Register the server&rsquo;s public key and add server to the list of repositories
+ Step 4: Install the libraries and the developer and debug packages
+ sudo apt-get install librealsense2-dkms sudo apt-get install librealsense2-utils sudo apt-get install librealsense2-dev sudo apt-get install librealsense2-dbg  Step 5: Reconnect the Intel RealSense Depth Camera (D435i) and run:]]></description>
+</item><item>
+    <title>Run Yolo and RealSense in 2022</title>
+    <link>https://yiyangd.github.io/yolo_install/</link>
+    <pubDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/yolo_install/</guid>
+    <description><![CDATA[ conda install -c anaconda h5py conda install -c conda-forge opencv git clone https://github.com/qqwweee/keras-yolo3.git conda install -c conda-forge tensorflow conda install -c conda-forge keras conda install -c anaconda pillow conda install -c conda-forge matplotlib import tensorflow.python.keras.backend as K import pyrealsense2.pyrealsense2 as rs  ]]></description>
+</item><item>
+    <title>Install Python, Tensorflow, Pytorch, CUDA on Ubuntu 20.04 in 2022</title>
+    <link>https://yiyangd.github.io/install-2022/</link>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/install-2022/</guid>
+    <description><![CDATA[0. Check System, CPU, GPU 1 2  $ sudo lshw -C display $ lscpu    GPU: NVIDIA GeForce GTX 1060 3GB CPU: Intel i7-5820K    Download and use Miniconda (latest Version 3.9)   https://docs.conda.io/en/latest/miniconda.html#linux-installers   Conda is an open source package management system and environment management system that runs on Windows, macOS and Linux. Conda quickly installs, runs and updates packages and their dependencies.]]></description>
+</item><item>
+    <title>Deep Learning Notes 02 | Deep Neural Network</title>
+    <link>https://yiyangd.github.io/deeplearning-02/</link>
+    <pubDate>Thu, 06 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/deeplearning-02/</guid>
+    <description><![CDATA[4. Deep Neural Networks Why Deep ? Logistic Regression and Single Layer Neural Networks perform well on some Simple Binary Classification Problems
+ Deep Neural Networks (or Deep Learning) can solve more complex problems Neuroscientists believe that the human brain also starts off detecting simple things like edges to complex things like faces Layers &ldquo;learn&rdquo; simpler functions to more complex functions  Face Detection:
+  The first layer of the neural network could be considered as Edge Detector  each hidden unit may figure out different edge orintation (horizontal or vertical edges)   The second layer could group the edges detected in first layer together  different units may detect different parts of faces (eyes, noses,.]]></description>
+</item><item>
+    <title>Deep Learning Notes 01 | Simple Neural Network</title>
     <link>https://yiyangd.github.io/deeplearning-01/</link>
     <pubDate>Wed, 05 Jan 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -18,20 +52,6 @@
 &ndash; PointNets ==&gt; 3D object dection
 &ndash; Pose Estimation
 1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)]]></description>
-</item><item>
-    <title>创世纪｜1 - 5 章</title>
-    <link>https://yiyangd.github.io/genesis/</link>
-    <pubDate>Sun, 02 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/genesis/</guid>
-    <description><![CDATA[第一章 神的创造 因为太重要，所以我把全文都粘贴来，大家一起“欣赏”; 读了很多次，这一次感受很不一样。今天在科学考古方面的问题，尽量不要过多的讨论。我们需要更多的阅读和思考。
-第一日  【创一 1】「起初，神创造天地。」
- 第 1 节的希伯来原文由 7 个词（中文也是 7 个字）、28 个字母组成，看似简单，其实隐含了许多令人惊讶的数学特性。现代科学告诉我们，神在创造中使用的表达方式正是数学，整个第一章都充满了数学规律。
- 【创一 2】「地是空虚混沌，渊面黑暗；神的灵运行在水面上。」
-  「空虚混沌」原文意思是「荒芜、不毛之地」。神从无到有地创造了宇宙，但此时的原始地球还不适合人类居住。 「渊面黑暗」直译为「黑暗覆盖在深渊之上」，指地球表面被水覆盖。 「运行」原文意思是「盘旋、翼护」（申三十二 11），指圣灵看顾、保护。可能此时大量彗星、太空冰块撞击原始地球，地面被水覆盖，在浓厚的灰尘、云雾遮蔽下，一片黑暗。 【这里有太多关于宇宙起源 考古的讨论了】   【创一 3】「神说：『要有光』，就有了光。」
-  宇宙被造的时候，并没有人在场，各种所谓「科学」的理论，也都是建立在许多假设的前提上，需要凭信心来接受，而「我们因着信，就知道诸世界是借神话造成的」  【来十一 3】「我们因着信，就知道诸世界是借神话造成的；这样，所看见的，并不是从显然之物造出来的。」 【我们这样的信，是否也可以从“猜想”或者“假设”开始，小心求证，最终确信】   神的创造开始于「光」，使「空虚混沌」（2 节）出现秩序和规律；祂的重造也开始于「光」：  「那吩咐光从黑暗里照出来的神，已经照在我们心里，叫我们得知神荣耀的光，显在耶稣基督的面上」（林后四 6）。   古人都认为光来自日月星辰，但圣经却启示光来自神（启二十二 2）：「神就是光，在祂毫无黑暗」（约壹一 5）。自然界的光也出现在有太阳之前，宇宙中到处是光，可见光只是光谱中的极小部分。 此时可能大部分木星、土星所吸引来的彗星和冰块已经撞击地球完毕，大气层中的尘埃落定，阳光足以透过云雾。   【创一 4】「神看光是好的，就把光暗分开了。」
-【创一 5】「神称光为『昼』，称暗为『夜』。有晚上，有早晨，这是头一日。」
-  神在创造的过程中，三次使用「分开」的方法，把光和暗（4 节）、空气和水（7 节）、海和地分开（9 节），使世界井然有序，适合生命生存；祂在重造的过程中，也用「分开」的方法重生祂的子民（利二十 25），人只有分别为圣，才能蒙神喜悦。 分出「昼、夜」并不是一件简单的事情，地球必须保持合适的自转周期和日地距离，使太阳光照变化的规律适合生命的生存。如果地球离太阳太远或太近、自转太快或太慢，就不能维持合适「昼、夜」气温变化，也不能维持植物的光合作用。  第二日  【创一 6】「神说：『诸水之间要有空气，将水分为上下。』」]]></description>
 </item><item>
     <title>Pose Estimation | 位姿估计</title>
     <link>https://yiyangd.github.io/pose-estimation/</link>
@@ -77,30 +97,5 @@ Chapter 2 - Foundations of Robot Motion  DF of a Rigid Body DF of a Robot  Chapt
     <author>Author</author>
     <guid>https://yiyangd.github.io/robotic-manipulation/</guid>
     <description><![CDATA[Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - Let&rsquo;s get you a robot Lec 03 - Basic Pick and Place Lec 04 - Differential Kinematics and Trajectories Lec 05 - Differential Kinematics via Optimization Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!! Lec 07 - Geometric Perception: Partial Views and Outliers Lec 08 - Geometric perception: Non-penetration and free-space constraints Lec 09 - Manipulation in Cluster Lec 10 Lec 12 - Deep Perception: Perceptual Representations for Lec 13 ]]></description>
-</item><item>
-    <title>ROS Note | Install and Launch First ROS2 Program</title>
-    <link>https://yiyangd.github.io/robot-operating-system/</link>
-    <pubDate>Mon, 01 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/robot-operating-system/</guid>
-    <description><![CDATA[ROS2 is expected to become mature and fully replace ROS1 by 2023.
- ROS2 Foxy Version released in June 2020 is mature and contain several advanced features (EOL: May 2023) ROS2 Galactic Version relased in May 2021, but EOL date is Nov 2022  ROS2 provides a standard for Robotic Applications
- any robots can be powered by ROS2  ROS2 provides a way of separating code into reusable blocks]]></description>
-</item><item>
-    <title>Algorithm Notes | Dynamic Programming</title>
-    <link>https://yiyangd.github.io/dp-0_1knapsack/</link>
-    <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/dp-0_1knapsack/</guid>
-    <description><![CDATA[1. 0/1 KnapSack 494. Target Sum 1 2 3 4 5 6 7 8  Input: nums = [1,1,1,1,1], target = 3 Output: 5 Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3. -1 + 1 + 1 + 1 + 1 = 3 +1 - 1 + 1 + 1 + 1 = 3 +1 + 1 - 1 + 1 + 1 = 3 +1 + 1 + 1 - 1 + 1 = 3 +1 + 1 + 1 + 1 - 1 = 3   Solution 1 - Backtrack 1 2 3 4 5 6 7 8 9 10 11 12 13  int count = 0; public int findTargetSumWays(int[] nums, int target) { backtrack(nums, target, 0, 0); return count; } public void backtrack(int[] nums, int target, int idx, int sum) { if (idx == nums.]]></description>
-</item><item>
-    <title>Statistical Learning Notes | Logistic Regression, Cost Function, Gradient Descent</title>
-    <link>https://yiyangd.github.io/logistic-regression/</link>
-    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/logistic-regression/</guid>
-    <description><![CDATA[1. Binary Classification Example Recall: Logistic Regression is an Algorithm for Binary Classification
-An image is store in the computer in three separate matrices
- corresponding to the Red, Green, and Blue color channels of the image. The three matrices have the same size as the image, for example, the resolution of the cat image is (64 pixels X 64 pixels), the three matrices (RGB) are 64 X 64 each.   1 2 3 4 5 6 7 8 9 10 11 12 13  import numpy as np def image2vector(image): &#34;&#34;&#34; Argument: image -- a numpy array of shape (length, height, depth) Returns: vector -- a vector of shape (length*height*depth, 1) &#34;&#34;&#34; vector = image.]]></description>
 </item></channel>
 </rss>
