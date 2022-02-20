@@ -350,11 +350,3 @@ def L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 30
     return parameters
 ```
 
-### How to Improve Deep Neural Networks?
-
-#### Initialization
-
-#### Dropout Regularization
-
-To avoid overfitting，some regularization is needed
-

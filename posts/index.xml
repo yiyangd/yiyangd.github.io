@@ -4,7 +4,54 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>路加福音第七章</title>
+    <link>https://yiyangd.github.io/luke07/</link>
+    <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/luke07/</guid>
+    <description><![CDATA[路加福音 第七章 1. 治好百夫长的仆人，极大的信心， ( 1 - 10 )  【路七 4】「他们到了耶稣那里，就切切地求祂说：『祢给他行这事是他所配得的；」
+【路七 5】「因为他爱我们的百姓，给我们建造会堂。』」
+【路七 6】「耶稣就和他们同去。离那家不远，百夫长托几个朋友去见耶稣，对祂说：『主啊！不要劳动；因祢到我舍下，我不敢当。」
+【路七 7】「我也自以为不配去见祢，只要祢说一句话，我的仆人就必好了。」
+  这些犹太长老比外邦百夫长更不认识恩典；因为凡是认识恩典的人，是谦卑的，都是「自以为不配」（7 节）的。  关于注解的问题：“路加特别指出，这位外邦百夫长是「托犹太人的几个长老去求耶稣来救他的仆人」（3 节），这将鼓励本书的外邦读者透过犹太信徒来接受救恩。”
+ 【路七 8】「因为我在人的权下，也有兵在我以下，对这个说：“去！”他就去；对那个说：“来！”他就来；对我的仆人说：“你做这事！”他就去做。』」
+  问题：什么是 “一个经历过权柄的人，也知道真正的权柄只需要借着话语就能显明。”  2. 主耶稣使寡妇的儿子复活（11 - 17）  【路七 13】「主看见那寡妇，就怜悯她，对她说：『不要哭！』」
+  【路七 14】「于是进前按着杠，抬的人就站住了。耶稣说：『少年人，我吩咐你，起来！』」
+  【路七 15】「那死人就坐起，并且说话。耶稣便把他交给他母亲。」
+ 13 节是本书第一次称主耶稣为「主」（13 节），因为祂是「生命之主」，惟有祂能改变死亡的事实。
+ 这个神迹并不是人去寻找救恩，而是救恩主动找人。 神国的救恩，就是「神眷顾了祂的百姓」，神的儿子主动寻找【灵性已经死亡】的罪人，叫我们从死亡中得生命，从捆绑中得自由，在困苦中得安慰，在悲伤中得喜乐。  “信徒每一次与世人的邂逅，在人看来也都是巧合，但神的美意，却是要让我们成为那个拦住他们走向死亡的人。”
+ 没有主，我们就是一直走向死亡，心理上的，肉体上的，感谢主，让我们停下来思考思考  3. 施洗约翰差人问主（18 - 23）  【路七 19】「他便叫了两个门徒来，打发他们到主那里去，说：『那将要来的是祢吗？还是我们等候别人呢？』」
+【路七 20】「那两个人来到耶稣那里，说：『施洗的约翰打发我们来问祢：“那将要来的是祢吗？还是我们等候别人呢？”』」
+【路七 21】「正当那时候，耶稣治好了许多有疾病的，受灾患的，被恶鬼附着的；又开恩叫好些瞎子能看见。」]]></description>
+</item><item>
+    <title>Decode Real-World Examples in Python | Educative.io Course Notes</title>
+    <link>https://yiyangd.github.io/decode01/</link>
+    <pubDate>Mon, 14 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/decode01/</guid>
+    <description><![CDATA[Building simple features and understand the underlying patterns that can be applied to real-world examples
+ Create in 2022.02.14. Monday; Finish Feature 1 of Netflix   1. Netflix Features Netflix is the biggest video streaming platform in the world, offering movies, seasons, biographies, reality shows, and more.
+ Their video repository is growing significantly. So the engineering team at Netflix keeps trying to find better ways to display content to their consumers.]]></description>
+</item><item>
+    <title>Deep Learning Notes 04 |  Weight Initialization and Gradient Check for DNN </title>
+    <link>https://yiyangd.github.io/deeplearning-04/</link>
+    <pubDate>Fri, 21 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/deeplearning-04/</guid>
+    <description><![CDATA[1. Weight Initialization A well chosen initialization can:
+ Speed up the convergence of gradient descent Increase the odds of gradient descent converging to a lower training (and generalization) error  Gradient Exploding and Vanishing Training a neural network requires specifying an initial value of the weights. A well chosen initialization method will help learning.
+ if W &gt; I (Identity Matrix): in DNN, the activations can explode if W &lt; I: the activations will decrease exponentially and then vanish  Zero Initialization：]]></description>
+</item><item>
+    <title>Deep Learning Notes 03 |  Regularize Deep Neural Network</title>
+    <link>https://yiyangd.github.io/deeplearning-03/</link>
+    <pubDate>Thu, 20 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/deeplearning-03/</guid>
+    <description><![CDATA[Regularize Deep Neural Networks  这篇笔记记录了深度神经网络的正则化，在【统计学习笔记 03 世上没有解千愁的酒】中，我记录了“没有任何一种模型或算法可以在各种数据集中完胜其它所有的算法，解决所有的问题”，当我们把神经网络的层数加深，神经元节点变多，使其能“深度学习”更多的更复杂的更灵活的非线性函数的同时，也使得模型产生了**过拟合(overfit)**问题 —— 酗酒(overdrink)看似可以完全地麻痹自己让自己完全忘记了所有问题、幻想自己活在了一个完美的温柔乡(low training set error)，但酒醒之后却仍然无力解决任何现实的问题，仍然脆弱至极连站都站不起来更不要说能跑起来(high testing set error)。我们需要自律，深度神经网络亦如是 —— 正则化(Regularization)的加入使得神经网络避免陷入过度拟合的泥沼，在这篇笔记提到的四种正则化的方法(L2, Dropout, Data Augment, Early Stop)可以让其在测试集中表现的仍然良好。
+ 1. Train/Dev/Test Sets Applying Machine Learning is highly iterative process
+ Idea ==&gt; Code ==&gt; Experiment We have to go through the loop many times to figure out your hyperparameters.  We build a model upon training set then optimize hyperparameters on dev set as much as possible.]]></description>
+</item><item>
     <title>Install Intel Realsense and Python Setup in 2022</title>
     <link>https://yiyangd.github.io/realsense-install/</link>
     <pubDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</pubDate>
@@ -63,37 +110,5 @@
  point cloud registration ICP, NDT, LOAM, ..  Pose from 3D - 2D (for image and map)
  absolute pose estimation P3P, perspective-n-point (PnP), ..  Pose from 2D - 2D (for image with overlap)
  relati  ]]></description>
-</item><item>
-    <title>Point Cloud Registration | 点云配准</title>
-    <link>https://yiyangd.github.io/pcd_registration/</link>
-    <pubDate>Fri, 03 Dec 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/pcd_registration/</guid>
-    <description><![CDATA[Registration: Find a Transform to align two point clouds
- A transform consists of Rotation R and Translation t  Applications:
- Odometry(里程计)/SLAM Mapping Loop Closure Calibration Object Pose Estimation  Problem Definition Given two]]></description>
-</item><item>
-    <title>SAS Notes | PROC TABULATE &#43; PROC SGPLOT </title>
-    <link>https://yiyangd.github.io/sas-vis/</link>
-    <pubDate>Sat, 27 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/sas-vis/</guid>
-    <description><![CDATA[The tutorial report may consists of separate sections that teach different aspects/options within a SAS procedure. You will write about:
- Explanation in your own word of how a certain options works in the SAS procedure. Example SAS code applied on the any of the three data set Interpretation of the output from the example SAS code. You should be able to explain these clearly in your report.  Final Project 1.]]></description>
-</item><item>
-    <title>Robot Note | Robotic Manipulation (MIT 6.800)</title>
-    <link>https://yiyangd.github.io/modern-robotics/</link>
-    <pubDate>Thu, 18 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/modern-robotics/</guid>
-    <description><![CDATA[Professor let me read the topics of this book.
-Chapter 2 - Foundations of Robot Motion  DF of a Rigid Body DF of a Robot  Chapter 3 - Introduction to Rigid-Body Motion  Rotation Matrices! Homogeneous Transformation Matrices  Chapter 4 - Forward Kinematics Chapter 5 - Velocity Kinematics and Statics Chapter 6 - Inverse Kinematics Chapter 7 - Kinematics of Closed Chains Chapter 8 - Dynamics of Open Chains Chapter 9 - Chapter Chapter Chapter Chapter ]]></description>
-</item><item>
-    <title>Robot Note | Robotic Manipulation (MIT 6.800)</title>
-    <link>https://yiyangd.github.io/robotic-manipulation/</link>
-    <pubDate>Thu, 18 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/robotic-manipulation/</guid>
-    <description><![CDATA[Robotic Manipulation Perception, Planning and Control  https://manipulation.csail.mit.edu/Fall2021/  Lec 01 - Anatomy of a Manipulation System (2021/9/9) Lec 02 - Let&rsquo;s get you a robot Lec 03 - Basic Pick and Place Lec 04 - Differential Kinematics and Trajectories Lec 05 - Differential Kinematics via Optimization Lec 06 - Geometric Perception: Cameras, Point Clouds, and Registration!!!!!! Lec 07 - Geometric Perception: Partial Views and Outliers Lec 08 - Geometric perception: Non-penetration and free-space constraints Lec 09 - Manipulation in Cluster Lec 10 Lec 12 - Deep Perception: Perceptual Representations for Lec 13 ]]></description>
 </item></channel>
 </rss>
