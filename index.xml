@@ -7,6 +7,15 @@
             <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Deep Learning Notes | First GAN</title>
+    <link>https://yiyangd.github.io/gan01/</link>
+    <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/gan01/</guid>
+    <description><![CDATA[Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
+Train the GAN and visualize the generated images.
+0. Import Packages and visualizer function 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  import torch from torch import nn from tqdm.]]></description>
+</item><item>
     <title>路加福音第七章</title>
     <link>https://yiyangd.github.io/luke07/</link>
     <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
@@ -99,18 +108,5 @@
 &ndash; PointNets ==&gt; 3D object dection
 &ndash; Pose Estimation
 1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)]]></description>
-</item><item>
-    <title>Pose Estimation | 位姿估计</title>
-    <link>https://yiyangd.github.io/pose-estimation/</link>
-    <pubDate>Sat, 04 Dec 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/pose-estimation/</guid>
-    <description><![CDATA[Relative Pose Estimation Recent Progress and New Methods
-相对位姿估计的进展和新方法
-深蓝学院公开课，赵季老师
- 1. Pose Estimation Categorization Pose from 3D - 3D (for point clouds)
- point cloud registration ICP, NDT, LOAM, ..  Pose from 3D - 2D (for image and map)
- absolute pose estimation P3P, perspective-n-point (PnP), ..  Pose from 2D - 2D (for image with overlap)
- relati  ]]></description>
 </item></channel>
 </rss>

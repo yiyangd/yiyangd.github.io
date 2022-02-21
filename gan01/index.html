@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Deep Learning Notes | First GAN - DYY</title><meta name="Description" content="This Note is based on Coursera - GAN Specilization"><meta property="og:title" content="Deep Learning Notes | First GAN" />
+<meta property="og:description" content="This Note is based on Coursera - GAN Specilization" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/gan01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-20T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Deep Learning Notes | First GAN"/>
+<meta name="twitter:description" content="This Note is based on Coursera - GAN Specilization"/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/gan01/" /><link rel="prev" href="https://yiyangd.github.io/luke07/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Deep Learning Notes | First GAN",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/gan01\/"
+        },"genre": "posts","wordcount":  2226 ,
+        "url": "https:\/\/yiyangd.github.io\/gan01\/","datePublished": "2022-02-19T00:00:00+00:00","dateModified": "2022-02-20T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": "This Note is based on Coursera - GAN Specilization"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Deep Learning Notes | First GAN</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-19">2022-02-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2226 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#goalbuild-and-train-a-basic-gan-that-can-generate-hand-written-images-of-digits-0-9-by-using-pytorch">Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch</a></li>
+        <li><a href="#0-import-packages-and-visualizer-function">0. Import Packages and visualizer function</a></li>
+        <li><a href="#1-build-the-generator-component">1. Build the Generator Component</a>
+          <ul>
+            <li><a href="#11-build-the-generator-class">1.1. Build the Generator class</a></li>
+            <li><a href="#12-create-noise-vectors">1.2. Create Noise Vectors</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-build-the-discriminator-component">2. Build the Discriminator Component</a>
+          <ul>
+            <li><a href="#21-build-the-discriminator-class">2.1. Build the Discriminator class</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-set-parameters-and-load-the-mnist-dataset">3. Set Parameters and load the MNIST dataset</a></li>
+        <li><a href="#4-initialize-the-generator-discriminator-and-optimizers">4. Initialize the generator, discriminator, and optimizers.</a></li>
+        <li><a href="#5-calculate-the-loss">5. Calculate the Loss</a>
+          <ul>
+            <li><a href="#discriminators-loss">Discriminator&rsquo;s Loss</a></li>
+            <li><a href="#generators-loss">Generator&rsquo;s Loss</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-train-the-generative-adversarial-network">6. Train the Generative Adversarial Network</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="goalbuild-and-train-a-basic-gan-that-can-generate-hand-written-images-of-digits-0-9-by-using-pytorch">Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch</h3>
+<p>Build the generator and discriminator components of a GAN from scratch.
+Create generator and discriminator loss functions.<br>
+Train the GAN and visualize the generated images.</p>
+<h3 id="0-import-packages-and-visualizer-function">0. Import Packages and visualizer function</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">MNIST</span> <span class="c1"># Training dataset</span>
+<span class="kn">from</span> <span class="nn">torchvision.utils</span> <span class="kn">import</span> <span class="n">make_grid</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Set for testing purposes, please do not change!</span>
+
+<span class="k">def</span> <span class="nf">show_tensor_images</span><span class="p">(</span><span class="n">image_tensor</span><span class="p">,</span> <span class="n">num_images</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Function for visualizing images: Given a tensor of images, number of images, and
+</span><span class="s1">    size per image, plots and prints the images in a uniform grid.
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">image_unflat</span> <span class="o">=</span> <span class="n">image_tensor</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">image_grid</span> <span class="o">=</span> <span class="n">make_grid</span><span class="p">(</span><span class="n">image_unflat</span><span class="p">[:</span><span class="n">num_images</span><span class="p">],</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_grid</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="1-build-the-generator-component">1. Build the Generator Component</h3>
+<p>Create a function to make a single layer/block for the generator&rsquo;s neural network.</p>
+<ul>
+<li>Each block should include a linear transformation to map to another shape,</li>
+<li>a batch normalization for stabilization,</li>
+<li>and finally a non-linear activation function (you use a ReLU here) so the output can be transformed in complex ways.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_generator_block</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Function for returning a block of the generator&#39;s neural network
+</span><span class="s1">    given input and output dimensions.
+</span><span class="s1">    Parameters:
+</span><span class="s1">        input_dim: the dimension of the input vector, a scalar
+</span><span class="s1">        output_dim: the dimension of the output vector, a scalar
+</span><span class="s1">    Returns:
+</span><span class="s1">        a generator neural network layer, with a linear transformation
+</span><span class="s1">          followed by a batch normalization and then a relu activation
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">output_dim</span><span class="p">),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="11-build-the-generator-class">1.1. Build the Generator class</h4>
+<p>It will take 3 values:</p>
+<ul>
+<li>the noise vector dimension</li>
+<li>the image dimension</li>
+<li>the initial hidden dimension</li>
+</ul>
+<p>Using these values, the generator will build a neural network with 5 layers/blocks.</p>
+<ul>
+<li>Beginning with the noise vector, the generator will apply non-linear transformations via the block function until the tensor is mapped to the size of the image to be outputted (the same size as the real images from MNIST).
+<ul>
+<li>The final layer does not need a normalization or activation function, but does need to be scaled with a sigmoid function.</li>
+</ul>
+</li>
+<li>Finally, implement a forward pass function that takes in a noise vector and generates an image of the output dimension using the neural network.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Generator Class
+</span><span class="s1">    Values:
+</span><span class="s1">        z_dim: the dimension of the noise vector, a scalar
+</span><span class="s1">        im_dim: the dimension of the images, fitted for the dataset used, a scalar
+</span><span class="s1">          (MNIST images are 28 x 28 = 784 so that is your default)
+</span><span class="s1">        hidden_dim: the inner dimension, a scalar
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">im_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Build the neural network</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">get_generator_block</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">),</span>
+            <span class="n">get_generator_block</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">get_generator_block</span><span class="p">(</span><span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">get_generator_block</span><span class="p">(</span><span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">8</span><span class="p">),</span>
+            <span class="c1"># the final layer needs to be scaled with a sigmoid function</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">im_dim</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">noise</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        Function for completing a forward pass of the generator:
+</span><span class="s1">            Given a noise tensor, returns generated images.
+</span><span class="s1">        Parameters:
+</span><span class="s1">            noise: a noise tensor with dimensions (n_samples, z_dim)
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">(</span><span class="n">noise</span><span class="p">)</span>
+
+    <span class="c1"># Needed for grading</span>
+    <span class="k">def</span> <span class="nf">get_gen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        Returns:
+</span><span class="s1">            the sequential model
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="12-create-noise-vectors">1.2. Create Noise Vectors</h4>
+<p>To be able to use the Generator, we need to create noise vectors.</p>
+<ul>
+<li>The noise vector z has the important role of making sure the images generated (from the same class) don&rsquo;t all look the same
+<ul>
+<li>think of it as a random seed.</li>
+</ul>
+</li>
+<li>Since multiple images will be processed per pass, you will generate all the noise vectors at once.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_noise</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Function for creating noise vectors: Given the dimensions (n_samples, z_dim),
+</span><span class="s1">    creates a tensor of that shape filled with random numbers from the normal distribution.
+</span><span class="s1">    Parameters:
+</span><span class="s1">        n_samples: the number of samples to generate, a scalar
+</span><span class="s1">        z_dim: the dimension of the noise vector, a scalar
+</span><span class="s1">        device: the device type
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="c1"># NOTE: To use this on GPU with device=&#39;cuda&#39;, make sure to pass the device</span>
+    <span class="c1"># argument to the function you use to generate the noise.</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span><span class="n">z_dim</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Verify the noise vector function</span>
+<span class="k">def</span> <span class="nf">test_get_noise</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">get_noise</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    <span class="c1"># Make sure a normal distribution was used</span>
+    <span class="k">assert</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">noise</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">noise</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">noise</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">test_get_noise</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="n">test_get_noise</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Success!&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-build-the-discriminator-component">2. Build the Discriminator Component</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_discriminator_block</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Discriminator Block
+</span><span class="s1">    Function for returning a neural network of the discriminator given input and output dimensions.
+</span><span class="s1">    Parameters:
+</span><span class="s1">        input_dim: the dimension of the input vector, a scalar
+</span><span class="s1">        output_dim: the dimension of the output vector, a scalar
+</span><span class="s1">    Returns:
+</span><span class="s1">        a discriminator neural network layer, with a linear transformation
+</span><span class="s1">          followed by an nn.LeakyReLU activation with negative slope of 0.2
+</span><span class="s1">          (https://pytorch.org/docs/master/generated/torch.nn.LeakyReLU.html)
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+         <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">),</span> <span class="c1">#Layer 1</span>
+         <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="21-build-the-discriminator-class">2.1. Build the Discriminator class</h4>
+<p>The discriminator will build a neural network with 4 layers.</p>
+<ul>
+<li>It will start with the image tensor and transform it until it returns a single number (1-dimension tensor) output.</li>
+<li>This output classifies whether an image is fake or real.</li>
+<li>Finally, to use discrimator&rsquo;s neural network you are given a forward pass function that takes in an image tensor to be classified.</li>
+</ul>
+<p>It will take 2 values:</p>
+<ul>
+<li>The image dimension</li>
+<li>The hidden dimension</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Discriminator Class
+</span><span class="s1">    Values:
+</span><span class="s1">        im_dim: the dimension of the images, fitted for the dataset used, a scalar
+</span><span class="s1">            (MNIST images are 28x28 = 784 so that is your default)
+</span><span class="s1">        hidden_dim: the inner dimension, a scalar
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">im_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">get_discriminator_block</span><span class="p">(</span><span class="n">im_dim</span><span class="p">,</span> <span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">get_discriminator_block</span><span class="p">(</span><span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">get_discriminator_block</span><span class="p">(</span><span class="n">hidden_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">),</span>
+            <span class="c1"># transform the final output into a single value,</span>
+            <span class="c1"># so add one more linear map.</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        Function for completing a forward pass of the discriminator: Given an image tensor,
+</span><span class="s1">        returns a 1-dimension tensor representing fake/real.
+</span><span class="s1">        Parameters:
+</span><span class="s1">            image: a flattened image tensor with dimension (im_dim)
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">disc</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># Needed for grading</span>
+    <span class="k">def</span> <span class="nf">get_disc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        Returns:
+</span><span class="s1">            the sequential model
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">disc</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-set-parameters-and-load-the-mnist-dataset">3. Set Parameters and load the MNIST dataset</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Set your parameters</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">()</span> <span class="c1"># the loss function</span>
+<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">200</span>      <span class="c1"># the number of times you iterate through the entire dataset when training</span>
+<span class="n">z_dim</span> <span class="o">=</span> <span class="mi">64</span>          <span class="c1"># the dimension of the noise vector</span>
+<span class="n">display_step</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># how often to display/visualize the images</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>    <span class="c1"># the number of images per forward/backward pass</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.00001</span>        <span class="c1"># the learning rate</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="c1"># the device type, here using a GPU (which runs CUDA), not CPU</span>
+<span class="c1"># Load MNIST dataset as tensors</span>
+<span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()),</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-initialize-the-generator-discriminator-and-optimizers">4. Initialize the generator, discriminator, and optimizers.</h3>
+<p>Note that each optimizer only takes the parameters of one particular model, since we want each optimizer to optimize only one of the models.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">gen</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">z_dim</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">gen_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">gen</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+<span class="n">disc</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">disc_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">disc</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-calculate-the-loss">5. Calculate the Loss</h3>
+<p>Since the generator is needed when calculating the discriminator&rsquo;s loss, you will need to call <code>.detach()</code> on the generator result to ensure that only the discriminator is updated</p>
+<ul>
+<li>This is how the discriminator and generator will know how they are doing and improve themselves.</li>
+</ul>
+<h4 id="discriminators-loss">Discriminator&rsquo;s Loss</h4>
+<p>We need a &lsquo;ground truth&rsquo; tensor in order to calculate the loss.</p>
+<ul>
+<li>For example, a ground truth tensor for a fake image is all zeros.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_disc_loss</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">disc</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">num_images</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Return the loss of the discriminator given inputs.
+</span><span class="s1">    Parameters:
+</span><span class="s1">        gen: the generator model, which returns an image given z-dimensional noise
+</span><span class="s1">        disc: the discriminator model, which returns a single-dimensional prediction of real/fake
+</span><span class="s1">        criterion: the loss function, which should be used to compare
+</span><span class="s1">               the discriminator&#39;s predictions to the ground truth reality of the images
+</span><span class="s1">               (e.g. fake = 0, real = 1)
+</span><span class="s1">        real: a batch of real images
+</span><span class="s1">        num_images: the number of images the generator should produce,
+</span><span class="s1">                which is also the length of the real images
+</span><span class="s1">        z_dim: the dimension of the noise vector, a scalar
+</span><span class="s1">        device: the device type
+</span><span class="s1">    Returns:
+</span><span class="s1">        disc_loss: a torch scalar loss value for the current batch
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="c1"># Create noise vectors</span>
+    <span class="n">fake_noise</span> <span class="o">=</span> <span class="n">get_noise</span><span class="p">(</span><span class="n">num_images</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="c1"># generate a batch (num_images) of fake images.</span>
+    <span class="n">fake</span> <span class="o">=</span> <span class="n">gen</span><span class="p">(</span><span class="n">fake_noise</span><span class="p">)</span>
+    <span class="c1"># Get the discriminator&#39;s prediction of the fake image</span>
+    <span class="n">disc_fake_pred</span> <span class="o">=</span> <span class="n">disc</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+    <span class="c1"># calculate the loss</span>
+    <span class="n">disc_fake_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">disc_fake_pred</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">disc_fake_pred</span><span class="p">))</span>
+    <span class="c1"># Get the discriminator&#39;s prediction of the real image</span>
+    <span class="n">disc_real_pred</span> <span class="o">=</span> <span class="n">disc</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+    <span class="c1"># calculate the loss.</span>
+    <span class="n">disc_real_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">disc_real_pred</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">disc_real_pred</span><span class="p">))</span>
+    <span class="c1"># Calculate the discriminator&#39;s loss by averaging the real and fake loss</span>
+    <span class="n">disc_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">disc_fake_loss</span> <span class="o">+</span> <span class="n">disc_real_loss</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">return</span> <span class="n">disc_loss</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="generators-loss">Generator&rsquo;s Loss</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_gen_loss</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">disc</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">num_images</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Return the loss of the generator given inputs.
+</span><span class="s1">    Parameters:
+</span><span class="s1">        gen: the generator model, which returns an image given z-dimensional noise
+</span><span class="s1">        disc: the discriminator model, which returns a single-dimensional prediction of real/fake
+</span><span class="s1">        criterion: the loss function, which should be used to compare
+</span><span class="s1">               the discriminator&#39;s predictions to the ground truth reality of the images
+</span><span class="s1">               (e.g. fake = 0, real = 1)
+</span><span class="s1">        num_images: the number of images the generator should produce,
+</span><span class="s1">                which is also the length of the real images
+</span><span class="s1">        z_dim: the dimension of the noise vector, a scalar
+</span><span class="s1">        device: the device type
+</span><span class="s1">    Returns:
+</span><span class="s1">        gen_loss: a torch scalar loss value for the current batch
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="c1"># Create noise vectors and generate a batch of fake images.</span>
+    <span class="n">fake_noise</span> <span class="o">=</span> <span class="n">get_noise</span><span class="p">(</span><span class="n">num_images</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="c1"># Get the discriminator&#39;s prediction of the fake image.</span>
+    <span class="n">fake</span> <span class="o">=</span> <span class="n">gen</span><span class="p">(</span><span class="n">fake_noise</span><span class="p">)</span>
+    <span class="c1"># Calculate the generator&#39;s loss.</span>
+    <span class="n">disc_fake_pred</span> <span class="o">=</span> <span class="n">disc</span><span class="p">(</span><span class="n">fake</span><span class="p">)</span>
+    <span class="c1"># the generator wants the discriminator to think that its fake images are real</span>
+    <span class="n">gen_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">disc_fake_pred</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">disc_fake_pred</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">gen_loss</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-train-the-generative-adversarial-network">6. Train the Generative Adversarial Network</h3>
+<p>For each epoch, we process the entire dataset in batches. For every batch, we need to update the discriminator and generator using their loss.</p>
+<ul>
+<li>Batches are sets of images that will be predicted on before the loss functions are calculated (instead of calculating the loss function after each image).</li>
+</ul>
+<p>It’s also often the case that the discriminator will outperform the generator, especially at the start, because its job is easier.</p>
+<ul>
+<li>It&rsquo;s important that neither one gets too good (that is, near-perfect accuracy), which would cause the entire model to stop learning.</li>
+<li>Balancing the two models is actually remarkably hard to do in a standard GAN.</li>
+</ul>
+<figure><img src="/images/GAN/gan01.jpg" width="600"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">cur_step</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mean_generator_loss</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mean_discriminator_loss</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">test_generator</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Whether the generator should be tested</span>
+<span class="n">gen_loss</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+
+    <span class="c1"># Dataloader returns the batches</span>
+    <span class="k">for</span> <span class="n">real</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+        <span class="n">cur_batch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+
+        <span class="c1"># Flatten the batch of real images from the dataset</span>
+        <span class="n">real</span> <span class="o">=</span> <span class="n">real</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">cur_batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="c1">### Update discriminator ###</span>
+        <span class="c1"># Zero out the gradients before backpropagation</span>
+        <span class="n">disc_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="c1"># Calculate discriminator loss</span>
+        <span class="n">disc_loss</span> <span class="o">=</span> <span class="n">get_disc_loss</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">disc</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">cur_batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+        <span class="c1"># Update gradients</span>
+        <span class="n">disc_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Update optimizer</span>
+        <span class="n">disc_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="c1"># For testing purposes, to keep track of the generator weights</span>
+        <span class="k">if</span> <span class="n">test_generator</span><span class="p">:</span>
+            <span class="n">old_generator_weights</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+
+
+        <span class="c1">### Update generator ###</span>
+        <span class="c1"># Zero out the gradients.</span>
+        <span class="n">gen_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="c1"># Calculate the generator loss</span>
+        <span class="n">gen_loss</span> <span class="o">=</span> <span class="n">get_gen_loss</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">disc</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">cur_batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+        <span class="c1"># Backprop through the generator</span>
+        <span class="n">gen_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="c1"># Update the gradients and optimizer.</span>
+        <span class="n">gen_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+
+        <span class="c1"># For testing purposes, to check that your code changes the generator weights</span>
+        <span class="k">if</span> <span class="n">test_generator</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">lr</span> <span class="o">&gt;</span> <span class="mf">0.0000002</span> <span class="ow">or</span> <span class="p">(</span><span class="n">gen</span><span class="o">.</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.0005</span> <span class="ow">and</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">gen</span><span class="o">.</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="o">!=</span> <span class="n">old_generator_weights</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Runtime tests have failed&#34;</span><span class="p">)</span>
+
+        <span class="c1"># Keep track of the average discriminator loss</span>
+        <span class="n">mean_discriminator_loss</span> <span class="o">+=</span> <span class="n">disc_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">display_step</span>
+
+        <span class="c1"># Keep track of the average generator loss</span>
+        <span class="n">mean_generator_loss</span> <span class="o">+=</span> <span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">display_step</span>
+
+        <span class="c1">### Visualization code ###</span>
+        <span class="k">if</span> <span class="n">cur_step</span> <span class="o">%</span> <span class="n">display_step</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">cur_step</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Step </span><span class="si">{</span><span class="n">cur_step</span><span class="si">}</span><span class="s2">: Generator loss: </span><span class="si">{</span><span class="n">mean_generator_loss</span><span class="si">}</span><span class="s2">, discriminator loss: </span><span class="si">{</span><span class="n">mean_discriminator_loss</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="n">fake_noise</span> <span class="o">=</span> <span class="n">get_noise</span><span class="p">(</span><span class="n">cur_batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">fake</span> <span class="o">=</span> <span class="n">gen</span><span class="p">(</span><span class="n">fake_noise</span><span class="p">)</span>
+            <span class="n">show_tensor_images</span><span class="p">(</span><span class="n">fake</span><span class="p">)</span>
+            <span class="n">show_tensor_images</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">mean_generator_loss</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">mean_discriminator_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">cur_step</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-02-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/gan01/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/gan01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN" data-description="This Note is based on Coursera - GAN Specilization"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN" data-description="This Note is based on Coursera - GAN Specilization"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/gan01/" data-title="Deep Learning Notes | First GAN"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/luke07/" class="prev" rel="prev" title="路加福音第七章"><i class="fas fa-angle-left fa-fw"></i>路加福音第七章</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
