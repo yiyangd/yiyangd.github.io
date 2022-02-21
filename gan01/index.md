@@ -1,7 +1,7 @@
 # Deep Learning Notes | First GAN
 
 
-### Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
+Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
 
 Build the generator and discriminator components of a GAN from scratch.
 Create generator and discriminator loss functions.  

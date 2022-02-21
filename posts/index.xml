@@ -4,13 +4,22 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sun, 20 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Deep Learning Notes | First CNN</title>
+    <link>https://yiyangd.github.io/cnn01/</link>
+    <pubDate>Sun, 20 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/cnn01/</guid>
+    <description><![CDATA[Build a Convlutional Neural Networks Step by Step This Note logs how to implement the building blocks of a Convolutional Neural Network
+ Convolution Functions: Zero Padding, Convolve Window, Convolution Forward/backward Pooling Functions: Pooling Forward, Create Mask, Distribute Value and Pooling backward   0. Import Packages 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import numpy as np import h5py import matplotlib.pyplot as plt from public_tests import * %matplotlib inline plt.]]></description>
+</item><item>
     <title>Deep Learning Notes | First GAN</title>
     <link>https://yiyangd.github.io/gan01/</link>
     <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/gan01/</guid>
-    <description><![CDATA[Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
+    <description><![CDATA[Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
+Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
 Train the GAN and visualize the generated images.
 0. Import Packages and visualizer function 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  import torch from torch import nn from tqdm.]]></description>
 </item><item>
@@ -94,17 +103,5 @@ Train the GAN and visualize the generated images.
     <description><![CDATA[4. Deep Neural Networks Why Deep ? Logistic Regression and Single Layer Neural Networks perform well on some Simple Binary Classification Problems
  Deep Neural Networks (or Deep Learning) can solve more complex problems Neuroscientists believe that the human brain also starts off detecting simple things like edges to complex things like faces Layers &ldquo;learn&rdquo; simpler functions to more complex functions  Face Detection:
   The first layer of the neural network could be considered as Edge Detector  each hidden unit may figure out different edge orintation (horizontal or vertical edges)   The second layer could group the edges detected in first layer together  different units may detect different parts of faces (eyes, noses,.]]></description>
-</item><item>
-    <title>Deep Learning Notes 01 | Simple Neural Network</title>
-    <link>https://yiyangd.github.io/deeplearning-01/</link>
-    <pubDate>Wed, 05 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/deeplearning-01/</guid>
-    <description><![CDATA[Index &ndash; Simple NN
-&ndash; Deep NN
-&ndash; CNN, U-Net, YOLO
-&ndash; PointNets ==&gt; 3D object dection
-&ndash; Pose Estimation
-1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)]]></description>
 </item></channel>
 </rss>
