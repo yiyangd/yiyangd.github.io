@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Deep Learning Notes | Transfer Learning with MobileNets - DYY</title><meta name="Description" content="This Note is based on Coursera - CNN Specilization"><meta property="og:title" content="Deep Learning Notes | Transfer Learning with MobileNets" />
+<meta property="og:description" content="This Note is based on Coursera - CNN Specilization" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/cnn04/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-28T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Deep Learning Notes | Transfer Learning with MobileNets"/>
+<meta name="twitter:description" content="This Note is based on Coursera - CNN Specilization"/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/cnn04/" /><link rel="prev" href="https://yiyangd.github.io/cnn03/" /><link rel="next" href="https://yiyangd.github.io/rs/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Deep Learning Notes | Transfer Learning with MobileNets",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/cnn04\/"
+        },"genre": "posts","wordcount":  1805 ,
+        "url": "https:\/\/yiyangd.github.io\/cnn04\/","datePublished": "2022-02-28T00:00:00+00:00","dateModified": "2022-02-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": "This Note is based on Coursera - CNN Specilization"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Deep Learning Notes | Transfer Learning with MobileNets</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1805 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#transfer-learning-with-mobilenets">Transfer Learning with MobileNets</a>
+      <ul>
+        <li><a href="#1-create-and-split-the-dataset">1. Create and Split the Dataset</a>
+          <ul>
+            <li><a href="#visualize-the-images">Visualize the Images</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-preprocess-and-augment-training-data">2. Preprocess and Augment Training Data</a></li>
+        <li><a href="#3-using-mobilenetv2-for-transfer-learning">3. Using MobileNetV2 for Transfer Learning</a>
+          <ul>
+            <li><a href="#speed-up-convolutions-in-two-steps">Speed up convolutions in two steps</a></li>
+            <li><a href="#check-batch">Check Batch</a></li>
+            <li><a href="#predictions">Predictions</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-modify-pretrained-model-by-layer-freezing">4. Modify Pretrained Model by Layer Freezing</a>
+          <ul>
+            <li><a href="#model-compile-and-visualize-accuracy">Model Compile and Visualize Accuracy</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-fine-tuning-the-final-layers">5. Fine-tuning the Final Layers</a>
+          <ul>
+            <li><a href="#visualize-accuracy">Visualize Accuracy</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="transfer-learning-with-mobilenets">Transfer Learning with MobileNets</h2>
+<p>Many machine learning methods work well ONLY under a common assumption: the training and test data are drawn from the same feature space and the same distribution.</p>
+<ul>
+<li>When the distribution changes, <strong>most statistical models need to be rebuilt</strong> from scratch <em>using newly collected training data</em>.</li>
+<li>In many realworld applications, it is expensive or impossible.</li>
+<li>In such cases, Transfer Learning between task domains would be desirable.</li>
+</ul>
+<figure><img src="/images/cnn/transfer.png" width="400"/>
+</figure>
+
+<p>This note illustrate steps of using transfer learning on a <strong>pre-trained CNN</strong> to build an Alpaca/Not Alpaca （羊驼识别） classifier!</p>
+<ul>
+<li>A <strong>pre-trained model is a network</strong> that&rsquo;s already been trained on a large dataset and saved, which allows us to <em>reuse the weights</em> to customize our own model cheaply and efficiently.</li>
+<li>The one we&rsquo;ll be using, <strong>MobileNetV2</strong>, was designed to provide <em>fast and computationally efficient performance</em>
+<ul>
+<li>at deployment for <em>mobile and embedded applications</em></li>
+</ul>
+</li>
+<li>It&rsquo;s been pre-trained on <em>ImageNet</em>, a dataset containing over 14 million images and 1000 classes.</li>
+</ul>
+<h3 id="1-create-and-split-the-dataset">1. Create and Split the Dataset</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras.layers</span> <span class="k">as</span> <span class="nn">tfl</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing</span> <span class="kn">import</span> <span class="n">image_dataset_from_directory</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers.experimental.preprocessing</span> <span class="kn">import</span> <span class="n">RandomFlip</span><span class="p">,</span> <span class="n">RandomRotation</span>
+
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">IMG_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s2">&#34;dataset/&#34;</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">image_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span>
+                                             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                             <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span>
+                                             <span class="n">image_size</span><span class="o">=</span><span class="n">IMG_SIZE</span><span class="p">,</span>
+                                             <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                                             <span class="n">subset</span><span class="o">=</span><span class="s1">&#39;training&#39;</span><span class="p">,</span>
+                                             <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">validation_dataset</span> <span class="o">=</span> <span class="n">image_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span>
+                                             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                             <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span>
+                                             <span class="n">image_size</span><span class="o">=</span><span class="n">IMG_SIZE</span><span class="p">,</span>
+                                             <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                                             <span class="n">subset</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">,</span>
+                                             <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Found 327 files belonging to 2 classes.</li>
+<li>Using 262 files for training.</li>
+<li>Found 327 files belonging to 2 classes.</li>
+<li>Using 65 files for validation.</li>
+</ul>
+<h4 id="visualize-the-images">Visualize the Images</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">class_names</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">class_names</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&#34;uint8&#34;</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&#34;off&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/alpaca.png" width="400"/>
+</figure>
+
+<h3 id="2-preprocess-and-augment-training-data">2. Preprocess and Augment Training Data</h3>
+<p>Using <code>prefetch()</code> <em>prevents a memory bottleneck</em> that can occur when reading from disk. It sets aside some data and keeps it ready for when it&rsquo;s needed, by creating a source dataset from input data, applying a transformation to preprocess it, then iterating over the dataset one element at a time.</p>
+<ul>
+<li>Because the iteration is streaming, the data doesn&rsquo;t need to fit into memory.</li>
+</ul>
+<p>Use <code>tf.data.experimental.AUTOTUNE</code> to choose the parameters automatically. <code>Autotune</code> prompts <code>tf.data</code> to tune that value dynamically at runtime, by tracking the time spent in each operation and feeding those times into an optimization algorithm.</p>
+<ul>
+<li>The optimization algorithm tries to find the best allocation of its CPU budget across all tunable operations.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">AUTOTUNE</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To increase diversity in the training set and help the model learn the data better,</p>
+<ul>
+<li>it&rsquo;s standard practice to <strong>augment the images</strong> by transforming them
+<ul>
+<li>i.e., <strong>randomly flipping</strong> and <strong>rotating them</strong>.</li>
+</ul>
+</li>
+<li><code>Keras' Sequential API</code> offers a straightforward method for these kinds of data augmentations, with built-in, customizable preprocessing layers.</li>
+<li>These layers are saved with the rest of your model and can be re-used later.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">data_augmenter</span><span class="p">():</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    Create a Sequential model composed of 2 layers
+</span><span class="s1">    Returns:
+</span><span class="s1">        tf.keras.Sequential
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">data_augmentation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">data_augmentation</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">RandomFlip</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">))</span>
+    <span class="n">data_augmentation</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">data_augmentation</span>
+<span class="c1">####################################</span>
+<span class="n">data_augmentation</span> <span class="o">=</span> <span class="n">data_augmenter</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">first_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">augmented_image</span> <span class="o">=</span> <span class="n">data_augmentation</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">first_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">augmented_image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/data_aug.png" width="400"/>
+</figure>
+
+<h3 id="3-using-mobilenetv2-for-transfer-learning">3. Using MobileNetV2 for Transfer Learning</h3>
+<p>MobileNetV2 was trained on ImageNet and is optimized to run on mobile and other low-power applications.</p>
+<ul>
+<li>It&rsquo;s 155 layers deep and very efficient for <em>object detection and image segmentation</em> tasks, as well as classification tasks like this one.</li>
+</ul>
+<figure><img src="/images/cnn/mobilearch.jpeg" width="600"/>
+</figure>
+
+<p>The architecture has three defining characteristics:</p>
+<ul>
+<li>Depthwise separable convolutions
+<ul>
+<li>to <em>reduce the number of trainable parameters and operations</em></li>
+</ul>
+</li>
+<li>Thin input and output bottlenecks between layers
+<ul>
+<li>these bottlenecks encode the intermediate inputs and outputs in a low dimensional space,</li>
+<li>and <em>prevent non-linearities</em> from destroying important information.</li>
+</ul>
+</li>
+<li>Shortcut connections between bottleneck layers
+<ul>
+<li>to speed up training and improving predictions.</li>
+</ul>
+</li>
+</ul>
+<figure><img src="/images/cnn/mobilenet.png" width="400"/>
+</figure>
+
+<h4 id="speed-up-convolutions-in-two-steps">Speed up convolutions in two steps</h4>
+<p><strong>Depthwise Convolution</strong> calculates an intermediate result</p>
+<ul>
+<li>by convolving on each of the channels independently.</li>
+<li>it provides <em>lightweight feature filtering and creation</em></li>
+<li>deal with both spatial and depth (number of channels) dimensions</li>
+</ul>
+<p><strong>Pointwise Convolution</strong> merges the outputs of the previous step into one.</p>
+<ul>
+<li>This gets a single result from a single feature at a time,</li>
+<li>and then is applied to all the filters in the output layer.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">preprocess_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">mobilenet_v2</span><span class="o">.</span><span class="n">preprocess_input</span>
+
+<span class="n">IMG_SHAPE</span> <span class="o">=</span> <span class="n">IMG_SIZE</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
+<span class="n">base_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">MobileNetV2</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">IMG_SHAPE</span><span class="p">,</span>
+                                               <span class="n">include_top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                               <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">)</span>
+
+<span class="n">base_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/mobile_summary.png" width="400"/>
+</figure>
+
+<h4 id="check-batch">Check Batch</h4>
+<p>The number 32 refers to the batch size and 1000 refers to the 1000 classes the model was pretrained on.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">image_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">))</span>
+<span class="n">feature_batch</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">image_batch</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feature_batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># (32, 1000)</span>
+
+<span class="c1">#Shows the different label probabilities in one tensor</span>
+<span class="n">label_batch</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">&lt;tf.Tensor: shape=(32,), dtype=int32, numpy=
+</span><span class="s1">array([1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0], dtype=int32)&gt;
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="predictions">Predictions</h4>
+<p>The predictions returned by the base model below follow this format:</p>
+<ul>
+<li>First the class number, then a human-readable label, and last the probability of the image belonging to that class.</li>
+<li>there are two of these returned for each image in the batch - these the top two probabilities returned for that image.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">image_var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">image_batch</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">image_var</span><span class="p">)</span>
+
+<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">mobilenet_v2</span><span class="o">.</span><span class="n">decode_predictions</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Because MobileNet pretrained over ImageNet doesn&rsquo;t have the correct labels for <code>alpacas</code>, so using the full model will get a bunch of incorrectly classified images.</p>
+<ul>
+<li>Solution: delete the top layer, which contains all the classification labels, and create a new classification layer.</li>
+</ul>
+<h3 id="4-modify-pretrained-model-by-layer-freezing">4. Modify Pretrained Model by Layer Freezing</h3>
+<p>To use a pretrained model to <strong>modify the classifier</strong> task so that it&rsquo;s able to recognize alpacas, we need:</p>
+<ul>
+<li>Delete the top layer (the classification layer)
+<ul>
+<li><code>include_top=False</code></li>
+</ul>
+</li>
+<li>Add a new trained classifier layer by <em>freezing the rest of the network</em>
+<ul>
+<li>a single neuron is enough to solve a binary classification problem.</li>
+</ul>
+</li>
+<li>Freeze the base model and train the newly-created classifier layer
+<ul>
+<li><code>base_model.trainable=False</code></li>
+<li><code>base_model(x, training=False)</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">alpaca_model</span><span class="p">(</span><span class="n">image_shape</span><span class="o">=</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">data_augmentation</span><span class="o">=</span><span class="n">data_augmenter</span><span class="p">()):</span>
+    <span class="s1">&#39;&#39;&#39; Define a tf.keras model for binary classification out of the MobileNetV2 model
+</span><span class="s1">    Arguments:
+</span><span class="s1">        image_shape -- Image width and height
+</span><span class="s1">        data_augmentation -- data augmentation function
+</span><span class="s1">    Returns:
+</span><span class="s1">    Returns:
+</span><span class="s1">        tf.keras.model
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">input_shape</span> <span class="o">=</span> <span class="n">image_shape</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
+
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">MobileNetV2</span><span class="p">(</span>
+        <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">,</span>
+        <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># &lt;== Important!!!!</span>
+        <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">)</span> <span class="c1"># From imageNet</span>
+
+    <span class="c1"># Freeze the base model by making it non trainable</span>
+    <span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Create the input layer (Same as the imageNetv2 input size)</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">)</span>
+    <span class="c1"># Apply data augmentation to the inputs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">data_augmentation</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="c1"># Data preprocessing using the same weights the model was trained on</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># Set training to False to avoid keeping track of statistics in the batch norm layer</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Add the new Binary classification layers</span>
+    <span class="c1"># Use global avg pooling to summarize the info in each channel</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tfl</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># Include dropout with probability of 0.2 to avoid overfitting</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tfl</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Use a prediction layer with one neuron (as a binary classifier only needs one)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">tfl</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">model2</span> <span class="o">=</span> <span class="n">alpaca_model</span><span class="p">(</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">data_augmentation</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">(</span><span class="n">model2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">[&#39;InputLayer&#39;, [(None, 160, 160, 3)], 0]
+</span><span class="s1">[&#39;Sequential&#39;, (None, 160, 160, 3), 0]
+</span><span class="s1">[&#39;TensorFlowOpLayer&#39;, [(None, 160, 160, 3)], 0]
+</span><span class="s1">[&#39;TensorFlowOpLayer&#39;, [(None, 160, 160, 3)], 0]
+</span><span class="s1">[&#39;Functional&#39;, (None, 5, 5, 1280), 2257984]
+</span><span class="s1">[&#39;GlobalAveragePooling2D&#39;, (None, 1280), 0]
+</span><span class="s1">[&#39;Dropout&#39;, (None, 1280), 0, 0.2]
+</span><span class="s1">[&#39;Dense&#39;, (None, 1), 1281, &#39;linear&#39;]
+</span><span class="s1">&#39;&#39;&#39;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="model-compile-and-visualize-accuracy">Model Compile and Visualize Accuracy</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">base_learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="n">base_learning_rate</span><span class="p">),</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="n">initial_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">initial_epochs</span><span class="p">)</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">+</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="n">val_acc</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">+</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+<span class="n">val_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()),</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Accuracy&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cross Entropy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/mobileacc.png" width="400"/>
+</figure>
+
+<p>Right Now, the modified model has learned the <code>class_names</code> for given training dataset</p>
+<ul>
+<li><code>['alpaca', 'not alpaca']</code></li>
+</ul>
+<h3 id="5-fine-tuning-the-final-layers">5. Fine-tuning the Final Layers</h3>
+<p>Fine-tuning the model by <strong>re-running the optimizer in the last layers</strong> can improve accuracy.</p>
+<ul>
+<li>a smaller learning rate takes smaller steps to <em>adapt it a little more closely</em> to the new data.</li>
+</ul>
+<p>In Transfer Learning, <em>unfreezing the layers at the end of the network</em>, and then re-training your model on the final layers <em>with a very low learning rate</em>.</p>
+<ul>
+<li>the low-level features can be kept the same, as they have common features for most images.</li>
+<li><em>we want the high-level features adapt to new data</em>, which is rather like letting the network learn to detect features more related to new training data, such as <strong>soft fur or big teeth</strong>.</li>
+<li>the later layers are the part of the network that contain the fine details (<em>pointy ears, hairy tails</em>) that are more specific to problem.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">base_model</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># 155 layers are in the base model</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of layers in the base model: &#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">base_model</span><span class="o">.</span><span class="n">layers</span><span class="p">))</span>
+
+<span class="c1"># Fine-tune from this layer onwards</span>
+<span class="n">fine_tune_at</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="c1"># Freeze all the layers before the `fine_tune_at` layer</span>
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">base_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[:</span><span class="n">fine_tune_at</span><span class="p">]:</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Define a BinaryCrossentropy loss function. Use from_logits=True</span>
+<span class="n">loss_function</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Define an Adam optimizer with a learning rate of 0.1 * base_learning_rate</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">base_learning_rate</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># Use accuracy as evaluation metric</span>
+<span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+
+
+<span class="n">model2</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">loss_function</span><span class="p">,</span>
+              <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+
+<span class="n">fine_tune_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">total_epochs</span> <span class="o">=</span>  <span class="n">initial_epochs</span> <span class="o">+</span> <span class="n">fine_tune_epochs</span>
+
+<span class="n">history_fine</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span>
+                         <span class="n">epochs</span><span class="o">=</span><span class="n">total_epochs</span><span class="p">,</span>
+                         <span class="n">initial_epoch</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_dataset</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="visualize-accuracy">Visualize Accuracy</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">acc</span> <span class="o">+=</span> <span class="n">history_fine</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="n">val_acc</span> <span class="o">+=</span> <span class="n">history_fine</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
+
+<span class="n">loss</span> <span class="o">+=</span> <span class="n">history_fine</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+<span class="n">val_loss</span> <span class="o">+=</span> <span class="n">history_fine</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">initial_epochs</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">initial_epochs</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+          <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Start Fine Tuning&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Accuracy&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">initial_epochs</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">initial_epochs</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Start Fine Tuning&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/finetuneacc.png" width="400"/>
+</figure>
+
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-02-28</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/cnn04/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/cnn04/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets" data-description="This Note is based on Coursera - CNN Specilization"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets" data-description="This Note is based on Coursera - CNN Specilization"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/cnn04/" data-title="Deep Learning Notes | Transfer Learning with MobileNets"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/cnn03/" class="prev" rel="prev" title="Deep Learning Notes | Deep CNN: ResNets"><i class="fas fa-angle-left fa-fw"></i>Deep Learning Notes | Deep CNN: ResNets</a>
+            <a href="/rs/" class="next" rel="next" title="RealSense RGB-Depth Camera Tutorial 01">RealSense RGB-Depth Camera Tutorial 01<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

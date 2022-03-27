@@ -20,7 +20,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/cnn03/" /><link rel="prev" href="https://yiyangd.github.io/cnn01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/cnn03/" /><link rel="prev" href="https://yiyangd.github.io/cnn06/" /><link rel="next" href="https://yiyangd.github.io/cnn04/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/cnn03\/"
-        },"genre": "posts","wordcount":  64 ,
+        },"genre": "posts","wordcount":  1528 ,
         "url": "https:\/\/yiyangd.github.io\/cnn03\/","datePublished": "2022-02-22T00:00:00+00:00","dateModified": "2022-02-20T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Deep Learning Notes | Deep CNN: ResNets</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-22">2022-02-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;64 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-22">2022-02-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1528 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -117,21 +117,510 @@
   <ul>
     <li><a href="#deep-cnn---resnets">Deep CNN - ResNets</a>
       <ul>
-        <li><a href="#0-import-packages">0. Import Packages</a></li>
+        <li><a href="#1-deep-convolutional-neural-networks">1. Deep Convolutional Neural Networks</a>
+          <ul>
+            <li><a href="#problems">Problems:</a></li>
+            <li><a href="#solution-residual-network">Solution: Residual Network!</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-build-a-residual-network-">2. Build a Residual Network ()</a>
+          <ul>
+            <li><a href="#21-the-identity-block">2.1. The Identity Block</a></li>
+            <li><a href="#22-the-convolutional-block">2.2. The Convolutional Block</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-resnet-50-model">3. ResNet-50 Model</a></li>
+        <li><a href="#4-use-pre-trained-model-and-classify-images">4. Use pre-trained model and classify images</a></li>
+        <li><a href="#load-packages">Load Packages</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="deep-cnn---resnets">Deep CNN - ResNets</h2>
+<h3 id="1-deep-convolutional-neural-networks">1. Deep Convolutional Neural Networks</h3>
+<figure><img src="/images/cnn/deep.jpeg" width="400"/>
+</figure>
+
+<p>In recent years, neural networks have become much deeper, with state-of-the-art networks evolving from having just a few layers (e.g., AlexNet) to over a hundred layers.</p>
+<p>The main benefit of a very deep network is that it can represent very complex functions. It can also learn features at many different levels of abstraction, from edges (at the shallower layers, closer to the input) to very complex features (at the deeper layers, closer to the output).</p>
+<h4 id="problems">Problems:</h4>
+<p><strong>Vanishing Gradients</strong>: very deep networks often have a gradient signal that goes to zero quickly, thus making gradient descent prohibitively slow.</p>
 <ul>
-<li>In theory, very deep networks can represent very complex functions; but in practice, they are hard to train.
+<li>during gradient descent, as networks backpropagate from the final layer back to the first layer, multiplying by the weight matrix on each step, and thus the gradient can decrease exponentially quickly to zero
 <ul>
-<li>Residual Networks allow us to train much deeper networks than were previously feasible</li>
+<li>or, in rare cases, grow exponentially quickly and &ldquo;explode,&rdquo; from gaining very large values.</li>
 </ul>
 </li>
+<li>during training, the magnitude (or norm) of <em>the gradient for the shallower layers</em> decrease to zero very <em>rapidly</em> as training proceeds, as shown below:</li>
 </ul>
-<p>In recent years, neural networks have become much deeper, with state-of-the-art networks evolving from having just a few layers (e.g. AlexNet) to over a hundred layers</p>
-<h3 id="0-import-packages">0. Import Packages</h3>
+<figure><img src="/images/cnn/vanish.png" width="400"/>
+</figure>
+
+<h4 id="solution-residual-network">Solution: Residual Network!</h4>
+<figure><img src="/images/cnn/residual.png" width="400"/>
+</figure>
+
+<h3 id="2-build-a-residual-network-">2. Build a Residual Network ()</h3>
+<h4 id="21-the-identity-block">2.1. The Identity Block</h4>
+<figure><img src="/images/cnn/idblock.png" width="400"/>
+</figure>
+
+<p>The identity block is the standard block used in ResNets, and corresponds to the case where the input activation has the same dimension as the output activation.</p>
+<ul>
+<li>The upper path is the &ldquo;shortcut path.&rdquo;</li>
+<li>The lower path is the &ldquo;main path.&rdquo;</li>
+<li>To speed up training, a BatchNorm step has been added to CONV2D and ReLU steps in each layer</li>
+<li>Having ResNet blocks with the shortcut makes it easy for one of the blocks to learn an identity function</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="n">random_uniform</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Implementation of the identity block as defined above
+</span><span class="s2">
+</span><span class="s2">    Arguments:
+</span><span class="s2">    X -- input tensor of shape (m, n_H_prev, n_W_prev, n_C_prev)
+</span><span class="s2">    f -- integer, specifying the shape of the middle CONV&#39;s window for the main path
+</span><span class="s2">    filters -- python list of integers, defining the number of filters in the CONV layers of the main path
+</span><span class="s2">    training -- True: Behave in training mode
+</span><span class="s2">                False: Behave in inference mode
+</span><span class="s2">    initializer -- to set up the initial weights of a layer. Equals to random uniform initializer
+</span><span class="s2">
+</span><span class="s2">    Returns:
+</span><span class="s2">    X -- output of the identity block, tensor of shape (m, n_H, n_W, n_C)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># Retrieve Filters</span>
+    <span class="n">F1</span><span class="p">,</span> <span class="n">F2</span><span class="p">,</span> <span class="n">F3</span> <span class="o">=</span> <span class="n">filters</span>
+
+    <span class="c1"># Save the input value. You&#39;ll need this later to add back to the main path.</span>
+    <span class="n">X_shortcut</span> <span class="o">=</span> <span class="n">X</span>
+
+    <span class="c1"># First component of main path</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F1</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+               <span class="n">padding</span> <span class="o">=</span> <span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="p">)</span> <span class="c1"># Default axis</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1">## Second component of main path</span>
+    <span class="c1">## Set the padding = &#39;same&#39;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F2</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+               <span class="n">padding</span> <span class="o">=</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="p">)</span> <span class="c1"># Default axis</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+
+    <span class="c1">## Third component of main path</span>
+    <span class="c1">## Set the padding = &#39;valid&#39;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F3</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+               <span class="n">padding</span> <span class="o">=</span> <span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="p">)</span> <span class="c1"># Default axis</span>
+
+    <span class="c1">## Final step: Add [shortcut value] to main path, and pass it through a RELU activation</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">X_shortcut</span><span class="p">,</span><span class="n">X</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="22-the-convolutional-block">2.2. The Convolutional Block</h4>
+<p>The ResNet Convolutional Block is the second block type, which is used when the input and output dimensions don&rsquo;t match up.</p>
+<ul>
+<li>The difference with the identity block is that <strong>there is a CONV2D layer</strong> in the shortcut path:</li>
+</ul>
+<figure><img src="/images/cnn/convblock.png" width="400"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convolutional_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="n">glorot_uniform</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Implementation of the convolutional block as defined in Figure 4
+</span><span class="s2">
+</span><span class="s2">    Arguments:
+</span><span class="s2">    X -- input tensor of shape (m, n_H_prev, n_W_prev, n_C_prev)
+</span><span class="s2">    f -- integer, specifying the shape of the middle CONV&#39;s window for the main path
+</span><span class="s2">    filters -- python list of integers, defining the number of filters in the CONV layers of the main path
+</span><span class="s2">    s -- Integer, specifying the stride to be used
+</span><span class="s2">    training -- True: Behave in training mode
+</span><span class="s2">                False: Behave in inference mode
+</span><span class="s2">    initializer -- to set up the initial weights of a layer. Equals to Glorot uniform initializer,
+</span><span class="s2">                   also called Xavier uniform initializer.
+</span><span class="s2">
+</span><span class="s2">    Returns:
+</span><span class="s2">    X -- output of the convolutional block, tensor of shape (n_H, n_W, n_C)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># Retrieve Filters</span>
+    <span class="n">F1</span><span class="p">,</span> <span class="n">F2</span><span class="p">,</span> <span class="n">F3</span> <span class="o">=</span> <span class="n">filters</span>
+
+    <span class="c1"># Save the input value</span>
+    <span class="n">X_shortcut</span> <span class="o">=</span> <span class="n">X</span>
+
+
+    <span class="c1">##### MAIN PATH #####</span>
+
+    <span class="c1"># First component of main path glorot_uniform(seed=0)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F1</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span>
+               <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1">## Second component of main path</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F2</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+               <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1">## Third component of main path</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F3</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+               <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">)</span>
+
+    <span class="c1">##### SHORTCUT PATH #####</span>
+    <span class="n">X_shortcut</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="n">F3</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span>
+                        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializer</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X_shortcut</span><span class="p">)</span>
+    <span class="n">X_shortcut</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X_shortcut</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">)</span>
+
+    <span class="c1"># Final step: Add shortcut value to main path (Use this order [X, X_shortcut]), and pass it through a RELU activation</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">X</span><span class="p">,</span> <span class="n">X_shortcut</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-resnet-50-model">3. ResNet-50 Model</h3>
+<figure><img src="/images/cnn/res50.png" width="400"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ResNet50</span><span class="p">(</span><span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">classes</span> <span class="o">=</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Stage-wise implementation of the architecture of the popular ResNet50:
+</span><span class="s2">    CONV2D -&gt; BATCHNORM -&gt; RELU -&gt; MAXPOOL -&gt; CONVBLOCK -&gt; IDBLOCK*2 -&gt; CONVBLOCK -&gt; IDBLOCK*3
+</span><span class="s2">    -&gt; CONVBLOCK -&gt; IDBLOCK*5 -&gt; CONVBLOCK -&gt; IDBLOCK*2 -&gt; AVGPOOL -&gt; FLATTEN -&gt; DENSE
+</span><span class="s2">
+</span><span class="s2">    Arguments:
+</span><span class="s2">    input_shape -- shape of the images of the dataset
+</span><span class="s2">    classes -- integer, number of classes
+</span><span class="s2">
+</span><span class="s2">    Returns:
+</span><span class="s2">    model -- a Model() instance in Keras
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># Define the input as a tensor with shape input_shape</span>
+    <span class="n">X_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+
+
+    <span class="c1"># Zero-Padding</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">ZeroPadding2D</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))(</span><span class="n">X_input</span><span class="p">)</span>
+
+    <span class="c1"># Stage 1</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">glorot_uniform</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Stage 2</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">convolutional_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+
+    <span class="c1">## Stage 3</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">convolutional_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">])</span>
+
+    <span class="c1">## Stage 4</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">convolutional_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
+
+    <span class="c1">## Stage 5</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">convolutional_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">2048</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">2048</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">identity_block</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">2048</span><span class="p">])</span>
+
+    <span class="c1">## AVGPOOL</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">AveragePooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Output layer</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">()(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">glorot_uniform</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Create model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">X_input</span><span class="p">,</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">X</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ResNet50</span><span class="p">(</span><span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">classes</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Summary:</p>
+<ul>
+<li>Total params: 23,600,006</li>
+<li>Trainable params: 23,546,886</li>
+<li>Non-trainable params: 53,120</li>
+</ul>
+<h3 id="4-use-pre-trained-model-and-classify-images">4. Use pre-trained model and classify images</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">pre_trained_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;resnet50.h5&#39;</span><span class="p">)</span>
+
+<span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;images/1.jpeg&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Input image shape:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">pre_trained_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Class prediction vector [p(0), p(1), p(2), p(3), p(4), p(5)] = &#34;</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Class:&#34;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">prediction</span><span class="p">))</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:
+<figure><img src="/images/cnn/pretrain.png" width="400"/>
+</figure>
+</p>
+<h3 id="load-packages">Load Packages</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.misc</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.resnet_v2</span> <span class="kn">import</span> <span class="n">ResNet50V2</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing</span> <span class="kn">import</span> <span class="n">image</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.resnet_v2</span> <span class="kn">import</span> <span class="n">preprocess_input</span><span class="p">,</span> <span class="n">decode_predictions</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">ZeroPadding2D</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">AveragePooling2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">GlobalMaxPooling2D</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">load_model</span>
+<span class="kn">from</span> <span class="nn">resnets_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.initializers</span> <span class="kn">import</span> <span class="n">random_uniform</span><span class="p">,</span> <span class="n">glorot_uniform</span><span class="p">,</span> <span class="n">constant</span><span class="p">,</span> <span class="n">identity</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.framework.ops</span> <span class="kn">import</span> <span class="n">EagerTensor</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">imshow</span>
+
+<span class="kn">from</span> <span class="nn">test_utils</span> <span class="kn">import</span> <span class="n">summary</span><span class="p">,</span> <span class="n">comparator</span>
+<span class="kn">import</span> <span class="nn">public_tests</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>[1] <a href="https://paperswithcode.com/method/resnet" target="_blank" rel="noopener noreffer">https://paperswithcode.com/method/resnet</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -157,7 +646,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/cnn01/" class="prev" rel="prev" title="Deep Learning Notes | Build a CNN with Python/Numpy"><i class="fas fa-angle-left fa-fw"></i>Deep Learning Notes | Build a CNN with Python/Numpy</a></div>
+    <div class="post-nav"><a href="/cnn06/" class="prev" rel="prev" title="Deep Learning Notes | Image Segmentation: U-Nets"><i class="fas fa-angle-left fa-fw"></i>Deep Learning Notes | Image Segmentation: U-Nets</a>
+            <a href="/cnn04/" class="next" rel="next" title="Deep Learning Notes | Transfer Learning with MobileNets">Deep Learning Notes | Transfer Learning with MobileNets<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

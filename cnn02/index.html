@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/cnn02\/"
-        },"genre": "posts","wordcount":  808 ,
+        },"genre": "posts","wordcount":  917 ,
         "url": "https:\/\/yiyangd.github.io\/cnn02\/","datePublished": "2022-02-20T00:00:00+00:00","dateModified": "2022-02-20T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Deep Learning Notes | Build CNNs with Tensorflow/Keras APIs</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-20">2022-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;808 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-20">2022-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;917 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -117,8 +117,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#0-load-package">0. Load Package</a></li>
-        <li><a href="#1-happy-smiling-classification">1. Happy Smiling Classification</a>
+        <li><a href="#0-load-packages">0. Load Packages</a></li>
+        <li><a href="#1-build-a-mood-classifier">1. Build a Mood Classifier</a>
           <ul>
             <li><a href="#11-tf-keras-sequential-api">1.1. TF Keras Sequential API</a></li>
             <li><a href="#12-model-comiple-and-summary">1.2. Model Comiple and Summary</a></li>
@@ -129,6 +129,7 @@
           <ul>
             <li><a href="#21-functional-api">2.1. Functional API</a></li>
             <li><a href="#22-model-compile-and-summary">2.2. Model Compile and Summary</a></li>
+            <li><a href="#23-train-and-visualize-the-model">2.3. Train and Visualize the Model</a></li>
           </ul>
         </li>
       </ul>
@@ -140,7 +141,7 @@
 <li>Create a mood classifer using the TF Keras Sequential API (binary)</li>
 <li>Build a ConvNet to identify sign language digits using the TF Keras Functional API (multiclass)</li>
 </ul>
-<h3 id="0-load-package">0. Load Package</h3>
+<h3 id="0-load-packages">0. Load Packages</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -175,7 +176,7 @@
 
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="1-happy-smiling-classification">1. Happy Smiling Classification</h3>
+</div><h3 id="1-build-a-mood-classifier">1. Build a Mood Classifier</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -333,7 +334,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">happy_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">happy_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">happy_model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -448,6 +449,64 @@
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="22-model-compile-and-summary">2.2. Model Compile and Summary</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">conv_model</span> <span class="o">=</span> <span class="n">convolutional_model</span><span class="p">((</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">conv_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+                  <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">conv_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/summary2.png" width="400"/>
+</figure>
+
+<h4 id="23-train-and-visualize-the-model">2.3. Train and Visualize the Model</h4>
+<p>The <code>history</code> object is an output of the <code>.fit()</code> operation, and provides a record of <strong>all the loss and metric values</strong> in memory. It&rsquo;s stored as a dictionary that you can retrieve at <code>history.history</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">))</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">))</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">conv_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">test_dataset</span><span class="p">)</span>
+
+<span class="n">df_loss_acc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">)</span>
+<span class="n">df_loss</span><span class="o">=</span> <span class="n">df_loss_acc</span><span class="p">[[</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]]</span>
+<span class="n">df_loss</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;val_loss&#39;</span><span class="p">:</span><span class="s1">&#39;validation&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_acc</span><span class="o">=</span> <span class="n">df_loss_acc</span><span class="p">[[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]]</span>
+<span class="n">df_acc</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;accuracy&#39;</span><span class="p">:</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">:</span><span class="s1">&#39;validation&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_loss</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Model loss&#39;</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">df_acc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Model Accuracy&#39;</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/cnn/modelvis.png" width="400"/>
+</figure>
+
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

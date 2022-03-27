@@ -6,7 +6,7 @@ Two Classification Examples:
 - Create a mood classifer using the TF Keras Sequential API (binary)
 - Build a ConvNet to identify sign language digits using the TF Keras Functional API (multiclass)
 
-### 0. Load Package
+### 0. Load Packages
 
 ```python
 import math
@@ -25,7 +25,7 @@ np.random.seed(1)
 
 ```
 
-### 1. Happy Smiling Classification
+### 1. Build a Mood Classifier
 
 ```python
 X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_happy_dataset()
@@ -113,7 +113,7 @@ happy_model.summary()
 Use .evaluate() to evaluate against the test set. This function will print the value of the loss function and the performance metrics specified during the compilation of the model.
 
 ```python
-happy_model.fit(X_train, Y_train, epochs=10, batch_size=16)
+happy_model.fit(X_train, Y_train, epochs=100, batch_size=16)
 happy_model.evaluate(X_test, Y_test)
 ```
 
@@ -179,4 +179,37 @@ def convolutional_model(input_shape):
 ```
 
 #### 2.2. Model Compile and Summary
+
+```python
+conv_model = convolutional_model((64, 64, 3))
+conv_model.compile(optimizer='adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+conv_model.summary()
+```
+
+{{< figure src="/images/cnn/summary2.png" width="400">}}
+
+#### 2.3. Train and Visualize the Model
+
+The `history` object is an output of the `.fit()` operation, and provides a record of **all the loss and metric values** in memory. It's stored as a dictionary that you can retrieve at `history.history`:
+
+```python
+train_dataset = tf.data.Dataset.from_tensor_slices((X_train, Y_train)).batch(64)
+test_dataset = tf.data.Dataset.from_tensor_slices((X_test, Y_test)).batch(64)
+history = conv_model.fit(train_dataset, epochs=100, validation_data=test_dataset)
+
+df_loss_acc = pd.DataFrame(history.history)
+df_loss= df_loss_acc[['loss','val_loss']]
+df_loss.rename(columns={'loss':'train','val_loss':'validation'},inplace=True)
+df_acc= df_loss_acc[['accuracy','val_accuracy']]
+df_acc.rename(columns={'accuracy':'train','val_accuracy':'validation'},inplace=True)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4), tight_layout=True)
+df_loss.plot(title='Model loss',ax = ax1,figsize=(12,8)).set(xlabel='Epoch',ylabel='Loss')
+df_acc.plot(title='Model Accuracy',ax = ax2,figsize=(12,8)).set(xlabel='Epoch',ylabel='Accuracy')
+plt.show()
+```
+
+{{< figure src="/images/cnn/modelvis.png" width="400">}}
 

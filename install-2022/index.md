@@ -57,3 +57,55 @@ tf.__version__
 len(tf.config.list_physical_devices('GPU"))
 ```
 
+## Cuda Family
+
+### 1. Check CUDA version
+
+```shell
+$ nvidia-smi
+```
+
+- NVIDIA-SMI: 470.86
+- Driver Version: 470.86
+- CUDA Version: 11.4
+
+### 2. Download cuDNN
+
+https://developer.nvidia.com/rdp/cudnn-archive
+
+Download cuDNN v8.0.5 (Nov 9th, 2020) for CUDA 11.0
+
+- https://developer.nvidia.com/cuda-11-0-3-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local
+
+```shell
+$ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
+
+$ sudo sh cuda_11.0.3_450.51.06_linux.run
+```
+
+### 3. Install cuDNN
+
+- https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux
+
+Open a new terminal, unzip the cuDNN package just downloaded
+
+```shell
+~/Downloads$ tar -xvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
+```
+
+Source
+
+```shell
+$ ls -l /usr/local/cuda
+$ nano ~/.bashrc
+```
+
+Copy the following files into the CUDA toolkit directory
+
+```shell
+$ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+$ sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+
+```
+

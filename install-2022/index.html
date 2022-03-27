@@ -20,7 +20,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/install-2022/" /><link rel="prev" href="https://yiyangd.github.io/deeplearning-02/" /><link rel="next" href="https://yiyangd.github.io/yolo_install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/install-2022/" /><link rel="prev" href="https://yiyangd.github.io/package-management/" /><link rel="next" href="https://yiyangd.github.io/yolo_install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/install-2022\/"
-        },"genre": "posts","wordcount":  215 ,
+        },"genre": "posts","wordcount":  315 ,
         "url": "https:\/\/yiyangd.github.io\/install-2022\/","datePublished": "2022-01-09T00:00:00+00:00","dateModified": "2022-01-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Install Python, Tensorflow, Pytorch, CUDA on Ubuntu 20.04 in 2022</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-09">2022-01-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;215 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-09">2022-01-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;315 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -122,6 +122,13 @@
             <li><a href="#heading"></a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#cuda-family">Cuda Family</a>
+      <ul>
+        <li><a href="#1-check-cuda-version">1. Check CUDA version</a></li>
+        <li><a href="#2-download-cudnn">2. Download cuDNN</a></li>
+        <li><a href="#3-install-cudnn">3. Install cuDNN</a></li>
       </ul>
     </li>
   </ul>
@@ -220,6 +227,78 @@ tf.__version__
 len(tf.config.list_physical_devices(&#39;GPU&#34;))
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="cuda-family">Cuda Family</h2>
+<h3 id="1-check-cuda-version">1. Check CUDA version</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ nvidia-smi
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>NVIDIA-SMI: 470.86</li>
+<li>Driver Version: 470.86</li>
+<li>CUDA Version: 11.4</li>
+</ul>
+<h3 id="2-download-cudnn">2. Download cuDNN</h3>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener noreffer">https://developer.nvidia.com/rdp/cudnn-archive</a></p>
+<p>Download cuDNN v8.0.5 (Nov 9th, 2020) for CUDA 11.0</p>
+<ul>
+<li><a href="https://developer.nvidia.com/cuda-11-0-3-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=Ubuntu&amp;target_version=20.04&amp;target_type=runfile_local" target="_blank" rel="noopener noreffer">https://developer.nvidia.com/cuda-11-0-3-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
+
+$ sudo sh cuda_11.0.3_450.51.06_linux.run
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-install-cudnn">3. Install cuDNN</h3>
+<ul>
+<li><a href="https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux" target="_blank" rel="noopener noreffer">https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux</a></li>
+</ul>
+<p>Open a new terminal, unzip the cuDNN package just downloaded</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">~/Downloads$ tar -xvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
+</code></pre></td></tr></table>
+</div>
+</div><p>Source</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ ls -l /usr/local/cuda
+$ nano ~/.bashrc
+</code></pre></td></tr></table>
+</div>
+</div><p>Copy the following files into the CUDA toolkit directory</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+$ sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+
+</code></pre></td></tr></table>
+</div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -245,7 +324,7 @@ len(tf.config.list_physical_devices(&#39;GPU&#34;))
         </section>
     </div>
 
-    <div class="post-nav"><a href="/deeplearning-02/" class="prev" rel="prev" title="Deep Learning Notes 02 | Deep Neural Network"><i class="fas fa-angle-left fa-fw"></i>Deep Learning Notes 02 | Deep Neural Network</a>
+    <div class="post-nav"><a href="/package-management/" class="prev" rel="prev" title="Package Management Notes"><i class="fas fa-angle-left fa-fw"></i>Package Management Notes</a>
             <a href="/yolo_install/" class="next" rel="next" title="Run Yolo and RealSense in 2022">Run Yolo and RealSense in 2022<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>

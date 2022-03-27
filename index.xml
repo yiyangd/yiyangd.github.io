@@ -4,16 +4,93 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 22 Feb 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 26 Mar 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>路加福音第12章</title>
+    <link>https://yiyangd.github.io/luke12/</link>
+    <pubDate>Sat, 26 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/luke12/</guid>
+    <description><![CDATA[耶稣教导众人 12.1. 防备假冒为善（1 - 3）  【路十二 1】「这时，有几万人聚集，甚至彼此践踏。耶稣开讲，先对门徒说：『你们要防备法利赛人的酵，就是假冒为善。」
+  【路十二 2】「掩盖的事没有不露出来的。隐藏的事没有不被人知道的。」
+ 「假冒为善」的意思是「伪装、演戏」，原文用来称赞戴着面具的演员表演得惟妙惟肖。
+ 一个「假冒为善」的人，在生活中也戴着假面具，只追求敬虔的外表、内心却没有敬畏和悔改，人生如戏。 「假冒为善」是一种具有负面感染力的「酵」，当一部分人表演得很「属灵」的时候，其他的人也会跟着装假。人一旦开始装假，就会陷入名利和谎言的网罗。 「防备法利赛人的酵」，连一点点的属灵装假也要马上弃绝  「因为那真正拜父的，要用心灵和诚实拜祂」（约四 23）。    问题：
+ 你能感受到自己的虚伪吗？  12.2. 不要惧怕，要敬畏  【路十二 4】「『我的朋友，我对你们说，那杀身体以后不能再做什么的，不要怕他们。」
+ 撒旦和世界最多只能杀害身体，但在「杀身体以后不能再做什么」（4 节）。因此，我们「不要怕他们」（4 节）
+ 因为「那些一生因怕死而为奴仆的人」（来二 15），最后还是逃不过身体死亡的结局，一生却白白做了奴仆。   【路十二 5】「我要指示你们当怕的是谁：当怕那杀了以后又有权柄丢在地狱里的。我实在告诉你们，正要怕祂。」
+ 12.3. 在人的面前承认基督（圣灵的工作 9 - 12）  【路十二 10】「凡说话干犯人子的，还可得赦免；惟独亵渎圣灵的，总不得赦免。」
+ 「亵渎圣灵」（10 节），就是「消灭圣灵的感动」（帖前五 19），甚至故意毁谤主耶稣是靠鬼王赶鬼（十一 15），所以「总不得赦免」（10 节）。这是新约圣经中最严肃的宣告与警告。
+ 【路十二 11】「人带你们到会堂，并官府和有权柄的人面前，不要思虑怎么分诉，说什么话；」
+  【路十二 12】「因为正在那时候，圣灵要指教你们当说的话。』」
+ 问题：
+如果“圣灵要指教我们当说的话”，我们能做什么呢？我最近总觉得我除了倚靠，什么都不能做
+ 不可凭着自己的血气说话，因为圣灵会带领他们怎么说、说什么，好在逼迫中能站立得住，勇敢地在人前承认主（11-12 节）。 人若自己强要出头，圣灵就没有机会说话；人若管住自己的口，圣灵就会显明祂的话（12 节）。 一个人越是对自己的心志有把握，越是在十字架面前不堪一击；一个人越是对自己的刚强有信心，越会被十字架打得粉碎。因为十字架的功用，就是破碎人的自信、拆毁人的自傲，完全用主自己来代替。  「注解」预备迎接逼迫的正确做法：]]></description>
+</item><item>
+    <title>Deep Learning Notes | YOLO = Application of Stats &#43; Probability &#43; Computer Vision</title>
+    <link>https://yiyangd.github.io/cnn05/</link>
+    <pubDate>Thu, 24 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/cnn05/</guid>
+    <description><![CDATA[Object Detection with YOLO &ldquo;You Only Look Once&rdquo; (YOLO) is a popular algorithm because it achieves high accuracy in real time object detection. This algorithm &ldquo;only looks once&rdquo; at the image in the sense that it requires only one forward propagation pass through the network to make predictions.
+Inputs and Outputs The input is a batch of m images, and each image has the shape (m, 608, 608, 3)
+Anchor Boxes First Filter: Threshold on Class Scores 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  def yolo_filter_boxes(boxes, box_confidence, box_class_probs, threshold = 0.]]></description>
+</item><item>
+    <title>RealSense RGB-Depth Camera Tutorial 02</title>
+    <link>https://yiyangd.github.io/rs02/</link>
+    <pubDate>Thu, 17 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/rs02/</guid>
+    <description><![CDATA[I hope this note could finally solve the Point Cloud Segmentation + YOLO
+Key Code 1 2 3 4 5 6 7 8  import pyrealsense2.pyrealsense2 as rs pc = rs.pointcloud() points = rs.points() points = pc.calculate(depth_frame) vertices = np.asanyarray(points.get_vertices(dim=2))   Notes points = rs.points(): Extends the frame class with additional point cloud related attributes and functions.
+points.get_vertices(dim=2): Retrieve the vertices of the point cloud
+o3d.utility.Vector3dVector(vertices_interest): Convert float64 numpy array of shape (n, 3) to Open3D format, 3 means x,y,z]]></description>
+</item><item>
+    <title>Depth Estimation | Chapter 12 of CV book</title>
+    <link>https://yiyangd.github.io/vision01/</link>
+    <pubDate>Thu, 10 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/vision01/</guid>
+    <description><![CDATA[12.1. Epipolar Geometry (对极几何) ]]></description>
+</item><item>
+    <title>RealSense RGB-Depth Camera Tutorial 01</title>
+    <link>https://yiyangd.github.io/rs/</link>
+    <pubDate>Thu, 10 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/rs/</guid>
+    <description><![CDATA[RealSense RGB-Depth Camera Tutorial 01 1. Streaming Depth This example demonstrates how to start streaming depth frames from the camera and display the image in the console as an ASCII art.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  ##################################################### ## librealsense tutorial #1 - Accessing depth data ## ##################################################### # First import the library import pyrealsense2 as rs try: # Create a context object.]]></description>
+</item><item>
+    <title>Deep Learning Notes | Transfer Learning with MobileNets</title>
+    <link>https://yiyangd.github.io/cnn04/</link>
+    <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/cnn04/</guid>
+    <description><![CDATA[Transfer Learning with MobileNets Many machine learning methods work well ONLY under a common assumption: the training and test data are drawn from the same feature space and the same distribution.
+ When the distribution changes, most statistical models need to be rebuilt from scratch using newly collected training data. In many realworld applications, it is expensive or impossible. In such cases, Transfer Learning between task domains would be desirable.   This note illustrate steps of using transfer learning on a pre-trained CNN to build an Alpaca/Not Alpaca （羊驼识别） classifier!]]></description>
+</item><item>
     <title>Deep Learning Notes | Deep CNN: ResNets</title>
     <link>https://yiyangd.github.io/cnn03/</link>
     <pubDate>Tue, 22 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/cnn03/</guid>
-    <description><![CDATA[Deep CNN - ResNets  In theory, very deep networks can represent very complex functions; but in practice, they are hard to train.  Residual Networks allow us to train much deeper networks than were previously feasible    In recent years, neural networks have become much deeper, with state-of-the-art networks evolving from having just a few layers (e.g. AlexNet) to over a hundred layers
-0. Import Packages ]]></description>
+    <description><![CDATA[Deep CNN - ResNets 1. Deep Convolutional Neural Networks  In recent years, neural networks have become much deeper, with state-of-the-art networks evolving from having just a few layers (e.g., AlexNet) to over a hundred layers.
+The main benefit of a very deep network is that it can represent very complex functions. It can also learn features at many different levels of abstraction, from edges (at the shallower layers, closer to the input) to very complex features (at the deeper layers, closer to the output).]]></description>
+</item><item>
+    <title>Deep Learning Notes | Image Segmentation: U-Nets</title>
+    <link>https://yiyangd.github.io/cnn06/</link>
+    <pubDate>Tue, 22 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/cnn06/</guid>
+    <description><![CDATA[UNets https://pyimagesearch.com/2022/02/21/u-net-image-segmentation-in-keras/]]></description>
+</item><item>
+    <title>Deploy YOLOv5 with OpenCV</title>
+    <link>https://yiyangd.github.io/yolov5/</link>
+    <pubDate>Tue, 22 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/yolov5/</guid>
+    <description><![CDATA[https://www.youtube.com/watch?v=3wdqO_vYMpA
+We will create a class where you can put in a youtube video that you want to detect objects in.]]></description>
 </item><item>
     <title>Deep Learning Notes | Build a CNN with Python/Numpy</title>
     <link>https://yiyangd.github.io/cnn01/</link>
@@ -22,88 +99,5 @@
     <guid>https://yiyangd.github.io/cnn01/</guid>
     <description><![CDATA[ISLR(10.3) Convolutional Neural Networks CNNs mimic to some degree how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.
  the network first identifies low-level features in the input image  such as small edges, patches of color..   these low-level features are then combined to form higher-level features  such as ears, eyes..   finally, the presence or absence of these higher-level features contributes to the probability of any given output class   A CNN build up this hierarchy by combining two specialized types of hidden layers]]></description>
-</item><item>
-    <title>Deep Learning Notes | Build CNNs with Tensorflow/Keras APIs</title>
-    <link>https://yiyangd.github.io/cnn02/</link>
-    <pubDate>Sun, 20 Feb 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/cnn02/</guid>
-    <description><![CDATA[Two Classification Examples:
- Create a mood classifer using the TF Keras Sequential API (binary) Build a ConvNet to identify sign language digits using the TF Keras Functional API (multiclass)  0. Load Package 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import math import numpy as np import h5py import matplotlib.pyplot as plt import scipy from PIL import Image from scipy import ndimage import tensorflow as tf from tensorflow.]]></description>
-</item><item>
-    <title>Deep Learning Notes | First GAN</title>
-    <link>https://yiyangd.github.io/gan01/</link>
-    <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/gan01/</guid>
-    <description><![CDATA[Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
-Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
-Train the GAN and visualize the generated images.
-0. Import Packages and visualizer function 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  import torch from torch import nn from tqdm.]]></description>
-</item><item>
-    <title>路加福音第七章</title>
-    <link>https://yiyangd.github.io/luke07/</link>
-    <pubDate>Sat, 19 Feb 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/luke07/</guid>
-    <description><![CDATA[路加福音 第七章 1. 治好百夫长的仆人，极大的信心， ( 1 - 10 )  【路七 4】「他们到了耶稣那里，就切切地求祂说：『祢给他行这事是他所配得的；」
-【路七 5】「因为他爱我们的百姓，给我们建造会堂。』」
-【路七 6】「耶稣就和他们同去。离那家不远，百夫长托几个朋友去见耶稣，对祂说：『主啊！不要劳动；因祢到我舍下，我不敢当。」
-【路七 7】「我也自以为不配去见祢，只要祢说一句话，我的仆人就必好了。」
-  这些犹太长老比外邦百夫长更不认识恩典；因为凡是认识恩典的人，是谦卑的，都是「自以为不配」（7 节）的。  关于注解的问题：“路加特别指出，这位外邦百夫长是「托犹太人的几个长老去求耶稣来救他的仆人」（3 节），这将鼓励本书的外邦读者透过犹太信徒来接受救恩。”
- 【路七 8】「因为我在人的权下，也有兵在我以下，对这个说：“去！”他就去；对那个说：“来！”他就来；对我的仆人说：“你做这事！”他就去做。』」
-  问题：什么是 “一个经历过权柄的人，也知道真正的权柄只需要借着话语就能显明。”  2. 主耶稣使寡妇的儿子复活（11 - 17）  【路七 13】「主看见那寡妇，就怜悯她，对她说：『不要哭！』」
-  【路七 14】「于是进前按着杠，抬的人就站住了。耶稣说：『少年人，我吩咐你，起来！』」
-  【路七 15】「那死人就坐起，并且说话。耶稣便把他交给他母亲。」
- 13 节是本书第一次称主耶稣为「主」（13 节），因为祂是「生命之主」，惟有祂能改变死亡的事实。
- 这个神迹并不是人去寻找救恩，而是救恩主动找人。 神国的救恩，就是「神眷顾了祂的百姓」，神的儿子主动寻找【灵性已经死亡】的罪人，叫我们从死亡中得生命，从捆绑中得自由，在困苦中得安慰，在悲伤中得喜乐。  “信徒每一次与世人的邂逅，在人看来也都是巧合，但神的美意，却是要让我们成为那个拦住他们走向死亡的人。”
- 没有主，我们就是一直走向死亡，心理上的，肉体上的，感谢主，让我们停下来思考思考  3. 施洗约翰差人问主（18 - 23）  【路七 19】「他便叫了两个门徒来，打发他们到主那里去，说：『那将要来的是祢吗？还是我们等候别人呢？』」
-【路七 20】「那两个人来到耶稣那里，说：『施洗的约翰打发我们来问祢：“那将要来的是祢吗？还是我们等候别人呢？”』」
-【路七 21】「正当那时候，耶稣治好了许多有疾病的，受灾患的，被恶鬼附着的；又开恩叫好些瞎子能看见。」]]></description>
-</item><item>
-    <title>Decode Real-World Examples in Python | Educative.io Course Notes</title>
-    <link>https://yiyangd.github.io/decode01/</link>
-    <pubDate>Mon, 14 Feb 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/decode01/</guid>
-    <description><![CDATA[Building simple features and understand the underlying patterns that can be applied to real-world examples
- Create in 2022.02.14. Monday; Finish Feature 1 of Netflix   1. Netflix Features Netflix is the biggest video streaming platform in the world, offering movies, seasons, biographies, reality shows, and more.
- Their video repository is growing significantly. So the engineering team at Netflix keeps trying to find better ways to display content to their consumers.]]></description>
-</item><item>
-    <title>Deep Learning Notes 04 |  Weight Initialization and Gradient Check for DNN </title>
-    <link>https://yiyangd.github.io/deeplearning-04/</link>
-    <pubDate>Fri, 21 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/deeplearning-04/</guid>
-    <description><![CDATA[1. Weight Initialization A well chosen initialization can:
- Speed up the convergence of gradient descent Increase the odds of gradient descent converging to a lower training (and generalization) error  Gradient Exploding and Vanishing Training a neural network requires specifying an initial value of the weights. A well chosen initialization method will help learning.
- if W &gt; I (Identity Matrix): in DNN, the activations can explode if W &lt; I: the activations will decrease exponentially and then vanish  Zero Initialization：]]></description>
-</item><item>
-    <title>Deep Learning Notes 03 |  Regularize Deep Neural Network</title>
-    <link>https://yiyangd.github.io/deeplearning-03/</link>
-    <pubDate>Thu, 20 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/deeplearning-03/</guid>
-    <description><![CDATA[Regularize Deep Neural Networks  这篇笔记记录了深度神经网络的正则化，在【统计学习笔记 03 世上没有解千愁的酒】中，我记录了“没有任何一种模型或算法可以在各种数据集中完胜其它所有的算法，解决所有的问题”，当我们把神经网络的层数加深，神经元节点变多，使其能“深度学习”更多的更复杂的更灵活的非线性函数的同时，也使得模型产生了**过拟合(overfit)**问题 —— 酗酒(overdrink)看似可以完全地麻痹自己让自己完全忘记了所有问题、幻想自己活在了一个完美的温柔乡(low training set error)，但酒醒之后却仍然无力解决任何现实的问题，仍然脆弱至极连站都站不起来更不要说能跑起来(high testing set error)。我们需要自律，深度神经网络亦如是 —— 正则化(Regularization)的加入使得神经网络避免陷入过度拟合的泥沼，在这篇笔记提到的四种正则化的方法(L2, Dropout, Data Augment, Early Stop)可以让其在测试集中表现的仍然良好。
- 1. Train/Dev/Test Sets Applying Machine Learning is highly iterative process
- Idea ==&gt; Code ==&gt; Experiment We have to go through the loop many times to figure out your hyperparameters.  We build a model upon training set then optimize hyperparameters on dev set as much as possible.]]></description>
-</item><item>
-    <title>Install Intel Realsense and Python Setup in 2022</title>
-    <link>https://yiyangd.github.io/realsense-install/</link>
-    <pubDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/realsense-install/</guid>
-    <description><![CDATA[Step 1: Search for IntelRealSense github
- https://github.com/IntelRealSense/librealsense  Step 2: Click the tag =&gt; release =&gt; latest
- https://github.com/IntelRealSense/librealsense/releases Click the latest tag (2.50.0 on Jan 16, 2022) and install the SDK on linux https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md  Step 3: Register the server&rsquo;s public key and add server to the list of repositories
- Step 4: Install the libraries and the developer and debug packages
- sudo apt-get install librealsense2-dkms sudo apt-get install librealsense2-utils sudo apt-get install librealsense2-dev sudo apt-get install librealsense2-dbg  Step 5: Reconnect the Intel RealSense Depth Camera (D435i) and run:]]></description>
-</item><item>
-    <title>Run Yolo and RealSense in 2022</title>
-    <link>https://yiyangd.github.io/yolo_install/</link>
-    <pubDate>Sat, 15 Jan 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/yolo_install/</guid>
-    <description><![CDATA[ conda install -c anaconda h5py conda install -c conda-forge opencv git clone https://github.com/qqwweee/keras-yolo3.git conda install -c conda-forge tensorflow conda install -c conda-forge keras conda install -c anaconda pillow conda install -c conda-forge matplotlib import tensorflow.python.keras.backend as K import pyrealsense2.pyrealsense2 as rs  ]]></description>
 </item></channel>
 </rss>
