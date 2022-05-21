@@ -5,7 +5,7 @@
 
 ### 1. Streaming Depth
 
-This example demonstrates how to start streaming depth frames from the camera and display the image in the console as an ASCII art.
+This example demonstrates how to start streaming depth frames from the camera and print the distance between
 
 ```python
 #####################################################
@@ -33,17 +33,17 @@ try:
         depth = frames.get_depth_frame()
         if not depth: continue
 
-        # Todo
+        # Print the distances
+        for y in range(480):
+            for x in range(640):
+                dist = depth.get_distance(x,y)
+                print(dist)
+        break
 
     exit(0)
 except Exception as e:
     print(e)
     pass
-#except rs.error as e:
-#    # Method calls agaisnt librealsense objects may throw exceptions of type pylibrs.error
-#    print("pylibrs.error was thrown when calling %s(%s):\n", % (e.get_failed_function(), e.get_failed_args()))
-#    print("    %s\n", e.what())
-#    exit(1)
 
 ```
 
@@ -58,10 +58,4 @@ pc = rs.pointcloud
 ```
 
 #### rs.pointcloud()
-
-Reference:
-[1] https://community.intel.com/t5/Items-with-no-label/how-to-generate-pointclouds-and-draw-it-in-python/td-p/583731
-[2] https://dev.intelrealsense.com/docs/rs-pointcloud
-[3] https://dev.intelrealsense.com/docs/python2
-[4] https://intelrealsense.github.io/librealsense/python_docs/_generated/pyrealsense2.html#module-pyrealsense2
 

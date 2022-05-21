@@ -5,36 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Depth Estimation | Chapter 12 of CV book - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Depth Estimation | Chapter 12 of CV book" />
-<meta property="og:description" content="3d 视觉笔记 01 ｜ Depth Estimation  此篇笔记是「三维视觉笔记」系列的第 1 篇, 记录了 Richard Szeliski 教授的计算机视觉教材 —— 「Computer Vision: Algorithms and Applications」第二版的第 12 章 —— 深度估计
- 0. Introduction Stereo matching (立体视觉匹配) is the process of taking two or more images and building a 3D model of the scene
- by finding matching pixels in the images and converting their 2D positions into 3D depths.   The word stereo comes from the Greek for solid; stereo vision is how we perceive solid shape (Koenderink 1990)." />
+        <title>路加福音第20章 - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="路加福音第20章" />
+<meta property="og:description" content="路加福音第 20 章 - 耶路撒冷拒绝耶稣  47 节，三
+ 犹太领袖质疑耶稣权柄（1-8 节） 恶园户的比喻（9-18 节） 关于纳税的问题 —— 凯撒的归凯撒 上帝的归上帝（19-26 节） （27-   " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/vision01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-03-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-03-10T00:00:00+00:00" />
+<meta property="og:url" content="https://yiyangd.github.io/luke20/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-20T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Depth Estimation | Chapter 12 of CV book"/>
-<meta name="twitter:description" content="3d 视觉笔记 01 ｜ Depth Estimation  此篇笔记是「三维视觉笔记」系列的第 1 篇, 记录了 Richard Szeliski 教授的计算机视觉教材 —— 「Computer Vision: Algorithms and Applications」第二版的第 12 章 —— 深度估计
- 0. Introduction Stereo matching (立体视觉匹配) is the process of taking two or more images and building a 3D model of the scene
- by finding matching pixels in the images and converting their 2D positions into 3D depths.   The word stereo comes from the Greek for solid; stereo vision is how we perceive solid shape (Koenderink 1990)."/>
+<meta name="twitter:title" content="路加福音第20章"/>
+<meta name="twitter:description" content="路加福音第 20 章 - 耶路撒冷拒绝耶稣  47 节，三
+ 犹太领袖质疑耶稣权柄（1-8 节） 恶园户的比喻（9-18 节） 关于纳税的问题 —— 凯撒的归凯撒 上帝的归上帝（19-26 节） （27-   "/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/vision01/" /><link rel="prev" href="https://yiyangd.github.io/rs/" /><link rel="next" href="https://yiyangd.github.io/rs02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/luke20/" /><link rel="prev" href="https://yiyangd.github.io/cnn08/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Depth Estimation | Chapter 12 of CV book",
+        "headline": "路加福音第20章",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/vision01\/"
-        },"genre": "posts","wordcount":  133 ,
-        "url": "https:\/\/yiyangd.github.io\/vision01\/","datePublished": "2022-03-10T00:00:00+00:00","dateModified": "2022-03-10T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/luke20\/"
+        },"genre": "posts","wordcount":  17 ,
+        "url": "https:\/\/yiyangd.github.io\/luke20\/","datePublished": "2022-05-20T00:00:00+00:00","dateModified": "2022-05-20T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -108,9 +106,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Depth Estimation | Chapter 12 of CV book</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">路加福音第20章</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-10">2022-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;133 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-20">2022-05-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;17 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -119,45 +117,33 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#3d-视觉笔记-01--depth-estimation">3d 视觉笔记 01 ｜ Depth Estimation</a>
-      <ul>
-        <li><a href="#0-introduction">0. Introduction</a></li>
-      </ul>
-    </li>
+    <li><a href="#路加福音第-20-章---耶路撒冷拒绝耶稣">路加福音第 20 章 - 耶路撒冷拒绝耶稣</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="3d-视觉笔记-01--depth-estimation">3d 视觉笔记 01 ｜ Depth Estimation</h2>
+            </div><div class="content" id="content"><h2 id="路加福音第-20-章---耶路撒冷拒绝耶稣">路加福音第 20 章 - 耶路撒冷拒绝耶稣</h2>
 <blockquote>
-<p>此篇笔记是「三维视觉笔记」系列的第 1 篇, 记录了 Richard Szeliski 教授的计算机视觉教材 —— 「Computer Vision: Algorithms and Applications」第二版的第 12 章 —— 深度估计</p>
+<p>47 节，三</p>
+<ol>
+<li>犹太领袖质疑耶稣权柄（1-8 节）</li>
+<li>恶园户的比喻（9-18 节）</li>
+<li>关于纳税的问题 —— 凯撒的归凯撒 上帝的归上帝（19-26 节）</li>
+<li>（27-</li>
+</ol>
 </blockquote>
-<h3 id="0-introduction">0. Introduction</h3>
-<p><strong>Stereo matching</strong> (立体视觉匹配) is the process of taking two or more images and building a 3D model of the scene</p>
-<ul>
-<li>by finding <em>matching pixels</em> in the images</li>
-<li>and converting their 2D positions into 3D depths.</li>
-</ul>
-<blockquote>
-<p>The word <strong>stereo</strong> comes from the Greek for <strong>solid</strong>; stereo vision is how we perceive solid shape (Koenderink 1990).</p>
-</blockquote>
-<p>Question:How to build a <strong>more complete</strong> 3D model?</p>
-<ul>
-<li>Example: a <em>sparse or dense depth map</em> that assigns relative depths to pixels in the input images.</li>
-<li>Solution: <strong>Multi-view stereo algorithms</strong> (多视图立体视觉) produce <em>complete 3D volumetric or surface-based object models</em>, as well as monocular depth recovery algorithms that infer plausible depths from just a single image.</li>
-</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-03-10</span>
+                <span>Updated on 2022-05-20</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/vision01/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/luke20/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/vision01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/vision01/" data-title="Depth Estimation | Chapter 12 of CV book"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/luke20/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/luke20/" data-title="路加福音第20章"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -169,8 +155,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/rs/" class="prev" rel="prev" title="RealSense RGB-Depth Camera Tutorial 01"><i class="fas fa-angle-left fa-fw"></i>RealSense RGB-Depth Camera Tutorial 01</a>
-            <a href="/rs02/" class="next" rel="next" title="RealSense RGB-Depth Camera Tutorial 02">RealSense RGB-Depth Camera Tutorial 02<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/cnn08/" class="prev" rel="prev" title="Deep Learning Notes | Art Generation with Neural Style Transfer"><i class="fas fa-angle-left fa-fw"></i>Deep Learning Notes | Art Generation with Neural Style Transfer</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
