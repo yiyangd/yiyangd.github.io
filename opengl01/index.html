@@ -5,36 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Deep Learning Notes | Art Generation with Neural Style Transfer - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Deep Learning Notes | Art Generation with Neural Style Transfer" />
-<meta property="og:description" content="神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数 optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !
-1. Neural Style Transfer Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.
- It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G)." />
+        <title>OpenGL Notes | Basics - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="OpenGL Notes | Basics" />
+<meta property="og:description" content="OpenGL is a graphics API used for real time rendering calculations that are processed by the GPU
+1. Screen and Coordinates 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  # Initialize pygame Screen pygame.init() # Screen Size screen_width = 1000 screen_height = 800 screen = pygame.display.set_mode((screen_width, screen_height), DOUBLEBUF | OPENGL) pygame.display.set_caption(&#34;OpenGL in Python&#34;) # Specify which matrix is the current matrix def init_ortho(): glMatrixMode(GL_PROJECTION) glLoadIdentity() # Clear the System gluOrtho2D(0, 1000, 0, 680) # set the window coordinates # (left, right, bottom, top)   glMatrixMode(GLenum mode): sets the current matrix mode" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/cnn08/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-05-17T00:00:00+00:00" />
+<meta property="og:url" content="https://yiyangd.github.io/opengl01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-25T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Deep Learning Notes | Art Generation with Neural Style Transfer"/>
-<meta name="twitter:description" content="神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数 optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !
-1. Neural Style Transfer Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.
- It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G)."/>
+<meta name="twitter:title" content="OpenGL Notes | Basics"/>
+<meta name="twitter:description" content="OpenGL is a graphics API used for real time rendering calculations that are processed by the GPU
+1. Screen and Coordinates 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  # Initialize pygame Screen pygame.init() # Screen Size screen_width = 1000 screen_height = 800 screen = pygame.display.set_mode((screen_width, screen_height), DOUBLEBUF | OPENGL) pygame.display.set_caption(&#34;OpenGL in Python&#34;) # Specify which matrix is the current matrix def init_ortho(): glMatrixMode(GL_PROJECTION) glLoadIdentity() # Clear the System gluOrtho2D(0, 1000, 0, 680) # set the window coordinates # (left, right, bottom, top)   glMatrixMode(GLenum mode): sets the current matrix mode"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/cnn08/" /><link rel="prev" href="https://yiyangd.github.io/3d_notes01/" /><link rel="next" href="https://yiyangd.github.io/luke20/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/opengl01/" /><link rel="prev" href="https://yiyangd.github.io/luke20/" /><link rel="next" href="https://yiyangd.github.io/paper00/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Deep Learning Notes | Art Generation with Neural Style Transfer",
+        "headline": "OpenGL Notes | Basics",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/cnn08\/"
-        },"genre": "posts","wordcount":  184 ,
-        "url": "https:\/\/yiyangd.github.io\/cnn08\/","datePublished": "2022-05-17T00:00:00+00:00","dateModified": "2022-05-17T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/opengl01\/"
+        },"genre": "posts","wordcount":  134 ,
+        "url": "https:\/\/yiyangd.github.io\/opengl01\/","datePublished": "2022-05-25T00:00:00+00:00","dateModified": "2022-05-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -108,9 +106,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Deep Learning Notes | Art Generation with Neural Style Transfer</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">OpenGL Notes | Basics</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-17">2022-05-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;184 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-25">2022-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;134 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -121,33 +119,14 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#1-neural-style-transfer">1. Neural Style Transfer</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#11-build-the-content-cost-function">1.1. Build the Content Cost Function</a></li>
-            <li><a href="#style-cost-function">Style Cost Function</a></li>
-            <li><a href="#total-cost">Total Cost</a></li>
-          </ul>
-        </li>
+        <li><a href="#1-screen-and-coordinates">1. Screen and Coordinates</a></li>
+        <li><a href="#reference">Reference:</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数
-optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !</p>
-<h3 id="1-neural-style-transfer">1. Neural Style Transfer</h3>
-<p>Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.</p>
-<ul>
-<li>It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G).</li>
-<li>The generated image G combines the &ldquo;content&rdquo; of the image C with the &ldquo;style&rdquo; of image S.</li>
-</ul>
+            </div><div class="content" id="content"><p>OpenGL is a graphics API used for <em>real time rendering</em> calculations that are processed by the GPU</p>
+<h3 id="1-screen-and-coordinates">1. Screen and Coordinates</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -162,42 +141,54 @@ optimize a cost function to get a set of parameter values. With Neural Style Tra
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="kn">from</span> <span class="nn">tensorflow.python.framework.ops</span> <span class="kn">import</span> <span class="n">EagerTensor</span>
-<span class="kn">import</span> <span class="nn">pprint</span>
-<span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">img_size</span> <span class="o">=</span> <span class="mi">400</span>
-<span class="n">vgg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">VGG19</span><span class="p">(</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                  <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">img_size</span><span class="p">,</span> <span class="n">img_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-                                  <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;pretrained-model/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5&#39;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Initialize pygame Screen</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="c1"># Screen Size</span>
+<span class="n">screen_width</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">screen_height</span> <span class="o">=</span> <span class="mi">800</span>
 
-<span class="n">vgg</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">vgg</span><span class="p">)</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">),</span> <span class="n">DOUBLEBUF</span> <span class="o">|</span> <span class="n">OPENGL</span><span class="p">)</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s2">&#34;OpenGL in Python&#34;</span><span class="p">)</span>
+
+<span class="c1"># Specify which matrix is the current matrix</span>
+<span class="k">def</span> <span class="nf">init_ortho</span><span class="p">():</span>
+    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+    <span class="n">glLoadIdentity</span><span class="p">()</span> <span class="c1"># Clear the System</span>
+    <span class="n">gluOrtho2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">680</span><span class="p">)</span>
+    <span class="c1"># set the window coordinates</span>
+    <span class="c1"># (left, right, bottom, top)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="图片-1">图片 1</h1>
-<h4 id="11-build-the-content-cost-function">1.1. Build the Content Cost Function</h4>
-<p>The content cost function is computed using one hidden layer&rsquo;s activations.</p>
-<h4 id="style-cost-function">Style Cost Function</h4>
-<p>The style cost function for one layer is computed using the Gram matrix of that layer&rsquo;s activations. The overall style cost function is obtained using several hidden layers.</p>
-<h4 id="total-cost">Total Cost</h4>
+</div><p><code>glMatrixMode(GLenum mode)</code>: sets the current matrix mode</p>
+<ul>
+<li><code>GL_MODELVIEW</code>: Applies subsequent matrix operations to the modelview matrix stack.</li>
+<li><code>GL_PROJECTION</code>: Applies subsequent matrix operations to the projection matrix stack.</li>
+</ul>
+<p><code>glLoadIdentity()</code>: replace the current matrix with the identity matrix</p>
+<h3 id="reference">Reference:</h3>
+<p>[1] <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glMatrixMode.xml" target="_blank" rel="noopener noreffer">https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glMatrixMode.xml</a><br>
+[2] <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glLoadMatrix.xml" target="_blank" rel="noopener noreffer">https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glLoadMatrix.xml</a><br>
+[3] <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glLoadIdentity.xml" target="_blank" rel="noopener noreffer">https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glLoadIdentity.xml</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-05-17</span>
+                <span>Updated on 2022-05-25</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/cnn08/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/opengl01/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/cnn08/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/cnn08/" data-title="Deep Learning Notes | Art Generation with Neural Style Transfer"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/opengl01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/opengl01/" data-title="OpenGL Notes | Basics"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -209,8 +200,8 @@ optimize a cost function to get a set of parameter values. With Neural Style Tra
         </section>
     </div>
 
-    <div class="post-nav"><a href="/3d_notes01/" class="prev" rel="prev" title="Open3D Notes | Coordinates and Transformation"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes | Coordinates and Transformation</a>
-            <a href="/luke20/" class="next" rel="next" title="路加福音第20章">路加福音第20章<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/luke20/" class="prev" rel="prev" title="路加福音第20章"><i class="fas fa-angle-left fa-fw"></i>路加福音第20章</a>
+            <a href="/paper00/" class="next" rel="next" title="Paper Notes 01 | How to Read a Paper">Paper Notes 01 | How to Read a Paper<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

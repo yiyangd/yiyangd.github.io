@@ -102,6 +102,16 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/sql-notes-01/">SQL Practices 01</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-19">2021-08-19</time></span></div><div class="content">175. Combine Two Table  Write a SQL query for a report that provides FirstName, LastName, City, State for each person in the Person table, regardless if there is an address for each of those people
+ PersonId and AddressId are primary keys   1 2 3 4 5 6  CreatetablePerson(PersonIdint,FirstNamevarchar(255),LastNamevarchar(255))CreatetableAddress(AddressIdint,PersonIdint,Cityvarchar(255),Statevarchar(255))TruncatetablePersoninsertintoPerson(PersonId,LastName,FirstName)values(&#39;1&#39;,&#39;Wang&#39;,&#39;Allen&#39;)TruncatetableAddressinsertintoAddress(AddressId,PersonId,City,State)values(&#39;1&#39;,&#39;2&#39;,&#39;New York City&#39;,&#39;New York&#39;)  Solution: Outter Join Since the PersonId in table Address is the foreign key of table Person, we can join this two table to get the address information of a person.</div><div class="post-footer">
+        <a href="/sql-notes-01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/ecommerceapp05-cart/">eCommerce Platform 05 - Shopping Cart Implementation</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-16">2021-08-16</time></span></div><div class="content">1. Qty Select &amp; Add to Cart Button In ProductScreen.js
+ import useState add qty, history, addToCartHandler  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46  import React, { useState, useEffect } from &#34;react&#34;; const ProductScreen = ({ history, match }) =&gt; { const [qty, setQty] = useState(1) const addToCartHandler = () =&gt; { history.</div><div class="post-footer">
+        <a href="/ecommerceapp05-cart/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ecommerceapp04-redux/">Full Stack Notes | eCommerce Platform 04 - Redux for State Management</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-14">2021-08-14</time></span></div><div class="content">Notes on Aug 15th: lots of stuff I haven&rsquo;t understanded, just try to learn some whole framework
 Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  Redux is a predictable state container for JavaScript apps.
@@ -127,15 +137,6 @@ Redux Overview   https://redux.js.org/understanding/thinking-in-redux/glossary  
 Create frontend/src/components/Header.js and Footer.js
  use &lt;LinkContainer to&gt; rather than &lt;href&gt; could avoid reload  faster    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34  // Header.</div><div class="post-footer">
         <a href="/ecommerceapp/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/svm2/">Statistical Learning Notes | SVM 2 - Support Vector Classifiers and Machines</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-07">2021-08-07</time></span></div><div class="content">Support Vector Classifiers 2.1. Motivation Disadvantages of Maximal Margin Classifier: A classifier based on a separating hyperplane will necessarily perfectly classify ALL of the training observations
- this can lead to sensitivity to individual observations  a change in a single observation may lead to a dramatic change in the hyperplane   it may have overfit the training data  Improvement: Consider a classifier based on a hyperplane that does NOT perfectly separate the two classes, in the interest of:</div><div class="post-footer">
-        <a href="/svm2/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/open3d-1/">3D Vision - Intel® RealSense™ depth camera and IMU</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-06">2021-08-06</time></span></div><div class="content">daas</div><div class="post-footer">
-        <a href="/open3d-1/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

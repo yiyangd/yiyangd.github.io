@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>papers - Tag - DYY</title>
+        <link>https://yiyangd.github.io/tags/papers/</link>
+        <description>papers - Tag - DYY</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Fri, 27 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/tags/papers/" rel="self" type="application/rss+xml" /><item>
+    <title>Paper Notes 01 | How to Read a Paper</title>
+    <link>https://yiyangd.github.io/paper00/</link>
+    <pubDate>Fri, 27 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/paper00/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/paper/paper00.png" referrerpolicy="no-referrer">
+            </div>PaperNotes00 ｜ How to Read a Paper  此篇笔记是PaperNotes系列的第 1 篇，我将S. Keshav教授在 2016 年写作的How to Read a Paper 进行摘抄，翻译和要点总结：
+ http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf    ABSTRACT Researchers spend a great deal of time reading research papers. However, this skill is rarely taught, leading to much wasted effort.
+ This article outlines a practical and efficient three-pass method for reading research papers. I also describe how to use this method to do a literature survey.]]></description>
+</item></channel>
+</rss>
