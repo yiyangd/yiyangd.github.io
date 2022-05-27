@@ -7,7 +7,7 @@
 >
 > - http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 
-{{< figure src="/images/paper/paper00.png" width="400">}}
+{{< figure src="/images/papers/paper00.png" width="400">}}
 
 ### ABSTRACT
 
