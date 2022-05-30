@@ -1,4 +1,4 @@
-# Paper Notes 01 | How to Read a Paper
+# Paper Notes 00 | How to Read a Paper
 
 
 ## PaperNotes00 ｜ How to Read a Paper

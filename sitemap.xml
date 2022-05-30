@@ -2,17 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://yiyangd.github.io/categories/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://yiyangd.github.io/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/categories/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/paper02/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/tags/papers/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/categories/papers/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/posts/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/tags/</loc><lastmod>2022-05-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://yiyangd.github.io/paper00/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://yiyangd.github.io/tags/papers/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://yiyangd.github.io/categories/papers/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://yiyangd.github.io/posts/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://yiyangd.github.io/tags/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://yiyangd.github.io/paper01/</loc><lastmod>2022-05-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://yiyangd.github.io/opengl01/</loc><lastmod>2022-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://yiyangd.github.io/cnn08/</loc><lastmod>2022-05-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://yiyangd.github.io/3d_notes01/</loc><lastmod>2022-05-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://yiyangd.github.io/cnn07/</loc><lastmod>2022-05-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://yiyangd.github.io/cnn07/</loc><lastmod>2022-05-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://yiyangd.github.io/cnn05/</loc><lastmod>2022-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://yiyangd.github.io/rs02/</loc><lastmod>2022-03-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://yiyangd.github.io/vision01/</loc><lastmod>2022-03-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
