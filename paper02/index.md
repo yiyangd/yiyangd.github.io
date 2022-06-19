@@ -7,11 +7,12 @@
 
 #### Step 1. Read Title, Abstract and Intro
 
-**Title:** Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site
+**Title:** Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site (施工现场)
 
 **Abstract:**
 
-- The automated registration method in this paper
+- The automated registration method in this paper converts points into suitable representation and determines _Transformation Parameters_ for registration.
+- it is useful for **Construction Automation**
 
 **Section 1. Introduction**
 
@@ -22,4 +23,6 @@
 **Section 2. Research Methodology**
 
 - 2.1. Preprocessing
+  - use Octree for data Re-Sampling
+- 2.2. 3D Registration
 

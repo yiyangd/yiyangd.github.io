@@ -5,37 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site - DYY</title><meta name="Description" content="How to Read a Paper"><meta property="og:title" content="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" />
-<meta property="og:description" content="How to Read a Paper" />
+        <title>OpenCV Notes 01 | Feature Detection - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="OpenCV Notes 01 | Feature Detection" />
+<meta property="og:description" content="0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
+ If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yiyangd.github.io/paper02/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-29T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-05-29T00:00:00+00:00" />
+<meta property="og:url" content="https://yiyangd.github.io/opencv01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-14T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"/>
-<meta name="twitter:description" content="How to Read a Paper"/>
+<meta name="twitter:title" content="OpenCV Notes 01 | Feature Detection"/>
+<meta name="twitter:description" content="0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
+ If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper02/" /><link rel="prev" href="https://yiyangd.github.io/paper00/" /><link rel="next" href="https://yiyangd.github.io/opencv01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/opencv01/" /><link rel="prev" href="https://yiyangd.github.io/paper02/" /><link rel="next" href="https://yiyangd.github.io/luke24/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site",
+        "headline": "OpenCV Notes 01 | Feature Detection",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/yiyangd.github.io\/paper02\/"
-        },"genre": "posts","keywords": "papers","wordcount":  88 ,
-        "url": "https:\/\/yiyangd.github.io\/paper02\/","datePublished": "2022-05-29T00:00:00+00:00","dateModified": "2022-05-29T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/yiyangd.github.io\/opencv01\/"
+        },"genre": "posts","wordcount":  256 ,
+        "url": "https:\/\/yiyangd.github.io\/opencv01\/","datePublished": "2022-06-14T00:00:00+00:00","dateModified": "2022-06-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
                 "name": "Yiyang Dong"
-            },"description": "How to Read a Paper"
+            },"description": ""
     }
     </script></head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -104,10 +106,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/papers/"><i class="far fa-folder fa-fw"></i>papers</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-29">2022-05-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;88 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">OpenCV Notes 01 | Feature Detection</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-14">2022-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;256 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -117,66 +119,80 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#1-the-first-pass">1. The first pass</a>
+        <li><a href="#0-understanding-features">0. Understanding Features</a>
           <ul>
-            <li><a href="#step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</a></li>
-            <li><a href="#step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</a></li>
+            <li><a href="#jigsaw-puzzle-game">Jigsaw Puzzle Game</a></li>
+            <li><a href="#basic-questions">Basic Questions</a></li>
+            <li><a href="#feature-detection">Feature Detection</a></li>
+            <li><a href="#feature-description">Feature Description</a></li>
           </ul>
         </li>
+        <li><a href="#1">1.</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="1-the-first-pass">1. The first pass</h3>
-<p>5 Steps to quick scan to get a bird’s-eye view of the paper</p>
-<h4 id="step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</h4>
-<p><strong>Title:</strong> Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site (施工现场)</p>
-<p><strong>Abstract:</strong></p>
+            </div><div class="content" id="content"><h3 id="0-understanding-features">0. Understanding Features</h3>
+<h4 id="jigsaw-puzzle-game">Jigsaw Puzzle Game</h4>
+<p>Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.</p>
 <ul>
-<li>The automated registration method in this paper converts points into suitable representation and determines <em>Transformation Parameters</em> for registration.</li>
-<li>it is useful for <strong>Construction Automation</strong></li>
+<li>If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?</li>
+<li>If the computer can stitch several natural images to one, what about giving a lot of pictures of a building or any structure and tell computer to <em>create a 3D model</em> out of it?</li>
 </ul>
-<p><strong>Section 1. Introduction</strong></p>
+<h4 id="basic-questions">Basic Questions</h4>
 <ul>
-<li>Problem:</li>
+<li>How do you play jigsaw puzzles?</li>
+<li>How do you arrange lots of scrambled image pieces into a big single image?</li>
+<li>How can you stitch a lot of natural images to a single image?</li>
 </ul>
-<h4 id="step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</h4>
-<p><strong>Section 2. Research Methodology</strong></p>
+<p>Answers:</p>
 <ul>
-<li>2.1. Preprocessing
-<ul>
-<li>use Octree for data Re-Sampling</li>
+<li>We are looking for <em>specific patterns</em> or <em>specific features</em> which are <strong>unique</strong>, can be easily tracked and can be easily compared.</li>
+<li>好的 Feature 难以被定义，但小孩子都可以做到 —— 那便是拼拼图先去拼的那四个角，边和独特的拼图块块。</li>
 </ul>
-</li>
-<li>2.2. 3D Registration</li>
+<h4 id="feature-detection">Feature Detection</h4>
+<ul>
+<li>looks for the features in images which have maximum variation when moved (by a small amount) in all regions around it.</li>
+</ul>
+<h4 id="feature-description">Feature Description</h4>
+<ul>
+<li>We take a region around the feature, we explain it in our own words,</li>
+<li>like &ldquo;upper part is blue sky, lower part is region from a building, on that building there is glass etc&rdquo;</li>
+<li>Once you have the features and its description, you can find same features in all images and align them, stitch them together</li>
+</ul>
+<h3 id="1">1.</h3>
+<p>Reference:</p>
+<ul>
+<li><a href="https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html</a></li>
+<li><a href="https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html</a></li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-05-29</span>
+                <span>Updated on 2022-06-14</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/paper02/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/opencv01/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper02/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-description="How to Read a Paper"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-description="How to Read a Paper"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/opencv01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/opencv01/" data-title="OpenCV Notes 01 | Feature Detection"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/papers/">papers</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/paper00/" class="prev" rel="prev" title="Paper Notes 00 | How to Read a Paper"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 00 | How to Read a Paper</a>
-            <a href="/opencv01/" class="next" rel="next" title="OpenCV Notes 01 | Feature Detection">OpenCV Notes 01 | Feature Detection<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/paper02/" class="prev" rel="prev" title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</a>
+            <a href="/luke24/" class="next" rel="next" title="路加福音第24章">路加福音第24章<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

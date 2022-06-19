@@ -1,7 +1,7 @@
 # Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image
 
 
-## PaperNotes 01 ｜ ROCA (1) -
+## PaperNotes 01 ｜ ROCA (1)
 
 代码：https://github.com/cangumeli/ROCA  
 主页：https://cangumeli.github.io/ROCA  
@@ -91,7 +91,7 @@ Differentiable Procrustes Optimization
 - Leveraging dense per-pixel depth
 - Canonical Point Correspondences with Weighted Differentiable Procrustes Optimization
 
-3. Authors hope this ROCA method accelerate developments in **3D perception** towards **content creation**, **mixed reality**, and domain transfer.
+2. Authors hope this ROCA method accelerate developments in **3D perception** towards **content creation**, **mixed reality**, and domain transfer.
 
 #### Step 5. Glance over the References
 
@@ -100,6 +100,4 @@ Mentally ticking off the ones you've already read:
 - since this is the first paper I read....
 - aha! I can tick off the last one!!!
   - [50] Qian-Yi Zhou, Jaesik Park, and Vladlen Koltun. Open3D: A modern library for 3D data processing. arXiv:1801.09847, 2018 ✅
-
-### 5 questions of C
 

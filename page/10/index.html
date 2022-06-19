@@ -102,6 +102,32 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/svm01/">Statistical Learning Notes | SVM 1 - HyperPlane, Support Vectors and Maximal Margin Classification</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-06">2021-08-06</time></span></div><div class="content">SVM 1. Maximal Margin Classifier 1.1. What is a HyperPlane? Definition: In a p-dimensional space, a HyperPlane is a flat affine subspace of dimension p-1
+ affine: the subspace need not pass through the origin if $p=2$, a hyperplane is a flat 1-dimensional subspace  in other words, a Line =&gt; $\beta_0 + \beta_1X_1 + \beta_2X_2 = 0$   if $p=3$, a hyperplane is a flat 2-dimensional subspace  in other words, a Plane    If $p&gt;3$: the p-dimensional hyperlane is defined by the equation: $$\beta_0 + \beta_1X_1 + \beta_2X_2 + &hellip; + \beta_pX_p= 0$$</div><div class="post-footer">
+        <a href="/svm01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/decisiontree2/">Statistical Learning Notes | Decision Tree 2 - Bagging &amp; Random Forrest &amp; Boosting</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-11-17">2020-11-17</time></span></div><div class="content">1.Bagging
+&ndash; Out-of-Bag (OOB) Error Estimation
+&ndash; Variable Importance Measures
+2.Random Forest
+&ndash; Decorrelating the Trees
+3.boosting
+&ndash; Algorithm
+&ndash; Three Tuning Parameters
+These three ensemble methods use trees as building blocks to construct more powerful prediction models
+1. Bagging Bootstrap is used when it is hard or even impossible to directly compute the Standard Deviation.
+Bootstrap Aggregation (or bagging) can reduce the high-variance of decision trees
+ high variance may result in fitting quite different trees on different part of same data  A set of ${X_1,&hellip;,X_n}\ $ with variance $\sigma^2$</div><div class="post-footer">
+        <a href="/decisiontree2/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/decisiontree1/">Decision Tree 1 - Regression and Classification Trees</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-11-14">2020-11-14</time></span></div><div class="content">0. Tree-based methods Involving stratifying / segmenting the predictor space into a number of simple regions
+ Use the mean/mode of the training data in the region as prediction for test data  1. Regression Decision Tree 1.1 Motivation Making Prediction via Stratification of the Feature Space：
+ Divide the predictor space &ndash; that is, the set of possible response $Y$ for ${X_1,X_2,&hellip;,X_p}$ &ndash; into $J$ distinct and non-overlapping regions, ${R_1,R_2,&hellip;,R_J}$ For every test data which will fall into the region $R_j$, we make the same prediction, which is simply the mean of the response $Y$ for the training observations in $R_j$  1.</div><div class="post-footer">
+        <a href="/decisiontree1/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/docker/">Full Stack Notes | Dockers</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-09-23">2020-09-23</time></span></div><div class="content">1. What is Docker？ Docker is a tool for building, running and shipping applications in an isolated Environment
  Similar to VM Apps run in same environment Standard for software deployment (easier)  2. Containers vs Virtual Machines Containers are an abstraction at the *application layer**
@@ -119,18 +145,6 @@
  this uncertainty means that our model is probabilistic rather than deterministic  For
 We can use our model to calculate the probability of obtaining two heads in a row: $$Pr(H,H|\theta, Model) = Pr(H|\theta,Model) \times Pr(H|\theta, Model)$$ $$=\theta \times \theta = \theta^2 = (\frac{1}{2})^2 = \frac{1}{4}$$</div><div class="post-footer">
         <a href="/bayes-stat/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/time-series-r/"></a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span></div><div class="content">Example 1 Consider data for the Average Cardiovascular Mortality Rate (平均心血管病死亡率) in Los Angeles California in cmort.data
-(a) Examine the data, state if there was anything strange about the files, and if you made adjustments.
-1    (b) Produce a plot of the data versus time. Include either labels on the axes OR a legend explaining the axes.
-1    (c) Make observations about the existence or lack of existence of,</div><div class="post-footer">
-        <a href="/time-series-r/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/sql-basics/">SQL Basics</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span></div><div class="content">Create Table 1 2 3 4 5  CREATE TABLE tableName ( col1 &lt;dataType&gt; &lt;Restrictions&gt;, col2 &lt;dataType&gt; &lt;Restrictions&gt;, col3 &lt;dataType&gt; &lt;Restrictions&gt;, &lt;Primary Key or Index definitions&gt;);   Create Table Actors
-1 2 3 4 5 6 7  CREATETABLEActors(FirstNameVARCHAR(20),SecondNameVARCHAR(20),DoBDATE,GenderENUM(&#39;Male&#39;,&#39;Female&#39;,&#39;Other&#39;),MaritalStatusENUM(&#39;Married&#39;,&#39;Divorced&#39;,&#39;Single&#39;),NetWorthInMillionsDECIMAL);  </div><div class="post-footer">
-        <a href="/sql-basics/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -148,6 +162,10 @@ We can use our model to calculate the probability of obtaining two heads in a ro
                 </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

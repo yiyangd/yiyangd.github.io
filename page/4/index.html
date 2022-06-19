@@ -102,6 +102,23 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cnn01/">Deep Learning Notes | Build a CNN with Python/Numpy</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-20">2022-02-20</time></span></div><div class="content">ISLR(10.3) Convolutional Neural Networks CNNs mimic to some degree how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.
+ the network first identifies low-level features in the input image  such as small edges, patches of color..   these low-level features are then combined to form higher-level features  such as ears, eyes..   finally, the presence or absence of these higher-level features contributes to the probability of any given output class   A CNN build up this hierarchy by combining two specialized types of hidden layers</div><div class="post-footer">
+        <a href="/cnn01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cnn02/">Deep Learning Notes | Build CNNs with Tensorflow/Keras APIs</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-20">2022-02-20</time></span></div><div class="content">Two Classification Examples:
+ Create a mood classifer using the TF Keras Sequential API (binary) Build a ConvNet to identify sign language digits using the TF Keras Functional API (multiclass)  0. Load Packages 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import math import numpy as np import h5py import matplotlib.pyplot as plt import scipy from PIL import Image from scipy import ndimage import tensorflow as tf from tensorflow.</div><div class="post-footer">
+        <a href="/cnn02/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/gan01/">Deep Learning Notes | First GAN</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-19">2022-02-19</time></span></div><div class="content">Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
+Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
+Train the GAN and visualize the generated images.
+0. Import Packages and visualizer function 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  import torch from torch import nn from tqdm.</div><div class="post-footer">
+        <a href="/gan01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/decode01/">Decode Real-World Examples in Python | Educative.io Course Notes</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-14">2022-02-14</time></span></div><div class="content">Building simple features and understand the underlying patterns that can be applied to real-world examples
  Create in 2022.02.14. Monday; Finish Feature 1 of Netflix   1. Netflix Features Netflix is the biggest video streaming platform in the world, offering movies, seasons, biographies, reality shows, and more.
@@ -119,22 +136,6 @@
  1. Train/Dev/Test Sets Applying Machine Learning is highly iterative process
  Idea ==&gt; Code ==&gt; Experiment We have to go through the loop many times to figure out your hyperparameters.  We build a model upon training set then optimize hyperparameters on dev set as much as possible.</div><div class="post-footer">
         <a href="/deeplearning-03/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/realsense-install/">Install Intel Realsense and Python Setup in 2022</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-15">2022-01-15</time></span></div><div class="content">Step 1: Search for IntelRealSense github
- https://github.com/IntelRealSense/librealsense  Step 2: Click the tag =&gt; release =&gt; latest
- https://github.com/IntelRealSense/librealsense/releases Click the latest tag (2.50.0 on Jan 16, 2022) and install the SDK on linux https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md  Step 3: Register the server&rsquo;s public key and add server to the list of repositories
- Step 4: Install the libraries and the developer and debug packages
- sudo apt-get install librealsense2-dkms sudo apt-get install librealsense2-utils sudo apt-get install librealsense2-dev sudo apt-get install librealsense2-dbg  Step 5: Reconnect the Intel RealSense Depth Camera (D435i) and run:</div><div class="post-footer">
-        <a href="/realsense-install/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/yolo_install/">Run Yolo and RealSense in 2022</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-15">2022-01-15</time></span></div><div class="content"> conda install -c anaconda h5py conda install -c conda-forge opencv git clone https://github.com/qqwweee/keras-yolo3.git conda install -c conda-forge tensorflow conda install -c conda-forge keras conda install -c anaconda pillow conda install -c conda-forge matplotlib import tensorflow.python.keras.backend as K import pyrealsense2.pyrealsense2 as rs  </div><div class="post-footer">
-        <a href="/yolo_install/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/install-2022/">Install Python, Tensorflow, Pytorch, CUDA on Ubuntu 20.04 in 2022</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-09">2022-01-09</time></span></div><div class="content">0. Check System, CPU, GPU 1 2  $ sudo lshw -C display $ lscpu    GPU: NVIDIA GeForce GTX 1060 3GB CPU: Intel i7-5820K    Download and use Miniconda (latest Version 3.9)   https://docs.conda.io/en/latest/miniconda.html#linux-installers   Conda is an open source package management system and environment management system that runs on Windows, macOS and Linux. Conda quickly installs, runs and updates packages and their dependencies.</div><div class="post-footer">
-        <a href="/install-2022/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -163,7 +164,7 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/10/">10</a>
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
