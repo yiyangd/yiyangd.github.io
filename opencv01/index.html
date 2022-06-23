@@ -22,7 +22,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/opencv01/" /><link rel="prev" href="https://yiyangd.github.io/paper02/" /><link rel="next" href="https://yiyangd.github.io/luke24/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/opencv01/" /><link rel="prev" href="https://yiyangd.github.io/paper02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/opencv01\/"
-        },"genre": "posts","wordcount":  256 ,
+        },"genre": "posts","wordcount":  490 ,
         "url": "https:\/\/yiyangd.github.io\/opencv01\/","datePublished": "2022-06-14T00:00:00+00:00","dateModified": "2022-06-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,8 +108,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">OpenCV Notes 01 | Feature Detection</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-14">2022-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;256 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-14">2022-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;490 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -127,7 +127,13 @@
             <li><a href="#feature-description">Feature Description</a></li>
           </ul>
         </li>
-        <li><a href="#1">1.</a></li>
+        <li><a href="#1-harris-corner-detection">1. Harris Corner Detection</a>
+          <ul>
+            <li><a href="#concepts-math">Concepts (Math)</a></li>
+            <li><a href="#opencv-implementation">OpenCV Implementation</a></li>
+          </ul>
+        </li>
+        <li><a href="#heading"></a></li>
       </ul>
     </li>
   </ul>
@@ -158,13 +164,78 @@
 <ul>
 <li>We take a region around the feature, we explain it in our own words,</li>
 <li>like &ldquo;upper part is blue sky, lower part is region from a building, on that building there is glass etc&rdquo;</li>
-<li>Once you have the features and its description, you can find same features in all images and align them, stitch them together</li>
+<li>Once you have the features and its description, you can find same features in all images and align(match) them, stitch them together</li>
 </ul>
-<h3 id="1">1.</h3>
-<p>Reference:</p>
+<h3 id="1-harris-corner-detection">1. Harris Corner Detection</h3>
+<p>Corners are regions in the image with large variation in intensity in all the directions.</p>
 <ul>
-<li><a href="https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html</a></li>
-<li><a href="https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html</a></li>
+<li>One early attempt to find these corners was done by Chris Harris &amp; Mike Stephens in their paper <em>A Combined Corner and Edge Detector</em> in 1988,</li>
+<li>so now it is called the Harris Corner Detector.</li>
+</ul>
+<h4 id="concepts-math">Concepts (Math)</h4>
+<h4 id="opencv-implementation">OpenCV Implementation</h4>
+<p>OpenCV has the function <code>cv.cornerHarris()</code> for this purpose. Its arguments are:</p>
+<ul>
+<li><code>img</code> - Input image. It should be grayscale and float32 type.</li>
+<li><code>blockSize</code> - It is the size of neighbourhood considered for corner detection
+ksize - Aperture parameter of the Sobel derivative used.</li>
+<li><code>alpha</code>- Harris detector free parameter in the equation.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;left09.jpg&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">gray</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+<span class="n">gray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">cornerHarris</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="c1">#result is dilated for marking the corners, not important</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="c1"># Threshold for an optimal value, it may vary depending on the image.</span>
+<span class="n">img</span><span class="p">[</span><span class="n">dst</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="o">*</span><span class="n">dst</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span>
+<span class="n">cv</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;dst&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cv</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+    <span class="n">cv</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/opencv/harris.png" width="400"/>
+</figure>
+
+<h3 id="heading"></h3>
+<p>Later in 1994, J. Shi and C. Tomasi made a small modification to it in their paper <em>Good Features to Track</em> which shows better results compared to Harris Corner Detector.</p>
+<ul>
+<li>
+<p>The scoring function in Harris Corner Detector was given by:
+$$R=\lambda_0 \lambda_1 - \alpha(\lambda_0 + \lambda_1)^2$$</p>
+</li>
+<li>
+<p>Instead of this, Shi-Tomasi proposed:
+$$R = min(\lambda_1, \lambda_2)$$
+Reference:</p>
+</li>
+<li>
+<p><a href="https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html</a></p>
+</li>
+<li>
+<p><a href="https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html</a></p>
+</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -191,8 +262,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/paper02/" class="prev" rel="prev" title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</a>
-            <a href="/luke24/" class="next" rel="next" title="路加福音第24章">路加福音第24章<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/paper02/" class="prev" rel="prev" title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

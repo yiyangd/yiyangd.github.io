@@ -102,12 +102,6 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/cnn08/">Deep Learning Notes | Art Generation with Neural Style Transfer</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-17">2022-05-17</time></span></div><div class="content">神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数 optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !
-1. Neural Style Transfer Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.
- It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G).</div><div class="post-footer">
-        <a href="/cnn08/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/rnn01/">Deep Learning Notes | Word Embedding</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-05-17">2022-05-17</time></span></div><div class="content">自然语言处理：为文字建立统计模型 0. Sequence Data Many data sources are sequential in nature, and call for special treatment when building predictive models:
  Documents such as books and movie reviews, newspaper articles, and tweets  The sequence and relative positions of words in a document capture the narrative, theme and tone, tasks: topic classification, sentiment analysis, and language translation.   Time Series of weather and finantial information  tasks: weather / market indices prediction   Recorded Speech and Sound Recordings  tasks: text transcription of a speech, or music generation    A sentence can be represented as a sequence of L words, include slang or non-words, have spelling errors.</div><div class="post-footer">
@@ -137,6 +131,12 @@ Key Code 1 2 3 4 5 6 7 8  import pyrealsense2.pyrealsense2 as rs pc = rs.pointcl
 points.get_vertices(dim=2): Retrieve the vertices of the point cloud
 o3d.utility.Vector3dVector(vertices_interest): Convert float64 numpy array of shape (n, 3) to Open3D format, 3 means x,y,z</div><div class="post-footer">
         <a href="/rs02/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vision01/">Depth Estimation | Chapter 12 of CV book</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-10">2022-03-10</time></span></div><div class="content">3d 视觉笔记 01 ｜ Depth Estimation  此篇笔记是「三维视觉笔记」系列的第 1 篇, 记录了 Richard Szeliski 教授的计算机视觉教材 —— 「Computer Vision: Algorithms and Applications」第二版的第 12 章 —— 深度估计
+ 0. Introduction Stereo matching (立体视觉匹配) is the process of taking two or more images and building a 3D model of the scene
+ by finding matching pixels in the images and converting their 2D positions into 3D depths.   The word stereo comes from the Greek for solid; stereo vision is how we perceive solid shape (Koenderink 1990).</div><div class="post-footer">
+        <a href="/vision01/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

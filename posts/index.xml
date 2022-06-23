@@ -4,18 +4,7 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 18 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>路加福音第24章</title>
-    <link>https://yiyangd.github.io/luke24/</link>
-    <pubDate>Sat, 18 Jun 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/luke24/</guid>
-    <description><![CDATA[路加福音第 24 节  53 节，六个故事
- 1. 耶稣复活（ 1 - 12 ）  【路廿四 6】「祂不在这里，已经复活了。当记念祂还在加利利的时候怎样告诉你们，」
-【路廿四 7】「说：“人子必须被交在罪人手里，钉在十字架上，第三日复活。”』」
-  「祂不在这里」（6 节），指主耶稣只是经过坟墓，因坟墓并非祂的终点，死亡的经历只是为了败坏那掌死权的魔鬼（来二 14）。 现在，祂「已经复活」（6 节）、离开坟墓了。 主耶稣站在人子的地位上替罪人死了，「特要借着死败坏那掌死权的，就是魔鬼」（来二 14）。  现在，祂「已经从死里复活，成为睡了之人初熟的果子」（林前十五 20）。   自从亚当堕落以后，只有人进入死亡，却没有人脱离死亡；虽然少数人曾从死亡中出来，结果还是要回到死亡中去。主耶稣是第一个脱离死亡的人，祂打破了黑暗权势的辖制，  叫那些「口里认耶稣为主，心里信神叫祂从死里复活」（罗十 9）的人，同样能在祂的复活大能里脱离死亡。 因此，「在亚当里众人都死了；照样，在基督里众人也都要复活」（林前十五 22）， 各人将「按着自己的次序复活：初熟的果子是基督；以后，在祂来的时候，是那些属基督的」（林前十五 23）。    分享：
-   其他伟人在世上的工作可能是带着我们学习；但耶稣在世上的工作是带着我们得救   【约 11:25】耶稣对她说：“复活在我，生命也在我；信我的人，虽然死了，也必复活。    耶稣的死而复活不是一个比喻：   “今天，我们也只有在灵里看到空坟墓的时候，才能真正明白圣经中所说的一切都是在见证基督；然后才能「从坟墓那里回去」（9 节），兴奋地把真理分享给所有的人。”    2. 主与门徒同行，耶稣被认出（ 13 - 28 ）  【路廿四 15】「正谈论相问的时候，耶稣亲自就近他们，和他们同行；」]]></description>
-</item><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>OpenCV Notes 01 | Feature Detection</title>
     <link>https://yiyangd.github.io/opencv01/</link>
     <pubDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</pubDate>
@@ -101,5 +90,14 @@ Abstract:
     <description><![CDATA[0. Two Problems: Face Verification (1:1 Matching):
  Input: Image, name/ID Output: whether the input image is that of the claimed person (0/1 binary classification) e.g. passport/face match in airport and use face to unlock mobile phone  Face Recognition (1:K Matching):
  Has a database of K persons Input: image (a person&rsquo;s face) Output:  ID if the image is any of the K persons or &ldquo;not recognized&rdquo;    1.]]></description>
+</item><item>
+    <title>Deep Learning Notes | YOLO = Application of Stats &#43; Probability &#43; Computer Vision</title>
+    <link>https://yiyangd.github.io/cnn05/</link>
+    <pubDate>Thu, 24 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/cnn05/</guid>
+    <description><![CDATA[Object Detection with YOLO &ldquo;You Only Look Once&rdquo; (YOLO) is a popular algorithm because it achieves high accuracy in real time object detection. This algorithm &ldquo;only looks once&rdquo; at the image in the sense that it requires only one forward propagation pass through the network to make predictions.
+Inputs and Outputs The input is a batch of m images, and each image has the shape (m, 608, 608, 3)
+Anchor Boxes First Filter: Threshold on Class Scores 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  def yolo_filter_boxes(boxes, box_confidence, box_class_probs, threshold = 0.]]></description>
 </item></channel>
 </rss>
