@@ -4,7 +4,16 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>MIT 18.S191 | Spring 2021 | Notes</title>
+    <link>https://yiyangd.github.io/mit18s191notes/</link>
+    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/mit18s191notes/</guid>
+    <description><![CDATA[Note on Course: Introduction to Computational Thinking Computational science can be summed up by a simplified workflow:
+ data ==&gt; input ==&gt; process ==&gt; model ==&gt; visualize ==&gt; output  Topics Include:
+ Image Analysis Particle Dynamics and Ray Tracing Epidemic Propagation Climate Modeling  Module 1: Images  https://computationalthinking.mit.edu/Spring21/images/  1. Install Julia and Pluto  Step 1: Download from https://julialang.org/downloads/ Step 2: Open Julia and Install Pluto  To install Pluto, we want to run a package manager command.]]></description>
+</item><item>
     <title>OpenCV Notes 01 | Feature Detection</title>
     <link>https://yiyangd.github.io/opencv01/</link>
     <pubDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</pubDate>
@@ -90,14 +99,5 @@ Abstract:
     <description><![CDATA[0. Two Problems: Face Verification (1:1 Matching):
  Input: Image, name/ID Output: whether the input image is that of the claimed person (0/1 binary classification) e.g. passport/face match in airport and use face to unlock mobile phone  Face Recognition (1:K Matching):
  Has a database of K persons Input: image (a person&rsquo;s face) Output:  ID if the image is any of the K persons or &ldquo;not recognized&rdquo;    1.]]></description>
-</item><item>
-    <title>Deep Learning Notes | YOLO = Application of Stats &#43; Probability &#43; Computer Vision</title>
-    <link>https://yiyangd.github.io/cnn05/</link>
-    <pubDate>Thu, 24 Mar 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/cnn05/</guid>
-    <description><![CDATA[Object Detection with YOLO &ldquo;You Only Look Once&rdquo; (YOLO) is a popular algorithm because it achieves high accuracy in real time object detection. This algorithm &ldquo;only looks once&rdquo; at the image in the sense that it requires only one forward propagation pass through the network to make predictions.
-Inputs and Outputs The input is a batch of m images, and each image has the shape (m, 608, 608, 3)
-Anchor Boxes First Filter: Threshold on Class Scores 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  def yolo_filter_boxes(boxes, box_confidence, box_class_probs, threshold = 0.]]></description>
 </item></channel>
 </rss>
