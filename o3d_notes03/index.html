@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Open3D Notes 03 | 3D Mesh to Point Cloud - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Open3D Notes 03 | 3D Mesh to Point Cloud" />
+<meta property="og:description" content="1. Alpha Shapes The alpha shape is a generalization of a convex hull.
+1.1. Convex Hull The Convex Hull (凸包) of a point cloud is the smallest convex set that contains all points.
+ Open3D contains compute_convex_hull() that computes the convex hull of a point cloud  1 2 3 4 5 6 7 8 9 10 11  bunny = o3d.data.BunnyMesh() mesh = o3d.io.read_triangle_mesh(bunny.path) mesh.compute_vertex_normals() # Sample a Point Cloud from Mesh pcd = mesh." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/o3d_notes03/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-06T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Open3D Notes 03 | 3D Mesh to Point Cloud"/>
+<meta name="twitter:description" content="1. Alpha Shapes The alpha shape is a generalization of a convex hull.
+1.1. Convex Hull The Convex Hull (凸包) of a point cloud is the smallest convex set that contains all points.
+ Open3D contains compute_convex_hull() that computes the convex hull of a point cloud  1 2 3 4 5 6 7 8 9 10 11  bunny = o3d.data.BunnyMesh() mesh = o3d.io.read_triangle_mesh(bunny.path) mesh.compute_vertex_normals() # Sample a Point Cloud from Mesh pcd = mesh."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/o3d_notes03/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes02/" /><link rel="next" href="https://yiyangd.github.io/paper02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Open3D Notes 03 | 3D Mesh to Point Cloud",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/o3d_notes03\/"
+        },"genre": "posts","wordcount":  594 ,
+        "url": "https:\/\/yiyangd.github.io\/o3d_notes03\/","datePublished": "2022-07-06T00:00:00+00:00","dateModified": "2022-07-06T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Open3D Notes 03 | 3D Mesh to Point Cloud</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-06">2022-07-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;594 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-alpha-shapes">1. Alpha Shapes</a>
+          <ul>
+            <li><a href="#11-convex-hull">1.1. Convex Hull</a></li>
+            <li><a href="#12-parameter-alpha">1.2. Parameter: <code>Alpha</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#2-ball-pivoting">2. Ball Pivoting</a></li>
+        <li><a href="#3-poisson-surface-reconstruction">3. Poisson Surface Reconstruction</a>
+          <ul>
+            <li><a href="#remove-low-density-vertices">Remove Low Density Vertices</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="1-alpha-shapes">1. Alpha Shapes</h3>
+<p>The alpha shape is a generalization of a convex hull.</p>
+<h4 id="11-convex-hull">1.1. Convex Hull</h4>
+<p>The Convex Hull (凸包) of a point cloud is the <em>smallest convex set</em> that contains all points.</p>
+<ul>
+<li>Open3D contains <code>compute_convex_hull()</code> that computes the convex hull of a point cloud</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">bunny</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">BunnyMesh</span><span class="p">()</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_triangle_mesh</span><span class="p">(</span><span class="n">bunny</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="c1"># Sample a Point Cloud from Mesh</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">sample_points_poisson_disk</span><span class="p">(</span><span class="n">number_of_points</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="c1"># Compute the convex hull that is returned as a triangle mesh.</span>
+<span class="n">hull</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">compute_convex_hull</span><span class="p">()</span>
+<span class="c1"># Visualize the convex hull as a red LineSet.</span>
+<span class="n">hull_ls</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">LineSet</span><span class="o">.</span><span class="n">create_from_triangle_mesh</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span>
+<span class="n">hull_ls</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">,</span> <span class="n">hull_ls</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/03/01.png" width="400"/>
+</figure>
+
+<h4 id="12-parameter-alpha">1.2. Parameter: <code>Alpha</code></h4>
+<p>The &ldquo;best&rdquo; Alpha is found out by trial-and-error[3]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">tetra_mesh</span><span class="p">,</span> <span class="n">pt_map</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TetraMesh</span><span class="o">.</span><span class="n">create_from_point_cloud</span><span class="p">(</span><span class="n">pcd</span><span class="p">)</span>
+<span class="c1"># Try Alpha = 0.5, 0.136, 0.037, 0.010</span>
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;alpha=</span><span class="si">{</span><span class="n">alpha</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="o">.</span><span class="n">create_from_point_cloud_alpha_shape</span><span class="p">(</span>
+        <span class="n">pcd</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">tetra_mesh</span><span class="p">,</span> <span class="n">pt_map</span><span class="p">)</span>
+    <span class="n">mesh</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh</span><span class="p">],</span> <span class="n">mesh_show_back_face</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/03/02.png" width="400"/>
+</figure>
+
+<h3 id="2-ball-pivoting">2. Ball Pivoting</h3>
+<p>Intuitively, think of a 3D ball <em>with a given radius</em> that we drop on the point cloud.</p>
+<ul>
+<li>If it hits any 3 points (and it does not fall through those 3 points) it creates a triangles.</li>
+<li>Then, the algorithm <em>starts pivoting</em> from the edges of the existing triangles and
+<ul>
+<li>every time it hits 3 points where the ball does not fall through, we create another triangle.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The method accepts a list of radii as parameter</span>
+<span class="c1"># that corresponds to the radii of the individual balls</span>
+<span class="c1"># that are pivoted on the point cloud.</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">]</span>
+<span class="n">rec_mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="o">.</span><span class="n">create_from_point_cloud_ball_pivoting</span><span class="p">(</span>
+    <span class="n">pcd</span><span class="p">,</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">DoubleVector</span><span class="p">(</span><span class="n">radii</span><span class="p">))</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">,</span> <span class="n">rec_mesh</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/03/03.png" width="400"/>
+</figure>
+
+<h3 id="3-poisson-surface-reconstruction">3. Poisson Surface Reconstruction</h3>
+<p>The Poisson surface reconstruction methodsolves a regularized optimization problem to obtain a smooth surface.</p>
+<ul>
+<li>since the points of the PointCloud are also the vertices of the resulting triangle mesh, they produce non-smooth results without any modifications.</li>
+</ul>
+<p>An important parameter of the function is <em>depth</em></p>
+<ul>
+<li>that defines the <strong>depth of the octree used</strong> for the surface reconstruction and hence implies the <strong>resolution of the resulting triangle mesh</strong>.</li>
+<li>A higher depth value means a mesh with more details</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">eagle</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EaglePointCloud</span><span class="p">()</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">eagle</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pcd</span><span class="p">)</span> <span class="c1"># PointCloud with 796825 points.</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;run Poisson surface reconstruction&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">VerbosityContextManager</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">VerbosityLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span> <span class="k">as</span> <span class="n">cm</span><span class="p">:</span>
+    <span class="n">mesh</span><span class="p">,</span> <span class="n">densities</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="o">.</span><span class="n">create_from_point_cloud_poisson</span><span class="p">(</span>
+        <span class="n">pcd</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="c1"># TriangleMesh with 563112 points and 1126072 triangles.</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/03/04.png" width="400"/>
+</figure>
+
+<h4 id="remove-low-density-vertices">Remove Low Density Vertices</h4>
+<p>Poisson surface reconstruction will also create triangles in areas of <em>low point density</em>, and even extrapolates into some areas (see <em>bottom of the eagle</em> output above).</p>
+<ul>
+<li>The <code>create_from_point_cloud_poisson()`` function has a </code>densities` return value that indicates for each vertex the density.</li>
+<li>A <em>low density value</em> means that the vertex is only supported by a <em>low number of points</em> from the input point cloud.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;visualize densities&#39;</span><span class="p">)</span>
+<span class="n">densities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">densities</span><span class="p">)</span>
+<span class="n">density_colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;plasma&#39;</span><span class="p">)(</span>
+    <span class="p">(</span><span class="n">densities</span> <span class="o">-</span> <span class="n">densities</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">densities</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">densities</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="n">density_colors</span> <span class="o">=</span> <span class="n">density_colors</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">density_mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">TriangleMesh</span><span class="p">()</span>
+<span class="n">density_mesh</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span>
+<span class="n">density_mesh</span><span class="o">.</span><span class="n">triangles</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">triangles</span>
+<span class="n">density_mesh</span><span class="o">.</span><span class="n">triangle_normals</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">triangle_normals</span>
+
+<span class="n">density_mesh</span><span class="o">.</span><span class="n">vertex_colors</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">Vector3dVector</span><span class="p">(</span><span class="n">density_colors</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">density_mesh</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/03/05.png" width="400"/>
+</figure>
+
+<ul>
+<li>Violet indicates low density and yellow indicates a high density.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">print(&#39;remove low density vertices&#39;)
+# remove all vertices (and connected triangles)
+# that have a lower density value
+# than the 0.01 quantile of all density values.
+vertices_to_remove = densities &lt; np.quantile(densities, 0.01)
+mesh.remove_vertices_by_mask(vertices_to_remove)
+print(mesh)
+# TriangleMesh with 557480 points and 1113213 triangles.
+# before: TriangleMesh with 563112 points and 112
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="reference">Reference</h3>
+<p>[1] <a href="http://www.open3d.org/docs/latest/tutorial/geometry/surface_reconstruction.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/latest/tutorial/geometry/surface_reconstruction.html</a><br>
+[2] <a href="https://github.com/isl-org/Open3D/tree/master/examples/python/geometry" target="_blank" rel="noopener noreffer">https://github.com/isl-org/Open3D/tree/master/examples/python/geometry</a><br>
+[3] <a href="https://graphics.stanford.edu/courses/cs268-11-spring/handouts/AlphaShapes/as_fisher.pdf" target="_blank" rel="noopener noreffer">https://graphics.stanford.edu/courses/cs268-11-spring/handouts/AlphaShapes/as_fisher.pdf</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/o3d_notes03/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/o3d_notes03/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/o3d_notes03/" data-title="Open3D Notes 03 | 3D Mesh to Point Cloud"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/o3d_notes02/" class="prev" rel="prev" title="Open3D Notes 02 | 3D Mesh Processing"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 02 | 3D Mesh Processing</a>
+            <a href="/paper02/" class="next" rel="next" title="Paper Notes 02 | ROCA">Paper Notes 02 | ROCA<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

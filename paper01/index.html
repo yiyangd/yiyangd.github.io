@@ -5,32 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image - DYY</title><meta name="Description" content="ROCA"><meta property="og:title" content="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image" />
+        <title>Paper Notes 01 | 3DMatch - DYY</title><meta name="Description" content="ROCA"><meta property="og:title" content="Paper Notes 01 | 3DMatch" />
 <meta property="og:description" content="ROCA" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/paper01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-05-27T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-07-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-05T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image"/>
+<meta name="twitter:title" content="Paper Notes 01 | 3DMatch"/>
 <meta name="twitter:description" content="ROCA"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper01/" /><link rel="prev" href="https://yiyangd.github.io/opengl01/" /><link rel="next" href="https://yiyangd.github.io/paper00/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper01/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes01/" /><link rel="next" href="https://yiyangd.github.io/o3d_notes02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image",
+        "headline": "Paper Notes 01 | 3DMatch",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/paper01\/"
-        },"genre": "posts","keywords": "papers","wordcount":  394 ,
-        "url": "https:\/\/yiyangd.github.io\/paper01\/","datePublished": "2022-05-27T00:00:00+00:00","dateModified": "2022-05-27T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "papers","wordcount":  1618 ,
+        "url": "https:\/\/yiyangd.github.io\/paper01\/","datePublished": "2022-07-05T00:00:00+00:00","dateModified": "2022-07-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -104,10 +104,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 01 | 3DMatch</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/papers/"><i class="far fa-folder fa-fw"></i>papers</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-27">2022-05-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;394 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-05">2022-07-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1618 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -115,147 +115,218 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#papernotes-01--roca-1">PaperNotes 01 ｜ ROCA (1)</a>
+    <li><a href="#papernotes-01--3dmatch">PaperNotes 01 ｜ 3DMatch</a>
       <ul>
-        <li><a href="#1-the-first-pass">1. The first pass</a>
+        <li><a href="#0-abstract">0. Abstract</a>
           <ul>
-            <li><a href="#step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</a></li>
-            <li><a href="#step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</a></li>
-            <li><a href="#step-3-glance-at-the-math-content">Step 3. Glance at the Math Content</a></li>
-            <li><a href="#step-4-read-the-conclusions-section-5">Step 4. Read the Conclusions (Section 5)</a></li>
-            <li><a href="#step-5-glance-over-the-references">Step 5. Glance over the References</a></li>
+            <li><a href="#01-challenges-and-difficulties">0.1. Challenges and Difficulties</a></li>
+            <li><a href="#02-paper-intro">0.2. Paper Intro</a></li>
+            <li><a href="#03-experiments-and-results">0.3. Experiments and Results</a></li>
           </ul>
         </li>
+        <li><a href="#1-introduction">1. Introduction</a>
+          <ul>
+            <li><a href="#11-history-and-applications">1.1. History and Applications</a></li>
+            <li><a href="#12-challenges---01">1.2. Challenges （ ==&gt; 0.1）</a></li>
+            <li><a href="#13-ideas-of-3dmatch--02">1.3. Ideas of 3DMatch (==&gt; 0.2)</a></li>
+            <li><a href="#14-challenges-for-3d-data-collection">1.4. Challenges for 3D Data collection</a></li>
+            <li><a href="#15-solution-to-14">1.5. Solution to 1.4</a></li>
+            <li><a href="#16-experiments-and-results--03">1.6. Experiments and Results（ == 0.3）</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-related-work">2. Related Work</a>
+          <ul>
+            <li><a href="#21-hand-crafted-3d-local-descriptors">2.1. Hand-crafted 3D Local Descriptors:</a></li>
+            <li><a href="#22-learned-2d-local-descriptors">2.2. Learned 2D Local Descriptors</a></li>
+            <li><a href="#23-learned-3d-global-descriptors">2.3. Learned 3D Global Descriptors</a></li>
+            <li><a href="#24-learned-3d-local-descriptors">2.4. Learned 3D Local Descriptors</a></li>
+            <li><a href="#25-self-supervised-deep-learning">2.5. Self-Supervised Deep Learning</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-learning-from-reconstructions">3. Learning From Reconstructions</a>
+          <ul>
+            <li><a href="#31-generating-training-correspondences-todo">3.1. Generating Training Correspondences (TODO)</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-learning-a-local-geometric-descriptor">4. Learning a Local Geometric Descriptor</a>
+          <ul>
+            <li><a href="#41-3d-data-representation-todo">4.1. 3D Data Representation (TODO)</a></li>
+            <li><a href="#42-network-architecture">4.2. Network Architecture</a></li>
+            <li><a href="#43-network-training">4.3. Network Training</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-evaluation">5. Evaluation</a>
+          <ul>
+            <li><a href="#51-keypoint-matching">5.1. Keypoint Matching</a></li>
+            <li><a href="#52-geometric-registration">5.2. Geometric Registration</a></li>
+            <li><a href="#531-6d-object-pose-estimation-by-model-alignment">5.3.1. 6D Object Pose Estimation by model alignment</a></li>
+            <li><a href="#532-surface-correspondence-on-3d-meshes">5.3.2. Surface Correspondence on 3D Meshes</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-conclusion">6. Conclusion</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="papernotes-01--roca-1">PaperNotes 01 ｜ ROCA (1)</h2>
-<p>代码：https://github.com/cangumeli/ROCA<br>
-主页：https://cangumeli.github.io/ROCA<br>
-论文：https://arxiv.org/abs/2112.01988</p>
-<h3 id="1-the-first-pass">1. The first pass</h3>
-<p>5 Steps to quick scan to get a bird’s-eye view of the paper</p>
-<h4 id="step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</h4>
-<p><strong>Title:</strong> ROCA: Robust <em>CAD Model Retrieval and Alignment</em> from a Single Image (RGB)</p>
-<p><strong>Abstract:</strong></p>
+            </div><div class="content" id="content"><h2 id="papernotes-01--3dmatch">PaperNotes 01 ｜ 3DMatch</h2>
+<figure><img src="/images/papers/01/01.png" width="400"/>
+</figure>
+
+<blockquote>
+<p>此篇笔记是<strong>Paper 笔记</strong>系列的第 1 篇，翻译、摘抄了 2017 年的论文<strong>3DMatch: Learning Local Geometric Descriptors from RGB-D Reconstructions</strong></p>
 <ul>
-<li>ROCA approach enables 3D perception of an observed scene from a 2D RGB observation, characterized as a lightweight, compact, clean CAD representation.</li>
-<li>2 Cores:
+<li><a href="https://3dmatch.cs.princeton.edu/paper_v2.pdf" target="_blank" rel="noopener noreffer">https://3dmatch.cs.princeton.edu/paper_v2.pdf</a></li>
+</ul>
+</blockquote>
+<h3 id="0-abstract">0. Abstract</h3>
+<h4 id="01-challenges-and-difficulties">0.1. Challenges and Difficulties</h4>
+<p><strong>Matching local geometric features</strong> on real-world depth images is a challenging task due to the <em>noisy, low resolution, and incomplete nature</em> of 3D scan data. These difficulties limit the performance of current state-of-art methods, which are typically based on <strong>histograms over geometric properties</strong>.<br>
+由于 3D 扫描数据的<em>噪声、低分辨率和不完整性质</em>，在真实的世界深度图像上<strong>匹配局部几何特征</strong>是一项具有挑战性的任务。 这些困难限制了当前现有技术的方法的性能，这些方法通常基于<strong>几何属性上的直方图</strong>。</p>
+<h4 id="02-paper-intro">0.2. Paper Intro</h4>
+<p>In this paper, we present 3DMatch, a data-driven model that <em>learns a local volumetric patch descriptor</em> for <strong>establishing correspondences between partial 3D data</strong>. To amass training data for our model, we propose a <strong>self-supervised feature learning method</strong> that <em>leverages the millions of correspondence labels found in existing RGB-D reconstructions</em>.<br>
+本文提出了一种基于数据驱动的 3DMatch 模型，该模型通过<em>学习局部体积块描述符</em>来<strong>建立局部三维数据之间的对应关系</strong>。 为了积累模型的训练数据，我们提出了一种<strong>自监督特征学习方法</strong>，该方法<em>利用了现有 RGB-D 重建中发现的数百万个对应标签</em>。</p>
+<h4 id="03-experiments-and-results">0.3. Experiments and Results</h4>
+<p>Experiments show that <strong>our descriptor</strong> is not only able to <em>match local geometry in new scenes</em> for reconstruction, but also <em>generalize to different tasks and spatial scales</em> (e.g. instance-level object model alignment for the Amazon Picking Challenge, and mesh surface correspondence).<br>
+实验表明，<strong>该描述符</strong>不仅能够<em>匹配新场景中的局部几何结构</em>，而且能够<em>推广到不同的任务和空间尺度</em>（例如 Amazon Picking Challenge 的实例级对象模型对齐，以及网格表面对应）。</p>
+<p>Results show that 3DMatch consistently outperforms other state-of-the-art approaches by a significant margin.<br>
+结果表明，3DMatch 始终以显著优势优于其他最先进的方法。</p>
+<p>Code, data, benchmarks, and pre-trained models are available online at <a href="http://3dmatch.cs.princeton.edu" target="_blank" rel="noopener noreffer">http://3dmatch.cs.princeton.edu</a>.</p>
+<h3 id="1-introduction">1. Introduction</h3>
+<h4 id="11-history-and-applications">1.1. History and Applications</h4>
+<p>Matching 3D geometry has a long history starting in the early days of computer graphics and vision.<br>
+匹配 3D 几何图形有着悠久的历史，它始于计算机图形学和视觉的早期。<br>
+With the rise of commodity range sensing technologies, this research has become paramount to many applications including <em>object pose estimation, object retrieval, 3D reconstruction, and camera localization</em>.<br>
+随着商用距离传感技术的兴起，该研究对于包括物体姿态估计、物体检索、3D 重建和摄像机定位在内的许多应用变得至关重要。</p>
+<h4 id="12-challenges---01">1.2. Challenges （ ==&gt; 0.1）</h4>
+<p>However, matching local geometric features in <em>low resolution, noisy, and partial</em> 3D data is still a challenging task as shown in Fig. 1.</p>
+<figure><img src="/images/papers/01/02.png" width="400"/>
+</figure>
+
 <ul>
-<li>Differentiable Alignment Optimization based on dense 2D-3D object correspondences</li>
-<li>Procrustes Alignment</li>
+<li>Figure 1. In this work, we present a data-driven local descriptor
+3DMatch that <em>establishes correspondences (green) to match geometric features</em> in noisy and partial 3D scanning data.</li>
+<li>This figure
+illustrates an example of <em>bringing two RGB-D scans into alignment</em> <strong>using 3DMatch on depth information</strong> only.</li>
+<li>Color images are
+for visualization only.</li>
 </ul>
-</li>
-<li>Experiments:
+<p>While there is a wide range of low-level hand-crafted geometric feature descriptors that can be used for this task, they are mostly based on signatures derived from <em>histograms over static geometric properties</em>[19,22,28].<br>
+虽然有大量的低级手工几何特征描述符可用于此任务，但这些描述符大多基于从<em>静态几何属性的直方图</em>中派生的<br>
+They work well for 3D models with <strong>complete surfaces</strong>, but are often unstable or inconsistent in real-world <strong>partial surfaces</strong> from 3D scanning data and difficult to adapt to new datasets.<br>
+它们对于具有完整表面的 3D 模型工作良好，但是在来自 3D 扫描数据的真实的世界部分表面中通常不稳定或不一致，并且难以适应新的数据集。<br>
+As a result, state-of-the-art <strong>3D reconstruction methods</strong> using these descriptors for matching geometry <em>require</em> significant algorithmic <em>effort to handle outliers and establish global correspondences</em> [5]</p>
+<h4 id="13-ideas-of-3dmatch--02">1.3. Ideas of 3DMatch (==&gt; 0.2)</h4>
+<p>In response to these difficulties, and inspired by the recent success of neural networks, we formulate a data-driven method to <strong>learn a local geometric descriptor for establishing correspondences</strong> <em>between partial 3D data</em>.<br>
+针对这些困难，并受到神经网络最近成功的启发，我们制定了一种数据驱动的方法来学习局部几何描述符，以建立局部 3D 数据之间的对应关系。<br>
+The idea is that by learning from example, data-driven models can sufficiently address the difficulties of <em>establishing correspondences between partial surfaces in 3D scanning data</em>.<br>
+其思想是，通过从示例中学习，数据驱动的模型可以充分解决在 3D 扫描数据中建立部分表面之间的对应关系的困难。<br>
+To this end, <strong>we present a 3D convolutional neural network (ConvNet), called 3DMatch</strong>, that takes in the local volumetric region (or 3D patch) around an arbitrary interest point on a 3D surface and computes a feature descriptor for that point, where <em>a smaller distance between two descriptors indicates a higher likelihood of correspondence</em>.<br>
+为此，<strong>我们提出了一种称为 3DMatch 的 3D 卷积神经网络（ConvNet）</strong>，它采用 3D 表面上任意感兴趣点周围的局部体积区域（或 3D 块），并计算该点的特征描述符，其中<em>两个描述符之间的距离越小，对应的可能性越高</em>。</p>
+<h4 id="14-challenges-for-3d-data-collection">1.4. Challenges for 3D Data collection</h4>
+<p>However, <em>optimizing a 3D ConvNet-based descriptor</em> for this task requires massive amounts of training data (i.e.,ground truth matches between local 3D patches).<br>
+然而，为该任务<em>优化基于 3D ConvNet 的描述符</em>需要大量的训练数据（即，局部 3D 面片之间的基准匹配）。</p>
+<p>Obtaining this training data with <em>manual annotations</em> is a challenging endeavor. Unlike 2D image labels, which can be effectively crowd-sourced or parsed from the web, acquiring ground truth correspondences by <em>manually clicking keypoint pairs on 3D partial data</em> is not only time consuming but also prone to errors.<br>
+通过<em>手动标注</em>获取训练数据是一项具有挑战性的工作。与可以有效地众包或从网络解析的 2D 图像标签不同，通过<em>手动点击 3D 部分数据上的关键点对来获取匹配关系</em>不仅耗时，而且容易出错。</p>
+<h4 id="15-solution-to-14">1.5. Solution to 1.4</h4>
+<p>Our key idea is to <em>amass training data</em> by <strong>leveraging correspondence labels found in existing RGB-D scene reconstructions</strong>.<br>
+我们的关键思想是通过<strong>利用现有 RGB-D 场景重建中发现的对应标签</strong>来<em>积累训练数据</em>。</p>
+<p>Due to the importance of 3D reconstructions, <em>there has been much research</em> on designing algorithms and systems that can <strong>build high-fidelity reconstructions from RGB-D data</strong>[25,26,8].<br>
+由于 3D 重建的重要性，已经有很多关于设计能够<strong>从 RGB-D 数据构建高保真重建</strong>的算法和系统的研究。</p>
+<p>Although these reconstructions have been used for high-level reasoning about the environment <strong>it is often overlooked that</strong> they can also serve as a massive source of labeled correspondences between surfaces points of aligned frames.</p>
+<p>尽管这些重建已经用于关于环境的高级推理，但是<strong>经常被忽视的是</strong>，它们也可以用作对齐的框架的表面点之间的标记对应的大量资源。</p>
+<p>By training on correspondences from multiple existing RGB-D reconstruction datasets, each with its own properties of <strong>sensor noise, occlusion patterns, variance of geometric structures, and variety of camera viewpoints</strong>, we can optimize 3DMatch to generalize and robustly <strong>match local geometry in real-world partial 3D data</strong>.<br>
+通过对来自多个现有 RGB-D 重建数据集的对应性进行训练，每个数据集都具有其自身的<strong>传感器噪声、遮挡模式、几何结构的变化和相机视点的多样性的属性</strong>，我们可以优化 3DMatch，从而推广和稳健<strong>匹配真实的世界部分 3D 数据中的局部几何结构</strong>。</p>
+<h4 id="16-experiments-and-results--03">1.6. Experiments and Results（ == 0.3）</h4>
+<p>In this paper, we train 3DMatch over 8 million correspondences from a collection of 62 RGB-D scene reconstructions [37, 31, 40, 21, 16] and demonstrate its ability to match 3D data in several applications.<br>
+在本文中，我们从 62 个 RGB-D 场景重建的集合中训练了超过 800 万个对应的 3DMatch，并证明了其在几个应用中匹配 3D 数据的能力。</p>
+<p>Results show that 3DMatch is considerably better than state-ofthe-art methods at <strong>matching keypoints</strong>, and outperforms other algorithms for <strong>geometric registration when combined with standard RANSAC</strong>.<br>
+实验结果表明，3DMatch 算法在<strong>关键点匹配方面</strong>明显优于现有算法，与<strong>标准 RANSAC 算法相结合的几何配准</strong>性能优于其他算法。</p>
+<p>Furthermore, we demonstrate that <em>3DMatch can also generalize to different tasks and spatial resolutions</em>. For example, we utilize 3DMatch to obtain <strong>instance-level model alignments</strong> for <em>6D object pose estimation</em> as well as to <em>find surface correspondences in 3D meshes</em>.<br>
+此外，我们还证明了<em>3DMatch 也可以推广到不同的任务和空间分辨率</em>。 例如，我们利用 3DMatch 来获得<strong>实例级模型对准</strong>，以用于<em>6D 对象姿态估计</em>以及在<em>3D 网格中找到表面对应</em>。</p>
+<p>To facilitate further research in the area of <strong>3D keypoint matching and geometric registration</strong>, we provide a correspondence matching benchmark as well as a surface registration benchmark similar to [5], but with real-world scan data.<br>
+为了促进<strong>3D 关键点匹配和几何配准</strong>领域的进一步研究，我们提供了类似于[5]的对应匹配基准以及表面配准基准，但使用的是真实的世界的扫描数据。</p>
+<h3 id="2-related-work">2. Related Work</h3>
+<h4 id="21-hand-crafted-3d-local-descriptors">2.1. Hand-crafted 3D Local Descriptors:</h4>
 <ul>
-<li>Database: ScanNet</li>
-<li>Result: ROCA improves from 9.5% to 17.6% in retrieval-aware CAD <em>alignment accuracy</em></li>
+<li>Spin Images[19]</li>
+<li>Geometry Histograms[12]</li>
+<li>Signatures of Histograms[35]</li>
+<li>Feature Histograms[29]</li>
 </ul>
-</li>
-</ul>
-<p><strong>Section 1. Introduction</strong></p>
+<p>Problem: they still struggle to handle <em>noisy, low-resolution, and incomplete real-world data</em> from commodity range sensors.</p>
+<p><strong>Solution：</strong> The goal of our work is to provide a <em>new local 3D descriptor</em> that directly learns from data to <em>provide more robust and accurate geometric feature matching results</em> in a variety of settings.</p>
+<h4 id="22-learned-2d-local-descriptors">2.2. Learned 2D Local Descriptors</h4>
+<p>Various works [33, 32, 42, 17, 43, 17] (that are trained on data generated from multi-view stereo datasets[4])learn non-linear mappings from local image patches to feature descriptors.</p>
+<p><strong>Problem</strong>: multi-view stereo is difficult to scale up in practice and is prone to error from missing correspondences on textureless or non-Lambertian surfaces, so it is not suitable for learning a 3D surface descriptor.</p>
+<h4 id="23-learned-3d-global-descriptors">2.3. Learned 3D Global Descriptors</h4>
 <ul>
-<li>2D Perception Systems cannot &ldquo;understand&rdquo; geometric shape, structure, and pose of the objects in the scene, which is unlike the human perception system.</li>
-<li>There are some approaches to 3D object estimation, e.g. <strong>Mesh R-CNN</strong></li>
+<li>3D ShapeNets[39] introduced 3D deep learning for modeling 3D shapes</li>
+<li>several recent works [23, 11, 34] also compute deep features from 3D data for the task of object retrieval and classification.</li>
+<li>Compare: their focus is centered on extracting features from <strong>complete 3D object models at a global level</strong></li>
 </ul>
-<h4 id="step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</h4>
-<p><strong>Section 2. Related Work</strong></p>
+<p><strong>In contrast</strong>, our descriptor focuses on <strong>learning geometric features for real-world RGB-D scanning data at a local level</strong>, to provide more robustness when <em>dealing with partial data suffering from various occlusion patterns</em> and <em>viewpoint differences</em></p>
+<h4 id="24-learned-3d-local-descriptors">2.4. Learned 3D Local Descriptors</h4>
+<p>[15] operates only on <strong>synthetic and complete 3D models</strong>, while using 2D ConvNets over input patches of concatenated feature vectors that do <em>not have any kind of spatial correlation</em>.</p>
+<p><strong>In contrast</strong>, our work not only tackles the harder problem of matching real-world partial 3D data, but also properly <em>leverages 3D ConvNets on volumetric data in a spatially coherent way</em>.</p>
+<h4 id="25-self-supervised-deep-learning">2.5. Self-Supervised Deep Learning</h4>
+<p>Our method of <em>extracting training data and correspondence labels from existing RGB-D reconstructions</em> online is <em>fully automatic</em>, and does not require any manual labor or human supervision.</p>
+<h3 id="3-learning-from-reconstructions">3. Learning From Reconstructions</h3>
+<h4 id="31-generating-training-correspondences-todo">3.1. Generating Training Correspondences (TODO)</h4>
+<h3 id="4-learning-a-local-geometric-descriptor">4. Learning a Local Geometric Descriptor</h3>
+<p>We use a 3D ConvNet to learn the mapping from a volumetric 3D patch to an 512-dimensional feature representation that serves as the descriptor for that local region.</p>
+<h4 id="41-3d-data-representation-todo">4.1. 3D Data Representation (TODO)</h4>
+<h4 id="42-network-architecture">4.2. Network Architecture</h4>
+<figure><img src="/images/papers/01/03.png" width="400"/>
+</figure>
+
+<h4 id="43-network-training">4.3. Network Training</h4>
+<h3 id="5-evaluation">5. Evaluation</h3>
+<h4 id="51-keypoint-matching">5.1. Keypoint Matching</h4>
+<h4 id="52-geometric-registration">5.2. Geometric Registration</h4>
+<p>5.2.2. Integrate 3D Match in Reconstruction Pipeline</p>
 <ul>
-<li>2D Object Recognition</li>
-<li>Monocular Depth Estimation</li>
-<li>Single-Image Shape Reconstruction</li>
-<li>CAD Model Retrieval and Alignment
+<li>Traditionally, sparse RGB features, such as SIFT or SURF, are used to tablish feature matches between frames</li>
+<li>With 3DMatch, we are able to <em>establish keypoint matches</em> from geometric information and add to the bundle adjustment step.</li>
+<li>With this simple pipeline we are able to generate globally-consistent alignments in challenging scenes using only geometric information</li>
+</ul>
+<figure><img src="/images/papers/01/04.png" width="400"/>
+</figure>
+
 <ul>
-<li>Mask2CAD, Vid2CAD</li>
+<li>In Fig. 6, we
+show several reconstruction results where combining correspondences <em>from both SIFT (color) and 3DMatch (geometry) improves alignment quality</em> as a whole.</li>
 </ul>
-</li>
-<li>Learned Differentiable Pose Optimization</li>
-</ul>
-<p><strong>Section 3. Method</strong></p>
+<h4 id="531-6d-object-pose-estimation-by-model-alignment">5.3.1. 6D Object Pose Estimation by model alignment</h4>
+<p>The task is to <strong>register pre-scanned object models to RGB-D scanning data</strong> for the Shelf &amp; Tote benchmark in the Amazon Picking Challenge (APC) setting</p>
+<figure><img src="/images/papers/01/05.png" width="400"/>
+</figure>
+
+<p>3DMatch + RANSAC works well for
+many cases; however, it may fail when there is insufficient depth information due to occlusion or clutter (bottom).</p>
+<figure><img src="/images/papers/01/06.png" width="400"/>
+</figure>
+
+<h4 id="532-surface-correspondence-on-3d-meshes">5.3.2. Surface Correspondence on 3D Meshes</h4>
+<p>Interestingly 3DMatch is also able to
+find geometric correspondences across different object categories.</p>
 <ul>
-<li>3.1. Overview</li>
-<li>3.2. Object Recognition and Depth Estimation</li>
-<li>3.3. Robust Differentiable CAD Alignment
-<ul>
-<li>Aggregating Region Features</li>
-<li>Scale Regression</li>
-<li>Initial Translation Estimation</li>
-<li>Normalized Object Coordinates as Correspondences</li>
-<li>Differentiable Robust Procrustes Optimization</li>
+<li>For example in the third row of Fig. 9, 3DMatch is able to match the handles in very different meshes.</li>
 </ul>
-</li>
-<li>3.4. Geometry-Aware CAD Retrieval</li>
-<li>3.5. Implementation Details
-<ul>
-<li>Training</li>
-<li>Inference</li>
-<li>Implementation (PyTorch，Detectron2, PyTorch3D)</li>
-</ul>
-</li>
-</ul>
-<p><strong>Section 4. Results</strong></p>
-<ul>
-<li>4.1. Data and Evaluation
-<ul>
-<li>Dataset: ScanNet25k, Scan2CAD</li>
-<li>Alignment Accuracy</li>
-<li>Retrieval-Aware Alignment Accuracy</li>
-</ul>
-</li>
-<li>4.2. Comparison to State of the Art</li>
-<li>4.3. Ablations
-<ul>
-<li>Effect</li>
-<li>Learned retrieval performance</li>
-<li>Scaling to augmented training data</li>
-<li>Limitations</li>
-</ul>
-</li>
-</ul>
-<h4 id="step-3-glance-at-the-math-content">Step 3. Glance at the Math Content</h4>
-<ol>
-<li>
-<p>(3.2) authors apply an additional loss to focus on object depth estimation</p>
-</li>
-<li>
-<p>in 3.3. authors use robust feature aggregation scheme to obtain a shape descriptor $e_i$</p>
-</li>
-<li>
-<p>use predicted shape codes regress scale and optimize it an l1 loss</p>
-</li>
-<li>
-<p>Initial translation estimation</p>
-</li>
-</ol>
-<p>Differentiable Procrustes Optimization</p>
-<h4 id="step-4-read-the-conclusions-section-5">Step 4. Read the Conclusions (Section 5)</h4>
-<p>6 Sentences：</p>
-<ol>
-<li>Three Keys in this Approach lead to more robust and accurate pose predictions</li>
-</ol>
-<ul>
-<li>Leveraging dense per-pixel depth</li>
-<li>Canonical Point Correspondences with Weighted Differentiable Procrustes Optimization</li>
-</ul>
-<ol start="2">
-<li>Authors hope this ROCA method accelerate developments in <strong>3D perception</strong> towards <strong>content creation</strong>, <strong>mixed reality</strong>, and domain transfer.</li>
-</ol>
-<h4 id="step-5-glance-over-the-references">Step 5. Glance over the References</h4>
-<p>Mentally ticking off the ones you&rsquo;ve already read:</p>
-<ul>
-<li>since this is the first paper I read&hellip;.</li>
-<li>aha! I can tick off the last one!!!
-<ul>
-<li>[50] Qian-Yi Zhou, Jaesik Park, and Vladlen Koltun. Open3D: A modern library for 3D data processing. arXiv:1801.09847, 2018 ✅</li>
-</ul>
-</li>
-</ul>
+<figure><img src="/images/papers/01/07.png" width="400"/>
+</figure>
+
+<h3 id="6-conclusion">6. Conclusion</h3>
+<p>In this work, we presented 3DMatch, <strong>a 3D ConvNet-based local geometric descriptor</strong> that can be used to <strong>match partial 3D data</strong> for a variety of applications.<br>
+在本文中，我们提出了 3DMatch，一种<strong>基于 3D ConvNet 的局部几何描述符</strong>，可用于<strong>匹配不完整的 3D 数据</strong>，以满足各种应用。</p>
+<p>We demonstrated that by <em>leveraging the vast amounts of correspondences automatically obtained from RGB-D reconstructions</em>, we can <em>train a powerful descriptor</em> that outperforms existing geometric descriptors by a significant margin.<br>
+我们证明，通过<em>利用从 RGB-D 重建中自动获得的大量对应关系</em>，我们可以<em>训练一个强大的描述符</em>，该描述符以显著的优势优于现有的几何描述符。</p>
+<p>We make all code and pre-trained models available for easy use and integration. To encourage further research, we also provide a correspondence matching benchmark and a surface registration benchmark, both with real-world 3D data.<br>
+我们提供所有代码和预先训练的模型，以方便使用和集成。 为了鼓励进一步的研究，我们还提供了对应匹配基准和表面配准基准，两者都使用真实的世界的 3D 数据。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-05-27</span>
+                <span>Updated on 2022-07-05</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -264,7 +335,7 @@
                             <a class="link-to-markdown" href="/paper01/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper01/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image" data-description="ROCA"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image" data-description="ROCA"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper01/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch" data-description="ROCA"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch" data-description="ROCA"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper01/" data-title="Paper Notes 01 | 3DMatch"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -276,8 +347,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/opengl01/" class="prev" rel="prev" title="OpenGL Notes | Basics"><i class="fas fa-angle-left fa-fw"></i>OpenGL Notes | Basics</a>
-            <a href="/paper00/" class="next" rel="next" title="Paper Notes 00 | How to Read a Paper">Paper Notes 00 | How to Read a Paper<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/o3d_notes01/" class="prev" rel="prev" title="Open3D Notes 01 | Point Cloud Processing"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 01 | Point Cloud Processing</a>
+            <a href="/o3d_notes02/" class="next" rel="next" title="Open3D Notes 02 | 3D Mesh Processing">Open3D Notes 02 | 3D Mesh Processing<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

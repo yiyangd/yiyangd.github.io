@@ -1,4 +1,4 @@
-# Open3D Notes 01 | Point Cloud Processing
+# Open3D Notes 02 | 3D Mesh Processing
 
 
 ### 1. Polygon Mesh

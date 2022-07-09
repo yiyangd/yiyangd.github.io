@@ -5,37 +5,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site - DYY</title><meta name="Description" content="How to Read a Paper"><meta property="og:title" content="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" />
-<meta property="og:description" content="How to Read a Paper" />
+        <title>Paper Notes 02 | ROCA - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Paper Notes 02 | ROCA" />
+<meta property="og:description" content="PaperNotes 02 ｜ ROCA  此篇笔记是论文阅读笔记系列的第 2 篇论文，摘抄、翻译了来自 Technical University of Munich 的 Can Gümeli, Angela Dai, Matthias Niessner 三位作者在 2021 年年底发表的论文ROCA: Robust CAD Model Retrieval and Alignment from a Single Image
+ 代码：https://github.com/cangumeli/ROCA 主页：https://cangumeli.github.io/ROCA 论文：https://arxiv.org/abs/2112.01988    0. Abstract: 0.1. Introduce ROCA approach We present ROCA, a novel end-to-end approach that retrieves and aligns 3D CAD models from a shape database to a single input image.
+我们提出了一种新的端到端的方法 —— ROCA，它从形状数据库中检索三维 CAD 模型并将其对准到单个输入图像。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/paper02/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-29T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-05-29T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-07-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-07T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
-<meta name="twitter:title" content="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"/>
-<meta name="twitter:description" content="How to Read a Paper"/>
+<meta name="twitter:title" content="Paper Notes 02 | ROCA"/>
+<meta name="twitter:description" content="PaperNotes 02 ｜ ROCA  此篇笔记是论文阅读笔记系列的第 2 篇论文，摘抄、翻译了来自 Technical University of Munich 的 Can Gümeli, Angela Dai, Matthias Niessner 三位作者在 2021 年年底发表的论文ROCA: Robust CAD Model Retrieval and Alignment from a Single Image
+ 代码：https://github.com/cangumeli/ROCA 主页：https://cangumeli.github.io/ROCA 论文：https://arxiv.org/abs/2112.01988    0. Abstract: 0.1. Introduce ROCA approach We present ROCA, a novel end-to-end approach that retrieves and aligns 3D CAD models from a shape database to a single input image.
+我们提出了一种新的端到端的方法 —— ROCA，它从形状数据库中检索三维 CAD 模型并将其对准到单个输入图像。"/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper02/" /><link rel="prev" href="https://yiyangd.github.io/paper00/" /><link rel="next" href="https://yiyangd.github.io/opencv01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper02/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes03/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site",
+        "headline": "Paper Notes 02 | ROCA",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/paper02\/"
-        },"genre": "posts","keywords": "papers","wordcount":  88 ,
-        "url": "https:\/\/yiyangd.github.io\/paper02\/","datePublished": "2022-05-29T00:00:00+00:00","dateModified": "2022-05-29T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "papers","wordcount":  1842 ,
+        "url": "https:\/\/yiyangd.github.io\/paper02\/","datePublished": "2022-07-07T00:00:00+00:00","dateModified": "2022-07-07T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
                 "name": "Yiyang Dong"
-            },"description": "How to Read a Paper"
+            },"description": ""
     }
     </script></head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -104,10 +108,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 02 | ROCA</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/papers/"><i class="far fa-folder fa-fw"></i>papers</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-29">2022-05-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;88 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-07">2022-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1842 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -115,46 +119,285 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#papernotes-02--roca">PaperNotes 02 ｜ ROCA</a>
       <ul>
-        <li><a href="#1-the-first-pass">1. The first pass</a>
+        <li><a href="#0-abstract">0. Abstract:</a>
           <ul>
-            <li><a href="#step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</a></li>
-            <li><a href="#step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</a></li>
+            <li><a href="#01-introduce-roca-approach">0.1. Introduce ROCA approach</a></li>
+            <li><a href="#02-core">0.2. Core</a></li>
+            <li><a href="#03-experiments-and-performance">0.3. Experiments and Performance</a></li>
+          </ul>
+        </li>
+        <li><a href="#1-introduction">1. Introduction</a>
+          <ul>
+            <li><a href="#11-pros-and-cons-of-2d-perception">1.1. Pros and Cons of 2D Perception</a></li>
+            <li><a href="#12-3d-approaches">1.2. 3D Approaches</a></li>
+            <li><a href="#13-problems-of-current-approaches-and-present-a-new-approach">1.3. Problems of current approaches and present a new approach</a></li>
+            <li><a href="#14-details-of-roca">1.4. Details of ROCA</a></li>
+            <li><a href="#15-summary">1.5. Summary</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-related-work">2. Related Work</a>
+          <ul>
+            <li><a href="#21-2d-object-recognition">2.1. 2D Object Recognition</a></li>
+            <li><a href="#22-monocular-depth-estimation-单目-2d-深度估计">2.2. Monocular Depth Estimation （单目 2D 深度估计）</a></li>
+            <li><a href="#23-single-image-shape-reconstruction">2.3. Single-Image Shape Reconstruction</a></li>
+            <li><a href="#24-cad-model-retrieval-and-alignment-">2.4. CAD Model Retrieval and Alignment (!!!)</a></li>
+            <li><a href="#25-learned-differentiable-pose-optimization">2.5. Learned Differentiable Pose Optimization</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-method">3. Method</a>
+          <ul>
+            <li><a href="#31-overview">3.1. Overview</a></li>
+            <li><a href="#32-object-recognition-and-depth-estimation">3.2. Object Recognition and Depth Estimation</a></li>
+            <li><a href="#33-robust-differentiable-cad-alignment-math">3.3. Robust Differentiable CAD Alignment （MATH）</a></li>
+            <li><a href="#34-geometry-aware-cad-retrieval">3.4. Geometry-Aware CAD Retrieval</a></li>
+            <li><a href="#35-implementation-details">3.5. Implementation Details</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-results">4. Results</a>
+          <ul>
+            <li><a href="#41-data-and-evaluation">4.1. Data and Evaluation</a></li>
+            <li><a href="#42-comparison-to-state-of-the-art">4.2. Comparison to State of the Art</a></li>
+            <li><a href="#43-ablations">4.3. Ablations</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-conclusion">5. Conclusion</a>
+          <ul>
+            <li><a href="#51-recall-01">5.1. Recall 0.1</a></li>
+            <li><a href="#52-recall-02">5.2. Recall 0.2.</a></li>
+            <li><a href="#53-recall-03">5.3. Recall 0.3.</a></li>
+            <li><a href="#54-展望未来">5.4. 展望未来</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="1-the-first-pass">1. The first pass</h3>
-<p>5 Steps to quick scan to get a bird’s-eye view of the paper</p>
-<h4 id="step-1-read-title-abstract-and-intro">Step 1. Read Title, Abstract and Intro</h4>
-<p><strong>Title:</strong> Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site (施工现场)</p>
-<p><strong>Abstract:</strong></p>
+            </div><div class="content" id="content"><h2 id="papernotes-02--roca">PaperNotes 02 ｜ ROCA</h2>
+<blockquote>
+<p>此篇笔记是<strong>论文阅读笔记</strong>系列的第 2 篇论文，摘抄、翻译了来自 Technical University of Munich 的 Can Gümeli, Angela Dai, Matthias Niessner 三位作者在 2021 年年底发表的论文<strong>ROCA: Robust CAD Model Retrieval and Alignment from a Single Image</strong></p>
 <ul>
-<li>The automated registration method in this paper converts points into suitable representation and determines <em>Transformation Parameters</em> for registration.</li>
-<li>it is useful for <strong>Construction Automation</strong></li>
+<li>代码：https://github.com/cangumeli/ROCA</li>
+<li>主页：https://cangumeli.github.io/ROCA</li>
+<li>论文：https://arxiv.org/abs/2112.01988</li>
 </ul>
-<p><strong>Section 1. Introduction</strong></p>
+</blockquote>
+<figure><img src="/images/papers/02/00.png" width="400"/>
+</figure>
+
+<h3 id="0-abstract">0. Abstract:</h3>
+<h4 id="01-introduce-roca-approach">0.1. Introduce ROCA approach</h4>
+<p>We present ROCA, a novel end-to-end approach that <strong>retrieves and aligns 3D CAD models</strong> from a <em>shape database</em> to a <em>single input image</em>.<br>
+我们提出了一种新的端到端的方法 —— ROCA，它从<em>形状数据库</em>中<strong>检索三维 CAD 模型</strong>并将其<em>对准到单个输入图像</em>。</p>
+<p>This enables <strong>3D perception of an observed scene</strong> from a <em>2D RGB</em> observation, characterized as a <em>lightweight, compact, clean CAD representation</em>.<br>
+这使得能够从<em>2D RGB 观察</em>中<strong>对观察到的场景进行 3D 感知</strong>，其特征在于<em>轻量、紧凑、清晰的 CAD 表示</em>。</p>
+<h4 id="02-core">0.2. Core</h4>
+<p>Core to our approach is our <em>differentiable alignment optimization</em> based on <strong>dense 2D-3D object correspondences</strong> and <strong>Procrustes alignment</strong>.<br>
+我们的方法的核心是<strong>基于密集 2D-3D 对象对应</strong>和<strong>Procrustes 对齐</strong>的<em>可微对齐优化</em>。</p>
+<p>ROCA can thus provide a <strong>robust CAD alignment</strong> while simultaneously <em>informing CAD retrieval</em> by <em>leveraging the 2D-3D correspondences</em> to <em>learn geometrically similar CAD models</em>.<br>
+因此，ROCA 可以提供<strong>鲁棒的 CAD 对准</strong>，同时通过<em>利用 2D-3D 对应关系</em>来<em>学习几何上相似的 CAD 模型</em>来<em>进行 CAD 检索</em>。</p>
+<h4 id="03-experiments-and-performance">0.3. Experiments and Performance</h4>
+<p>Experiments on challenging, real-world imagery from ScanNet show that <em>ROCA significantly improves on state of the art, from 9.5% to 17.6%</em> in <strong>retrieval-aware CAD alignment accuracy</strong>.<br>
+对来自 ScanNet 的具有挑战性真实的世界图像进行的实验表明，ROCA 在<strong>检索感知 CAD 对准精度方面</strong>显著提高，<em>从 9.5%提高到 17.6%.</em></p>
+<h3 id="1-introduction">1. Introduction</h3>
+<h4 id="11-pros-and-cons-of-2d-perception">1.1. Pros and Cons of 2D Perception</h4>
+<p><strong>Pros</strong><br>
+2D perception systems have seen <em>remarkable advances</em> in <strong>object recognition from 2D images</strong> in recent years, enabling widespread adoption of systems that can perform <strong>accurate 2D object localization, classification, and segmentation</strong> from an image [23, 34, 44].<br>
+近年来，2D 感知系统在从 2D 图像识别对象方面取得了显著进步，使得能够从图像执行精确的<strong>2D 对象定位、分类和分割</strong>的系统得到广泛采用。<br>
+Such advances have spurred forward developments in many fields, from <em>classical image understanding</em> to <em>robotics and autonomous driving</em>.<br>
+这些进步推动了许多领域的发展，从经典的<em>图像理解</em>到<em>机器人技术和自动驾驶</em>。</p>
+<p><strong>Cons</strong><br>
+However, unlike the human perception of 2D images, these systems tend to perform object recognition purely in 2D, whereas <em>from a single RGB image, a human can perceive geometric shape, structure, and pose of the objects in the scene</em>.<br>
+然而，与人类对 2D 图像的感知不同，这些（2D 感知）系统倾向于纯粹在 2D 中执行对象识别，而<em>从单个 RGB 图像，人类可以感知场景中的对象的几何形状、结构和姿态</em>。<br>
+In fact, such <strong>3D understanding</strong> is crucial for many applications, enabling possible <em>exploration and interaction with an observed environment</em>.<br>
+事实上，这种<strong>3D 理解</strong>对于许多应用来说是至关重要的，能够实现可能的<em>探索和与观察到的环境的交互。</em></p>
+<h4 id="12-3d-approaches">1.2. 3D Approaches</h4>
+<p>At the same time, there has been <em>notable progress in estimating 3D object geometry</em> from <em>visual data</em> [10, 18, 22, 38, 46, 47].<br>
+同时，在根据<em>视觉数据</em>估计<em>3D 对象几何形状方面也取得了显著进展</em>。</p>
+<p><strong>Mesh R-CNN</strong><br>
+In particular, <strong>Mesh R-CNN</strong> [21] introduced a formative approach to <em>3D object estimation from realworld images</em>, bridging state-of-the-art <em>2D object detection</em> with <strong>voxel-to-mesh estimation of the shape</strong> of each detected object in an image.<br>
+特别地，<strong>Mesh R-CNN</strong>[21]引入了一种 <em>从真实世界图像进行 3D 对象估计</em>的形成性方法，将最先进的 2D 对象检测与图像中每个检测到的对象的形状的<strong>体素到网格估计</strong>桥接起来。</p>
+<p><strong>Mask2CAD</strong><br>
+In contrast to this generative approach, <strong>Mask2CAD</strong> proposed to <em>retrieve and align CAD models from a database</em> to produce a <em>lightweight object reconstruction</em> with high fidelity given by the <strong>CAD database</strong> [30, 37].<br>
+与这种生成式方法相反，<strong>Mask2CAD</strong>提出<em>从数据库中检索和对齐 CAD 模型</em>，以产生<strong>CAD 数据库</strong>给出的<em>高保真度的轻量对象重建</em>。</p>
 <ul>
-<li>Problem:</li>
+<li>[30] Mask2cad: 3d shape prediction by learning to segment and retrieve (2020)</li>
+<li>[37] Vid2cad: Cad model alignment using multi-view constraints from videos (2020)</li>
 </ul>
-<h4 id="step-2-read-the-sectionsub-section-headings">Step 2. Read the Section/Sub-section Headings</h4>
-<p><strong>Section 2. Research Methodology</strong></p>
+<p><strong>CAD Model</strong><br>
+With significant availability of synthetic CAD models [6,20,49], such <strong>CAD model reconstruction of an observed scene</strong> shows strong promise in <em>perceiving 3D from an image</em>, as it <em>enables geometric estimation in a clean, compact fashion more akin to artist-crafted 3D models</em>, and easily consumed for downstream applications<br>
+借助于合成 CAD 模型的显著可用性[ 6，20，49]，<strong>场景观察得到的 CAD 模型重建</strong>在<em>从图像感知 3D</em>方面显示出很强的前景，因为它使得能够以<em>更类似于艺术家制作的 3D 模型的干净、紧凑的方式进行几何估计</em>，并且易于用于下游应用。</p>
 <ul>
-<li>2.1. Preprocessing
-<ul>
-<li>use Octree for data Re-Sampling</li>
+<li>[6] Shapenet: An information-rich 3d model repository. (2015)</li>
+<li>[20] 3d-future: 3d furniture shape with texture. (2020)</li>
+<li>[49] 3d shapenets: A deep representation for volumetric shapes. (2015)</li>
 </ul>
+<h4 id="13-problems-of-current-approaches-and-present-a-new-approach">1.3. Problems of current approaches and present a new approach</h4>
+<p>However, current approaches to <strong>estimate 3D object structure from an RGB image</strong> have largely <em>focused on shape representation and generation</em>,<br>
+然而，当前<strong>从 RGB 图像估计 3D 目标结构</strong>的方法主要<em>集中在形状表示和生成上</em>，</p>
+<ul>
+<li>either <em>without any explicit pose estimation</em> [21], 要么是<em>没有任何显式姿态估计</em>，</li>
+<li>or simply <em>regressing the object pose directly from the 2D features of the object</em> [17,30,31,37,39]. 要么是简单地<em>直接从目标的 2D 特征对目标姿态进行回归处理</em>。</li>
+</ul>
+<p>Thus, we propose a new CAD retrieval and alignment approach to <strong>estimate 3D perception from an image by formulating a differentiable 9-DoF pose optimization directly coupled to the object retrieval</strong>; this enables a more robust, geometry-aware, end-to-end CAD alignment to the image.</p>
+<p>因此，我们提出了一种新的 CAD 检索和对准方法，从而<strong>通过公式化直接耦合到目标检索的可微分 9-DoF 姿态优化来从 RGB 图像估计 3D 感知</strong>;这实现了对图像的更鲁棒的、几何形状感知的、端到端的 CAD 对准。</p>
+<h4 id="14-details-of-roca">1.4. Details of ROCA</h4>
+<p>In this work, we propose ROCA, a new method that <strong>jointly detects object regions in a given input image</strong> while simultaneously <em>estimating depth and dense correspondences between each 2D object region and its location</em> in its canonical object space.<br>
+在本文中，我们提出了一种新的方法 ROCA，它<strong>在给定的输入图像中联合检测目标区域</strong>，同时<em>估计每个 2D 目标区域与其在其规范目标空间中的位置之间的深度和稠密对应关系</em>。</p>
+<p>From the <em>dense depth and correspondence estimates</em>, we then <strong>formulate a differentiable Procrustes optimization</strong> and produce a final set of <em>retrieved CAD models and their 9-DoF alignments</em>.<br>
+根据<em>密集深度和对应性估计</em>，我们<strong>用公式表示可微分 Procrustes 优化</strong>，并产生最终的<em>检索 CAD 模型集及其 9-DoF 的对准</em>。</p>
+<ul>
+<li>This <em>geometry-aware differentiable optimization</em> for the CAD alignment of each object enables <em>more robust and accurate CAD alignment</em>.</li>
+<li>这种用于每个对象的 CAD 对准的<em>几何感知可微优化</em>实现了<em>更鲁棒和更精确的 CAD 对准</em>。</li>
+</ul>
+<p>In addition, our method <strong>learns geometry-aware embeddings for CAD retrieval</strong>. Our retrieval embedding module <em>utilizes the canonical coordinates used in pose optimization</em> and <em>an auxiliary shape completion</em> objective.<br>
+此外，我们的方法<strong>学习几何感知嵌入用于 CAD 检索</strong>. 我们的检索嵌入模块<em>利用了姿态优化中使用的规范坐标</em>和<em>辅助形状补全</em>的目标(?)。</p>
+<p>We show <em>learning geometry-aware embeddings improves both retrieval and alignment accuracy</em>. Overall, our method significantly outperforms state of the art, <em>improving by 8.1% and 9.5%</em> in <em>retrieval-aware alignment accuracy</em> and <em>alignment accuracy from a single RGB image</em>.<br>
+我们表明，<em>学习几何感知嵌入提高检索和对齐精度</em>。 总体而言，我们的方法明显优于现有技术，在<em>检索感知对准精度</em>和<em>基于单个 RGB 图像的对准精度</em>方面分别<em>提高了 8.1%和 9.5%</em></p>
+<h4 id="15-summary">1.5. Summary</h4>
+<p>In summary, we propose an <strong>end-to-end architecture for CAD model alignment to an RGB image</strong> with:</p>
+<ul>
+<li>a new <strong>differentiable pose optimization</strong> enabling geometry-aware 2D-to-3D CAD alignment to an RGB image,</li>
+<li>improved CAD retrieval by <em>leveraging the dense object pose correspondences and proxy CAD completion objective</em> to <em>inform the construction</em> of a 【joint embedding space】 between 【detected objects and CAD models】，(通过<em>利用所述密集对象姿态对应和代理 CAD 补全目标</em>来<em>生成【检测到的对象】与【CAD 模型之间】的【联合嵌入空间】的构造</em>，从而改进 CAD 检索。)</li>
+<li>an interactive runtime of 53 milliseconds per image, facilitating its use in real-time applications. （快）</li>
+</ul>
+<h3 id="2-related-work">2. Related Work</h3>
+<h4 id="21-2d-object-recognition">2.1. 2D Object Recognition</h4>
+<p>We build our approach from the success of 2D recognition to extend to an end-to-end 3D object reasoning.</p>
+<ul>
+<li>In particular, to <strong>extract image features</strong>, we use a <strong>Mask-RCNN [23] recognition backbone</strong> that detects and segments objects in the image,</li>
+<li>from which we then estimate 3D CAD alignment and retrieval.</li>
+</ul>
+<h4 id="22-monocular-depth-estimation-单目-2d-深度估计">2.2. Monocular Depth Estimation （单目 2D 深度估计）</h4>
+<p>As we aim to <strong>predict 9-DoF object alignments</strong>, we must <strong>reason about absolute object depths</strong>. <em>Monocular depth estimation from a single RGB image</em> has been extensively studied to predict absolute per-pixel depths from an image.<br>
+当我们的目标是<strong>预测 9 自由度物体对准</strong>时，我们必须对<strong>绝对物体深度进行推理</strong>。 <em>单个 RGB 图像的单目深度估计</em>已经被广泛地研究，从而从图像预测绝对像素深度。</p>
+<p>To <strong>extract strong geometric features</strong>, we also <em>predict dense depth</em> for each detected object, leveraging state-of-the-art depth <em>estimation techniques</em> [25,37].<br>
+为了<strong>提取强几何特征</strong>，我们还利用最先进的<em>深度估计技术</em>，<em>预测</em>每个检测到的对象的<em>密集深度</em></p>
+<ul>
+<li>[25] Revisiting single image depth estimation: Toward higher
+resolution maps with accurate object boundaries (2019)</li>
+<li>[33] Deeper depth prediction
+with fully convolutional residual networks (2016)</li>
+</ul>
+<h4 id="23-single-image-shape-reconstruction">2.3. Single-Image Shape Reconstruction</h4>
+<p>In recent years, many deep learning-based approaches have been developed to <strong>reconstruct 3D shapes from a 2D image</strong>. These approaches typically employ large synthetic 3D shape datasets ([6]ShapeNet), and render the synthetic objects for image input.<br>
+近年来，已经开发了许多基于深度学习的方法来<strong>用 2D 图像重构 3D 形状</strong>。 这些方法通常采用大的合成 3D 形状数据集[6]，并渲染合成对象以用于图像输入。</p>
+<p>More recent work has also focused on <strong>estimating scene layouts</strong> and <strong>inter-object relations</strong> [29, 39].<br>
+最近的工作也集中在<strong>估计场景布局</strong>和<strong>物体间的关系</strong></p>
+<ul>
+<li>[29] 3d-relnet: Joint object and relational network for 3d prediction (2019)</li>
+<li>[39] Total3dunderstanding: Joint layout, object pose and mesh reconstruction for indoor scenes from a single image. (2020)</li>
+</ul>
+<p>In contrast to these approaches that <strong>perform object-based reconstruction from an image</strong>, we propose to optimize for object poses by <strong>establishing dense geometric correspondences, rather than a direct regression</strong>, enabling <em>more robust alignment optimization</em>.<br>
+与<strong>从图像执行基于物体的重建</strong>的这些方法相比，我们提出通过<strong>建立密集的几何对应而不是直接回归</strong>来优化物体姿态，从而实现<em>更鲁棒的对准优化</em>。</p>
+<h4 id="24-cad-model-retrieval-and-alignment-">2.4. CAD Model Retrieval and Alignment (!!!)</h4>
+<p><strong>3D reconstruction using CAD model priors</strong> has a long history in computer vision[4, 8, 43].<br>
+<strong>利用 CAD 模型先验信息进行三维重建</strong>在计算机视觉领域有着悠久的历史。</p>
+<ul>
+<li>[4] Survey of model-based image analysis systems (1982)</li>
+<li>[8] Model-based recognition in robot vision (1986)</li>
+<li>[43] Machine perception of threedimensional solids (1963)</li>
+</ul>
+<p>Recently, with the availability of <em>large-scale 3D shape datasets</em>, several approaches have been introduced to perform CAD model retrieval and alignment to an <em>image based on analysis-by-synthesis reconstruction</em> [26, 28].</p>
+<ul>
+<li>[26] Holistic 3d scene parsing and reconstruction from a single rgb image (2018)</li>
+<li>[28] IM2CAD(2017)</li>
+</ul>
+<p>More recently, <strong>Mask2CAD [30]</strong> proposed a more lightweight approach that learns to simultaneously retrieve and 5-DoF align 3D CAD models to detected objects in an image, building on top of a state-of-the-art <strong>2D recognition backbone</strong> [32, 35].</p>
+<ul>
+<li>[30] Mask2cad: 3d shape prediction by learning to segment and retrieve (2020)</li>
+<li>[32] Shapemask: Learning to segment novel objects by refining shape priors (2019)</li>
+<li>[35] Focal loss for dense object detection. (2017)</li>
+</ul>
+<h4 id="25-learned-differentiable-pose-optimization">2.5. Learned Differentiable Pose Optimization</h4>
+<p>Most inspirational to our work is the <strong>differentiable Procrustes optimization of [3]</strong> for CAD model alignment to RGB-D scans.<br>
+对我们的工作最有启发的是[3]的<strong>微分 Procrustes 优化</strong>，用于 CAD 模型与 RGB-D 扫描的对齐。</p>
+<ul>
+<li>[3] End-to-end cad model retrieval and 9dof alignment in 3d scans. (2019)</li>
+</ul>
+<p>In contrast to their work, <em>we must reason without 3D input data</em>, and thus formulate a notably different optimization to focus on image-based object pose estimation with per-pixel correspondences and a weighted formulation for robust alignment estimation.<br>
+与他们的工作相反，<em>我们必须在没有 3D 输入数据的情况下进行推理</em>，因此制定了一个明显不同的优化，以集中在具有每像素对应性的基于图像的物体姿态估计和用于鲁棒对准估计的加权公式。</p>
+<h3 id="3-method">3. Method</h3>
+<h4 id="31-overview">3.1. Overview</h4>
+<figure><img src="/images/papers/02/01.png" width="400"/>
+</figure>
+
+<h4 id="32-object-recognition-and-depth-estimation">3.2. Object Recognition and Depth Estimation</h4>
+<p>For 2D object recognition, we use a <strong>Mask-RCNN [23] backbone</strong>, and for <strong>depth estimation</strong>, we use a <strong>ResNet-50-FPN [24, 34]</strong> with a <strong>Multi-scale Feature Fusion [25]</strong> module that <strong>up-projects [33]</strong> and concatenates four levels of FPN features. To <strong>up-sample depth to full image resolution</strong>, we use a <strong>pixel-shuffle layer [45]</strong>. We use a <strong>masked reverse Huber (berHu) [33] loss</strong> to optimize for depth map D.</p>
+<h4 id="33-robust-differentiable-cad-alignment-math">3.3. Robust Differentiable CAD Alignment （MATH）</h4>
+<ul>
+<li>Aggregating Region Features</li>
+<li>Scale Regression</li>
+<li>Initial Translation Estimation</li>
+<li>Normalized Object Coordinates as Correspondences</li>
+<li>Differentiable Robust Procrustes Optimization</li>
+</ul>
+<h4 id="34-geometry-aware-cad-retrieval">3.4. Geometry-Aware CAD Retrieval</h4>
+<p>Our geometry-aware retrieval is trained end-to-end with the alignment prediction, allowing for retrieval to also <strong>inform the predicted NOC correspondences</strong> as well as the image features. At inference time, we <em>pre-compute CAD embeddings</em> and <strong>perform a nearest-neighbor lookup for each detected object region</strong> embedding prediction.<br>
+我们的几何感知检索是用对准预测端到端训练的，允许检索也<strong>生成预测的 NOC 对应关系</strong>以及图像特征。 在推理时，我们<em>预先计算 CAD 嵌入</em>，并<strong>为每个检测到的对象区域嵌入预测执行最近邻居查找</strong>。</p>
+<h4 id="35-implementation-details">3.5. Implementation Details</h4>
+<ul>
+<li>Training</li>
+<li>Inference</li>
+<li>Implementation (PyTorch，Detectron2, PyTorch3D)</li>
+</ul>
+<h3 id="4-results">4. Results</h3>
+<h4 id="41-data-and-evaluation">4.1. Data and Evaluation</h4>
+<ul>
+<li>Dataset: ScanNet25k, Scan2CAD</li>
+<li>Alignment Accuracy</li>
+<li>Retrieval-Aware Alignment Accuracy</li>
+</ul>
+<h4 id="42-comparison-to-state-of-the-art">4.2. Comparison to State of the Art</h4>
+<p>Figure 3 shows a <strong>qualitative comparison of CAD retrieval and alignment on ScanNet images</strong>. ROCA obtains more robust and accurate object alignments across a diverse set of image views and object types.<br>
+图 3 显示了<strong>ScanNet 图像上 CAD 检索和对齐的定性比较</strong>。 ROCA 可在各种图像视图和对象类型中获得更稳健和准确的对象对齐。</p>
+<figure><img src="/images/papers/02/02.png" width="400"/>
+</figure>
+
+<h4 id="43-ablations">4.3. Ablations</h4>
+<ul>
+<li>
+<p>Effect of end-to-end optimization on alignment (improves class alignment accuracy, from 14.9% to 19.4%.)</p>
 </li>
-<li>2.2. 3D Registration</li>
+<li>
+<p>Effect of learned Procrustes weights on alignment</p>
+</li>
+<li>
+<p>Effect of learned retrieval on alignment</p>
+</li>
+<li>
+<p>Learned retrieval performance</p>
+</li>
+<li>
+<p>Scaling to augmented training data</p>
+</li>
+<li>
+<p>Limitations</p>
+</li>
 </ul>
+<h3 id="5-conclusion">5. Conclusion</h3>
+<h4 id="51-recall-01">5.1. Recall 0.1</h4>
+<p>We have presented ROCA, a robust end-to-end approach for single-image CAD model alignment and retrieval.</p>
+<h4 id="52-recall-02">5.2. Recall 0.2.</h4>
+<p>We show that leveraging <strong>dense per-pixel depth and canonical point correspondences</strong> with our <strong>weighted differentiable Procrustes optimization</strong> leads to more robust and accurate pose predictions.<br>
+我们展示了，利用<strong>密集的每像素深度和规范点对应</strong>与我们的<strong>加权可微 Procrustes 优化</strong>可以得到更鲁棒和准确的姿态预测。
+Additionally, these correspondences can be leveraged for <strong>geometry-aware end-to-end retrieval</strong> to improve both retrieval and alignment performance.<br>
+此外，这些对应性可用于<strong>几何感知的端到端检索</strong>，以改进检索和对准性能。</p>
+<h4 id="53-recall-03">5.3. Recall 0.3.</h4>
+<p>For challenging ScanNet/Scan2CAD image data [2,12], our method significantly improves state-of-the-art retrieval-aware alignment accuracy from 9.5% to 17.6%. Our approach runs efficiently at test time, achieving interactive speeds of 53 milliseconds per image.<br>
+对于具有挑战性的 ScanNet/Scan2CAD 图像数据[2，12]，我们的方法将最先进的检索感知对准精度从 9.5%显著提高到 17.6%。 我们的方法在测试时高效运行，实现了每张图像 53 毫秒的交互速度。</p>
+<h4 id="54-展望未来">5.4. 展望未来</h4>
+<p>We hope that this can further spur developments in <strong>3D perception towards content creation, mixed reality, and domain transfer scenarios</strong>.
+我们希望这能进一步推动基于 3D 感知的<strong>内容创作</strong>、<strong>混合现实</strong>和<strong>领域转移场景</strong>发展。</p>
+<figure><img src="/images/papers/02/03.png" width="400"/>
+</figure>
+
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-05-29</span>
+                <span>Updated on 2022-07-07</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -163,7 +406,7 @@
                             <a class="link-to-markdown" href="/paper02/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper02/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-description="How to Read a Paper"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site" data-description="How to Read a Paper"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper02/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper02/" data-title="Paper Notes 02 | ROCA"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -175,8 +418,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/paper00/" class="prev" rel="prev" title="Paper Notes 00 | How to Read a Paper"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 00 | How to Read a Paper</a>
-            <a href="/opencv01/" class="next" rel="next" title="OpenCV Notes 01 | Feature Detection">OpenCV Notes 01 | Feature Detection<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/o3d_notes03/" class="prev" rel="prev" title="Open3D Notes 03 | 3D Mesh to Point Cloud"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 03 | 3D Mesh to Point Cloud</a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">

@@ -4,16 +4,42 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Open3D Notes 01 | Point Cloud Processing</title>
+    <title>Paper Notes 02 | ROCA</title>
+    <link>https://yiyangd.github.io/paper02/</link>
+    <pubDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/paper02/</guid>
+    <description><![CDATA[PaperNotes 02 ｜ ROCA  此篇笔记是论文阅读笔记系列的第 2 篇论文，摘抄、翻译了来自 Technical University of Munich 的 Can Gümeli, Angela Dai, Matthias Niessner 三位作者在 2021 年年底发表的论文ROCA: Robust CAD Model Retrieval and Alignment from a Single Image
+ 代码：https://github.com/cangumeli/ROCA 主页：https://cangumeli.github.io/ROCA 论文：https://arxiv.org/abs/2112.01988    0. Abstract: 0.1. Introduce ROCA approach We present ROCA, a novel end-to-end approach that retrieves and aligns 3D CAD models from a shape database to a single input image.
+我们提出了一种新的端到端的方法 —— ROCA，它从形状数据库中检索三维 CAD 模型并将其对准到单个输入图像。]]></description>
+</item><item>
+    <title>Open3D Notes 03 | 3D Mesh to Point Cloud</title>
+    <link>https://yiyangd.github.io/o3d_notes03/</link>
+    <pubDate>Wed, 06 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes03/</guid>
+    <description><![CDATA[1. Alpha Shapes The alpha shape is a generalization of a convex hull.
+1.1. Convex Hull The Convex Hull (凸包) of a point cloud is the smallest convex set that contains all points.
+ Open3D contains compute_convex_hull() that computes the convex hull of a point cloud  1 2 3 4 5 6 7 8 9 10 11  bunny = o3d.data.BunnyMesh() mesh = o3d.io.read_triangle_mesh(bunny.path) mesh.compute_vertex_normals() # Sample a Point Cloud from Mesh pcd = mesh.]]></description>
+</item><item>
+    <title>Open3D Notes 02 | 3D Mesh Processing</title>
     <link>https://yiyangd.github.io/o3d_notes02/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://yiyangd.github.io/o3d_notes02/</guid>
     <description><![CDATA[1. Polygon Mesh （WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces
  the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling   2. Read a 3D Mesh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  import open3d as o3d import numpy as np knot_mesh = o3d.]]></description>
+</item><item>
+    <title>Paper Notes 01 | 3DMatch</title>
+    <link>https://yiyangd.github.io/paper01/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/paper01/</guid>
+    <description><![CDATA[PaperNotes 01 ｜ 3DMatch   此篇笔记是Paper 笔记系列的第 1 篇，翻译、摘抄了 2017 年的论文3DMatch: Learning Local Geometric Descriptors from RGB-D Reconstructions
+ https://3dmatch.cs.princeton.edu/paper_v2.pdf   0. Abstract 0.1. Challenges and Difficulties Matching local geometric features on real-world depth images is a challenging task due to the noisy, low resolution, and incomplete nature of 3D scan data. These difficulties limit the performance of current state-of-art methods, which are typically based on histograms over geometric properties.]]></description>
 </item><item>
     <title>Open3D Notes 01 | Point Cloud Processing</title>
     <link>https://yiyangd.github.io/o3d_notes01/</link>
@@ -39,17 +65,6 @@
     <description><![CDATA[0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
  If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?]]></description>
 </item><item>
-    <title>Paper Notes 02 | Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site</title>
-    <link>https://yiyangd.github.io/paper02/</link>
-    <pubDate>Sun, 29 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/paper02/</guid>
-    <description><![CDATA[1. The first pass 5 Steps to quick scan to get a bird’s-eye view of the paper
-Step 1. Read Title, Abstract and Intro Title: Fully Automated Registration of 3D CAD Model with Point Cloud from Construction Site (施工现场)
-Abstract:
- The automated registration method in this paper converts points into suitable representation and determines Transformation Parameters for registration. it is useful for Construction Automation  Section 1. Introduction
- Problem:  Step 2.]]></description>
-</item><item>
     <title>Paper Notes 00 | How to Read a Paper</title>
     <link>https://yiyangd.github.io/paper00/</link>
     <pubDate>Fri, 27 May 2022 00:00:00 &#43;0000</pubDate>
@@ -60,19 +75,6 @@ Abstract:
             </div>PaperNotes00 ｜ How to Read a Paper  此篇笔记是PaperNotes系列的第 1 篇，我将S. Keshav教授在 2016 年写作的How to Read a Paper 进行摘抄，翻译和要点总结：
  http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf    ABSTRACT Researchers spend a great deal of time reading research papers. However, this skill is rarely taught, leading to much wasted effort.
  This article outlines a practical and efficient three-pass method for reading research papers. I also describe how to use this method to do a literature survey.]]></description>
-</item><item>
-    <title>Paper Notes 01 | ROCA: Robust CAD Model Retrieval and Alignment from a Single Image</title>
-    <link>https://yiyangd.github.io/paper01/</link>
-    <pubDate>Fri, 27 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/paper01/</guid>
-    <description><![CDATA[PaperNotes 01 ｜ ROCA (1) 代码：https://github.com/cangumeli/ROCA
-主页：https://cangumeli.github.io/ROCA
-论文：https://arxiv.org/abs/2112.01988
-1. The first pass 5 Steps to quick scan to get a bird’s-eye view of the paper
-Step 1. Read Title, Abstract and Intro Title: ROCA: Robust CAD Model Retrieval and Alignment from a Single Image (RGB)
-Abstract:
- ROCA approach enables 3D perception of an observed scene from a 2D RGB observation, characterized as a lightweight, compact, clean CAD representation. 2 Cores:  Differentiable Alignment Optimization based on dense 2D-3D object correspondences Procrustes Alignment   Experiments:  Database: ScanNet Result: ROCA improves from 9.]]></description>
 </item><item>
     <title>OpenGL Notes | Basics</title>
     <link>https://yiyangd.github.io/opengl01/</link>
@@ -90,13 +92,5 @@ Abstract:
     <description><![CDATA[神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数 optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !
 1. Neural Style Transfer Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.
  It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G).]]></description>
-</item><item>
-    <title>Deep Learning Notes | Word Embedding</title>
-    <link>https://yiyangd.github.io/rnn01/</link>
-    <pubDate>Tue, 17 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/rnn01/</guid>
-    <description><![CDATA[自然语言处理：为文字建立统计模型 0. Sequence Data Many data sources are sequential in nature, and call for special treatment when building predictive models:
- Documents such as books and movie reviews, newspaper articles, and tweets  The sequence and relative positions of words in a document capture the narrative, theme and tone, tasks: topic classification, sentiment analysis, and language translation.   Time Series of weather and finantial information  tasks: weather / market indices prediction   Recorded Speech and Sound Recordings  tasks: text transcription of a speech, or music generation    A sentence can be represented as a sequence of L words, include slang or non-words, have spelling errors.]]></description>
 </item></channel>
 </rss>
