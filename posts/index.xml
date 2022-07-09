@@ -4,7 +4,22 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Open3D Notes 01 | Point Cloud Processing</title>
+    <link>https://yiyangd.github.io/o3d_notes02/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes02/</guid>
+    <description><![CDATA[1. Polygon Mesh （WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces
+ the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling   2. Read a 3D Mesh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  import open3d as o3d import numpy as np knot_mesh = o3d.]]></description>
+</item><item>
+    <title>Open3D Notes 01 | Point Cloud Processing</title>
+    <link>https://yiyangd.github.io/o3d_notes01/</link>
+    <pubDate>Mon, 04 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes01/</guid>
+    <description><![CDATA[0. Download and Install Open3D 1 2 3 4 5 6 7 8  # Install $ pip install open3d # Verify $ python -c &#34;import open3d as o3d; print(o3d.__version__)&#34; # 0.15.2 (2022.06.28) # Git Clone $ git clone https://github.com/isl-org/Open3D.git   1. Read and Write a Point Cloud. 1 2 3 4 5 6 7 8 9 10  import open3d as o3d if __name__ == &#34;__main__&#34;: pcd_data = o3d.]]></description>
+</item><item>
     <title>MIT 18.S191 | Spring 2021 | Notes</title>
     <link>https://yiyangd.github.io/mit18s191notes/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate>
@@ -81,23 +96,5 @@ Abstract:
     <guid>https://yiyangd.github.io/rnn01/</guid>
     <description><![CDATA[自然语言处理：为文字建立统计模型 0. Sequence Data Many data sources are sequential in nature, and call for special treatment when building predictive models:
  Documents such as books and movie reviews, newspaper articles, and tweets  The sequence and relative positions of words in a document capture the narrative, theme and tone, tasks: topic classification, sentiment analysis, and language translation.   Time Series of weather and finantial information  tasks: weather / market indices prediction   Recorded Speech and Sound Recordings  tasks: text transcription of a speech, or music generation    A sentence can be represented as a sequence of L words, include slang or non-words, have spelling errors.]]></description>
-</item><item>
-    <title>Open3D Notes | Coordinates and Transformation</title>
-    <link>https://yiyangd.github.io/3d_notes01/</link>
-    <pubDate>Tue, 17 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/3d_notes01/</guid>
-    <description><![CDATA[Open3D 笔记 01 ｜坐标与坐标的转换  这篇笔记是「Open3D 笔记」系列的第一篇，记录了我担心自己捡了芝麻丢了芝麻，所以一个芝麻一个芝麻地去捡。
- Vector3dVector() 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import open3d as o3d import numpy as np pcd = o3d.geometry.PointCloud() np_points = np.array([ [0,0,0], [0,0,1], [0,0,2], [0,0,3], [0,0,0], [1,0,0], [2,0,0], [2.2,0,0], [0,0,0], [0,1,0], [0,2,0], [0,5,0] ]) pcd.points = o3d.utility.Vector3dVector(np_points) o3d.visualization.draw_geometries([pcd])    往【上】的坐标轴是 Y 往【右】的坐标轴是 X 往【“前”】的坐标轴是 Z  Transformation [1]http://www.open3d.org/docs/release/python_api/open3d.utility.Vector3dVector.html
-[2]]]></description>
-</item><item>
-    <title>Deep Learning Notes | FaceNet: CNN for Face Recognition/Verification</title>
-    <link>https://yiyangd.github.io/cnn07/</link>
-    <pubDate>Mon, 16 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/cnn07/</guid>
-    <description><![CDATA[0. Two Problems: Face Verification (1:1 Matching):
- Input: Image, name/ID Output: whether the input image is that of the claimed person (0/1 binary classification) e.g. passport/face match in airport and use face to unlock mobile phone  Face Recognition (1:K Matching):
- Has a database of K persons Input: image (a person&rsquo;s face) Output:  ID if the image is any of the K persons or &ldquo;not recognized&rdquo;    1.]]></description>
 </item></channel>
 </rss>

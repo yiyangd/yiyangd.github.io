@@ -35,6 +35,8 @@ julia> Pluto.run()
 
 ### 2. Images as Data and Arrays
 
+#### 2.1. Pixel
+
 If we open an image on our computer or the web and zoom in enough, we will see that it consists of many tiny squares, or pixels ("picture elements").
 
 - Each pixel is a block of one single colour
@@ -50,7 +52,12 @@ Note that an image is already an approximation of the real world
 
 - it is a two-dimensional, discrete representation of a 3D reality.
 
-#### 2.1. Download and Load Images
+**Interactivity using Sliders**  
+The `Slider` type is defined in the `PlutoUI.jl` package.
+
+{{< figure src="/images/julia/01_images/slider.png" width="400">}}
+
+#### 2.2. Download and Load 2D Images
 
 ```julia
 begin
@@ -74,7 +81,16 @@ end
 
 {{< figure src="/images/julia/01_images/dog.png" width="400">}}
 
-#### 2.2. Images Flip and Concatentaion as Matrix
+#### 2.3. Images Flip and Concatentaion as Matrix
 
 {{< figure src="/images/julia/01_images/flip.png" width="400">}}
+
+#### 2.4. Locate and Modify Pixels
+
+```julia
+using
+```
+
+- This creates a new variable called `number_reds`, whose value is the value shown by the slider. When we move the slider, the value of the variable gets updated.
+  Pluto is a reactive notebook, other cells which use the value of this variable will automatically be updated too!
 

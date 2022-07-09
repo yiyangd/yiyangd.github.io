@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Open3D Notes 01 | Point Cloud Processing - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Open3D Notes 01 | Point Cloud Processing" />
+<meta property="og:description" content="1. Polygon Mesh （WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces
+ the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling   2. Read a 3D Mesh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  import open3d as o3d import numpy as np knot_mesh = o3d." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/o3d_notes02/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-05T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Open3D Notes 01 | Point Cloud Processing"/>
+<meta name="twitter:description" content="1. Polygon Mesh （WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces
+ the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling   2. Read a 3D Mesh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  import open3d as o3d import numpy as np knot_mesh = o3d."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/o3d_notes02/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Open3D Notes 01 | Point Cloud Processing",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/o3d_notes02\/"
+        },"genre": "posts","wordcount":  637 ,
+        "url": "https:\/\/yiyangd.github.io\/o3d_notes02\/","datePublished": "2022-07-05T00:00:00+00:00","dateModified": "2022-07-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Open3D Notes 01 | Point Cloud Processing</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-05">2022-07-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;637 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-polygon-mesh">1. Polygon Mesh</a></li>
+        <li><a href="#2-read-a-3d-mesh">2. Read a 3D Mesh</a></li>
+        <li><a href="#3-surface-normal-estimation-and-paint">3. Surface Normal Estimation and Paint</a></li>
+        <li><a href="#4-mesh-filtering">4. Mesh Filtering</a>
+          <ul>
+            <li><a href="#41-average-filter">4.1. Average Filter</a></li>
+            <li><a href="#42-laplacian-filter">4.2. Laplacian Filter</a></li>
+            <li><a href="#43-taubin-filter">4.3. Taubin Filter</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-sampling">5. Sampling</a></li>
+        <li><a href="#6-mesh-simplification">6. Mesh Simplification</a>
+          <ul>
+            <li><a href="#61-vertex-clustering">6.1. Vertex Clustering</a></li>
+            <li><a href="#62-mesh-decimation">6.2. Mesh Decimation</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="1-polygon-mesh">1. Polygon Mesh</h3>
+<p>（WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of <strong>Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces</strong></p>
+<ul>
+<li>the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling</li>
+</ul>
+<figure><img src="/images/open3d/02/01.png" width="400"/>
+</figure>
+
+<h3 id="2-read-a-3d-mesh">2. Read a 3D Mesh</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">knot_mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">KnotMesh</span><span class="p">()</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_triangle_mesh</span><span class="p">(</span><span class="n">knot_mesh</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying mesh ...&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="c1"># TriangleMesh with 1440 vertices and 2880 triangles.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Try to render a mesh with normals (exist: &#34;</span> <span class="o">+</span>
+      <span class="nb">str</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">has_vertex_normals</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;) and colors (exist: &#34;</span> <span class="o">+</span>
+      <span class="nb">str</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">has_vertex_colors</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&#34;)&#34;</span><span class="p">)</span>
+<span class="c1"># mesh.has_vertex_normals() = False</span>
+<span class="c1"># mesh.has_vertex_colors() = False</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw</span><span class="p">([</span><span class="n">mesh</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/02.png" width="400"/>
+</figure>
+
+<p>Since the current mesh does not have <code>normals</code> for <em>Vertices or Triangle faces</em>. So uniform color shading is used instead of a more sophisticated Phong shading.</p>
+<h3 id="3-surface-normal-estimation-and-paint">3. Surface Normal Estimation and Paint</h3>
+<p>Use <code>mesh.compute_vertex_normals()</code> and <code>paint_uniform_color()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Computing normals and rendering it.&#34;</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">triangle_normals</span><span class="p">))</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.706</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/03.png" width="400"/>
+</figure>
+
+<h3 id="4-mesh-filtering">4. Mesh Filtering</h3>
+<h4 id="41-average-filter">4.1. Average Filter</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;create noisy mesh&#39;</span><span class="p">)</span>
+<span class="n">knot_mesh</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">KnotMesh</span><span class="p">()</span>
+<span class="n">mesh_in</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_triangle_mesh</span><span class="p">(</span><span class="n">knot_mesh</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mesh_in</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">vertices</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">mesh_in</span><span class="o">.</span><span class="n">vertices</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">Vector3dVector</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+<span class="n">mesh_in</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_in</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/04.png" width="400"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;filter with average with 1 iteration&#39;</span><span class="p">)</span>
+<span class="n">mesh_out</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">filter_smooth_simple</span><span class="p">(</span>
+  <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mesh_out</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_out</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/05.png" width="400"/>
+</figure>
+
+<h4 id="42-laplacian-filter">4.2. Laplacian Filter</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;filter with Laplacian with 50 iterations&#39;</span><span class="p">)</span>
+<span class="n">mesh_out</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">filter_smooth_laplacian</span><span class="p">(</span><span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">mesh_out</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_out</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/06.png" width="400"/>
+</figure>
+
+<h4 id="43-taubin-filter">4.3. Taubin Filter</h4>
+<p>The problem with the <em>Average and Laplacian Filter</em> is that they lead to a <strong>shrinkage</strong> of the triangle mesh.</p>
+<ul>
+<li>[Taubin1995] showed that the application of two Laplacian filters with different $\lambda$ parameters can prevent the mesh shrinkage.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;filter with Taubin with 100 iterations&#39;</span><span class="p">)</span>
+<span class="n">mesh_out</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">filter_smooth_taubin</span><span class="p">(</span><span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">mesh_out</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_out</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/07.png" width="400"/>
+</figure>
+
+<h3 id="5-sampling">5. Sampling</h3>
+<p>The simplest method is <code>sample_points_uniformly</code> that uniformly samples <strong>points</strong> from the <em>3D surface</em> based on the triangle area.</p>
+<ul>
+<li>The parameter <code>number_of_points</code> defines how many points are sampled from the triangle surface.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying pointcloud using uniform sampling ...&#34;</span><span class="p">)</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">sample_points_uniformly</span><span class="p">(</span><span class="n">number_of_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Uniform sampling can yield clusters of points on the surface, while a method called <strong>Poisson disk sampling</strong> can <em>evenly distribute the points</em> on the surface.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying pointcloud using Poisson disk sampling ...&#34;</span><span class="p">)</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">sample_points_poisson_disk</span><span class="p">(</span>
+  <span class="n">number_of_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/02/08.png" width="400"/>
+</figure>
+
+<h3 id="6-mesh-simplification">6. Mesh Simplification</h3>
+<p>Mesh Simplification methods are used to represent a high-resolution mesh with fewer triangles and vertices, but the low-resolution mesh should still be close to the high-resolution mesh.</p>
+<h4 id="61-vertex-clustering">6.1. Vertex Clustering</h4>
+<p>This method pools all vertices that fall into a voxel of a given size to a single vertex.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Input mesh has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_in</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_in</span><span class="o">.</span><span class="n">triangles</span><span class="p">)</span><span class="si">}</span><span class="s1"> triangles&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Input mesh has 1440 vertices and 2880 triangles</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_in</span><span class="p">])</span>
+
+<span class="n">voxel_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mesh_in</span><span class="o">.</span><span class="n">get_max_bound</span><span class="p">()</span> <span class="o">-</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">get_min_bound</span><span class="p">())</span> <span class="o">/</span> <span class="mi">32</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;voxel_size = </span><span class="si">{</span><span class="n">voxel_size</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># voxel_size = 5.66</span>
+
+<span class="n">mesh_smp</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">simplify_vertex_clustering</span><span class="p">(</span>
+    <span class="n">voxel_size</span><span class="o">=</span><span class="n">voxel_size</span><span class="p">,</span>
+    <span class="n">contraction</span><span class="o">=</span><span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">SimplificationContraction</span><span class="o">.</span><span class="n">Average</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Simplified mesh has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">triangles</span><span class="p">)</span><span class="si">}</span><span class="s1"> triangles&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Simplified mesh has 1355 vertices and 2720 triangles</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_smp</span><span class="p">])</span>
+
+<span class="n">voxel_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mesh_in</span><span class="o">.</span><span class="n">get_max_bound</span><span class="p">()</span> <span class="o">-</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">get_min_bound</span><span class="p">())</span> <span class="o">/</span> <span class="mi">16</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;voxel_size = </span><span class="si">{</span><span class="n">voxel_size</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># voxel_size = 11.332</span>
+<span class="n">mesh_smp</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">simplify_vertex_clustering</span><span class="p">(</span>
+    <span class="n">voxel_size</span><span class="o">=</span><span class="n">voxel_size</span><span class="p">,</span>
+    <span class="n">contraction</span><span class="o">=</span><span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">SimplificationContraction</span><span class="o">.</span><span class="n">Average</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Simplified mesh has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">triangles</span><span class="p">)</span><span class="si">}</span><span class="s1"> triangles&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Simplified mesh has 860 vertices and 1773 triangles</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_smp</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="62-mesh-decimation">6.2. Mesh Decimation</h4>
+<p>Open3D implements <code>simplify_quadric_decimation</code> that minimizes error quadrics (distances to neighboring planes).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">mesh_smp</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">simplify_quadric_decimation</span><span class="p">(</span><span class="n">target_number_of_triangles</span><span class="o">=</span><span class="mi">6500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Simplified mesh has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">triangles</span><span class="p">)</span><span class="si">}</span><span class="s1"> triangles&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Simplified mesh has 1440 vertices and 2880 triangles</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_smp</span><span class="p">])</span>
+
+<span class="n">mesh_smp</span> <span class="o">=</span> <span class="n">mesh_in</span><span class="o">.</span><span class="n">simplify_quadric_decimation</span><span class="p">(</span><span class="n">target_number_of_triangles</span><span class="o">=</span><span class="mi">1700</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Simplified mesh has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh_smp</span><span class="o">.</span><span class="n">triangles</span><span class="p">)</span><span class="si">}</span><span class="s1"> triangles&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Simplified mesh has 850 vertices and 1700 triangles</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh_smp</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="reference">Reference</h3>
+<p>[1] <a href="http://www.open3d.org/docs/latest/tutorial/geometry/mesh.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/latest/tutorial/geometry/mesh.html</a><br>
+[2] <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Polygon_mesh</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/o3d_notes02/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/o3d_notes02/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/o3d_notes02/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/o3d_notes01/" class="prev" rel="prev" title="Open3D Notes 01 | Point Cloud Processing"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 01 | Point Cloud Processing</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

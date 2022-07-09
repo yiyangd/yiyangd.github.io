@@ -102,6 +102,12 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/deeplearning-03/">Deep Learning Notes 03 |  Regularize Deep Neural Network</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-20">2022-01-20</time></span></div><div class="content">Regularize Deep Neural Networks  这篇笔记记录了深度神经网络的正则化，在【统计学习笔记 03 世上没有解千愁的酒】中，我记录了“没有任何一种模型或算法可以在各种数据集中完胜其它所有的算法，解决所有的问题”，当我们把神经网络的层数加深，神经元节点变多，使其能“深度学习”更多的更复杂的更灵活的非线性函数的同时，也使得模型产生了**过拟合(overfit)**问题 —— 酗酒(overdrink)看似可以完全地麻痹自己让自己完全忘记了所有问题、幻想自己活在了一个完美的温柔乡(low training set error)，但酒醒之后却仍然无力解决任何现实的问题，仍然脆弱至极连站都站不起来更不要说能跑起来(high testing set error)。我们需要自律，深度神经网络亦如是 —— 正则化(Regularization)的加入使得神经网络避免陷入过度拟合的泥沼，在这篇笔记提到的四种正则化的方法(L2, Dropout, Data Augment, Early Stop)可以让其在测试集中表现的仍然良好。
+ 1. Train/Dev/Test Sets Applying Machine Learning is highly iterative process
+ Idea ==&gt; Code ==&gt; Experiment We have to go through the loop many times to figure out your hyperparameters.  We build a model upon training set then optimize hyperparameters on dev set as much as possible.</div><div class="post-footer">
+        <a href="/deeplearning-03/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/realsense-install/">Install Intel Realsense and Python Setup in 2022</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-15">2022-01-15</time></span></div><div class="content">Step 1: Search for IntelRealSense github
  https://github.com/IntelRealSense/librealsense  Step 2: Click the tag =&gt; release =&gt; latest
@@ -128,15 +134,6 @@
  Deep Neural Networks (or Deep Learning) can solve more complex problems Neuroscientists believe that the human brain also starts off detecting simple things like edges to complex things like faces Layers &ldquo;learn&rdquo; simpler functions to more complex functions  Face Detection:
   The first layer of the neural network could be considered as Edge Detector  each hidden unit may figure out different edge orintation (horizontal or vertical edges)   The second layer could group the edges detected in first layer together  different units may detect different parts of faces (eyes, noses,.</div><div class="post-footer">
         <a href="/deeplearning-02/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/deeplearning-01/">Deep Learning Notes 01 | Simple Neural Network</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-05">2022-01-05</time></span></div><div class="content">Index &ndash; Simple NN
-&ndash; Deep NN
-&ndash; CNN, U-Net, YOLO
-&ndash; PointNets ==&gt; 3D object dection
-&ndash; Pose Estimation
-1. Neural Network History Neural networks rose to fame (成名) in the late 1980s, fall from favor (失宠) because some &ldquo;new methods&rdquo; such as SVMs, Boosting, and Random Forests were more automatic and outperformed poorly-trained neural networks on many problems for the first decade in the new millennium (2000 - 2010)</div><div class="post-footer">
-        <a href="/deeplearning-01/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

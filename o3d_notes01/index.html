@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Open3D Notes 01 | Point Cloud Processing - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Open3D Notes 01 | Point Cloud Processing" />
+<meta property="og:description" content="0. Download and Install Open3D 1 2 3 4 5 6 7 8  # Install $ pip install open3d # Verify $ python -c &#34;import open3d as o3d; print(o3d.__version__)&#34; # 0.15.2 (2022.06.28) # Git Clone $ git clone https://github.com/isl-org/Open3D.git   1. Read and Write a Point Cloud. 1 2 3 4 5 6 7 8 9 10  import open3d as o3d if __name__ == &#34;__main__&#34;: pcd_data = o3d." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/o3d_notes01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-04T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Open3D Notes 01 | Point Cloud Processing"/>
+<meta name="twitter:description" content="0. Download and Install Open3D 1 2 3 4 5 6 7 8  # Install $ pip install open3d # Verify $ python -c &#34;import open3d as o3d; print(o3d.__version__)&#34; # 0.15.2 (2022.06.28) # Git Clone $ git clone https://github.com/isl-org/Open3D.git   1. Read and Write a Point Cloud. 1 2 3 4 5 6 7 8 9 10  import open3d as o3d if __name__ == &#34;__main__&#34;: pcd_data = o3d."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/o3d_notes01/" /><link rel="prev" href="https://yiyangd.github.io/mit18s191notes/" /><link rel="next" href="https://yiyangd.github.io/o3d_notes02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Open3D Notes 01 | Point Cloud Processing",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/o3d_notes01\/"
+        },"genre": "posts","wordcount":  990 ,
+        "url": "https:\/\/yiyangd.github.io\/o3d_notes01\/","datePublished": "2022-07-04T00:00:00+00:00","dateModified": "2022-07-04T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Open3D Notes 01 | Point Cloud Processing</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-04">2022-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;990 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0-download-and-install-open3d">0. Download and Install Open3D</a></li>
+        <li><a href="#1-read-and-write-a-point-cloud">1. Read and Write a Point Cloud.</a></li>
+        <li><a href="#2-visualize-point-cloud">2. Visualize Point Cloud</a></li>
+        <li><a href="#3-voxel-downsampling">3. Voxel Downsampling</a></li>
+        <li><a href="#4-vertex-normal-estimation">4. Vertex Normal Estimation</a></li>
+        <li><a href="#5-crop-point-cloud">5. Crop Point Cloud</a></li>
+        <li><a href="#6-paint-point-cloud">6. Paint Point Cloud</a></li>
+        <li><a href="#7-point-cloud-distance">7. Point Cloud Distance</a></li>
+        <li><a href="#8-bounding-volumes">8. Bounding Volumes</a></li>
+        <li><a href="#9-dbscan-clustering">9. DBSCAN Clustering</a></li>
+        <li><a href="#10-plane-segmentation">10. Plane Segmentation</a></li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="0-download-and-install-open3d">0. Download and Install Open3D</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># Install
+$ pip install open3d
+
+# Verify
+$ python -c &#34;import open3d as o3d; print(o3d.__version__)&#34;
+# 0.15.2 (2022.06.28)
+# Git Clone
+$ git clone https://github.com/isl-org/Open3D.git
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="1-read-and-write-a-point-cloud">1. Read and Write a Point Cloud.</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">pcd_data</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">PCDPointCloud</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&#34;Reading pointcloud from file: fragment.pcd stored at </span><span class="si">{</span><span class="n">pcd_data</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">pcd_data</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pcd</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Saving pointcloud to file: copy_of_fragment.pcd&#34;</span><span class="p">)</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">write_point_cloud</span><span class="p">(</span><span class="s2">&#34;copy_of_fragment.pcd&#34;</span><span class="p">,</span> <span class="n">pcd</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Check the folder before and after <code>o3d.io.write_point_cloud()</code></li>
+</ul>
+<figure><img src="/images/open3d/01/01.png" width="400"/>
+</figure>
+
+<h3 id="2-visualize-point-cloud">2. Visualize Point Cloud</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Load a ply point cloud, print it, and render it&#34;</span><span class="p">)</span>
+<span class="n">sample_ply_data</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">PLYPointCloud</span><span class="p">()</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">sample_ply_data</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="c1"># Flip it, otherwise the pointcloud will be upside down.</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pcd</span><span class="p">)</span>
+<span class="c1"># PointCloud with 196133 points.</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><figure><img src="/images/open3d/01/02.png" width="400"/>
+</figure>
+
+It looks like a <strong>dense surface</strong>, but it is actually a point cloud rendered as surfels.</p>
+<ul>
+<li>The GUI supports various keyboard functions.</li>
+<li>For instance, the <code>-</code> key reduces the size of the points (surfels).</li>
+</ul>
+<h3 id="3-voxel-downsampling">3. Voxel Downsampling</h3>
+<p><strong>Voxel downsampling</strong> uses a regular <em>voxel grid</em> to create a <em>uniformly downsampled point cloud</em> from an input point cloud.</p>
+<ul>
+<li><em>Voxel in 3D</em> point cloud = <em>Pixel in 2D</em> image</li>
+<li>It is often used as a <em>pre-processing step</em> for many <em>point cloud processing tasks</em>.</li>
+</ul>
+<p>The algorithm operates in two steps:</p>
+<ol>
+<li>Points are bucketed into voxels.</li>
+<li>Each occupied voxel generates exactly one point by averaging all points inside.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Downsample the point cloud with a voxel of 0.05&#34;</span><span class="p">)</span>
+<span class="n">downpcd</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">voxel_down_sample</span><span class="p">(</span><span class="n">voxel_size</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">downpcd</span><span class="p">)</span> <span class="c1"># PointCloud with 4838 points.</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">downpcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/03.png" width="400"/>
+</figure>
+
+<h3 id="4-vertex-normal-estimation">4. Vertex Normal Estimation</h3>
+<p><code>estimate_normals()</code> computes the normal for every point.</p>
+<ul>
+<li>The function finds adjacent points and calculates the principal axis of the adjacent points using covariance analysis.</li>
+<li>The function takes an instance of <code>KDTreeSearchParamHybrid</code> class as an argument.
+<ul>
+<li>it specifies search radius <code>radius = 0.1</code> and maximum nearest neighbor <code>max_nn=30</code> to save computation time.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Recompute the normal of the downsampled point cloud&#34;</span><span class="p">)</span>
+<span class="n">downpcd</span><span class="o">.</span><span class="n">estimate_normals</span><span class="p">(</span>
+    <span class="n">search_param</span><span class="o">=</span><span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">KDTreeSearchParamHybrid</span><span class="p">(</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">max_nn</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">downpcd</span><span class="p">],</span><span class="n">point_show_normal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/04.png" width="400"/>
+</figure>
+
+<p>Open3D tries to orient the normal to align with the original normal if it exists.</p>
+<ul>
+<li>Otherwise, Open3D does a random guess.</li>
+<li>Further orientation functions such as <code>orient_normals_to_align_with_direction</code> and <code>orient_normals_towards_camera_location</code> need to be called if the orientation is a concern.</li>
+</ul>
+<h3 id="5-crop-point-cloud">5. Crop Point Cloud</h3>
+<ul>
+<li><code>read_selection_polygon_volume()</code> reads a json file that specifies polygon selection area.</li>
+<li><code>vol.crop_point_cloud(pcd)</code> filters out points. Only the chair remains.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Load a ply point cloud, crop it, and render it&#34;</span><span class="p">)</span>
+  <span class="n">sample_ply_data</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DemoCropPointCloud</span><span class="p">()</span>
+  <span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">sample_ply_data</span><span class="o">.</span><span class="n">point_cloud_path</span><span class="p">)</span>
+  <span class="n">vol</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">read_selection_polygon_volume</span><span class="p">(</span>
+      <span class="n">sample_ply_data</span><span class="o">.</span><span class="n">cropped_json_path</span><span class="p">)</span>
+  <span class="n">chair</span> <span class="o">=</span> <span class="n">vol</span><span class="o">.</span><span class="n">crop_point_cloud</span><span class="p">(</span><span class="n">pcd</span><span class="p">)</span>
+  <span class="c1"># Flip the pointclouds, otherwise they will be upside down.</span>
+  <span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+  <span class="n">chair</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying original pointcloud ...&#34;</span><span class="p">)</span>
+  <span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying cropped pointcloud&#34;</span><span class="p">)</span>
+  <span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw</span><span class="p">([</span><span class="n">chair</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/05.png" width="400"/>
+</figure>
+
+<h3 id="6-paint-point-cloud">6. Paint Point Cloud</h3>
+<p><code>paint_uniform_color([R,G,B])</code> paints all the points to a uniform color.</p>
+<ul>
+<li>The color is in RGB space, [0, 1] range.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Paint chair&#34;</span><span class="p">)</span>
+<span class="n">chair</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.706</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">chair</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-point-cloud-distance">7. Point Cloud Distance</h3>
+<p><code>source.compute_point_cloud_distance(target)</code> computes for each point in the source point cloud the distance to the closest point in the target point cloud.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<span class="n">dists</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">compute_point_cloud_distance</span><span class="p">(</span><span class="n">chair</span><span class="p">)</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Printing average distance between the two point clouds ...&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span> <span class="c1"># .shape = # of points</span>
+<span class="c1"># Filter out the points that has distance from the chair</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dists</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pcd_without_chair</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">select_by_index</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd_without_chair</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/06.png" width="400"/>
+</figure>
+
+<h3 id="8-bounding-volumes">8. Bounding Volumes</h3>
+<p>Open3D implements an <code>AxisAlignedBoundingBox</code> and an <code>OrientedBoundingBox</code> that can also be used to crop the geometry.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<span class="n">axis_aligned</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">get_axis_aligned_bounding_box</span><span class="p">()</span>
+<span class="n">axis_aligned</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">oriented</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">get_oriented_bounding_box</span><span class="p">()</span>
+<span class="n">oriented</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&#34;Displaying axis_aligned_bounding_box in red and oriented bounding box in green ...&#34;</span>
+<span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">pcd</span><span class="p">,</span> <span class="n">axis_aligned</span><span class="p">,</span> <span class="n">oriented</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/07.png" width="400"/>
+</figure>
+
+<h3 id="9-dbscan-clustering">9. DBSCAN Clustering</h3>
+<p>Given a Point Cloud from a RGB-Depth sensor, we want to <em>group local point cloud clusters</em> together.</p>
+<ul>
+<li>Open3D implements DBSCAN [Ester1996] that is a Density-based clustering algorithm.</li>
+<li>The algorithm is implemented in <code>cluster_dbscan</code> and requires two parameters:
+<ul>
+<li><code>eps</code> defines the distance to neighbors in a cluster and</li>
+<li><code>min_points</code> defines the minimum number of points required to form a cluster.</li>
+</ul>
+</li>
+<li>The function returns <code>labels</code>, where the label <code>-1</code> indicates noise.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">ply_point_cloud</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">PLYPointCloud</span><span class="p">()</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">ply_point_cloud</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">VerbosityContextManager</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">VerbosityLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span> <span class="k">as</span> <span class="n">cm</span><span class="p">:</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">pcd</span><span class="o">.</span><span class="n">cluster_dbscan</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">min_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">max_label</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;point cloud has </span><span class="si">{</span><span class="n">max_label</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2"> clusters&#34;</span><span class="p">)</span>
+<span class="c1"># max_label + 1 = 10 clusters</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&#34;tab20&#34;</span><span class="p">)(</span><span class="n">labels</span> <span class="o">/</span> <span class="p">(</span><span class="n">max_label</span> <span class="k">if</span> <span class="n">max_label</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">colors</span><span class="p">[</span><span class="n">labels</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">Vector3dVector</span><span class="p">(</span><span class="n">colors</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">]])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/08.png" width="400"/>
+</figure>
+
+<h3 id="10-plane-segmentation">10. Plane Segmentation</h3>
+<p>Open3D also supports <strong>segmententation of geometric primitives</strong> from point clouds using RANSAC.</p>
+<ul>
+<li>To find the plane with the largest support in the point cloud, we can use <code>segment_plane()</code> with its three arguments:
+<ul>
+<li><code>distance_threshold</code> defines the maximum distance a point can have to an estimated plane to be considered an inlier</li>
+<li><code>ransac_n</code> defines the number of points that are randomly sampled to estimate a plane</li>
+<li><code>num_iterations</code> defines how often a random plane is sampled and verified.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">plane_model</span><span class="p">,</span> <span class="n">inliers</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">segment_plane</span><span class="p">(</span>
+        <span class="n">distance_threshold</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">ransac_n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">num_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">plane_model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Plane equation: </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x + </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">y + </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">z + </span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> = 0&#34;</span><span class="p">)</span>
+<span class="c1"># 0x+1y+0.02z+2.43=0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Displaying pointcloud with planar points in red ...&#34;</span><span class="p">)</span>
+<span class="n">inlier_cloud</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">select_by_index</span><span class="p">(</span><span class="n">inliers</span><span class="p">)</span>
+<span class="n">inlier_cloud</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">outlier_cloud</span> <span class="o">=</span> <span class="n">pcd</span><span class="o">.</span><span class="n">select_by_index</span><span class="p">(</span><span class="n">inliers</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">inlier_cloud</span><span class="p">,</span> <span class="n">outlier_cloud</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/01/09.png" width="400"/>
+</figure>
+
+<p>The function then returns the plane as (a,b,c,d) such that for each point (x,y,z) on the plane we have <code>ax+by+cz+d=0</code>.</p>
+<ul>
+<li>The function further returns a list of indices of the inlier points.</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<p>[1] <a href="http://www.open3d.org/docs/latest/" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/latest/</a><br>
+[2] <a href="https://github.com/isl-org/Open3D" target="_blank" rel="noopener noreffer">https://github.com/isl-org/Open3D</a><br>
+[3] <a href="http://www.open3d.org/docs/release/tutorial/geometry/file_io.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/release/tutorial/geometry/file_io.html</a><br>
+[4] <a href="http://www.open3d.org/docs/release/tutorial/geometry/pointcloud.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/release/tutorial/geometry/pointcloud.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/o3d_notes01/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/o3d_notes01/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/o3d_notes01/" data-title="Open3D Notes 01 | Point Cloud Processing"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mit18s191notes/" class="prev" rel="prev" title="MIT 18.S191 | Spring 2021 | Notes"><i class="fas fa-angle-left fa-fw"></i>MIT 18.S191 | Spring 2021 | Notes</a>
+            <a href="/o3d_notes02/" class="next" rel="next" title="Open3D Notes 01 | Point Cloud Processing">Open3D Notes 01 | Point Cloud Processing<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

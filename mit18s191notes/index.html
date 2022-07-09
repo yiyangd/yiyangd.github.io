@@ -24,7 +24,7 @@
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/mit18s191notes/" /><link rel="prev" href="https://yiyangd.github.io/opencv01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/mit18s191notes/" /><link rel="prev" href="https://yiyangd.github.io/opencv01/" /><link rel="next" href="https://yiyangd.github.io/o3d_notes01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/mit18s191notes\/"
-        },"genre": "posts","wordcount":  306 ,
+        },"genre": "posts","wordcount":  375 ,
         "url": "https:\/\/yiyangd.github.io\/mit18s191notes\/","datePublished": "2022-06-23T00:00:00+00:00","dateModified": "2022-06-23T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">MIT 18.S191 | Spring 2021 | Notes</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;306 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;375 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -124,8 +124,10 @@
         <li><a href="#1-install-julia-and-pluto">1. Install Julia and Pluto</a></li>
         <li><a href="#2-images-as-data-and-arrays">2. Images as Data and Arrays</a>
           <ul>
-            <li><a href="#21-download-and-load-images">2.1. Download and Load Images</a></li>
-            <li><a href="#22-images-flip-and-concatentaion-as-matrix">2.2. Images Flip and Concatentaion as Matrix</a></li>
+            <li><a href="#21-pixel">2.1. Pixel</a></li>
+            <li><a href="#22-download-and-load-2d-images">2.2. Download and Load 2D Images</a></li>
+            <li><a href="#23-images-flip-and-concatentaion-as-matrix">2.3. Images Flip and Concatentaion as Matrix</a></li>
+            <li><a href="#24-locate-and-modify-pixels">2.4. Locate and Modify Pixels</a></li>
           </ul>
         </li>
       </ul>
@@ -174,6 +176,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="2-images-as-data-and-arrays">2. Images as Data and Arrays</h3>
+<h4 id="21-pixel">2.1. Pixel</h4>
 <p>If we open an image on our computer or the web and zoom in enough, we will see that it consists of many tiny squares, or pixels (&ldquo;picture elements&rdquo;).</p>
 <ul>
 <li>Each pixel is a block of one single colour
@@ -193,7 +196,12 @@
 <ul>
 <li>it is a two-dimensional, discrete representation of a 3D reality.</li>
 </ul>
-<h4 id="21-download-and-load-images">2.1. Download and Load Images</h4>
+<p><strong>Interactivity using Sliders</strong><br>
+The <code>Slider</code> type is defined in the <code>PlutoUI.jl</code> package.</p>
+<figure><img src="/images/julia/01_images/slider.png" width="400"/>
+</figure>
+
+<h4 id="22-download-and-load-2d-images">2.2. Download and Load 2D Images</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -237,10 +245,23 @@
 </div><figure><img src="/images/julia/01_images/dog.png" width="400"/>
 </figure>
 
-<h4 id="22-images-flip-and-concatentaion-as-matrix">2.2. Images Flip and Concatentaion as Matrix</h4>
+<h4 id="23-images-flip-and-concatentaion-as-matrix">2.3. Images Flip and Concatentaion as Matrix</h4>
 <figure><img src="/images/julia/01_images/flip.png" width="400"/>
 </figure>
 
+<h4 id="24-locate-and-modify-pixels">2.4. Locate and Modify Pixels</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-julia" data-lang="julia"><span class="k">using</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>This creates a new variable called <code>number_reds</code>, whose value is the value shown by the slider. When we move the slider, the value of the variable gets updated.
+Pluto is a reactive notebook, other cells which use the value of this variable will automatically be updated too!</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -266,7 +287,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/opencv01/" class="prev" rel="prev" title="OpenCV Notes 01 | Feature Detection"><i class="fas fa-angle-left fa-fw"></i>OpenCV Notes 01 | Feature Detection</a></div>
+    <div class="post-nav"><a href="/opencv01/" class="prev" rel="prev" title="OpenCV Notes 01 | Feature Detection"><i class="fas fa-angle-left fa-fw"></i>OpenCV Notes 01 | Feature Detection</a>
+            <a href="/o3d_notes01/" class="next" rel="next" title="Open3D Notes 01 | Point Cloud Processing">Open3D Notes 01 | Point Cloud Processing<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
