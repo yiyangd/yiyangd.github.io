@@ -1,4 +1,4 @@
-# Open3D Notes 03 | 3D Mesh to Point Cloud
+# Open3D Notes 03 | Surface Reconstruction: Point Cloud to Mesh
 
 
 ### 1. Alpha Shapes

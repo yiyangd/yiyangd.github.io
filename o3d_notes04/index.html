@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Open3D Notes 04 | Create Point Clouds from RGBD Images - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Open3D Notes 04 | Create Point Clouds from RGBD Images" />
+<meta property="og:description" content="0. RGBD Images An Open3D RGBDImage is composed of two images:
+ RGBDImage.depth and RGBDImage.color We require the two images to be registered into the same camera frame and have the same resolution. There are 3 well known RGBD Datasets:  Redwood NYU TUM    1. Redwood Dataset [Choi 2015] The Redwood format stored depth in a 16-bit single channel image.
+ The integer value represents the depth measurement in millimeters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/o3d_notes04/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-09T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Open3D Notes 04 | Create Point Clouds from RGBD Images"/>
+<meta name="twitter:description" content="0. RGBD Images An Open3D RGBDImage is composed of two images:
+ RGBDImage.depth and RGBDImage.color We require the two images to be registered into the same camera frame and have the same resolution. There are 3 well known RGBD Datasets:  Redwood NYU TUM    1. Redwood Dataset [Choi 2015] The Redwood format stored depth in a 16-bit single channel image.
+ The integer value represents the depth measurement in millimeters."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/o3d_notes04/" /><link rel="prev" href="https://yiyangd.github.io/paper02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Open3D Notes 04 | Create Point Clouds from RGBD Images",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/o3d_notes04\/"
+        },"genre": "posts","wordcount":  839 ,
+        "url": "https:\/\/yiyangd.github.io\/o3d_notes04\/","datePublished": "2022-07-09T00:00:00+00:00","dateModified": "2022-07-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Open3D Notes 04 | Create Point Clouds from RGBD Images</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-09">2022-07-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;839 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0-rgbd-images">0. RGBD Images</a></li>
+        <li><a href="#1-redwood-dataset-choi-2015">1. Redwood Dataset [Choi 2015]</a>
+          <ul>
+            <li><a href="#11-read-dataset-and-create-an-rgbdimage">1.1. Read Dataset and Create an RGBDImage</a></li>
+            <li><a href="#12-visualize-rgbd-image">1.2. Visualize RGBD Image</a></li>
+            <li><a href="#13-create-point-cloud-from-rgbd-image">1.3. Create Point Cloud from RGBD Image</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-sun-dataset-song2015">2. SUN Dataset [Song2015]</a>
+          <ul>
+            <li><a href="#21-read-and-visualize-rgbd-image">2.1. Read and Visualize RGBD Image</a></li>
+            <li><a href="#22-create-point-cloud-from-rgbd-image">2.2. Create Point Cloud from RGBD Image</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-tum-dataset-strum2012">3. TUM Dataset [Strum2012]</a></li>
+        <li><a href="#4-nyu-dataset-silberman2012">4. NYU Dataset [Silberman2012]</a>
+          <ul>
+            <li><a href="#41-preprocess-and-read-dataset">4.1. Preprocess and Read Dataset</a></li>
+            <li><a href="#42-visualize-rgbd-images-and-point-cloud">4.2. Visualize RGBD Images and Point Cloud</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="0-rgbd-images">0. RGBD Images</h3>
+<p>An Open3D <code>RGBDImage</code> is composed of two images:</p>
+<ul>
+<li><code>RGBDImage.depth</code> and <code>RGBDImage.color</code></li>
+<li>We require the two images to <em>be registered into the same camera frame</em> and have the same resolution.</li>
+<li>There are 3 well known <strong>RGBD Datasets</strong>:
+<ul>
+<li>Redwood</li>
+<li>NYU</li>
+<li>TUM</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-redwood-dataset-choi-2015">1. Redwood Dataset [Choi 2015]</h3>
+<p>The Redwood format stored depth in a 16-bit single channel image.</p>
+<ul>
+<li>The integer value represents the depth measurement in millimeters.</li>
+<li>It is the default format for Open3D to parse depth images.</li>
+</ul>
+<h4 id="11-read-dataset-and-create-an-rgbdimage">1.1. Read Dataset and Create an RGBDImage</h4>
+<p>The default conversion function <code>create_rgbd_image_from_color_and_depth()</code> creates an <code>RGBDImage</code> from a pair of color and depth image.</p>
+<ul>
+<li>The <strong>color image</strong> is converted into a <em>grayscale image</em>, stored in float ranged in [0, 1].</li>
+<li>The <strong>depth image</strong> is stored in float, representing the <em>depth value in meters</em>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">redwood_rgbd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">SampleRedwoodRGBDImages</span><span class="p">()</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">[Open3D INFO] Downloading https://github.com/isl-org/open3d_downloads/releases/download/20220201-data/SampleRedwoodRGBDImages.zip
+</span><span class="s1">[Open3D INFO] Downloaded to /home/runner/open3d_data/download/SampleRedwoodRGBDImages/SampleRedwoodRGBDImages.zip
+</span><span class="s1">[Open3D INFO] Extracting /home/runner/open3d_data/download/SampleRedwoodRGBDImages/SampleRedwoodRGBDImages.zip.
+</span><span class="s1">[Open3D INFO] Extracted to /home/runner/open3d_data/extract/SampleRedwoodRGBDImages.
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">color_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">redwood_rgbd</span><span class="o">.</span><span class="n">color_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">depth_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">redwood_rgbd</span><span class="o">.</span><span class="n">depth_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">rgbd_image</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">RGBDImage</span><span class="o">.</span><span class="n">create_from_color_and_depth</span><span class="p">(</span>
+    <span class="n">color_raw</span><span class="p">,</span> <span class="n">depth_raw</span><span class="p">,</span> <span class="n">convert_rgb_to_intensity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rgbd_image</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">RGBDImage of size
+</span><span class="s1">Color image : 640x480, with 1 channels.
+</span><span class="s1">Depth image : 640x480, with 1 channels.
+</span><span class="s1">Use numpy.asarray to access buffer data.
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="12-visualize-rgbd-image">1.2. Visualize RGBD Image</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Redwood grayscale image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgbd_image</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Redwood depth image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgbd_image</span><span class="o">.</span><span class="n">depth</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">## Or</span>
+<span class="c1"># o3d.visualization.draw_geometries([rgbd_image])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/01.png" width="400"/>
+</figure>
+
+<h4 id="13-create-point-cloud-from-rgbd-image">1.3. Create Point Cloud from RGBD Image</h4>
+<p>The RGBD image can be converted into a point cloud, given a set of camera parameters.</p>
+<ul>
+<li><code>PinholeCameraIntrinsicParameters.PrimeSenseDefault</code> has:
+<ul>
+<li>image resolution 640x480</li>
+<li>focal length (fx, fy) = (525.0, 525.0)</li>
+<li>optical center (cx, cy) = (319.5, 239.5)</li>
+</ul>
+</li>
+<li>Default Extrinsic Parameter is an <code>identity matrix</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="o">.</span><span class="n">create_from_rgbd_image</span><span class="p">(</span>
+    <span class="n">rgbd_image</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsic</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsicParameters</span><span class="o">.</span><span class="n">PrimeSenseDefault</span><span class="p">))</span>
+<span class="c1"># Flip it, otherwise the pointcloud will be upside down</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/02.png" width="400"/>
+</figure>
+
+<h3 id="2-sun-dataset-song2015">2. SUN Dataset [Song2015]</h3>
+<figure><img src="/images/open3d/04/03.png" width="400"/>
+</figure>
+
+<h4 id="21-read-and-visualize-rgbd-image">2.1. Read and Visualize RGBD Image</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">sun_rgbd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">SampleSUNRGBDImage</span><span class="p">()</span>
+<span class="n">color_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">sun_rgbd</span><span class="o">.</span><span class="n">color_path</span><span class="p">)</span>
+<span class="n">depth_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">sun_rgbd</span><span class="o">.</span><span class="n">depth_path</span><span class="p">)</span>
+<span class="c1"># Create RGBDImage</span>
+<span class="n">rgbd_image</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">RGBDImage</span><span class="o">.</span><span class="n">create_from_sun_format</span><span class="p">(</span><span class="n">color_raw</span><span class="p">,</span> <span class="n">depth_raw</span><span class="p">)</span>
+<span class="c1"># Visualization</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">rgbd_image</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/04.png" width="400"/>
+</figure>
+
+<h4 id="22-create-point-cloud-from-rgbd-image">2.2. Create Point Cloud from RGBD Image</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="o">.</span><span class="n">create_from_rgbd_image</span><span class="p">(</span>
+    <span class="n">rgbd_image</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsic</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsicParameters</span><span class="o">.</span><span class="n">PrimeSenseDefault</span><span class="p">))</span>
+<span class="c1"># Flip it, otherwise the pointcloud will be upside down</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/05.png" width="400"/>
+</figure>
+
+<h3 id="3-tum-dataset-strum2012">3. TUM Dataset [Strum2012]</h3>
+<p>Set <code>convert_rgb_to_intensity=False</code>, we can visualize Color Image with 3 channels instead of Grayscale Image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">tum_data</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">SampleTUMRGBDImage</span><span class="p">()</span>
+<span class="n">color_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">tum_data</span><span class="o">.</span><span class="n">color_path</span><span class="p">)</span>
+<span class="n">depth_raw</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">tum_data</span><span class="o">.</span><span class="n">depth_path</span><span class="p">)</span>
+<span class="n">rgbd_image</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">RGBDImage</span><span class="o">.</span><span class="n">create_from_tum_format</span><span class="p">(</span>
+    <span class="n">color_raw</span><span class="p">,</span> <span class="n">depth_raw</span><span class="p">,</span> <span class="n">convert_rgb_to_intensity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">rgbd_image</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/06.png" width="400"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="o">.</span><span class="n">create_from_rgbd_image</span><span class="p">(</span>
+    <span class="n">rgbd_image</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsic</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsicParameters</span><span class="o">.</span><span class="n">PrimeSenseDefault</span><span class="p">))</span>
+<span class="c1"># Flip it, otherwise the pointcloud will be upside down</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/07.png" width="400"/>
+</figure>
+
+<h3 id="4-nyu-dataset-silberman2012">4. NYU Dataset [Silberman2012]</h3>
+<h4 id="41-preprocess-and-read-dataset">4.1. Preprocess and Read Dataset</h4>
+<p>Since NYU images are not in standard <code>jpg</code> or <code>png</code> formats, we use <code>mpimg.imread</code> to read the <strong>color image</strong> as a <em>numpy array</em> and convert it to an Open3D Image</p>
+<ul>
+<li>An additional helper function <code>read_nyu_pgm()</code> is called to <strong>read depth images</strong> from the <em>special big endian pgm format</em> used in the NYU dataset.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="c1"># This is special function used for reading NYU pgm format</span>
+<span class="c1"># as it is written in big endian byte order.</span>
+<span class="k">def</span> <span class="nf">read_nyu_pgm</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">header</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">maxval</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+            <span class="sa">b</span><span class="s2">&#34;(^P5\s(?:\s*#.*[</span><span class="se">\r\n</span><span class="s2">])*&#34;</span>
+            <span class="sa">b</span><span class="s2">&#34;(\d+)\s(?:\s*#.*[</span><span class="se">\r\n</span><span class="s2">])*&#34;</span>
+            <span class="sa">b</span><span class="s2">&#34;(\d+)\s(?:\s*#.*[</span><span class="se">\r\n</span><span class="s2">])*&#34;</span>
+            <span class="sa">b</span><span class="s2">&#34;(\d+)\s(?:\s*#.*[</span><span class="se">\r\n</span><span class="s2">]\s)*)&#34;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Not a raw PGM file: &#39;</span><span class="si">%s</span><span class="s2">&#39;&#34;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="n">byteorder</span> <span class="o">+</span> <span class="s1">&#39;u2&#39;</span><span class="p">,</span>
+                        <span class="n">count</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span>
+                        <span class="n">offset</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">)))</span>
+    <span class="n">img_out</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;u2&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img_out</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Read NYU dataset&#34;</span><span class="p">)</span>
+<span class="c1"># Open3D does not support ppm/pgm file yet. Not using o3d.io.read_image here.</span>
+<span class="c1"># MathplotImage having some ISSUE with NYU pgm file. Not using imread for pgm.</span>
+<span class="n">nyu_rgbd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">SampleNYURGBDImage</span><span class="p">()</span>
+<span class="n">color_raw</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">nyu_rgbd</span><span class="o">.</span><span class="n">color_path</span><span class="p">)</span>
+<span class="n">depth_raw</span> <span class="o">=</span> <span class="n">read_nyu_pgm</span><span class="p">(</span><span class="n">nyu_rgbd</span><span class="o">.</span><span class="n">depth_path</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">color_raw</span><span class="p">)</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">depth_raw</span><span class="p">)</span>
+<span class="n">rgbd_image</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">RGBDImage</span><span class="o">.</span><span class="n">create_from_nyu_format</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="42-visualize-rgbd-images-and-point-cloud">4.2. Visualize RGBD Images and Point Cloud</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">rgbd_image</span><span class="p">])</span>
+
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">PointCloud</span><span class="o">.</span><span class="n">create_from_rgbd_image</span><span class="p">(</span>
+    <span class="n">rgbd_image</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsic</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsicParameters</span><span class="o">.</span><span class="n">PrimeSenseDefault</span><span class="p">))</span>
+<span class="c1"># Flip it, otherwise the pointcloud will be upside down</span>
+<span class="n">pcd</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">pcd</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/04/08.png" width="400"/>
+</figure>
+
+<figure><img src="/images/open3d/04/09.png" width="400"/>
+</figure>
+
+<h3 id="reference">Reference:</h3>
+<p>[1] <a href="http://www.open3d.org/docs/release/tutorial/geometry/rgbd_image.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/release/tutorial/geometry/rgbd_image.html</a>
+[2] <a href="http://redwood-data.org/" target="_blank" rel="noopener noreffer">http://redwood-data.org/</a>
+[3] S. Choi, Q.-Y. Zhou, and V. Koltun. Robust reconstruction
+of indoor scenes. In CVPR, 2015.
+[4] S. Choi, Q.-Y. Zhou, S. Miller, and V. Koltun. A large dataset
+of object scans. arXiv:1602.02481, 2016.
+[5] <a href="http://rgbd.cs.princeton.edu/" target="_blank" rel="noopener noreffer">http://rgbd.cs.princeton.edu/</a>
+[6] S. Song, S. Lichtenberg, and J. Xiao. SUN RGB-D: A RGB-D Scene Understanding Benchmark Suite
+Proceedings of 28th IEEE Conference on Computer Vision and Pattern Recognition (CVPR2015)
+[7] <a href="https://vision.in.tum.de/data/datasets/rgbd-dataset" target="_blank" rel="noopener noreffer">https://vision.in.tum.de/data/datasets/rgbd-dataset</a>
+[8] <a href="https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html" target="_blank" rel="noopener noreffer">https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/o3d_notes04/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/o3d_notes04/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/o3d_notes04/" data-title="Open3D Notes 04 | Create Point Clouds from RGBD Images"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/paper02/" class="prev" rel="prev" title="Paper Notes 02 | ROCA"><i class="fas fa-angle-left fa-fw"></i>Paper Notes 02 | ROCA</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

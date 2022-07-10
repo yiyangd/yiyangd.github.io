@@ -4,9 +4,18 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Open3D Notes 04 | Create Point Clouds from RGBD Images</title>
+    <link>https://yiyangd.github.io/o3d_notes04/</link>
+    <pubDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes04/</guid>
+    <description><![CDATA[0. RGBD Images An Open3D RGBDImage is composed of two images:
+ RGBDImage.depth and RGBDImage.color We require the two images to be registered into the same camera frame and have the same resolution. There are 3 well known RGBD Datasets:  Redwood NYU TUM    1. Redwood Dataset [Choi 2015] The Redwood format stored depth in a 16-bit single channel image.
+ The integer value represents the depth measurement in millimeters.]]></description>
+</item><item>
     <title>Paper Notes 02 | ROCA</title>
     <link>https://yiyangd.github.io/paper02/</link>
     <pubDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</pubDate>
@@ -16,7 +25,7 @@
  代码：https://github.com/cangumeli/ROCA 主页：https://cangumeli.github.io/ROCA 论文：https://arxiv.org/abs/2112.01988    0. Abstract: 0.1. Introduce ROCA approach We present ROCA, a novel end-to-end approach that retrieves and aligns 3D CAD models from a shape database to a single input image.
 我们提出了一种新的端到端的方法 —— ROCA，它从形状数据库中检索三维 CAD 模型并将其对准到单个输入图像。]]></description>
 </item><item>
-    <title>Open3D Notes 03 | 3D Mesh to Point Cloud</title>
+    <title>Open3D Notes 03 | Surface Reconstruction: Point Cloud to Mesh</title>
     <link>https://yiyangd.github.io/o3d_notes03/</link>
     <pubDate>Wed, 06 Jul 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -83,14 +92,5 @@
     <guid>https://yiyangd.github.io/opengl01/</guid>
     <description><![CDATA[OpenGL is a graphics API used for real time rendering calculations that are processed by the GPU
 1. Screen and Coordinates 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  # Initialize pygame Screen pygame.init() # Screen Size screen_width = 1000 screen_height = 800 screen = pygame.display.set_mode((screen_width, screen_height), DOUBLEBUF | OPENGL) pygame.display.set_caption(&#34;OpenGL in Python&#34;) # Specify which matrix is the current matrix def init_ortho(): glMatrixMode(GL_PROJECTION) glLoadIdentity() # Clear the System gluOrtho2D(0, 1000, 0, 680) # set the window coordinates # (left, right, bottom, top)   glMatrixMode(GLenum mode): sets the current matrix mode]]></description>
-</item><item>
-    <title>Deep Learning Notes | Art Generation with Neural Style Transfer</title>
-    <link>https://yiyangd.github.io/cnn08/</link>
-    <pubDate>Tue, 17 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/cnn08/</guid>
-    <description><![CDATA[神经网络是通过梯度下降算法每一次优化（最小化）成本函数让训练集中的预测值接近真实值，每一次更新参数 optimize a cost function to get a set of parameter values. With Neural Style Transfer, you&rsquo;ll get to optimize a cost function to get pixel values. !
-1. Neural Style Transfer Neural Style Transfer (NST) uses a pre-trained convolutional network （VGG-19）, and optimizes a cost function to get pixel values updated.
- It merges two images, namely: a &ldquo;content&rdquo; image (C) and a &ldquo;style&rdquo; image (S), to create a &ldquo;generated&rdquo; image (G).]]></description>
 </item></channel>
 </rss>
