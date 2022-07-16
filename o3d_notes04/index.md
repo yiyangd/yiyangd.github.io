@@ -207,15 +207,13 @@ o3d.visualization.draw_geometries([pcd])
 
 ### Reference:
 
-[1] http://www.open3d.org/docs/release/tutorial/geometry/rgbd_image.html
-[2] http://redwood-data.org/
-[3] S. Choi, Q.-Y. Zhou, and V. Koltun. Robust reconstruction
-of indoor scenes. In CVPR, 2015.
-[4] S. Choi, Q.-Y. Zhou, S. Miller, and V. Koltun. A large dataset
-of object scans. arXiv:1602.02481, 2016.
-[5] http://rgbd.cs.princeton.edu/
+[1] http://www.open3d.org/docs/release/tutorial/geometry/rgbd_image.html  
+[2] http://redwood-data.org/  
+[3] S. Choi, Q.-Y. Zhou, and V. Koltun. Robust reconstruction of indoor scenes. In CVPR, 2015.  
+[4] S. Choi, Q.-Y. Zhou, S. Miller, and V. Koltun. A large dataset of object scans. arXiv:1602.02481, 2016.  
+[5] http://rgbd.cs.princeton.edu/  
 [6] S. Song, S. Lichtenberg, and J. Xiao. SUN RGB-D: A RGB-D Scene Understanding Benchmark Suite
-Proceedings of 28th IEEE Conference on Computer Vision and Pattern Recognition (CVPR2015)
-[7] https://vision.in.tum.de/data/datasets/rgbd-dataset
+Proceedings of 28th IEEE Conference on Computer Vision and Pattern Recognition (CVPR2015)  
+[7] https://vision.in.tum.de/data/datasets/rgbd-dataset  
 [8] https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
 
