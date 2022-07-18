@@ -4,28 +4,7 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 16 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>使徒行传｜第4章</title>
-    <link>https://yiyangd.github.io/acts04/</link>
-    <pubDate>Sat, 16 Jul 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/acts04/</guid>
-    <description><![CDATA[4.1. 彼得和约翰传扬耶稣的死而复活，被关押在公会受审（1 - 7）  【徒四 1】「使徒对百姓说话的时候，祭司们和守殿官，并撒都该人忽然来了。」
-【徒四 2】「因他们教训百姓，本着耶稣，传说死人复活，就很烦恼，」
-【徒四 3】「于是下手拿住他们；因为天已经晚了，就把他们押到第二天。」
-【徒四 4】「但听道之人有许多信的，男丁数目约到五千。」
- 神的工作在什么地方开始，仇敌的破坏也会接踵而来；
- 如果一项工作始终一帆风顺，恐怕并不是出于神，  【！！！】   因为主耶稣说：「人都说你们好的时候，你们就有祸了！因为他们的祖宗待假先知也是这样」（路六 26）。 主耶稣的医治，从来都不是为了暂时解决身体的病痛，而是为了吸引万人归向祂；既不是按照人的需要、也不是根据人的「能力和虔诚」（三 12），而是照着祂自己的主权。   【徒四 5】「第二天，官府、长老，和文士在耶路撒冷聚会，」
-【徒四 6】「又有大祭司亚那和该亚法、约翰、亚历山大，并大祭司的亲族都在那里，」
-【徒四 7】「叫使徒站在当中，就问他们说：『你们用什么能力，奉谁的名做这事呢？』」
- 4.2. 彼得被圣灵充满，开口认主（8 - 12）  【徒四 8】「那时彼得被圣灵充满，对他们说：」
-【徒四 9】「『治民的官府和长老啊，倘若今日因为在残疾人身上所行的善事查问我们他是怎么得了痊愈，」
-【徒四 10】「你们众人和以色列百姓都当知道，站在你们面前的这人得痊愈是因你们所钉十字架、神叫祂从死里复活的拿撒勒人耶稣基督的名。」
-【徒四 11】「祂是你们匠人所弃的石头，已成了房角的头块石头。」
-【徒四 12】「除祂以外，别无拯救；因为在天下人间，没有赐下别的名，我们可以靠着得救。』」
- 「痊愈」（9 节）与「得救」（12 节）原文是同一个词，是双关语。这位身体有「残疾」（9 节）的人因着「拿撒勒人耶稣基督的名」（10 节）得了「痊愈」，也象征一切信靠耶稣基督之名的人将在灵性的残疾上「得救」。
- 《金刚经》大乘正宗分第三：“有想，若无想，若非有想非无想，我皆令入无余涅槃而灭度之”  “无论是有心识活动的众生，还是一切没有心识活动的众生，以及说不上有无心识活动的各类众生，我都要使他们达到脱离生死轮回的涅槃境界，断尽他们的烦恼、永绝诸苦，让他们获得最终的解脱。” 佛陀不拯救人，仅仅提醒众人“四大皆空”，【有】就会【痛苦】，从苦中解脱的方法是认清虚空？？   人若想上天堂，不能借着道德宗教、也不能乘坐宇宙飞船，而是要经过从天而降的天梯（创二十八 12；约一 51）、也就是那位「神叫祂从死里复活的拿撒勒人耶稣基督」。  4.3. 犹太领袖认明使徒跟随过耶稣（13 - 17）  【徒四 13】「他们见彼得、约翰的胆量，又看出他们原是没有学问的小民，就希奇，认明他们是跟过耶稣的；」]]></description>
-</item><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Open3D Notes 04 | Create Point Clouds from RGBD Images</title>
     <link>https://yiyangd.github.io/o3d_notes04/</link>
     <pubDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</pubDate>
@@ -103,5 +82,13 @@
             </div>PaperNotes00 ｜ How to Read a Paper  此篇笔记是PaperNotes系列的第 1 篇，我将S. Keshav教授在 2016 年写作的How to Read a Paper 进行摘抄，翻译和要点总结：
  http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf    ABSTRACT Researchers spend a great deal of time reading research papers. However, this skill is rarely taught, leading to much wasted effort.
  This article outlines a practical and efficient three-pass method for reading research papers. I also describe how to use this method to do a literature survey.]]></description>
+</item><item>
+    <title>OpenGL Notes | Basics</title>
+    <link>https://yiyangd.github.io/opengl01/</link>
+    <pubDate>Wed, 25 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/opengl01/</guid>
+    <description><![CDATA[OpenGL is a graphics API used for real time rendering calculations that are processed by the GPU
+1. Screen and Coordinates 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  # Initialize pygame Screen pygame.init() # Screen Size screen_width = 1000 screen_height = 800 screen = pygame.display.set_mode((screen_width, screen_height), DOUBLEBUF | OPENGL) pygame.display.set_caption(&#34;OpenGL in Python&#34;) # Specify which matrix is the current matrix def init_ortho(): glMatrixMode(GL_PROJECTION) glLoadIdentity() # Clear the System gluOrtho2D(0, 1000, 0, 680) # set the window coordinates # (left, right, bottom, top)   glMatrixMode(GLenum mode): sets the current matrix mode]]></description>
 </item></channel>
 </rss>
