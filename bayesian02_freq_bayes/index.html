@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>B｜Chapter 2 - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="B｜Chapter 2" />
+<meta property="og:description" content="Chapter 2 - The Subjective Worlds of Frequentist and Bayesian Statistics 频率学派和贝叶斯统计的主观世界
+2.1. Chapter Mission Statement At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
+在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
+2.2. Chapter Goals As data scientists, we aim to build predictive models to understand complex phenomena." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/bayesian02_freq_bayes/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-21T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="B｜Chapter 2"/>
+<meta name="twitter:description" content="Chapter 2 - The Subjective Worlds of Frequentist and Bayesian Statistics 频率学派和贝叶斯统计的主观世界
+2.1. Chapter Mission Statement At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
+在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
+2.2. Chapter Goals As data scientists, we aim to build predictive models to understand complex phenomena."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/bayesian02_freq_bayes/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes04/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "B｜Chapter 2",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/bayesian02_freq_bayes\/"
+        },"genre": "posts","wordcount":  654 ,
+        "url": "https:\/\/yiyangd.github.io\/bayesian02_freq_bayes\/","datePublished": "2022-07-21T00:00:00+00:00","dateModified": "2022-07-21T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">B｜Chapter 2</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-21">2022-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;654 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter-2---the-subjective-worlds-of-frequentist-and-bayesian-statistics">Chapter 2 - The Subjective Worlds of Frequentist and Bayesian Statistics</a>
+      <ul>
+        <li><a href="#21-chapter-mission-statement">2.1. Chapter Mission Statement</a></li>
+        <li><a href="#22-chapter-goals">2.2. Chapter Goals</a></li>
+        <li><a href="#23-bayes-theorem---allowing-us-to-go-from-the-effect-back-to-its-cause-从结果回到原因">2.3. Bayes' Theorem - Allowing us to go From the Effect back to its Cause （从结果回到原因）</a></li>
+        <li><a href="#24-the-purpose-of-statistical-inference-17">2.4 The purpose of statistical inference 17</a></li>
+        <li><a href="#25-the-world-according-to-frequentists-17">2.5 The world according to Frequentists 17</a></li>
+        <li><a href="#26-the-world-according-to-bayesians-18">2.6 The world according to Bayesians 18</a></li>
+        <li><a href="#27-do-parameters-actually-exist-and-have-a-point-value-19">2.7 Do parameters actually exist and have a point value? 19</a></li>
+        <li><a href="#28-frequentist-and-bayesian-inference-20">2.8 Frequentist and Bayesian inference 20</a></li>
+        <li><a href="#29-bayesian-inference-via-bayes-rule-23">2.9 Bayesian inference via Bayes’ rule 23</a></li>
+        <li><a href="#210-implicit-versus-explicit-subjectivity-25">2.10 Implicit versus explicit subjectivity 25</a></li>
+        <li><a href="#211-chapter-summary-27">2.11 Chapter summary 27</a></li>
+        <li><a href="#212-chapter-outcomes-28">2.12 Chapter outcomes 28</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="chapter-2---the-subjective-worlds-of-frequentist-and-bayesian-statistics">Chapter 2 - The Subjective Worlds of Frequentist and Bayesian Statistics</h2>
+<p>频率学派和贝叶斯统计的主观世界</p>
+<h3 id="21-chapter-mission-statement">2.1. Chapter Mission Statement</h3>
+<p>At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.</p>
+<p>在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。</p>
+<h3 id="22-chapter-goals">2.2. Chapter Goals</h3>
+<p>As data scientists, we aim to <strong>build predictive models</strong> to <strong>understand complex phenomena</strong>. As a first approximation, we typically <strong>disregard</strong> those parts* of the system that are *not* directly of *interest*. This *deliberate omission* of information **makes these models statistical rather than deterministic** because there are some aspects of the system about which we are **uncertain**.</p>
+<p>作为数据科学家，我们的目标是<strong>构建预测模型</strong>来<strong>理解复杂的现象</strong>。 我们通常首先会尝试<strong>忽略系统中不直接感兴趣</strong>的那些部分。 这种<em>故意的信息遗漏</em>使得这些模型<strong>具有统计性而不是确定性</strong>，因为我们对系统的某些方面是<strong>不确定的</strong>。</p>
+<p>There are two distinct approaches to statistical modelling: <strong>Frequentist (also known as Classical inference) and Bayesian inference</strong>. This chapter explains the <em>similarities</em> between these two approaches and, importantly, indicates where they <em>differ substantively</em>. Usually, it is <em>straightforward to calculate the probability</em> of obtaining different data samples if we know <em>the process that generated the data</em> in the first place.</p>
+<p>统计建模有两种不同的方法：<strong>频率学派（也称为经典推断）和贝叶斯推断</strong>。 本章解释了这两种方法之间的<em>相似</em>之处，重要的是，指出了它们的<em>实质性区别</em>。 通常，如果我们首先知道<em>生成数据的过程</em>，就可以<em>直接计算</em>获得不同数据样本的概率。</p>
+<p>For example, if we know that a coin is fair, then we can calculate the probability of it landing heads up (the probability equals 1/2). However, we typically <strong>do not have perfect knowledge of these processes</strong>, and it is the goal of statistical inference to <strong>derive estimates of the unknown characteristics, or parameters</strong>, of these mechanisms.</p>
+<p>例如，如果我们知道一枚硬币是公平的，那么我们可以计算出它正面朝上落地的概率（概率等于 1/2）。 然而，我们通常<strong>不具有这些过程的完美知识</strong>，并且统计推断的目标是<strong>推导出这些机制的未知特征或参数的估计</strong>。</p>
+<p>In our coin example, we might want to <strong>determine its bias towards heads</strong> on the basis of the <strong>results of a few coin throws</strong>. Bayesian statistics allows us to go from what is known – the data (the results of the coin throw here) – and extrapolate backwards to make probabilistic statements about the parameters (the underlying bias of the coin) of the processes that were responsible for its generation.</p>
+<p>在我们的硬币例子中，我们可能希望<strong>根据几次抛硬币的结果</strong>来<strong>确定它朝正面的倾向</strong>。 贝叶斯统计允许我们从<strong>已知的数据（掷硬币的结果）<strong>出发，向后推断出</strong>导致硬币产生的过程的参数（硬币的潜在倾向）的概率陈述</strong>。</p>
+<p>In Bayesian statistics, this <strong>inversion process</strong> is carried out by application of Bayes’ rule, which is introduced in this chapter. It is important to have a good understanding of this rule, and we will spend some time throughout this chapter and Part II developing an <strong>understanding of the various constituent components of the formula</strong>.</p>
+<p>在贝叶斯统计中，这种<strong>反演过程</strong>是通过应用贝叶斯规则来实现的，这一章将介绍。 很重要的一点是，我们要很好地理解这条规则，在本章和第二部分中，我们将花一些时间来<strong>理解公式的各个组成部分</strong>。</p>
+<h3 id="23-bayes-theorem---allowing-us-to-go-from-the-effect-back-to-its-cause-从结果回到原因">2.3. Bayes' Theorem - Allowing us to go From the Effect back to its Cause （从结果回到原因）</h3>
+<p>Suppose that we know that a casino is crooked(不正当的赌场) and uses a loaded die（灌了铅的骰子） with a probability of rolling a 1, that is $\frac{1}{3}=2 \times \frac{1}{6}$, twice its unbiased value. We could then calculate the probability that we roll two 1s in a row:
+$$Pr(1,1| \text{crooked casino}) = \frac{1}{3} \times \frac{1}{3} = \frac{1}{9}$$</p>
+<p>In this case, we have <strong>presupposed a cause</strong> – the casino being crooked – to derive the <strong>probability of a particular effect</strong> – rolling two consecutive 1s. In other words, we have calculated Pr(effect | cause).
+在这种情况下，我们已经预先<strong>假定了一个原因</strong> —— 赌场是不正当的 —— 来推导出一个<strong>特定结果的概率</strong> —— 连续掷出两个 1。 换句话说，我们已经计算知道原因的前提下，特定结果的概率。</p>
+<p>Until the latter half of the seventeenth century, <strong>probability theory was chiefly used as a method to calculate gambling odds</strong>, in a similar vein to our current example. It was viewed as a dirty subject, not worthy of the attention of the most esteemed mathematicians. This perspective began to change with the intervention of the English Reverend Thomas Bayes, and slightly later and more famously (at the time at least), with the work done by the French mathematician Pierre Simon Laplace.</p>
+<p>直到 17 世纪下半叶，<strong>概率论主要被用作计算赌博赔率的方法</strong>，与我们现在的例子类似。 它被视为一个肮脏的话题，没有被受人尊敬的数学家注意。 随着英国牧师托马斯贝叶斯的介入，这种观点开始发生变化。在这之后，随着法国数学家皮埃尔·西蒙·拉普拉斯的工作，这种观点变得更加有名（至少在当时是这样）。</p>
+<p>They realised that it is possible to move in the opposite direction – to go from effect back to cause:<br>
+他们意识到，可以反其道而行之 —— 从结果回到原因：
+$$Pr(\text{effect}|\text{cause}) \stackrel{Bayes&rsquo;thm}{\longrightarrow} Pr(\text{effect}|\text{cause})$$</p>
+<h3 id="24-the-purpose-of-statistical-inference-17">2.4 The purpose of statistical inference 17</h3>
+<h3 id="25-the-world-according-to-frequentists-17">2.5 The world according to Frequentists 17</h3>
+<h3 id="26-the-world-according-to-bayesians-18">2.6 The world according to Bayesians 18</h3>
+<h3 id="27-do-parameters-actually-exist-and-have-a-point-value-19">2.7 Do parameters actually exist and have a point value? 19</h3>
+<h3 id="28-frequentist-and-bayesian-inference-20">2.8 Frequentist and Bayesian inference 20</h3>
+<h3 id="29-bayesian-inference-via-bayes-rule-23">2.9 Bayesian inference via Bayes’ rule 23</h3>
+<h3 id="210-implicit-versus-explicit-subjectivity-25">2.10 Implicit versus explicit subjectivity 25</h3>
+<h3 id="211-chapter-summary-27">2.11 Chapter summary 27</h3>
+<h3 id="212-chapter-outcomes-28">2.12 Chapter outcomes 28</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/bayesian02_freq_bayes/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/bayesian02_freq_bayes/" data-title="B｜Chapter 2"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/o3d_notes04/" class="prev" rel="prev" title="Open3D Notes 04 | Create Point Clouds from RGBD Images"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 04 | Create Point Clouds from RGBD Images</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

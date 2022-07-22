@@ -4,7 +4,17 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 21 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>B｜Chapter 2</title>
+    <link>https://yiyangd.github.io/bayesian02_freq_bayes/</link>
+    <pubDate>Thu, 21 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/bayesian02_freq_bayes/</guid>
+    <description><![CDATA[Chapter 2 - The Subjective Worlds of Frequentist and Bayesian Statistics 频率学派和贝叶斯统计的主观世界
+2.1. Chapter Mission Statement At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
+在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
+2.2. Chapter Goals As data scientists, we aim to build predictive models to understand complex phenomena.]]></description>
+</item><item>
     <title>Open3D Notes 04 | Create Point Clouds from RGBD Images</title>
     <link>https://yiyangd.github.io/o3d_notes04/</link>
     <pubDate>Sat, 09 Jul 2022 00:00:00 &#43;0000</pubDate>
@@ -82,13 +92,5 @@
             </div>PaperNotes00 ｜ How to Read a Paper  此篇笔记是PaperNotes系列的第 1 篇，我将S. Keshav教授在 2016 年写作的How to Read a Paper 进行摘抄，翻译和要点总结：
  http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf    ABSTRACT Researchers spend a great deal of time reading research papers. However, this skill is rarely taught, leading to much wasted effort.
  This article outlines a practical and efficient three-pass method for reading research papers. I also describe how to use this method to do a literature survey.]]></description>
-</item><item>
-    <title>OpenGL Notes | Basics</title>
-    <link>https://yiyangd.github.io/opengl01/</link>
-    <pubDate>Wed, 25 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/opengl01/</guid>
-    <description><![CDATA[OpenGL is a graphics API used for real time rendering calculations that are processed by the GPU
-1. Screen and Coordinates 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  # Initialize pygame Screen pygame.init() # Screen Size screen_width = 1000 screen_height = 800 screen = pygame.display.set_mode((screen_width, screen_height), DOUBLEBUF | OPENGL) pygame.display.set_caption(&#34;OpenGL in Python&#34;) # Specify which matrix is the current matrix def init_ortho(): glMatrixMode(GL_PROJECTION) glLoadIdentity() # Clear the System gluOrtho2D(0, 1000, 0, 680) # set the window coordinates # (left, right, bottom, top)   glMatrixMode(GLenum mode): sets the current matrix mode]]></description>
 </item></channel>
 </rss>
