@@ -102,6 +102,25 @@
         alt="/images/Yiyang.png"
         title="/images/Yiyang.png" /></a></div><h1 class="home-title">Yiyang Dong</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/yiyangd" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/yiyangd" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://www.instagram.com/yiyangddd" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw"></i></a><a href="mailto:yiyangd@sfu.ca" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cnn06/">Deep Learning Notes | Image Segmentation: U-Nets</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-22">2022-02-22</time></span></div><div class="content">UNets https://pyimagesearch.com/2022/02/21/u-net-image-segmentation-in-keras/</div><div class="post-footer">
+        <a href="/cnn06/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/yolov5/">Deploy YOLOv5 with OpenCV</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-22">2022-02-22</time></span></div><div class="content">https://www.youtube.com/watch?v=3wdqO_vYMpA
+We will create a class where you can put in a youtube video that you want to detect objects in.</div><div class="post-footer">
+        <a href="/yolov5/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cnn01/">Deep Learning Notes | Build a CNN with Python/Numpy</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-20">2022-02-20</time></span></div><div class="content">ISLR(10.3) Convolutional Neural Networks CNNs mimic to some degree how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.
+ the network first identifies low-level features in the input image  such as small edges, patches of color..   these low-level features are then combined to form higher-level features  such as ears, eyes..   finally, the presence or absence of these higher-level features contributes to the probability of any given output class   A CNN build up this hierarchy by combining two specialized types of hidden layers</div><div class="post-footer">
+        <a href="/cnn01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cnn02/">Deep Learning Notes | Build CNNs with Tensorflow/Keras APIs</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-20">2022-02-20</time></span></div><div class="content">Two Classification Examples:
+ Create a mood classifer using the TF Keras Sequential API (binary) Build a ConvNet to identify sign language digits using the TF Keras Functional API (multiclass)  0. Load Packages 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import math import numpy as np import h5py import matplotlib.pyplot as plt import scipy from PIL import Image from scipy import ndimage import tensorflow as tf from tensorflow.</div><div class="post-footer">
+        <a href="/cnn02/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/gan01/">Deep Learning Notes | First GAN</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-02-19">2022-02-19</time></span></div><div class="content">Goal：build and train a basic GAN that can generate hand-written images of digits (0-9) by using Pytorch
 Build the generator and discriminator components of a GAN from scratch. Create generator and discriminator loss functions.
@@ -114,30 +133,6 @@ Train the GAN and visualize the generated images.
  Create in 2022.02.14. Monday; Finish Feature 1 of Netflix   1. Netflix Features Netflix is the biggest video streaming platform in the world, offering movies, seasons, biographies, reality shows, and more.
  Their video repository is growing significantly. So the engineering team at Netflix keeps trying to find better ways to display content to their consumers.</div><div class="post-footer">
         <a href="/decode01/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/deeplearning-04/">Deep Learning Notes 04 |  Weight Initialization and Gradient Check for DNN </a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-21">2022-01-21</time></span></div><div class="content">1. Weight Initialization A well chosen initialization can:
- Speed up the convergence of gradient descent Increase the odds of gradient descent converging to a lower training (and generalization) error  Gradient Exploding and Vanishing Training a neural network requires specifying an initial value of the weights. A well chosen initialization method will help learning.
- if W &gt; I (Identity Matrix): in DNN, the activations can explode if W &lt; I: the activations will decrease exponentially and then vanish  Zero Initialization：</div><div class="post-footer">
-        <a href="/deeplearning-04/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/deeplearning-03/">Deep Learning Notes 03 |  Regularize Deep Neural Network</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-20">2022-01-20</time></span></div><div class="content">Regularize Deep Neural Networks  这篇笔记记录了深度神经网络的正则化，在【统计学习笔记 03 世上没有解千愁的酒】中，我记录了“没有任何一种模型或算法可以在各种数据集中完胜其它所有的算法，解决所有的问题”，当我们把神经网络的层数加深，神经元节点变多，使其能“深度学习”更多的更复杂的更灵活的非线性函数的同时，也使得模型产生了**过拟合(overfit)**问题 —— 酗酒(overdrink)看似可以完全地麻痹自己让自己完全忘记了所有问题、幻想自己活在了一个完美的温柔乡(low training set error)，但酒醒之后却仍然无力解决任何现实的问题，仍然脆弱至极连站都站不起来更不要说能跑起来(high testing set error)。我们需要自律，深度神经网络亦如是 —— 正则化(Regularization)的加入使得神经网络避免陷入过度拟合的泥沼，在这篇笔记提到的四种正则化的方法(L2, Dropout, Data Augment, Early Stop)可以让其在测试集中表现的仍然良好。
- 1. Train/Dev/Test Sets Applying Machine Learning is highly iterative process
- Idea ==&gt; Code ==&gt; Experiment We have to go through the loop many times to figure out your hyperparameters.  We build a model upon training set then optimize hyperparameters on dev set as much as possible.</div><div class="post-footer">
-        <a href="/deeplearning-03/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/realsense-install/">Install Intel Realsense and Python Setup in 2022</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-15">2022-01-15</time></span></div><div class="content">Step 1: Search for IntelRealSense github
- https://github.com/IntelRealSense/librealsense  Step 2: Click the tag =&gt; release =&gt; latest
- https://github.com/IntelRealSense/librealsense/releases Click the latest tag (2.50.0 on Jan 16, 2022) and install the SDK on linux https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md  Step 3: Register the server&rsquo;s public key and add server to the list of repositories
- Step 4: Install the libraries and the developer and debug packages
- sudo apt-get install librealsense2-dkms sudo apt-get install librealsense2-utils sudo apt-get install librealsense2-dev sudo apt-get install librealsense2-dbg  Step 5: Reconnect the Intel RealSense Depth Camera (D435i) and run:</div><div class="post-footer">
-        <a href="/realsense-install/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/yolo_install/">Run Yolo and RealSense in 2022</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-01-15">2022-01-15</time></span></div><div class="content"> conda install -c anaconda h5py conda install -c conda-forge opencv git clone https://github.com/qqwweee/keras-yolo3.git conda install -c conda-forge tensorflow conda install -c conda-forge keras conda install -c anaconda pillow conda install -c conda-forge matplotlib import tensorflow.python.keras.backend as K import pyrealsense2.pyrealsense2 as rs  </div><div class="post-footer">
-        <a href="/yolo_install/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Open3D Notes 05 | ICP Registration Algorithm - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Open3D Notes 05 | ICP Registration Algorithm" />
+<meta property="og:description" content="应用 ICP 算法及其变体进行点云局部配准
+1. Introduction to ICP ICP (Iterative Closest Point) Registration Algorithm has been a mainstay of geometric registration in both research and industry for many years.
+ The input are two point clouds and an rough initial transformation that roughly aligns the source point cloud to the target point cloud.  The initial alignment is usually obtained by a global registration algorithm.   The output is a refined transformation that tightly aligns the two point clouds." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/o3d_notes05/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-23T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Open3D Notes 05 | ICP Registration Algorithm"/>
+<meta name="twitter:description" content="应用 ICP 算法及其变体进行点云局部配准
+1. Introduction to ICP ICP (Iterative Closest Point) Registration Algorithm has been a mainstay of geometric registration in both research and industry for many years.
+ The input are two point clouds and an rough initial transformation that roughly aligns the source point cloud to the target point cloud.  The initial alignment is usually obtained by a global registration algorithm.   The output is a refined transformation that tightly aligns the two point clouds."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/o3d_notes05/" /><link rel="prev" href="https://yiyangd.github.io/bayesian02_freq_bayes/" /><link rel="next" href="https://yiyangd.github.io/paper07/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Open3D Notes 05 | ICP Registration Algorithm",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/o3d_notes05\/"
+        },"genre": "posts","keywords": "Open3D","wordcount":  1208 ,
+        "url": "https:\/\/yiyangd.github.io\/o3d_notes05\/","datePublished": "2022-07-23T00:00:00+00:00","dateModified": "2022-07-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Open3D Notes 05 | ICP Registration Algorithm</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/open3d/"><i class="far fa-folder fa-fw"></i>Open3D</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-23">2022-07-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1208 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-introduction-to-icp">1. Introduction to ICP</a>
+          <ul>
+            <li><a href="#input-with-initial-visualization">Input with Initial Visualization</a></li>
+            <li><a href="#evaluation">Evaluation</a></li>
+            <li><a href="#idea-of-icp-algorithm">Idea of ICP Algorithm</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-point-to-point-icp">2. Point-to-Point ICP</a></li>
+        <li><a href="#3-point-to-plane-icp">3. Point-to-Plane ICP</a></li>
+        <li><a href="#4-colored-point-cloud-registration">4. Colored Point Cloud Registration</a>
+          <ul>
+            <li><a href="#input-and-initial-transformation">Input and Initial Transformation</a></li>
+            <li><a href="#misaligned-point-to-plane-icp">Misaligned Point-to-Plane ICP</a></li>
+            <li><a href="#colored-icp">Colored ICP</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>应用 ICP 算法及其变体进行点云局部配准</p>
+<h3 id="1-introduction-to-icp">1. Introduction to ICP</h3>
+<p>ICP (Iterative Closest Point) Registration Algorithm has been a mainstay of geometric registration in both research and industry for many years.</p>
+<ul>
+<li>The <code>input</code> are two point clouds and an <code>rough initial transformation</code> that roughly aligns the source point cloud to the target point cloud.
+<ul>
+<li>The <code>initial alignment</code> is usually obtained by a <strong>global registration algorithm</strong>.</li>
+</ul>
+</li>
+<li>The <code>output</code> is a <code>refined transformation</code> that tightly aligns the two point clouds.
+<ul>
+<li>The more and tighter the two point clouds overlap with each other, the better the alignment result.</li>
+</ul>
+</li>
+</ul>
+<h4 id="input-with-initial-visualization">Input with Initial Visualization</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">draw_registration_result</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
+    <span class="c1"># Since the functions transform() and paint_uniform_color() change the point cloud, we call copy.deepcopy to make copies and protect the original point clouds.</span>
+    <span class="n">source_temp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">target_temp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">source_temp</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.706</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">target_temp</span><span class="o">.</span><span class="n">paint_uniform_color</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.651</span><span class="p">,</span> <span class="mf">0.929</span><span class="p">])</span>
+    <span class="n">source_temp</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">source_temp</span><span class="p">,</span> <span class="n">target_temp</span><span class="p">],</span>
+                                      <span class="n">zoom</span><span class="o">=</span><span class="mf">0.4459</span><span class="p">,</span>
+                                      <span class="n">front</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9288</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2951</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2242</span><span class="p">],</span>
+                                      <span class="n">lookat</span><span class="o">=</span><span class="p">[</span><span class="mf">1.6784</span><span class="p">,</span> <span class="mf">2.0612</span><span class="p">,</span> <span class="mf">1.4451</span><span class="p">],</span>
+                                      <span class="n">up</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.3402</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9189</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1996</span><span class="p">])</span>
+
+<span class="n">demo_icp_pcds</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DemoICPPointClouds</span><span class="p">()</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">demo_icp_pcds</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">demo_icp_pcds</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># Initial guess transform between the two point-cloud.</span>
+<span class="c1"># ICP algortihm requires a good initial allignment to converge efficiently.</span>
+<span class="n">trans_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mf">0.862</span><span class="p">,</span> <span class="mf">0.011</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.507</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+                         <span class="p">[</span><span class="o">-</span><span class="mf">0.139</span><span class="p">,</span> <span class="mf">0.967</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.215</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.487</span><span class="p">,</span> <span class="mf">0.255</span><span class="p">,</span> <span class="mf">0.835</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">draw_registration_result</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">trans_init</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/05/01.png" width="400"/>
+</figure>
+
+<h4 id="evaluation">Evaluation</h4>
+<p>The function <code>evaluate_registration()</code> calculates two main metrics:</p>
+<ul>
+<li><code>fitness</code>, which measures the <strong>overlapping area</strong> (# of inlier correspondences / # of points in target).
+<ul>
+<li>The higher the better.</li>
+</ul>
+</li>
+<li><code>inlier_rmse</code>, which measures the <strong>RMSE of all inlier correspondences</strong>.
+<ul>
+<li>The lower the better.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Initial alignment&#34;</span><span class="p">)</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">evaluate_registration</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">trans_init</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluation</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">RegistrationResult with
+</span><span class="s1">- fitness=1.747228e-01,
+</span><span class="s1">- inlier_rmse=1.177106e-02, and
+</span><span class="s1">- correspondence_set size of 34741
+</span><span class="s1">Access transformation to get result.
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="idea-of-icp-algorithm">Idea of ICP Algorithm</h4>
+<p>In general, the ICP algorithm iterates over two steps:</p>
+<ol>
+<li>Find correspondence set $K = {(p,q)}$ from target point cloud P, and source point cloud Q transformed with current transformation matrix T</li>
+<li>Update the transformation T by minimizing an objective function E(T) defined over the correspondence set K.</li>
+</ol>
+<ul>
+<li>Different variants of ICP use different objective functions E(T)
+<ul>
+<li>Point-to-point ICP[1]</li>
+<li>Point-to-plane ICP[2]</li>
+<li>Colored ICP[3]</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-point-to-point-icp">2. Point-to-Point ICP</h3>
+<p>The class <code>TransformationEstimationPointToPoint</code> provides functions to compute the <strong>residuals and Jacobian matrices of the point-to-point ICP objective</strong>.</p>
+<ul>
+<li>The function <code>registration_icp()</code> takes it as a parameter and runs point-to-point ICP to obtain the results.</li>
+<li>Update the <code>trans_init</code> (4 x 4 matrix) by minimizing an objective function: $E(T)=\sum_{(p,q) \in K} ||p-Tq||^2$</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Apply point-to-point ICP&#34;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">reg_p2p</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">registration_icp</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">trans_init</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">TransformationEstimationPointToPoint</span><span class="p">())</span>
+<span class="n">icp_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Time taken by Point-To-Plane ICP: &#34;</span><span class="p">,</span> <span class="n">icp_time</span><span class="p">)</span> <span class="c1"># 3.4535</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Fitness: &#34;</span><span class="p">,</span> <span class="n">reg_p2p</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span> <span class="c1"># 0.372450</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Inlier RMSE: &#34;</span><span class="p">,</span> <span class="n">reg_p2p</span><span class="o">.</span><span class="n">inlier_rmse</span><span class="p">)</span> <span class="c1"># 0，007760</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Correspondence Set: &#34;</span><span class="p">,</span><span class="n">reg_p2p</span><span class="o">.</span><span class="n">correspondence_set</span><span class="p">)</span> <span class="c1"># 74056</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Transformation is:&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reg_p2p</span><span class="o">.</span><span class="n">transformation</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">[[ 0.83924644  0.01006041 -0.54390867  0.64639961]
+</span><span class="s1"> [-0.15102344  0.96521988 -0.21491604  0.75166079]
+</span><span class="s1"> [ 0.52191123  0.2616952   0.81146378 -1.50303533]
+</span><span class="s1"> [ 0.          0.          0.          1.        ]]
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>fitness</code> score <strong>increases from 0.174723 to 0.372450</strong>. The <code>inlier_rmse</code> <strong>reduces from 0.011771 to 0.007760</strong>, and correspondence_set size is 74056 from 34741</p>
+<ul>
+<li>By default, <code>registration_icp()</code> runs until <strong>convergence or reaches a maximum number of iterations</strong> (30 by default).</li>
+<li>It can be changed to allow more computation time and to improve the results further.
+<ul>
+<li>by adding <code>o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=2000))</code> as a parameter</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">reg_p2p</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">registration_icp</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">trans_init</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">TransformationEstimationPointToPoint</span><span class="p">(),</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">ICPConvergenceCriteria</span><span class="p">(</span><span class="n">max_iteration</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
+<span class="n">draw_registration_result</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reg_p2p</span><span class="o">.</span><span class="n">transformation</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The final alignment is tight. The <code>fitness</code> score <strong>improves to 0.621123</strong>. The <code>inlier_rmse</code> <strong>reduces to 0.006583</strong>. The <code>correspondence_set</code> size <strong>improves 123501</strong> from 74056.</p>
+<figure><img src="/images/open3d/05/02.png" width="400"/>
+</figure>
+
+<h3 id="3-point-to-plane-icp">3. Point-to-Plane ICP</h3>
+<p>[4] has shown that the point-to-plane ICP algorithm has a faster convergence speed than the point-to-point ICP algorithm.</p>
+<ul>
+<li>by using a different objective function $E(T)=\sum_{(p,q) \in K} ((p-Tq) \times n_p)^2$</li>
+<li>$n_p$ is the normal of point $p$</li>
+<li>If normals are not given, they can be computed with <strong>Vertex normal estimation</strong>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Apply point-to-plane ICP&#34;</span><span class="p">)</span>
+<span class="n">reg_p2l</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">registration_icp</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">trans_init</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">TransformationEstimationPointToPlane</span><span class="p">())</span>
+<span class="n">icp_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Time taken by Point-To-Plane ICP: &#34;</span><span class="p">,</span> <span class="n">icp_time</span><span class="p">)</span> <span class="c1"># 3.4543</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Fitness: &#34;</span><span class="p">,</span> <span class="n">reg_p2l</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span> <span class="c1"># 0.620972</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Inlier RMSE: &#34;</span><span class="p">,</span> <span class="n">reg_p2l</span><span class="o">.</span><span class="n">inlier_rmse</span><span class="p">)</span> <span class="c1"># 0.00658</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Correspondence Set: &#34;</span><span class="p">,</span><span class="n">reg_p2l</span><span class="o">.</span><span class="n">correspondence_set</span><span class="p">)</span> <span class="c1"># 123471</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Transformation is:&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reg_p2l</span><span class="o">.</span><span class="n">transformation</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">[[ 0.84023324  0.00618369 -0.54244126  0.64720943]
+</span><span class="s1"> [-0.14752342  0.96523919 -0.21724508  0.81018928]
+</span><span class="s1"> [ 0.52132423  0.26174429  0.81182576 -1.48366001]
+</span><span class="s1"> [ 0.          0.          0.          1.        ]]
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The point-to-plane ICP reaches tight alignment within 30 iterations</p>
+<ul>
+<li>(a fitness score of 0.620972 and an inlier_rmse score of 0.006581)</li>
+</ul>
+<h3 id="4-colored-point-cloud-registration">4. Colored Point Cloud Registration</h3>
+<p>Colored point cloud registration uses both <strong>geometry and color</strong> for registration</p>
+<ul>
+<li><strong>The color information locks the alignment along the tangent plane.</strong></li>
+<li>Thus this algorithm is <strong>more accurate and more robust</strong> than prior point cloud registration algorithms,</li>
+<li>while the running speed is comparable to that of ICP registration.</li>
+</ul>
+<h4 id="input-and-initial-transformation">Input and Initial Transformation</h4>
+<p>An identity matrix is used as initialization for the registration.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">demo_colored_icp_pcds</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DemoColoredICPPointClouds</span><span class="p">()</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">demo_colored_icp_pcds</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">demo_colored_icp_pcds</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># draw initial alignment</span>
+<span class="n">current_transformation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">draw_registration_result</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">current_transformation</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/05/color1.png" width="400"/>
+</figure>
+
+<h4 id="misaligned-point-to-plane-icp">Misaligned Point-to-Plane ICP</h4>
+<p>We first run Point-to-plane ICP as a baseline approach.</p>
+<ul>
+<li>The visualization below shows misaligned green triangle textures.</li>
+<li>This is because <strong>a geometric constraint does not prevent two planar surfaces from slipping</strong>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># point to plane ICP</span>
+<span class="n">current_transformation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;2. Point-to-plane ICP registration is applied on original point&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;   clouds to refine the alignment. Distance threshold 0.02.&#34;</span><span class="p">)</span>
+<span class="n">result_icp</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">registration_icp</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">current_transformation</span><span class="p">,</span>
+    <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">TransformationEstimationPointToPlane</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_icp</span><span class="p">)</span>
+<span class="n">draw_registration_result_original_color</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span>
+                                        <span class="n">result_icp</span><span class="o">.</span><span class="n">transformation</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/05/color2.png" width="400"/>
+</figure>
+
+<h4 id="colored-icp">Colored ICP</h4>
+<p>To further improve efficiency, [3] proposes a multi-scale registration scheme. In total, 3 layers of multi-resolution point clouds are created with <code>voxel_down_sample</code>.</p>
+<ul>
+<li>as <code>voxel_down_sample</code> decreases from 0.04 to 0.01, even less <code>max_iter</code> (from 50 to 14), we can still achieve better alignment (<code>correspondence_set</code> increases from 2084 to 24737)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># colored pointcloud registration</span>
+<span class="c1"># This is implementation of following paper</span>
+<span class="c1"># J. Park, Q.-Y. Zhou, V. Koltun,</span>
+<span class="c1"># Colored Point Cloud Registration Revisited, ICCV 2017</span>
+<span class="n">voxel_radius</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+<span class="n">current_transformation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3. Colored point cloud registration&#34;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">[</span><span class="n">scale</span><span class="p">]</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">voxel_radius</span><span class="p">[</span><span class="n">scale</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">([</span><span class="nb">iter</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">scale</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3-1. Downsample with a voxel size </span><span class="si">%.2f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="n">source_down</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">voxel_down_sample</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+    <span class="n">target_down</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">voxel_down_sample</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3-2. Estimate normal.&#34;</span><span class="p">)</span>
+    <span class="n">source_down</span><span class="o">.</span><span class="n">estimate_normals</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">KDTreeSearchParamHybrid</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_nn</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">target_down</span><span class="o">.</span><span class="n">estimate_normals</span><span class="p">(</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">KDTreeSearchParamHybrid</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_nn</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3-3. Applying colored point cloud registration&#34;</span><span class="p">)</span>
+    <span class="n">result_icp</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">registration_colored_icp</span><span class="p">(</span>
+        <span class="n">source_down</span><span class="p">,</span> <span class="n">target_down</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">current_transformation</span><span class="p">,</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">TransformationEstimationForColoredICP</span><span class="p">(),</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">registration</span><span class="o">.</span><span class="n">ICPConvergenceCriteria</span><span class="p">(</span><span class="n">relative_fitness</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+                                                          <span class="n">relative_rmse</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+                                                          <span class="n">max_iteration</span><span class="o">=</span><span class="nb">iter</span><span class="p">))</span>
+    <span class="n">current_transformation</span> <span class="o">=</span> <span class="n">result_icp</span><span class="o">.</span><span class="n">transformation</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result_icp</span><span class="p">)</span>
+<span class="n">draw_registration_result</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span>
+                                        <span class="n">result_icp</span><span class="o">.</span><span class="n">transformation</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure><img src="/images/open3d/05/color4.png" width="400"/>
+</figure>
+
+<figure><img src="/images/open3d/05/color3.png" width="400"/>
+</figure>
+
+<h3 id="reference">Reference</h3>
+<p>[1] Paul J. Besl and Neil D. McKay, A Method for Registration of 3D Shapes, PAMI, 1992.<br>
+[2] Y. Chen and G. G. Medioni, Object modelling by registration of multiple range images, Image and Vision Computing, 10(3), 1992.<br>
+[3] J. Park, Q.-Y. Zhou, and V. Koltun, Colored Point Cloud Registration Revisited, ICCV, 2017.
+[4] S. Rusinkiewicz and M. Levoy. Efficient variants of the ICP algorithm. In 3-D Digital Imaging and Modeling, 2001.
+[5] <a href="http://www.open3d.org/docs/release/tutorial/pipelines/icp_registration.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/release/tutorial/pipelines/icp_registration.html</a><br>
+[6] <a href="http://www.open3d.org/docs/release/tutorial/t_pipelines/t_icp_registration.html" target="_blank" rel="noopener noreffer">http://www.open3d.org/docs/release/tutorial/t_pipelines/t_icp_registration.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/o3d_notes05/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm" data-hashtags="Open3D"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/o3d_notes05/" data-hashtag="Open3D"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/o3d_notes05/" data-title="Open3D Notes 05 | ICP Registration Algorithm"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/open3d/">Open3D</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/bayesian02_freq_bayes/" class="prev" rel="prev" title="Bayes｜Chapter 2"><i class="fas fa-angle-left fa-fw"></i>Bayes｜Chapter 2</a>
+            <a href="/paper07/" class="next" rel="next" title="Paper Notes 07 | A comprehensive survey on point cloud registration">Paper Notes 07 | A comprehensive survey on point cloud registration<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

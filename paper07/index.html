@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Paper Notes 07 | A comprehensive survey on point cloud registration - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="Paper Notes 07 | A comprehensive survey on point cloud registration" />
+<meta property="og:description" content="Paper：A comprehensive survey on point cloud registration
+0. Abstract Registration is a transformation estimation problem between two point clouds, which has a unique and critical role in numerous computer vision applications. The developments of optimization-based methods and deep learning methods have improved registration robustness and efficiency. Recently, the combinations of optimization-based and deep learning methods have further improved performance. However, the connections between optimization-based and deep learning methods are still unclear." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yiyangd.github.io/paper07/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-25T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Paper Notes 07 | A comprehensive survey on point cloud registration"/>
+<meta name="twitter:description" content="Paper：A comprehensive survey on point cloud registration
+0. Abstract Registration is a transformation estimation problem between two point clouds, which has a unique and critical role in numerous computer vision applications. The developments of optimization-based methods and deep learning methods have improved registration robustness and efficiency. Recently, the combinations of optimization-based and deep learning methods have further improved performance. However, the connections between optimization-based and deep learning methods are still unclear."/>
+<meta name="application-name" content="Yiyang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yiyangd.github.io/paper07/" /><link rel="prev" href="https://yiyangd.github.io/o3d_notes05/" /><link rel="next" href="https://yiyangd.github.io/acts08/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Paper Notes 07 | A comprehensive survey on point cloud registration",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yiyangd.github.io\/paper07\/"
+        },"genre": "posts","keywords": "papers","wordcount":  6951 ,
+        "url": "https:\/\/yiyangd.github.io\/paper07\/","datePublished": "2022-07-25T00:00:00+00:00","dateModified": "2022-07-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Yiyang Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DYY"><span class="header-title-pre">⛺</span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Paper Notes 07 | A comprehensive survey on point cloud registration</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/papers/"><i class="far fa-folder fa-fw"></i>papers</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-25">2022-07-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6951 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;33 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0-abstract">0. Abstract</a></li>
+        <li><a href="#1-introduction-page-1---2">1. Introduction （Page 1 - 2）</a>
+          <ul>
+            <li><a href="#11-first-application-3d-reconstruction">1.1. First Application： 3D Reconstruction</a></li>
+            <li><a href="#12-second-application3d-localization">1.2. Second Application：3D Localization</a></li>
+            <li><a href="#13-third-application-pose-estimation">1.3. Third Application: Pose Estimation.</a></li>
+            <li><a href="#14-papers-about-optimization">1.4. Papers about Optimization</a></li>
+            <li><a href="#15-papers-about-3d-deep-learning">1.5. Papers about 3D Deep Learning</a></li>
+            <li><a href="#16-cross-source-with-sensors">1.6. Cross-Source with Sensors</a></li>
+            <li><a href="#17-problems-of-existing-reviews">1.7. Problems of Existing Reviews</a></li>
+            <li><a href="#18-our-contributions">1.8. Our Contributions</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-problem">2. Problem</a></li>
+        <li><a href="#3-challenges">3. Challenges</a>
+          <ul>
+            <li><a href="#31-same-source-challenges">3.1. Same-source challenges</a></li>
+            <li><a href="#32-cross-source-challenges">3.2. Cross-source challenges</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-categories">4. Categories</a>
+          <ul>
+            <li><a href="#41-optimisation-based-registration-methods">4.1. Optimisation-based registration methods</a></li>
+            <li><a href="#42-feature-learning-methods-for-registration">4.2. Feature learning methods for registration</a></li>
+            <li><a href="#43-end-to-end-learning-based-registration-methods">4.3. End-to-end learning-based registration methods</a></li>
+            <li><a href="#44-cross-source-registration">4.4. Cross-source registration</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-optimisation-based-registration-methods">5. Optimisation-based registration methods</a>
+          <ul>
+            <li><a href="#51-icp-based-registration">5.1. ICP-based registration</a>
+              <ul>
+                <li><a href="#511-point-point">5.1.1. Point-Point</a></li>
+                <li><a href="#512-point-to-plane">5.1.2. Point-to-Plane</a></li>
+                <li><a href="#513-plane-to-plane-generalized-icp">5.1.3. Plane-to-Plane (Generalized ICP)</a></li>
+                <li><a href="#514-four-methods-to-calculate-transformation-matrix">5.1.4. Four methods to calculate transformation matrix</a></li>
+              </ul>
+            </li>
+            <li><a href="#52-graph-based-registration">5.2. Graph-based registration</a>
+              <ul>
+                <li><a href="#521-two-categories">5.2.1. Two Categories</a></li>
+                <li><a href="#522-optimization-methods">5.2.2. Optimization Methods</a></li>
+                <li><a href="#523-high-order-graph-maching">5.2.3. High-order graph maching</a></li>
+              </ul>
+            </li>
+            <li><a href="#53-gmm-based-registration">5.3. GMM-based registration</a></li>
+            <li><a href="#54">5.4.</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-feature-learning-methods-for-registration">6. Feature learning methods for registration</a>
+          <ul>
+            <li><a href="#61-learning-on-volumetric-data">6.1. Learning on Volumetric Data</a>
+              <ul>
+                <li><a href="#611-3dmatch-and-2-limitations">6.1.1. 3DMatch and 2 limitations</a></li>
+                <li><a href="#612-3dsmoothnet">6.1.2. 3DSmoothNet</a></li>
+                <li><a href="#613-methods-to-handle-the-limitation">6.1.3. Methods to handle the limitation</a></li>
+              </ul>
+            </li>
+            <li><a href="#62-learning-on-point-cloud">6.2. Learning on Point Cloud</a>
+              <ul>
+                <li><a href="#621-3-methods">6.2.1. 3 methods</a></li>
+                <li><a href="#622-3-more-mothods">6.2.2. 3 more mothods</a></li>
+                <li><a href="#623-methods-to-solve-problems-of-icp">6.2.3. Methods to solve problems of ICP</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#7-end-to-end-learning-based-registration-methods">7. End-to-end learning-based registration methods</a>
+          <ul>
+            <li><a href="#71-registration-by-regression">7.1. Registration by regression</a></li>
+            <li><a href="#72-registration-by-optimization-and-neural-network">7.2. Registration by optimization and neural network</a></li>
+          </ul>
+        </li>
+        <li><a href="#8-cross-source-registration">8. Cross-source registration</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#81-optimization-based-methods">8.1. Optimization-based methods:</a></li>
+          </ul>
+        </li>
+        <li><a href="#9-connections-between-optimization-based-and-deep-learning-methods">9. Connections Between optimization-based and deep learning methods:</a></li>
+        <li><a href="#10-evaluation">10. Evaluation</a>
+          <ul>
+            <li><a href="#101-evaluation-metrics">10.1. Evaluation metrics</a></li>
+            <li><a href="#102-same-source-dataset">10.2. Same-source dataset</a></li>
+            <li><a href="#103-new-cross-source-benchmark">10.3. New cross-source benchmark</a></li>
+          </ul>
+        </li>
+        <li><a href="#11-applications">11. Applications</a>
+          <ul>
+            <li><a href="#111-construction">11.1. Construction</a></li>
+            <li><a href="#112-autonomous-driving">11.2. Autonomous driving</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Paper：A comprehensive survey on point cloud registration</p>
+<h3 id="0-abstract">0. Abstract</h3>
+<p>Registration is a transformation estimation problem between two point clouds, which has a unique and critical role in numerous computer vision applications. The developments of <strong>optimization-based methods and deep learning methods</strong> have improved registration robustness and efficiency. Recently, the combinations of <strong>optimization-based and deep learning methods</strong> have further improved performance. However, the connections between <strong>optimization-based and deep learning methods</strong> are still unclear.
+配准是两个点云之间的变换估计问题，它在众多计算机视觉应用中具有独特的关键作用。基于优化的方法和深度学习方法的发展，提高了配准的鲁棒性和效率。最近，基于优化的方法和深度学习方法的结合进一步提高了性能。然而，两个方法之间的联系仍然不清楚。</p>
+<p>Moreover, with the recent development of <strong>3D sensors and 3D reconstruction</strong> techniques, a new research direction emerges to <strong>align cross-source point clouds</strong>. This survey conducts a comprehensive survey, including both <strong>same-source and cross-source registration methods</strong>, and summarize the connections between optimization-based and deep learning methods, to provide further research insight.</p>
+<p>此外，随着近年来<strong>三维传感器和三维重建</strong>技术的发展，出现了一个新的研究方向，即<strong>跨源点云的对齐</strong>。此篇综述进行了全面的调查，包括<strong>同源和跨源的配准方法</strong>，并总结了基于优化的方法和深度学习方法之间的联系，以提供进一步的研究启示。</p>
+<p>This survey also builds a <strong>new benchmark to evaluate</strong> the state-of-the-art registration algorithms in solving cross-source challenges. Besides, this survey summarizes the <strong>benchmark data sets</strong> and discusses point cloud registration applications across various domains. Finally, this survey proposes <strong>potential research directions</strong> in this rapidly growing field.</p>
+<p>此篇综述还建立了一个<strong>新的基准来评估</strong>最先进的配准算法在解决跨源挑战方面的情况。此外，此篇综述总结了<strong>基准数据集</strong>并讨论了不同领域的点云配准应用。最后，此篇综述提出了这个快速增长领域的<strong>潜在研究方向</strong>。</p>
+<h3 id="1-introduction-page-1---2">1. Introduction （Page 1 - 2）</h3>
+<p>Point cloud has become the <strong>primary data format</strong> to represent the 3D world as the fast development of high precision sensors such as LiDAR and Kinect. Because the sensors can only <strong>capture scans within their limited view range</strong>, the registration algorithm is required to <strong>generate a large 3D scene</strong>. Point cloud registration is a problem to <strong>estimate the transformation matrix between two-point cloud scans</strong>. Applying the transformation matrices, we can <strong>merge the partial scans about the same 3D scene or object into a complete 3D point cloud</strong>.</p>
+<p>随着 LiDAR 和 Kinect 等高精度传感器的快速发展，点云已成为表示三维世界的<strong>主要数据格式</strong>。由于传感器只能<strong>在其有限的视线范围内捕获扫描</strong>，因此需要配准算法来<strong>生成一个大的三维场景</strong>。点云配准是一个<strong>估计两个点云扫描之间变换矩阵</strong>的问题。应用变换矩阵，我们可以将关于<strong>同一个三维场景或物体的部分扫描合并成一个完整的三维点云</strong>。</p>
+<h4 id="11-first-application-3d-reconstruction">1.1. First Application： 3D Reconstruction</h4>
+<p>The value of point cloud registration is its unique and critical role in numerous computer vision applications. <strong>Firstly, 3D reconstruction</strong>. Generating a complete 3D scene is a basic and significant technique for various computer vision applications, including <strong>high-precision 3D map reconstruction in autonomous driving</strong>, 3D environment reconstruction in robotics and 3D reconstruction for <strong>real-time monitoring underground mining</strong>. For example, registration could construct the 3D environment for <strong>route plan and decision-making in robotics applications</strong>. Another example could be a large 3D scene reconstruction in the underground mining space to monitor mining safety accurately.</p>
+<p>点云配准的价值在于其在众多计算机视觉应用中的独特和关键作用。<strong>首先，三维重建</strong>。生成一个完整的三维场景是各种计算机视觉应用的基本和重要技术，包括<strong>自动驾驶中的高精度三维地图重建</strong>、机器人中的三维环境重建和<strong>实时监测地面采矿</strong>的三维重建。例如，点云配准可以为<strong>机器人应用中的路线规划和决策</strong>构建三维环境。另一个例子是在地下采矿空间进行大型三维场景重建，以准确监测采矿安全。</p>
+<h4 id="12-second-application3d-localization">1.2. Second Application：3D Localization</h4>
+<p><strong>Secondly, 3D localization.</strong> Locating the position of the agent in the 3D environment is particularly important for robotics. For example, a driverless car estimates its position on the map (e.g. &lt; 10cm) and its distance to the road’s boundary line. Point cloud registration could <strong>accurately match a current real-time 3D view to its belonging 3D environment to provide a high-precision localization service</strong>. This application shows that <strong>the registration provides a solution to interact with the 3D environment for an autonomous agent</strong> (e.g. robots or drive-less car).</p>
+<p><strong>第二，三维定位。<strong>定位智能体在三维环境中的位置对机器人技术来说特别重要。例如，一辆无人驾驶汽车估计它在地图上的位置（如&lt;10cm）以及它与道路边界线的距离。点云配准可以</strong>准确地将当前的实时三维视图与它所属的三维环境相匹配</strong>，以提供高精度的定位服务。这一应用表明，<strong>配准为自主智能体（如机器人或无人驾驶汽车）提供了一个与三维环境互动的解决方案</strong>。</p>
+<h4 id="13-third-application-pose-estimation">1.3. Third Application: Pose Estimation.</h4>
+<p><strong>Thirdly, pose estimation.</strong> Aligning a point cloud A (<strong>3D real-time view</strong>) to another point cloud B (<strong>the 3D environment</strong>) could <strong>generate the pose information</strong> of point cloud A related to point cloud B. The pose information could be used for decision-making in robotics. For example, the registration could get the <strong>robotics arm’s pose information</strong> to <strong>decide where to move to grab an object accurately</strong>. The pose estimation application shows that the registration also provides a solution to know the environment’s agent information. Since point cloud registration plays a critical role in numerous valuable computer vision applications, there is a significant urgent need to conduct a comprehensive survey of the point cloud registration to benefit these applications.</p>
+<p><strong>第三，姿势估计。<strong>将一个点云 A（<strong>三维实时视图</strong>）与另一个点云 B（<strong>三维环境</strong>）对齐，可以</strong>生成点云 A 与点云 B 相关的姿势信息</strong>，该姿势信息可用于机器人技术的决策。例如，配准可以获得<strong>机器人手臂的姿势信息</strong>，以<strong>决定在哪里移动以准确地抓取一个物体</strong>。姿势估计的应用表明，配准也提供了一个了解环境的智能体信息的解决方案。由于点云配准在众多有价值的计算机视觉应用中起着关键作用，因此迫切需要对点云配准进行全面研究，以使这些应用受益。</p>
+<h4 id="14-papers-about-optimization">1.4. Papers about Optimization</h4>
+<p>The registration problem has endured thorough investigation from optimization aspects [5], [6], [24], [33], [44], [47], [54], [90], [104]. Most of the existing registration methods are formulated by minimizing a geometric projection error through two processes: correspondence searching and transformation estimation. These two processes alternatively conduct until the geometric projection error is minimum. <strong>Upon the accurate correspondences known, the transformation estimation has a close-form solution [6]</strong>.<br>
+配准问题已经从优化方面得到了彻底的研究[5], [6], [24], [33], [44], [47], [54], [90], [104]。大多数现有的配准方法都是通过两个过程使几何投影误差最小化来制定的：对应搜索和变换估计。这两个过程交替进行，直到几何投影误差达到最小。<strong>一旦知道了准确的对应关系，变换估计就有了一个近似的解[6]</strong>。</p>
+<ul>
+<li>[5] Tighter lifting-free convex relaxations for quadratic matching problems. CVPR 2018.</li>
+<li>[6] <strong>A method for registration of 3-d shapes</strong>. 1992.</li>
+<li>[24] <strong>A flexible, scalable and provably tight relaxation for matching problems</strong>. 2017.</li>
+<li>[44] <strong>Global optimality for point set registration using semidefinite programming</strong>. 2020.</li>
+<li>[47] <strong>Tight relaxation of quadratic matching</strong>. 2015.</li>
+<li>[90] <strong>Generalized-icp</strong>. 2009.</li>
+</ul>
+<h4 id="15-papers-about-3d-deep-learning">1.5. Papers about 3D Deep Learning</h4>
+<p>Recently, there are many development in 3D deep learning techniques [114], [20], [17], [107], [96]. These techniques aim to <strong>extract distinctive features for 3D points and find accurate correspondences</strong>. Then, these correspondences are used to estimate a transformation with a separate transformation estimation stage. There is also some combination of conventional registration optimization strategies and deep learning techniques <strong>in an end-to-end framework</strong> [40], [16], [3], [99]. Their experiments show a significant performance gain. However, the connections between optimization-based and deep learning methods are still unclear.</p>
+<p>最近，3D 深度学习技术有了很多发展[114]，[20]，[17]，[107]，[96]。这些技术旨在<strong>提取三维点的独特特征并找到准确的对应关系</strong>。然后，这些对应关系被用来估计一个单独的变换估计阶段。还有一些传统的配准优化策略和深度学习技术<strong>在一个端到端的框架中</strong>进行结合[40], [16], [3], [99]。他们的实验显示了显著的性能提升。然而，基于优化的方法和深度学习方法之间的联系仍然不清楚。</p>
+<ul>
+<li>[20] 3d local features for direct pairwise registration. 2019.</li>
+<li>[17] Fully convolutional geometric features. 2019.</li>
+<li>[107] Learning to fuse local geometric features for 3d rigid data matching. 2020.</li>
+<li>[96] Learning local- ized representations of point clouds with graph-convolutional generative adversarial networks. 2020.</li>
+<li>[16] Deep global registration. 2020.</li>
+<li>[3] Pointnetlk: Robust &amp; efficient point cloud registration using pointnet. 2019.</li>
+<li>[99] Deep closest point: Learning representations for point cloud registration. 2019.</li>
+</ul>
+<h4 id="16-cross-source-with-sensors">1.6. Cross-Source with Sensors</h4>
+<p>Moreover, there is an emerging topic about <strong>cross-source point cloud registration with the development of 3D sensors</strong>, such as Kinect and Lidar. Each 3D sensor has its distinct advantages and limitations. For example, Kinect can generate <strong>dense</strong> point clouds, while the <strong>view range is usually limited to 5 meters</strong>. Lidar has a <strong>long view range</strong> while generating <strong>sparse</strong> point clouds. Data fusion of these different kinds of 3D sensors combines their advantages and is a cross-source point cloud registration problem [43], [41], [42]. The <strong>cross-source point cloud registration</strong> has wide applications such as <strong>building construction, augmented reality, and driverless vehicles</strong>. For example, <strong>the builders compare the 3D CAD model with real-time LiDAR scans to evaluate the contract’s current construction quality</strong>. The development in both same-source and cross-source point cloud registration also requires a comprehensive survey to summarize the recent advances.</p>
+<p>此外，随着 Kinect 和 Lidar 等<strong>三维传感器</strong>的发展，出现了一个关于<strong>跨源点云配准</strong>的新话题。每种三维传感器都有其独特的优势和限制。例如，Kinect 可以生成密集的点云，而<strong>视角范围通常限制在 5 米以内</strong>。激光雷达具有<strong>较长的视角范围</strong>，而产生<strong>稀疏</strong>的点云。这些不同种类的三维传感器的数据融合结合了它们的优势，是一个跨源的点云配准问题[43], [41], [42]。<strong>跨源点云配准</strong>有广泛的应用，如<strong>建筑施工、增强现实和无人驾驶汽车</strong>。例如，<strong>建筑商将三维 CAD 模型与实时 LiDAR 扫描进行比较，以评估合同的当前施工质量</strong>。同源和跨源点云配准的发展也需要一个全面的调查来总结最近的进展。</p>
+<h4 id="17-problems-of-existing-reviews">1.7. Problems of Existing Reviews</h4>
+<p>Although there are a few existing reviews on point cloud registration [15], [78], [87], they mainly focus on the view of <strong>conventional point cloud registration</strong>. [116] surveys deep learning techniques. However, <strong>the recent development of cross-source point cloud registration has not been surveyed</strong>, and the connections between conventional optimization and recent deep learning methods are unclear. <strong>To stimulate point cloud registration development in industrial and academic</strong>, we conduct a comprehensive survey by summarizing the recent fast development of point cloud registration (1992-2021), including <strong>both same-source and cross-source, conventional optimization and current deep learning methods</strong>. Moreover, we summarize the connections between optimization strategies and deep learning techniques.</p>
+<p>虽然现在已经有了一些关于点云配准的文献综述[15]，[78]，[87]，但它们主要集中在<strong>传统点云配准</strong>的视角上。[116]研究了深度学习技术。然而，最近的跨源点云配准的发展还没有被调查，传统的优化和最近的深度学习方法之间的联系也不清楚。为了<strong>促进点云配准在工业和学术界的发展</strong>，我们通过总结近期点云配准的快速发展（1992-2021），包括<strong>同源和跨源、常规优化和当前的深度学习方法</strong>，进行了全面的调查。此外，我们还总结了优化策略和深度学习技术之间的联系。</p>
+<ul>
+<li>[15] Registration of laser scanning point clouds: A review. 2018</li>
+<li>[78] A review of point cloud registration algorithms for mobile robotics. 2015</li>
+<li>[87] An application independent review of multimodal 3d registration methods. 2020</li>
+</ul>
+<p>Besides, while the recent deep learning-based registration techniques achieve high accuracy on same-source point cloud databases, <strong>cross-source point clouds’ performance is less reported</strong>. This survey will build a benchmark to evaluate the recent state-of-the-art registration algorithms on a cross-source dataset.</p>
+<p>此外，虽然最近基于深度学习的配准技术在同源点云数据库中取得了很高的精度，但<strong>跨源点云的性能却没有得到很好的介绍</strong>。这项调查将建立一个基准来评估最近在跨源数据集上最先进的配准算法。</p>
+<h4 id="18-our-contributions">1.8. Our Contributions</h4>
+<p><strong>Comprehensive review.</strong> We provide the most comprehensive overview for same-source point cloud registration, including conventional optimization and modern deep learning methods (1992-2021). We summarize the challenges, analyze the advantages and limitations of each category of registration methods. Moreover, <strong>the connections between conventional optimization and modern deep learning methods are summarized</strong> in this paper. These connections could provide insights for future research.</p>
+<p>我们为同源点云配准提供了最全面的概述，包括传统的优化和现代的深度学习方法（1992-2021）。我们总结了挑战，分析了每一类配准方法的优势和局限。此外，本文还总结了<strong>传统优化和现代深度学习方法之间的联系</strong>。这些联系可以为未来的研究提供启示。</p>
+<p><strong>Review of cross-source registration</strong>. For the first time, we provide a literature review about cross-source point cloud registration. This survey provides insights for <strong>data fusion research from different 3D sensors</strong> (e.g., Kinect and Lidar). Figure 1 shows a taxonomy of point cloud registration.</p>
+<p>我们首次提供了<strong>关于跨源点云配准的文献综述</strong>。这项调查为<strong>不同三维传感器（如 Kinect 和 Lidar）的数据融合</strong>研究提供了见解。图 1 显示了点云配准的分类法。</p>
+<p><strong>New comparison.</strong> We build a novel cross-source point cloud benchmark. Then, the existing state-of-the-art registration algorithms’ performance is <strong>evaluated and compared</strong> on the new cross-source point cloud benchmark. This survey can provide a guide for choosing and developing new registration approaches for cross-source point cloud applications.</p>
+<p>我们建立了一个新的跨源点云基准。然后，在新的跨源点云基准上对现有的最先进的配准算法的性能进行了<strong>评估和比较</strong>。这项调查可以为跨源点云应用选择和开发新的配准方法提供指导。</p>
+<p><strong>Applications and future directions.</strong> We summarize the potential applications of point cloud registration and ex- plore the research directions in real applications. Besides, we suggest possible future research directions and open questions in the point cloud registration field.</p>
+<p>我们总结了点云配准的潜在应用并探讨了实际应用中的研究方向。此外，我们还提出了未来可能的研究方向和点云配准领域的开放问题。</p>
+<h3 id="2-problem">2. Problem</h3>
+<p>X and Y represent two point clouds, and $x_i$ and $y_j$ are the coordinates of the ith and ith points in the point clouds respectively. Suppose X and Y have K pairs of correspondences.</p>
+<ul>
+<li>The goal of registration is to find the rigid transformation parameters g which best aligns the point cloud X to Y as shown below:
+$$\arg_{R \in SO(3)} \min_{t \in R^3} {||d(X, g(Y))||^2_2}$$</li>
+</ul>
+<p>The optimal transformation matrixcan be calculated if the true correspondences are known [6][7]; in contrast, correspondences can also be readily found if the optimal transformation matrix is given. However, <strong>the joint problem cannot be trivially solved</strong>. The following sections are pieces of literature review about solving the registration problem.
+如果知道真正的对应关系，就可以计算出最佳转换矩阵[6][7]；相反，如果给定了最佳转换矩阵，也可以很容易地找到对应关系。然而，<strong>联合问题不能被简单地解决</strong>。下面几节是关于解决配准问题的文献回顾。</p>
+<h3 id="3-challenges">3. Challenges</h3>
+<h4 id="31-same-source-challenges">3.1. Same-source challenges</h4>
+<p>As the point clouds are captured from the <strong>same type of sensors</strong> but <strong>different time or views</strong>, the challenges existed in the registration problem contain</p>
+<ul>
+<li><strong>Noise and outliers</strong>. The environment and sensor <strong>noise are variant at different acquisition time</strong>, and the captured point clouds will contain noise and outliers around the same 3D position.</li>
+<li><strong>Partial overlap</strong>. Due to different viewpoint and acquisition time, the captured point cloud is only partial overlapped.</li>
+</ul>
+<p>由于点云是由<strong>同一类型的传感器</strong>采集的，但<strong>时间或视角不同</strong>，因此在配准问题上存在着挑战。</p>
+<ul>
+<li><strong>噪声和离群值</strong>。环境和传感器的<strong>噪声在不同的采集时间是不同的</strong>，所采集的点云将包含噪声和同一 3D 位置周围的离群值。</li>
+<li><strong>局部重叠</strong>。由于视点和采集时间的不同，所采集的点云只是部分重叠。</li>
+</ul>
+<h4 id="32-cross-source-challenges">3.2. Cross-source challenges</h4>
+<p>In recent years, point cloud acquisition has endured fast development. For instance, Kinect has been widely used in many fields. <strong>Lidar becomes use-affordable and has integrated into the mobile phone ( e.g. iPhone 12)</strong>. Moreover, many years’ development of 3D reconstruction has made the point cloud generation from RGB cameras possible. Despite these improvements in point cloud acquisition, each sensor contains its distinct advantages and limitations. For example, Kinect can record detailed structure information but has limited view distance; Lidar can record objects far away but has limited res- olution. Many pieces of evidence [77], [41] show <strong>fused point clouds from different sensors could provide more information</strong> and generate better performance for applications. The point clouds fusion requires cross-source point cloud registration techniques.</p>
+<p>近年来，点云采集经历了快速发展。例如，Kinect 已经在许多领域得到了广泛的应用。<strong>激光雷达变得价格低廉，并已集成到手机中（如 iPhone 12）</strong>。此外，多年来 3D 重建的发展使得从 RGB 相机生成点云成为可能。尽管在点云采集方面有这些改进，每个传感器都有其独特的优势和限制。例如，Kinect 可以记录详细的结构信息，但视距有限；激光雷达可以记录远处的物体，但分辨率有限。许多证据[77], [41]表明，<strong>来自不同传感器的融合点云可以提供更多的信息</strong>，并产生更好的应用性能。点云融合需要跨源的点云配准技术。</p>
+<p>Since the point clouds are captured from the different types of sensors, and different types of sensors contain <strong>different imaging mechanisms</strong>, the cross-source challenges in the registration problem are much more complicated than the same-source challenges. These challenges can be mainly divided into</p>
+<ul>
+<li><strong>Noise and outliers.</strong> Because the acquisition environment, sensor noise and sensor image mechanisms are different at different acquisition time, the captured point clouds will contain noise and outliers around the same 3D position.</li>
+<li><strong>Partial overlap.</strong> Due to different viewpoint and acquisition time, the captured point cloud is only partial overlapped</li>
+<li><strong>Density difference.</strong> Due to different imaging mechanisms and different resolutions, the captured point clouds usually contain different density.</li>
+<li><strong>Scale variation.</strong> Since different imaging mechanisms may have different physical metrics, the captured point clouds may contain scale difference.</li>
+</ul>
+<p>由于点云是由不同类型的传感器采集的，而不同类型的传感器又包含<strong>不同的成像机制</strong>，因此配准问题中的跨源挑战比同源挑战要复杂得多。这些挑战主要可以划分为：</p>
+<ul>
+<li><strong>噪声和离群值</strong>。由于采集环境、传感器噪声和传感器图像机制在不同的采集时间是不同的，因此采集的点云在同一三维位置周围会含有噪声和离群值。</li>
+<li><strong>局部重叠</strong>。由于视点和采集时间的不同，所采集的点云只是部分重叠。</li>
+<li>**密度差异。**由于不同的成像机制和不同的分辨率，捕获的点云通常包含不同的密度。</li>
+<li>**尺度的变化。**由于不同的成像机制可能 有着不同的物理尺度，捕获的点云可能含有尺度差异。</li>
+</ul>
+<h3 id="4-categories">4. Categories</h3>
+<p>This section presents our <strong>taxonomy of point cloud registration</strong>, as shown in Figure 1. We categorize point cloud registration into two types: same-source and cross-source registration. The same-source registration can be further divided into optimization-based registration methods, feature-learning methods, end-to-end learning registration. Figure 2 summarizes the frameworks of these categories. In the following, we give a brief introduction to each category and analyze its advantages and limitations.</p>
+<p>本节介绍我们对点云配准的分类，如图 1 所示。我们<strong>将点云配准分为两种类型：同源配准和跨源配准</strong>。同源配准可进一步分为基于优化的配准方法、特征学习方法、端到端学习配准。图 2 总结了这些类别的框架。在下文中，我们将简要介绍每个类别，并分析其优点和局限性。</p>
+<h4 id="41-optimisation-based-registration-methods">4.1. Optimisation-based registration methods</h4>
+<p>Optimization-based registration is to use optimization strate- gies to estimate the transformation matrix. Most optimization-based registration methods [104], [54], [78], [15] contain two stages: <strong>correspondence searching and transformation estimation</strong>. Figure (2a) summarizes the main process of this category. Correspondence searching is to <strong>find the matched point</strong> for every point in another point clouds. Transformation estimation is to <strong>estimate the transformation matrix by using the correspondences</strong>. These two stages will <strong>conduct iteratively to find the optimal transformation</strong>. During the iterative process, the correspondences maybe not accurate at the beginning. The correspondences will become more and more accurate as the iterative process continues. Then, the estimated transformation matrix will become accurate by using precise correspondences. The correspondences can be found by <strong>comparing point-point coordinate difference or point-point feature difference</strong>.</p>
+<p>基于优化的配准是使用优化策略来估计变换矩阵。大多数基于优化的配准方法[104], [54], [78], [15]包含两个阶段：<strong>对应搜索和变换估计</strong>。图（2a）总结了这一类的主要过程。对应搜索是为另一个点云中的每个点<strong>找到匹配的点</strong>。变换估计是通过<strong>使用对应关系来估计变换矩阵</strong>。这两个阶段<strong>将迭代进行以找到最佳的变换</strong>。在这个迭代过程中，对应关系在开始时可能并不准确。随着迭代过程的继续，对应关系将变得越来越准确。然后，通过使用精确的对应关系，估计的变换矩阵将变得准确。对应关系可以通过<strong>比较点的坐标差或点的特征差</strong>来找到。</p>
+<ul>
+<li>[104] A polynomial-time solution for robust registration with extreme outlier rates. 2019.</li>
+<li>[54] <strong>Sdrsac: Semidefinite-based randomized approach for robust point cloud registration without correspondences</strong>. 2019.</li>
+</ul>
+<p>The <strong>advantages</strong> of this category are two folds: 1) <strong>rigorous mathematical theories</strong> could guarantee their convergence. 2) They require <strong>no training data and generalize well</strong> to unknown scenes. The limitations of this category are that <strong>many sophisticated strategies are required to overcome the variations of noise, outliers, density variations and partial overlap</strong>, which will increase the computation cost.</p>
+<p>这一方法的<strong>优点</strong>有两个方面。1）<strong>严格的数学理论</strong>可以保证其收敛性。2）它们<strong>不需要训练数据，对未知场景有很好的泛化性</strong>。这类方法的局限性在于需要<strong>许多复杂的策略来克服噪声、异常值、密度变化和部分重叠的变化</strong>，这将增加计算成本。</p>
+<h4 id="42-feature-learning-methods-for-registration">4.2. Feature learning methods for registration</h4>
+<p>Unlike the classical optimization-based registration methods, <strong>feature learning methods [114], [19], [35] use the deep neural network to learn a robust feature correspondence search</strong>. Then, the transformation matrix is finalized by one step estimation (e.g. RANSAC) <strong>without iteration</strong>. Figure (2b) summarizes the primary processes of this category. For example, [114] <strong>uses AlexNet to learn a 3D feature from an RGB-D dataset</strong>. [19] <strong>proposes a local PPF feature by using the distribution of neighbour points and then input into the network</strong> for deep feature learning. [35] proposes a <strong>rotation-invariant hand-craft feature</strong> and input it into a deep neural network for feature learning. All these methods are <strong>using deep learning as a feature extraction tool</strong>. By developing sophisticated network architectures or loss functions, they aim to <strong>estimate robust correspondences by the learned distinctive feature</strong>.</p>
+<p>与经典的基于优化的配准方法不同，<strong>特征学习方法[114], [19], [35]使用深度神经网络来学习鲁棒的特征对应搜索</strong>。然后，转换矩阵通过一步估计（如 RANSAC）最终确定，<strong>无需迭代</strong>。图（2b）总结了这一类别的主要过程。例如，[114]<strong>使用 AlexNet 从 RGB-D 数据集中学习 3D 特征</strong>。[19]通过<strong>使用邻接点的分布提出一个局部 PPF 特征，然后输入网络</strong>进行深度特征学习。[35]提出了一个<strong>旋转不变的手工特征</strong>，并将其输入深度神经网络进行特征学习。所有这些方法都是<strong>以深度学习作为特征提取工具</strong>。通过开发复杂的网络结构或损失函数，他们的目的是<strong>通过学习到的独特的特征来估计稳健的对应关系</strong>。</p>
+<ul>
+<li>[114] 3dmatch: Learning local geometric descriptors from rgb-d reconstructions. 2017</li>
+<li>[19] Ppfnet: Global context aware local features for robust 3d point matching. 2018</li>
+</ul>
+<p>The advantages of this category are two folds: 1) deep learning-based point feature could <strong>provide robust and accurate correspondence searching</strong>. 2) The <strong>accurate correspondences could lead to accurate registration results</strong> by using a simple RANSAC method. The limitations of this kind of methods are three aspects: 1) they need <strong>large training data</strong>. 2) The registration performance drops dramatically in unknown scenes <strong>if the scenes have a large distribution difference</strong> to the training data. 3) They use a <strong>separated training process to learn a stand-alone feature extraction network</strong>. The learned feature network is to determine point-point matching other than registration.
+这一类的优势有两个方面。1）基于深度学习的点特征可以<strong>提供强大而准确的对应搜索</strong>。2）通过使用简单的 RANSAC 方法，<strong>准确的对应关系可以导致准确的配准结果</strong>。这类方法的局限性在于三个方面。1）他们需要大量的训练数据。2）如果<strong>场景与训练数据有很大的分布差异</strong>，那么在未知场景中的配准性能就会急剧下降。3）他们<strong>使用一个分离的训练过程来学习一个独立的特征提取网络</strong>。学习的特征网络是为了确定除配准之外的点对点匹配。</p>
+<h4 id="43-end-to-end-learning-based-registration-methods">4.3. End-to-end learning-based registration methods</h4>
+<p>The end-to-end learning-based methods solve the registration problem with an <strong>end-to-end neural network</strong>. The input of this category is two point clouds, and <strong>the output is the transformation matrix to align these two point clouds</strong>. The <strong>transformation estimation is embedded into the neural network optimization</strong>, which is different from the above feature-learning methods, whose focus is point feature learning. The neural network optimization is separate from the transformation estimation. Figure (2c) summarizes the primary process of this category.</p>
+<p>基于端到端学习的方法用<strong>端到端神经网络</strong>解决配准问题。这类方法的输入是两个点云，<strong>输出是用于对齐这两个点云的变换矩阵</strong>。<strong>变换估计被嵌入到神经网络的优化中</strong>，这与上述特征学习方法不同，后者的重点是点特征学习。神经网络优化与变换估计是分开的。图（2c）总结了该类方法的主要过程。</p>
+<p>The basic idea of end-to-end learning methods is to <strong>transform the registration problem into a regression problem</strong>. For example, [109] tries to learn a feature from the point clouds to be aligned and then <strong>regresses the transformation parameters</strong> from the feature. [97] proposes a registration network to <strong>formulate the correlation</strong> between source and target point sets and predict the transformation using the defined correlation. [27] proposes an <strong>auto-encoder registration network for localization</strong>, which combines super points extraction and unsupervised feature learning. [64] proposes a <strong>keypoint detection method</strong> and estimates the relative pose simultaneously. FMR [40] proposes a <strong>feature-metric registration method</strong>, which converts the registration problem from the previous <strong>minimizing point-point projection error to minimizing feature difference</strong>. This method is a pioneer work of feature-metric registration by combining deep learning and the conventional Lucas-Kanade optimization method.</p>
+<p>端到端学习方法的基本思想是<strong>将配准问题转化为回归问题</strong>。例如，[109]试图从要对齐的点云中学习一个特征，然后从该特征中<strong>回归变换参数</strong>。[97]提出了一个配准网络来<strong>制定源点和目标点集之间的相关性</strong>，并使用被定义的相关性来预测变换。[27]提出了一个<strong>用于定位的自动编码器配准网络</strong>，该网络结合了超级点提取和无监督特征学习。[64]提出了一种<strong>关键点检测方法</strong>，并同时估计相对姿态。FMR[40]提出了一种<strong>特征-度量配准方法</strong>，它将配准问题<strong>从以前的最小化点-点投影误差转换为最小化特征差异</strong>。该方法结合了深度学习和传统的 Lucas-Kanade 优化方法，是特征-度量配准的先驱之作。</p>
+<ul>
+<li>[109] Extreme relative pose estimation for rgb-d scans via scene completion. 2019</li>
+<li>[97] Non-rigid point set registration networks. 2019</li>
+<li>[27] 3d point cloud registration for localization using a deep neural network auto-encoder. 2017</li>
+<li>[40] A fast semi-supervised approach for robust point cloud registration without correspondences. 2020.</li>
+</ul>
+<p>The advantages of this category are two folds: 1) the neural network specifically designs and optimizes for registration task. 2) It could <strong>leverage both the merits of conventional mathematical theories and deep neural networks</strong>. The limitations of current methods are two aspects: 1) the regression methods regard transformation parameter estimation as a <strong>black box</strong>, and the distance metric is measured in the <strong>coordinate-based Euclidean space</strong>, which is <strong>sensitive to noise and density difference</strong>. 2) the feature-metric registration method does consider the local structure information, which is very important for registration.</p>
+<p>这一类的优点有两个方面。1）神经网络专门为配准任务进行设计和优化。2）它可以<strong>同时利用传统数学理论和深度神经网络的优点</strong>。目前方法的局限性在于两个方面。1）回归方法将变换参数估计视为一个<strong>黑箱</strong>，距离度量是在<strong>基于坐标的欧氏空间中</strong>测量的，这<strong>对噪声和密度差异很敏感</strong>。2）特征度量配准方法考虑了局部结构信息，这对配准非常重要。</p>
+<h4 id="44-cross-source-registration">4.4. Cross-source registration</h4>
+<p>Cross-source point cloud registration is to align point clouds from different types of sensors, such as Kinect and Lidar. According to [77], [41], cross-source point cloud registration is much more challenging because of the combination of considerable noise and outliers, density difference, partial overlap and scale difference. Several algorithms [42], [41], [43], [39] use <strong>sophisticated optimization strategies</strong> to solve the cross-source point cloud registration problem by overcoming the cross-source challenges. For example, CSGM [41] <strong>transforms the registration problem into a graph matching problem</strong> and leverage the graph matching theory to overcome these challenges. Recently, FMR [40] shows performance on <strong>aligning cross-source point cloud using deep learning</strong>. These methods are trying hard to use optimization strategies or deep neural networks to <strong>estimate the transformation matrix</strong> by overcoming the cross-source challenges.</p>
+<p>跨源点云配准是指对来自不同类型传感器的点云进行对齐，如 Kinect 和 Lidar。根据[77], [41], 跨源点云配准是更大的挑战，因为有相当多的噪声和离群值、密度差异、部分重叠和比例差异的组合。一些算法[42], [41], [43], [39]使用<strong>复杂的优化策略</strong>来解决跨源点云配准问题，克服了跨源的挑战。例如，CSGM[41]<strong>将配准问题转化为图形匹配问题</strong>并利用图形匹配理论来克服这些挑战。最近，FMR[40]显示了<strong>使用深度学习对准跨源点云</strong>的性能。这些方法正在努力使用优化策略或深度神经网络，通过克服跨源挑战来<strong>估计变换矩阵</strong>。</p>
+<ul>
+<li>[43] A coarse-to-fine algorithm for matching and registration in 3d cross-source point clouds. 2017</li>
+<li>[41] A systematic approach for cross-source point cloud registration by preserving macro and micro structures. 2017</li>
+<li>[42] A coarse-to-fine algorithm for registration in 3d street-view cross-source point clouds. 2016</li>
+<li>[39] Fast registration for cross-source point clouds by using weak regional affinity and pixel-wise refinement. 2019</li>
+</ul>
+<p>The benefit of cross-source point cloud registration is to combine several sensors’ advantages and provide comprehensive 3D vision information for many computer vision tasks, such as <strong>augmented reality and building construction</strong>. However, the limitation is that the existing registration methods show <strong>low accuracy and high time complexity</strong>, which remain at infancy. With the recent fast development of 3D sensor technologies, <strong>the lack of cross-source point cloud registration research brings up a gap between sensor technology and cross-source applications</strong>.</p>
+<p>跨源点云配准的好处是结合多个传感器的优势，为许多计算机视觉任务提供全面的三维视觉信息，如<strong>增强现实和建筑施工</strong>。然而，其局限性在于，现有的配准方法显示出<strong>较低的精度和较高的时间复杂性</strong>，仍处于起步阶段。随着近年来 3D 传感器技术的快速发展，<strong>跨源点云配准研究的缺失带来了传感器技术和跨源应用之间的差距</strong>
+。</p>
+<h3 id="5-optimisation-based-registration-methods">5. Optimisation-based registration methods</h3>
+<p>The critical ideas of optimization-based methods are to develop a sophisticated optimization strategy to achieve the optimal solution of the non-linear problem in Section 2. This non-linear problem becomes challenging because of the impact of same-source challenges.</p>
+<p>基于优化的方法的关键思想是制定一个复杂的优化策略，以实现 Section 2 中的非线性问题的最优解。由于同源点云所遇到的挑战的影响，这个非线性问题变得具有挑战性。</p>
+<figure><img src="/images/papers/07/03.png" width="400"/>
+</figure>
+
+<p>Based on the optimization strategy, this section presents an overview of four types of optimization methods: <strong>ICP-based variations, graph-based, GMM-based and semi-definite registration methods</strong>. Several milestone methods are illustrated in Fig. 3.</p>
+<p>基于优化策略，本节介绍了四种类型的优化方法的概况。基于 ICP 的变体、基于图形的、基于 GMM 的和半正定配准方法。图三对几个里程碑式的方法进行了说明。</p>
+<h4 id="51-icp-based-registration">5.1. ICP-based registration</h4>
+<p>ICP-based registration methods contain <strong>two main steps: correspondence estimation and transformation estimation</strong>. The critical research ideas are <strong>two parts: robust correspondence estimation and accurate transformation estimation</strong>.</p>
+<p>基于 ICP 的配准方法包含<strong>两个主要步骤：对应估计和变换估计</strong>。关键的研究思路是<strong>两部分：稳健的对应估计和精确的变换估计</strong>。</p>
+<p><strong>Correspondences are two points that localize in the same position of an object or scene</strong>, where each point comes from a different point cloud. Correspondence estimation becomes challenging with the impact of the above discussed same- source challenges. There are <strong>three types of distance metric: point-point, point-plane, and plane-plane metric to get correspondences</strong>. We will give details about these distance metrics and review the related literature.</p>
+<p><strong>对应点是指在物体或场景的相同位置定位的两个点</strong>，其中每个点来自不同的点云。在上述同源点云获取问题的影响下，对应关系的估计变得很有挑战性。有<strong>三种类型的距离度量：点-点、点-面和面-面度量来获得对应关系</strong>。我们将详细介绍这些距离度量方法并回顾相关文献。</p>
+<h5 id="511-point-point">5.1.1. Point-Point</h5>
+<p><strong>The point-point metric uses point-point coordinate distance or feature distance to find the closest point pair as a correspondence</strong>. Many variations following this concept are proposed to get better correspondences. For example, ICP [6] uses the <strong>original point-point distance metric</strong>. EfficientVarICP [85] summarizes the ICP process and proposes several strategies to <strong>improves the algorithm speed</strong> of the ICP process. IMLP [7] improves the ICP by <strong>incorporating the measurement noise</strong> in the transformation estimation.</p>
+<p><strong>点-点度量使用点-点坐标距离或特征距离来寻找最接近的点对作为对应关系</strong>。为了获得更好的对应关系，人们提出了许多遵循这一概念的变体。例如，ICP[6]使用<strong>原始的点-点距离度量</strong>。EfficientVarICP[85]总结了 ICP 过程并提出了一些策略来<strong>提高 ICP 过程的算法速度</strong>。IMLP[7]通过在变换估计中<strong>加入测量噪声</strong>来改进 ICP。</p>
+<ul>
+<li>[85] Efficient variants of the icp algorithm. 2001</li>
+</ul>
+<h5 id="512-point-to-plane">5.1.2. Point-to-Plane</h5>
+<p>Apart from the point-point distance metric, <strong>point-to-plane metric [14], [81], [49] is to estimate the transformation parameters by minimizing the orthogonal distance between the points in one point cloud and the corresponding local planes in the other</strong>. Specifically, the point-to-plane algorithms run a similar way to point-point methods but <strong>minimize error along the surface normal</strong>.</p>
+<p>除了点-点距离度量，<strong>点-面度量[14], [81], [49]是通过最小化一个点云中的点与另一个点云中的相应局部平面之间的正交距离来估计变换参数</strong>。具体来说，点到平面的算法与点到点的方法类似，但前者是<strong>使得沿表面法线的误差最小</strong>。</p>
+<ul>
+<li>[14] Object modelling by registration of multiple range images. 1992</li>
+<li>[81] A theory of minimal 3d point to 3d plane registration and its generalization. 2013</li>
+<li>[49] Closed-form solutions for estimating a rigid motion from plane correspondences extracted from point clouds. 2016</li>
+</ul>
+<h5 id="513-plane-to-plane-generalized-icp">5.1.3. Plane-to-Plane (Generalized ICP)</h5>
+<p>Segal et al. [90] propose a generalized ICP to <strong>allows for the inclusion of arbitrary covariance matrices in both point- to-point and point-to-plane variants of ICP</strong>. The generalized ICP can also be applied to plane-to-plane ICP. The basic idea is to <strong>consider the point cloud is a sampled 2D manifold</strong> and <strong>use the local surface normal to represent the points</strong>.</p>
+<p>Segal 等人[90]提出了一个广义的 ICP，<strong>允许在点对点和点对平面的 ICP 变体中包含任意的协方差矩阵</strong>。 广义的 ICP 也可以应用于平面到平面的 ICP。其基本思想是将点云视为一个<strong>采样的二维流形</strong>，并<strong>使用局部表面法线来表示这些点</strong>。</p>
+<p>In addition, plane-to-plane distance metric [10], [48], [33] is adopted to estimate the correspondences.<br>
+此外，还采用了平面到平面的距离度量[10], [48], [33]来估计对应关系。</p>
+<ul>
+<li>[10] Coarse orientation of terrestrial laser scans in urban environments. 2008</li>
+<li>[48] Automated localization of a laser scanner in indoor environments using planar objects. 2010</li>
+<li>[33] Efficient and accurate registration of point clouds with plane to plane correspondences. 2017.</li>
+</ul>
+<h5 id="514-four-methods-to-calculate-transformation-matrix">5.1.4. Four methods to calculate transformation matrix</h5>
+<p>Regarding the transformation matrix, there are four kinds of methods: <strong>SVD-based [6], Lucas-Kanade (LK) algorithm [4] and Procrustes analysis[22]</strong>. Given correspondences, the SVD-based estimation methods [6], [90], [9], [106], [7] <strong>perform singular value decomposition (SVD) to the difference of correspondences</strong>. Low et al.[63] propose <strong>a linear approximation of the rotation matrix</strong> and estimate the transformation using SVD. It obtains much faster efficiency and more accuracy. LK algorithm [4] estimates transformation using <strong>Jacobian of feature difference and approximation methods</strong> (e.g. Gauss-Newton). LM-ICP [32] leverages the Levenberg-Marquardt algorithm to estimate the transformation by <strong>adding a damping factor</strong> to the original LK algorithm. This method replaces the Euclidean distance with the Chamfer distance and uses a Levenberg-Marquardt algorithm to compute Tk. The LM-ICP method is superior to the standard ICP method, especially in treating <strong>high overlapping ratios</strong>. ICP [6] proposes <strong>a closed-form solution</strong> by using singular value decomposition (SVD) to calculate the transformation matrix. Eggert et al. [25] summarise transformation estimation methods in four categories and compare their performance.</p>
+<p>有四种方法计算变换矩阵: <strong>基于 SVD 的方法[6]，Lucas-Kanade（LK）算法[4]和 Procrustes 分析[22]</strong>。给定对应关系，基于 SVD 的估计方法[6]，[90]，[9]，[106]，[7]<strong>对对应关系的差异进行奇异值分解</strong>（SVD）。Low 等人[63]提出了一个<strong>旋转矩阵的线性近似</strong>，并使用 SVD 估计变换。它获得了更快的效率和更高的精度。LK 算法[4]使用<strong>特征差的雅各布和近似方法</strong>（如 Gauss-Newton）估计变换。LM-ICP[32]利用 Levenberg-Marquardt 算法，通过在原始 LK 算法中<strong>加入阻尼因子</strong>来估计变换。该方法用 Chamfer 距离代替了欧氏距离，并使用 Levenberg-Marquardt 算法来计算 Tk。LM-ICP 方法优于标准 ICP 方法，特别是在处理<strong>高重叠率</strong>方面。ICP[6]通过使用奇异值分解（SVD）来计算变换矩阵，提出了<strong>一个封闭式的解决方案</strong>。Eggert 等人[25]将变换估计方法总结为四类，并比较了它们的性能。</p>
+<ul>
+<li>[90] Generalized-icp. 2009</li>
+<li>[9] Sparse iterative closest point. 2013</li>
+<li>[106] A globally optimal solution to 3d icp point-set registration. 2015</li>
+<li>[7] Iterative most-likely point registration (imlp): a robust algorithm for computing optimal shape alignment. 2015</li>
+<li>[4] Lucas-Kanade 20 years on: A unifying framework. 2004</li>
+<li>[32] Robust registration of 2d and 3d point sets. 2003</li>
+<li>[25] Estimating 3- d rigid body transformations: a comparison of four major algorithms. 1997</li>
+</ul>
+<p>A Procrustes registration (rotation, scale, and translation, as defined in [22]) <strong>converts the transformation estimation as a linear least-squares problem</strong>. Since Procrustes registration requires given correspondences, the performance is highly relied on the <strong>accuracy of correspondence searching</strong>. ProcrustesDTW [26] propose <strong>Dynamic Time Warping</strong> (DTW) [72] to establish an automatic correspondence between the landmark-based shapes to be registered, which <strong>avoids the need for initial manual correspondence and same landmark-set lengths</strong>. This analysis is only conducted experiments on 2D, and <strong>further research on 3D is required</strong>.</p>
+<p>Procrustes 配准（旋转、缩放和平移，定义见[22]）<strong>将变换估计转换为一个线性最小二乘问题</strong>。由于 Procrustes 配准需要给定的对应关系，其性能高度依赖于<strong>对应关系搜索的准确性</strong>。ProcrustesDTW[26]提出<strong>动态时间扭曲</strong>（DTW）[72]，在要配准的基于地标的图形之间建立自动对应关系，这就<strong>避免了最初的手动对应和相同的地标集长度</strong>。该分析仅在二维上进行了实验，<strong>需要对三维进行进一步研究</strong>。</p>
+<ul>
+<li>[22] Statistical shape analysis: with applications in R. 2016</li>
+<li>[26] Procrustes registration of two-dimensional statistical shape models without correspondences. 2019</li>
+<li>[72] Information retrieval for music and motion. 2007</li>
+</ul>
+<h4 id="52-graph-based-registration">5.2. Graph-based registration</h4>
+<p>Graph-based registration is another popular methods. The mains idea of graph-based registration is to <strong>tackle point cloud registration using a non-parametric model [122]</strong>. Since a graph consists of edges and vertexes, GM methods aim to <strong>find the point-point correspondences between two graphs by considering both vertexes and edges</strong>. This correspondence searching problem in GM methods can be considered as an optimization problem. The research direction is to develop a <strong>better graph matching optimization strategy</strong> to find <strong>more accurate correspondences</strong>. As shown in Figure 2a, accurate correspondences could contribute to a better transformation estimation.</p>
+<p>基于图的配准是另一种流行的方法。其<strong>主要思想是使用非参数模型来解决点云配准问题[122]</strong>。由于图由边和顶点组成，GM 方法旨在<strong>通过考虑顶点和边来寻找两个图之间的点的对应关系</strong>。GM 方法中的这种对应搜索问题可以被认为是一个优化问题。研究方向是开发一种<strong>更好的图匹配优化策略</strong>，以找到<strong>更准确的对应关系</strong>。如图 2a 所示，准确的对应关系可以有助于更好地进行变换估计。</p>
+<ul>
+<li>A review of point set registration: From pairwise registration to groupwise registration. 2019</li>
+</ul>
+<h5 id="521-two-categories">5.2.1. Two Categories</h5>
+<p>To solve the optimization problem, based on objective functions’ constraints, we can divide the GM methods into <strong>two categories: second-order methods and high-order methods</strong>. Second-order GM methods <strong>measure both the vertices-to-vertices and edges-to-edges similarity</strong> [61]. High-order GM methods involve <strong>more than two points</strong>, such as similarity of triangle pairs [23].</p>
+<p>为了解决优化问题，基于目标函数的约束，我们可以将 GM 方法分为<strong>两类：二阶方法和高阶方法</strong>。二阶 GM 方法<strong>同时测量顶点到顶点和边到边的相似度[61]</strong>。高阶 GM 方法涉及<strong>两个以上的点</strong>，如三角形对的相似度[23]。</p>
+<ul>
+<li>[61] The graph matching problem. 2013</li>
+<li>[23] A tensor-based algorithm for high-order graph matching. 2011</li>
+</ul>
+<h5 id="522-optimization-methods">5.2.2. Optimization Methods</h5>
+<p><strong>The optimization of graph matching belongs to the quadratic assignment problem (QAP)</strong> [62], which is an NP-hard problem [34]. The key to solving this QAP problem is to design approximation strategies. Based on their approximation method, we <strong>divide the second-order GM methods into three categories: doubly stochastic relaxation, spectral relaxation and semi-definite programming relaxation</strong>. Using a doubly stochastic matrix, the <strong>optimizing GM is transformed as a non-convex QAP problem</strong>. Therefore, many methods only find a <strong>local optimum</strong>. For example, [2] uses a linear program to approximate the quadratic cost. CSGM [41] uses a linear program to solve the graph matching problem and apply it to solve the cross- source point cloud registration task. <strong>High-order graph [23] uses an integer projection algorithm to optimize the objective function in the integer domain</strong>. FGM [117] factorizes the large <strong>pairwise affinity matrix</strong> into some smaller matrices. Then, the graph matching problem is solved with a simple <strong>path-following optimization algorithm</strong>. Spectral graph [57] uses a <strong>spectral relaxation method</strong> to approximate the QAP problem. The semi-definite programming (SDP) relaxation is to <strong>relax the non-convex constraint using a convex semi-definite</strong>. Then, a randomized algorithm [94] or a winner-take-all method [89] is applied to find the correspondences between graphs.</p>
+<p><strong>图匹配的优化属于二次分配问题（QAP）</strong>[62]，它是一个 NP-hard 问题[34]。解决这个 QAP 问题的关键是设计近似策略。根据其近似方法，我们<strong>将二阶 GM 方法分为三类：双随机松弛、频谱松弛和半正定规划松弛</strong>。使用双随机矩阵，<strong>优化 GM 被转化为一个非凸的 QAP 问题</strong>。因此，许多方法只能找到一个<strong>局部最优</strong>。例如，[2]使用一个线性规划来近似二次成本。CSGM[41]使用线性规划来解决图形匹配问题，并将其应用于解决跨源点云配准任务。<strong>高阶图[23]使用整数投影算法来优化整数域中的目标函数</strong>。FGM[117]将大的<strong>成对亲和矩阵</strong>分解成一些小的矩阵。然后，用一个简单的<strong>路径跟随优化算法</strong>来解决图形匹配问题。频谱图[57]使用<strong>频谱松弛的方法</strong>来近似 QAP 问题。半定式规划（SDP）松弛是用<strong>凸半定式来松弛非凸的约束条件</strong>。然后，应用随机算法[94]或赢家通吃的方法[89]来寻找图之间的对应关系。</p>
+<ul>
+<li>[62] A survey for the quadratic assignment problem. 2007</li>
+<li>[2] Alinearprogrammingapproach for the weighted graph matching problem. 1993</li>
+<li>[41] A systematic approach for cross-source point cloud registration by preserving macro and micro structures. 2017</li>
+<li>[117] Factorized graph matching. 2015</li>
+<li>[57] A spectral technique for correspondence problems using pairwise constraints. 2005</li>
+<li>[94] Solving markov random fields using semi definite programming. 2003</li>
+<li>[89] Probabilistic subgraph matching based on convex relaxation. 2005</li>
+</ul>
+<h5 id="523-high-order-graph-maching">5.2.3. High-order graph maching</h5>
+<p>High-order graph matching methods is to <strong>compare the hyper-edges or hyper-nodes to find the correspondences</strong>. The advantage of high-order GM methods is that they are <strong>invariant to affine variations (e.g. scale difference)</strong>. For example, Zass et al. [113] design a <strong>probabilistic approach to solve the high-order graph matching</strong> problem. Duchenne et al. [23] designs a <strong>triangle similarity</strong> and convert the graph matching problem into a <strong>tensor optimization problem</strong>. Recently, Zhu et al. [121] propose an elasticnet to control the <strong>trade-off between the sparsity and the accuracy</strong> of the matching results by <strong>incorporating the Elastic-Net constraint into the tensor-based graph matching model</strong>. These methods are all affine-invariant.</p>
+<p>高阶图匹配方法是通过<strong>比较超边或超结点来寻找对应关系</strong>。高阶 GM 方法的优点是它们<strong>对仿生变化（如比例差）是不变的</strong>。例如，Zass 等人[113]设计了一种<strong>概率方法来解决高阶图匹配</strong>问题。Duchenne 等人[23]设计了一个<strong>三角形相似性</strong>，并将图形匹配问题转换成<strong>张量优化问题</strong>。最近，Zhu 等人[121]提出了一个 Elastic-net，通过<strong>将 Elastic-Net 约束纳入基于张量的图形匹配模型</strong>，来控制匹配结果的<strong>稀疏性和准确性之间的权衡</strong>。这些方法都是仿生不变的。</p>
+<ul>
+<li>[113] Probabilistic graph and hypergraph matching. 2008</li>
+<li>[121] Elastic net constraint-based tensor model for high-order graph matching. 2019</li>
+</ul>
+<h4 id="53-gmm-based-registration">5.3. GMM-based registration</h4>
+<p>Gaussian mixture models (GMM) is also a popular kind of methods in solving point cloud registration. The critical idea of GMM-based methods is to <strong>formulate the registration problem of Equation (1) into a likelihood maximization of input data</strong>. After the optimization, <strong>both the transformation matrix and parameters of Gaussian mixture models are calculated</strong>. The advantages of the GMM-based method are <strong>robust to noise and outliers</strong> [8], [82] since these methods <strong>align the distributions</strong>. The research direction is <strong>to develop an optimization strategy to optimize the transformation matrix by maximizing the likelihood</strong>.</p>
+<p>高斯混合模型（GMM）也是解决点云配准的一种流行方法。基于 GMM 的方法的关键思想是<strong>将方程（1）的配准问题表述为输入数据的似然最大化</strong>。经过优化，<strong>变换矩阵和高斯混合模型的参数都被计算出来</strong>。基于 GMM 的方法的优点是<strong>对噪声和异常值的鲁棒性</strong>[8], [82]，因为这些方法<strong>使分布一致</strong>。未来的研究方向是开发一种优化策略，<strong>通过最大化似然来优化转换矩阵</strong>。</p>
+<ul>
+<li>[8] Pattern recognition and machine learning. 2006</li>
+<li>[82] Group-wise registration of point sets for statistical shape models. 2012</li>
+</ul>
+<p>CPD [73] introduces a motion drift idea into the GMM framework by adding constraints to transformation estimation. CH-GMM [30] <strong>combines the convex hull (a tighter set of original point set)</strong> and GMM to reduce the computation complexity. JRMPC [29] <strong>recasts the registration as a clustering problem</strong>, where the transformation is optimizing by solving the GMM. Recently, DeepGMR [112] <strong>uses deep learning to learn the correspondences between GMM components and points</strong>, and the transformation and GMM parameters can be estimated by a forward step.</p>
+<p>CPD[73]通过在变换估计中加入约束条件，将运动漂移的思想引入 GMM 框架。CH-GMM[30]结合了**凸壳（原始点集的紧缩集）**和 GMM 来降低计算的复杂性。JRMPC[29]<strong>将配准重塑为一个聚类问题</strong>，通过解决 GMM 来优化变换。最近，DeepGMR[112]<strong>使用深度学习来学习 GMM 组件和点之间的对应关系</strong>，并且可以通过前向步骤来估计变换和 GMM 参数。</p>
+<ul>
+<li>[73] Point set registration: Coherent point drift. 2010</li>
+<li>[30] Convex hull indexed gaussian mixture model (ch- gmm) for 3d point set registration. 2016</li>
+<li>[29] A generative model for the joint registration of multiple point sets. 2014</li>
+<li>[112] Deepgmr: Learning latent gaussian mixture models for registration. 2020</li>
+</ul>
+<h4 id="54">5.4.</h4>
+<h3 id="6-feature-learning-methods-for-registration">6. Feature learning methods for registration</h3>
+<figure><img src="/images/papers/07/04.png" width="400"/>
+</figure>
+
+<p>The main idea of feature-learning methods is to <strong>use the deep feature to estimate accurate correspondences</strong>. Then, <strong>the transformation can be estimated using one-step optimization (e.g. SVD or RANSAC) without iteration</strong> between correspondence estimation and transformation estimation, as shown in Figure 2b. The research direction is to <strong>design advanced neural networks to extract distinctive features</strong>. In this section, several feature-learning registration methods are reviewed. Regarding the data format of deep learning, <strong>these registration methods are divided into learning on volumetric data and point cloud</strong>. Several milestone methods are illustrated in Fig. 4.</p>
+<p>特征学习方法的主要思想是<strong>利用深度特征来估计准确的对应关系</strong>。然后，可以<strong>使用一步优化（如 SVD 或 RANSAC）来估计变换</strong>，而不需要在对应关系估计和变换估计之间进行迭代，如图 2b 所示。研究方向是<strong>设计先进的神经网络来提取独特的特征</strong>。在这一节中，我们回顾了几种特征学习的配准方法。关于深度学习的数据格式，这些<strong>配准方法分为对体积数据和点云的学习</strong>。图 4 说明了几种里程碑式的方法。</p>
+<h4 id="61-learning-on-volumetric-data">6.1. Learning on Volumetric Data</h4>
+<h5 id="611-3dmatch-and-2-limitations">6.1.1. 3DMatch and 2 limitations</h5>
+<figure><img src="/images/papers/07/05.png" width="400"/>
+</figure>
+
+<p><strong>3DMatch [114] trains a parallel network from RGBD images</strong>. The input of 3DMatch is <strong>3D volumetric data</strong>, and the output is a <strong>512-dimensional feature for a local patch</strong>. 3DMatch can extract a local feature for 3D point clouds. Figure 5 shows its overall framework, which is an example case of the neural network in Figure 2b. <strong>For each interest point of a 3D point cloud, the 3DMatch is to extract a feature to incorporate the local structure around the interest point</strong>. In 3DMatch, the <strong>3D point cloud needs to convert into 3D volumetric data</strong> and then <strong>extract the local representation by feeding the 3D volumetric data into the neural network</strong>. This method has two obvious drawbacks: <strong>volumetric data requires large Graphic process unit</strong> (GPU) memory and <strong>sensitive to rotation variations</strong>.</p>
+<p><strong>3DMatch[114]从 RGBD 图像中训练一个并行网络</strong>。3DMatch 的输入是<strong>三维体积数据</strong>，输出是一个<strong>局部块的 512 维特征</strong>。3DMatch 可以为三维点云提取局部特征。图 5 显示了它的整体框架，这是图 2b 中神经网络的一个实例。<strong>对于三维点云的每个兴趣点，3DMatch 要提取一个特征，以纳入该兴趣点周围的局部结构</strong>。在 3DMatch 中，<strong>3D 点云需要转换为 3D 体积数据</strong>，然后通过<strong>将 3D 体积数据输入神经网络来提取局部表征</strong>。这种方法有两个明显的缺点：<strong>体积数据需要很大的图形处理单元</strong>（GPU）内存，而且<strong>对旋转变化很敏感</strong>。</p>
+<h5 id="612-3dsmoothnet">6.1.2. 3DSmoothNet</h5>
+<p>3DSmoothNet [35] introduces a pre-processing method to <strong>align the 3D patches and calculate the volumetric data based on the aligned 3D patches</strong>. By feeding the aligned volumetric data into a convolution neural network, <strong>the extracted features are rotation-invariant</strong>. Specifically, <strong>a local reference frame (LRF) is estimated using the eigendecomposition of all points’ covariance matrix</strong>. After the point clouds are aligned using the LRF, <strong>Gaussian smoothing</strong> is applied to the input grids to get a <strong>smooth density value (SDV) voxelization</strong>. Then, the SDV is fed into a network for feature extraction. To improve the efficiency of volumetric-based descriptor, FCGF [17] uses 1 × 1 × 1 kernel to <strong>extract a fast and compact metric features for geometric correspondence</strong>.</p>
+<p>3DSmoothNet[35]引入了一种预处理方法来对齐三维块，并<strong>根据对齐的三维块来计算体积数据</strong>。通过将对齐的体积数据输入卷积神经网络，<strong>提取的特征是旋转不变的</strong>。具体来说，<strong>使用所有点的协方差矩阵的奇异分解来估计局部参考框架</strong>（LRF）。在使用 LRF 对准点云后，<strong>高斯平滑法</strong>被应用于输入网格，以获得<strong>平滑密度值（SDV）体素化</strong>。然后，SDV 被送入一个网络进行特征提取。为了提高基于体积的描述器的效率，FCGF[17]使用 1×1×1 的核来<strong>提取快速而紧凑的几何对应的度量特征</strong>。</p>
+<ul>
+<li>[35] 3d point cloud matching with smoothed densities. 2019</li>
+<li>[17] Fully convolutional geometric features. 2019</li>
+</ul>
+<h5 id="613-methods-to-handle-the-limitation">6.1.3. Methods to handle the limitation</h5>
+<p><strong>There is much literature that focuses on handling the limitation of large memory cost</strong>. The key idea is to <strong>remove empty voxels</strong> since the 3D point cloud is usually <strong>sparsely</strong> located in the 3D volumetric data. OctNet [83] uses Octree to <strong>hierarchically divide the volumetric data into an unbalanced tree</strong> where each leaf node stores the feature presentation. Tatarchenko et al. [92] use Octree to <strong>decode the point cloud</strong> and learns <strong>distinctive representation</strong>. Similarly, O-CNN [98] proposes an octree-based convolution neural network for <strong>3D shape analysis</strong>.</p>
+<p><strong>有很多文献关注于处理大内存成本的限制</strong>。关键的想法是<strong>去除空的体素</strong>，因为三维点云通常在三维体积数据中是<strong>稀疏</strong>的。OctNet[83]使用 Octree<strong>将体积数据分层为一棵不平衡的树</strong>，其中每个叶子节点都存储了特征呈现。Tatarchenko 等人[92]使用 Octree<strong>对点云进行解码</strong>，并学习<strong>独特的表现形式</strong>。同样，O-CNN[98]提出了一个基于 Octree 的卷积神经网络用于<strong>三维形状分析</strong>。</p>
+<ul>
+<li>[83] Octnet: Learning deep 3d representations at high resolutions. 2017</li>
+<li>[92] Octree generating networks: Efficient convolutional architectures for high-resolution 3d outputs. 2017</li>
+<li>[98] O-cnn: Octree-based convolutional neural networks for 3d shape analysis. 2017</li>
+</ul>
+<h4 id="62-learning-on-point-cloud">6.2. Learning on Point Cloud</h4>
+<h5 id="621-3-methods">6.2.1. 3 methods</h5>
+<figure><img src="/images/papers/07/06.png" width="400"/>
+</figure>
+
+<p>Instead of feeding the network with volumetric data, PPFNet [19] <strong>learns local descriptors on pure geometry and is highly aware of the global context</strong>. This method uses a <strong>point pair feature (PPF)</strong>[21] to pre-process the input point cloud patches to achieve <strong>rotation invariant</strong>. Then, the point clouds are input into a PointNet [80] to extract a <strong>local feature</strong>. Then, <strong>a global feature is obtained by applying a max-pooling operation</strong>. Both the global and local features are input in an MLP block to <strong>generate the final correspondence search feature</strong>. The <strong>limitation</strong> is that it requires a <strong>large amount of annotation data</strong>. To solve this issue, PPF-FoldNet [18] proposes an <strong>unsupervised method</strong> to <strong>remove the annotation requirement constraint</strong>. The overall framework is shown in Figure 6. The basic idea is to <strong>use PointNet to encode a feature and use a decoder to decode the feature into data be the same as the input</strong>. The whole network is optimized by using the difference between the input and output using Chamfer loss. Similarly, SiamesePointNet[118] produces the descriptor of interest points by a <strong>hierarchical encoder-decoder architecture</strong>.</p>
+<p>PPFNet[19]不是用体积数据来输入进网络，而是<strong>在纯几何学上学习局部描述符，并高度注意全局信息</strong>。该方法使用<strong>点对特征（PPF）</strong>[21]对输入的点云块进行预处理，以实现<strong>旋转不变</strong>。然后，点云被输入到 PointNet[80]中以提取<strong>局部特征</strong>。然后，通过<strong>应用最大集合操作获得全局特征</strong>。全局和局部特征都被输入到 MLP 模块中，<strong>生成最终的对应搜索特征</strong>。其<strong>局限性</strong>在于，它需要<strong>大量的注释数据</strong>。为了解决这个问题，PPF-FoldNet[18]提出了一种<strong>无监督的方法</strong>来<strong>消除注释要求的约束</strong>。其整体框架如图 6 所示。其基本思想是<strong>使用 PointNet 对特征进行编码，并使用解码器将特征解码成与输入相同的数据</strong>。整个网络通过使用 Chamfer 损失函数对输入和输出的差异进行优化。同样，SiamesePointNet[118]通过一个<strong>分层的编码器-解码器结构</strong>产生兴趣点的描述符。</p>
+<ul>
+<li>[21] Model globally, match locally: Efficient and robust 3d object recognition. 2010</li>
+<li>[80] Pointnet: Deep learning on point sets for 3d classification and segmentation. 2017</li>
+<li>[18] Ppf-foldnet: Unsuper-vised learning of rotation invariant 3d local descriptors. 2018</li>
+<li>[118] Siamesepointnet: A siamese point network architecture for learning 3d shape descriptor. 2020</li>
+</ul>
+<h5 id="622-3-more-mothods">6.2.2. 3 more mothods</h5>
+<p>By <strong>not requiring manual annotation of matching point cluster</strong>, 3DFeatNet [110] introduces a <strong>weakly-supervised approach</strong> that <strong>leverages alignment and attention mechanisms</strong> to learn feature correspondences from GPS/INS tagged 3D point clouds <strong>without explicitly specifying</strong> them. More specifically, the network takes <strong>a set of triplets containing an anchor, positive and negative point cloud</strong>. They train the neural network with the triplet loss by minimizing the difference between the anchor and positive point clouds while maximizing the difference between the anchor and negative point clouds. Alignment [36] focuses on the <strong>partially observed object alignment</strong> by using a tracking framework, which is trying to <strong>estimate the object-centric relative motion</strong>. Moreover, this approach uses a neural network that takes the noisy 3D point segments of objects as input to estimate their motion instead of approximating targets with their centre points. [108] utilizes both the <strong>colour and spatial geometric information</strong> to solve the point cloud registration.</p>
+<p>3DFeatNet[110]<strong>不需要对匹配的点群进行人工标注</strong>，它引入了一种<strong>弱监督的方法</strong>，<strong>利用对齐和注意力机制</strong>，从 GPS/INS 标记的三维点云中学习特征对应关系，而<strong>不需要明确指定</strong>它们。更具体地说，该网络需要一组<strong>包含锚点、正点和负点云的三联体</strong>。他们通过最小化锚点云和正点云之间的差异，同时最大化锚点云和负点云之间的差异，用三联体损失训练神经网络。Alignment[36]通过使用一个跟踪框架进行<strong>部分观察到的物体对齐</strong>，该框架试图<strong>估计以物体为中心的相对运动</strong>。此外，该方法使用了一个神经网络，将物体有噪音的三维点段作为输入来估计其运动，而不是用其中心点来接近目标。[108]利用<strong>颜色和空间几何信息</strong>来解决点云配准问题。</p>
+<ul>
+<li>[110] 3dfeat-net: Weakly supervised local 3d features for point cloud registration. 2018</li>
+<li>[36] Alignnet-3d: Fast point cloud registration of partially observed objects. 2019</li>
+<li>[108] Color point cloud registration based on supervoxel correspondence. 2020</li>
+</ul>
+<h5 id="623-methods-to-solve-problems-of-icp">6.2.3. Methods to solve problems of ICP</h5>
+<p>Since the ICP requires <strong>hard assignments of closest points</strong>, it is <strong>sensitive to the initial transformation and noisy outliers</strong>. Therefore, the ICP usually <strong>converges to the wrong local minima</strong>. RPMNet [111] introduces a less sensitive to initialization and more robust deep learning-based approach for rigid point cloud registration. This method’s network can get a <strong>soft assignment</strong> of point correspondences and can <strong>solve the point cloud partial visibility</strong>. The deep closest point (DCP) [99] employs a <strong>dynamic graph convolutional neural network</strong> for feature extraction and an attention module to generate a new embedding that considers the relationships between two point clouds. Besides, a singular value decomposition module is used to calculate rotation and translation. IDAM [59] <strong>incorporates both geometric and distance features into the iterative matching process</strong>. Point matching involves computing a similarity score based on the entire concatenated features of the two points of interest. Yang et al. [107] find that more <strong>compact and distinctive representations can be achieved</strong> by optimizing a neural network (NN) model under the triplet framework that <strong>non-linearly fuses local geometric features in Euclidean spaces</strong>. The NN model is trained by an improved triplet loss function that fully leverages all pairwise relationships within the triplet. Moreover, they claimed that their fused descriptor is also competitive to deeply learned descriptors from raw data while <strong>being more lightweight and rotational invariant</strong>.</p>
+<p>由于 ICP 需要<strong>对最接近的点进行硬性分配</strong>，它<strong>对初始变换和噪声异常值很敏感</strong>。因此，ICP 通常会<strong>收敛到错误的局部最小值</strong>。RPMNet[111]引入了一种对初始化不那么敏感的、更稳健的基于深度学习的方法，用于刚性点云配准。该方法的网络可以得到点对应的<strong>软分配</strong>，并能<strong>解决点云的部分可见性</strong>。深度最接近点（DCP）[99]采用<strong>动态图卷积神经网络</strong>进行特征提取，并采用注意力模块生成一个新的嵌入，考虑两个点云之间的关系。此外，一个奇异值分解模块被用来计算旋转和平移。IDAM[59]<strong>将几何和距离特征纳入迭代匹配过程</strong>。点匹配涉及到根据两个兴趣点的全部串联特征计算相似性分数。Yang 等人[107]发现，通过优化三联体框架下的神经网络（NN）模型，可以<strong>实现更紧凑和独特的表示</strong>，该模型<strong>非线性地融合了欧几里得空间中的局部几何特征</strong>。神经网络模型是通过改进的三联体损失函数来训练的，该函数充分地利用了三联体中的所有配对关系。此外，他们声称他们的融合描述符与从原始数据中深入学习的描述符相比也具有竞争力，同时<strong>更加轻巧和具有旋转不变性</strong>。</p>
+<ul>
+<li>[111] Rpm-net: Robust point matching using learned features. 2020</li>
+<li>[99] Deep closest point: Learning representations for point cloud registration. 2019</li>
+<li>[59] Iterative distance-aware similarity matrix convolution with mutual- supervised point elimination for efficient point cloud registration. 2020</li>
+<li>[107] Learning to fuse local geometric features for 3d rigid data matching. 2020</li>
+</ul>
+<h3 id="7-end-to-end-learning-based-registration-methods">7. End-to-end learning-based registration methods</h3>
+<figure><img src="/images/papers/07/08.png" width="400"/>
+</figure>
+
+<p>The main idea of end-to-end learning-based registration methods is that two-point clouds fed into the neural network, and output is the transformation matrix between these two point clouds. There are two categories: (1) considering the registration as a <strong>regression</strong> problem and <strong>using the neural network to fit a regression model</strong> for the transformation matrix estimation [97], [109], [20], [75]; Figure 8 shows the overall framework for these methods. (2) considering the registration as an end-to-end framework by the combination of neural network and optimization [40], [16]. Figure 2c shows the overall framework of these methods. These two categories aim to train a deep neural network to directly solve the registration problem in equation 1. Several milestone methods are illustrated in Fig. 7.</p>
+<p>端到端基于学习的配准方法的主要思想是将两块点云送入神经网络，而输出是这两块点云之间的变换矩阵。有两类方法：（1）将配准视为<strong>回归</strong>问题，使用神经网络<strong>拟合回归模型进行变换矩阵估计</strong>[97], [109], [20], [75]；图 8 显示了这些方法的整体框架。(2) 通过神经网络和优化的结合，将注册视为一个端到端的框架[40], [16]。图 2c 显示了这些方法的整体框架。这两类方法旨在训练一个深度神经网络来直接解决在第 2 节数学定义中的配准问题。几个里程碑式的方法在图 7 中得到说明。</p>
+<ul>
+<li>[97] Non-rigid point set registration networks. 2019</li>
+<li>[109] Extreme relative pose estimation for rgb- d scans via scene completion. 2019</li>
+<li>[20] 3d local features for direct pairwise registration. 2019</li>
+</ul>
+<figure><img src="/images/papers/07/07.png" width="400"/>
+</figure>
+
+<h4 id="71-registration-by-regression">7.1. Registration by regression</h4>
+<p>Deng et al. [20] propose a relativeNet to estimate the pose directly from features. Lu et al. [65] propose a method (DeepVCP) to detect keypoints based on learned <strong>matching probabilities</strong> among a group of candidates, which can boost the registration accuracy. Pais et al. [75] develop a classification network to identify the inliers/outliers and uses a <strong>regression network</strong> to estimate the transformation matrix from the inliers. Figure 8 shows the overall framework of these registration methods by regression. The connection to Fig. 2c is that the transformation module is implemented with an X-Net module.</p>
+<p>Deng 等人[20]提出了一种直接从特征中估计姿势的相对网络。Lu 等人[65]提出一种方法（DeepVCP），根据学习到的一组候选者之间的<strong>匹配概率</strong>来检测关键点，这可以提高配准的准确性。Pais 等人[75]开发了一个分类网络来识别 inliers/outliers，并使用一个<strong>回归网络</strong>来估计 inliers 的变换矩阵。图 8 显示了这些通过回归的配准方法的整体框架。与图 2c 的联系是，转换模块是用 X-Net 模块实现的。</p>
+<ul>
+<li>[20] 3d local features for direct pairwise registration. 2019</li>
+<li>[65] Deepvcp: An end-to-end deep neural network for point cloud registration. 2019</li>
+<li>[75] 3dregnet: A deep neural network for 3d point registration. 2020</li>
+</ul>
+<h4 id="72-registration-by-optimization-and-neural-network">7.2. Registration by optimization and neural network</h4>
+<p>The main idea of this category is to combine the con- ventional registration-related optimization theories with deep neural networks to solve the registration problem in Equation 1. Figure 2c shows a summary of these methods. PointNetLK [3] uses the PointNet[80] to extract global features for two input point clouds and then use a inverse compositional (IC) algorithm to estimate the transformation matrix. By estimating the transformation matrix, the objective is to minimize the feature difference between the two features. For this feature-based IC algorithm, the Jacobian estimation is challenging. PointnetLK uses an approximation method through a finite difference gradient computation. This approach allows the application of the computationally efficient inverse compo- sitional Lucas-Kanade algorithm. Huang et al. [40] further improve PointNetLK with an autoencoder and a point distance loss. Meantime, it can reduce the dependence on labels. DeepGMR [112] uses a neural network to learn pose-invariant point-to-distribution parameter correspondences. Then, these correspondences are fed into the GMM optimization module to estimate the transformation matrix. DGR [16] proposes a 6-dimensional convolutional network architecture for inlier likelihood prediction and estimate the transformation by a weighted Procrustes module. These methods show that the combination of conventional optimization methods and recent deep learning strategies obtain better accuracy than previous methods.</p>
+<p>这类方法的主要思想是将传统的注册相关优化理论与深度神经网络相结合，以解决方程 1 中的注册问题。图 2c 显示了这些方法的概要。PointNetLK[3]使用 PointNet[80]来提取两个输入点云的全局特征，然后使用逆合成（IC）算法来估计变换矩阵。通过估计变换矩阵，其目的是使两个特征之间的特征差异最小。对于这种基于特征的 IC 算法，Jacobian 的估计是具有挑战性的。PointnetLK 使用了一种通过有限差分梯度计算的近似方法。这种方法允许应用计算效率高的反编译 Lucas-Kanade 算法。Huang 等人[40]用一个自动编码器和一个点距离损失进一步改进了 PointNetLK。同时，它可以减少对标签的依赖。DeepGMR[112]使用一个神经网络来学习姿势不变的点到分布参数的对应关系。然后，这些对应关系被送入 GMM 优化模块以估计转换矩阵。DGR[16]提出了一个 6 维卷积网络架构，用于内尔似然预测，并通过加权 Procrustes 模块估计变换。这些方法表明，传统的优化方法和最近的深度学习策略的结合获得了比以前的方法更好的准确性。</p>
+<ul>
+<li>[3] Pointnetlk: Robust &amp; efficient point cloud registration using pointnet. 2019</li>
+<li>[112] Deepgmr: Learning latent gaussian mixture models for registration. 2020</li>
+<li>[40] A fast semi-supervised approach for robust point cloud registration without correspondences. 2020</li>
+<li>[16] Deep global registration. 2020</li>
+</ul>
+<h3 id="8-cross-source-registration">8. Cross-source registration</h3>
+<h1 id="fig9">Fig9</h1>
+<h4 id="81-optimization-based-methods">8.1. Optimization-based methods:</h4>
+<p>The main idea of optimization-based methods is to design sophisticated optimization strategies to solve the point cloud registration problem in the equation 1. The optimization strategies are similar to the same-source registration but require a more complicated version to overcome the severe cross-source challenges. Since the registration algorithm is usually more complicated than the same source, the proposed algorithms are usually a registration framework. Figure 2d visually summarizes the ideas. CSC2F [77] proposes a first cross-source point cloud registration method by using a coarse-to-fine method. The registration is solved by using ICP. Following the coarse-to-fine strategy, CSGMM [42] applies GMM-based algorithm to estimate the transformation. GM-CSPC [43] assumes the cross-source point clouds are coming from the same Gaussian mixture models and the two input point clouds are two samples from the Gaussian mixture. The GM-CSPC estimates both the GMM parameters and transformation simultaneously. CSGM [41] converts the registration problem into a graph matching problem and estimate the transformation matrix by graph matching optimization. Recently, [39] introduce high-order constraints to correspondences searching and convert the registration problem into a tensor optimization problem. RSER [69] proposes a scale estimation method and use RANSAC to calculate the transformation after scale normalization.</p>
+<p>基于优化的方法的主要思想是设计复杂的优化策略来解决方程 1 中的点云配准问题。这些优化策略与同源配准相似，但需要一个更复杂的版本来克服严重的跨源挑战。由于配准算法通常比同源的更复杂，所以提出的算法通常是一个注册框架。图 2d 直观地总结了这些想法。CSC2F[77]通过使用从粗到细的方法提出了第一个跨源点云注册方法。注册是通过使用 ICP 来解决的。按照从粗到细的策略，CSGMM[42]应用基于 GMM 的算法来估计变换。GM-CSPC[43]假设跨源点云来自同一个高斯混合模型，两个输入点云是高斯混合模型的两个样本。GM-CSPC 同时估计 GMM 参数和变换。CSGM[41]将配准问题转换为图形匹配问题，并通过图形匹配优化估计变换矩阵。最近，[39]将高阶约束引入对应关系搜索，并将配准问题转化为张量优化问题。RSER[69]提出了一种尺度估计方法，并使用 RANSAC 来计算尺度归一化后的变换。</p>
+<h3 id="9-connections-between-optimization-based-and-deep-learning-methods">9. Connections Between optimization-based and deep learning methods:</h3>
+<h3 id="10-evaluation">10. Evaluation</h3>
+<h4 id="101-evaluation-metrics">10.1. Evaluation metrics</h4>
+<h4 id="102-same-source-dataset">10.2. Same-source dataset</h4>
+<h4 id="103-new-cross-source-benchmark">10.3. New cross-source benchmark</h4>
+<h3 id="11-applications">11. Applications</h3>
+<h4 id="111-construction">11.1. Construction</h4>
+<h4 id="112-autonomous-driving">11.2. Autonomous driving</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/paper07/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration" data-hashtags="papers"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://yiyangd.github.io/paper07/" data-hashtag="papers"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://yiyangd.github.io/paper07/" data-title="Paper Notes 07 | A comprehensive survey on point cloud registration"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/papers/">papers</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/o3d_notes05/" class="prev" rel="prev" title="Open3D Notes 05 | ICP Registration Algorithm"><i class="fas fa-angle-left fa-fw"></i>Open3D Notes 05 | ICP Registration Algorithm</a>
+            <a href="/acts08/" class="next" rel="next" title="使徒行传｜第8章">使徒行传｜第8章<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Yiyang Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Yiyang's Blog","id-2":"Yiyang's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

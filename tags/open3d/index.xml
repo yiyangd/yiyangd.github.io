@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Open3D - Tag - DYY</title>
+        <link>https://yiyangd.github.io/tags/open3d/</link>
+        <description>Open3D - Tag - DYY</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 23 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/tags/open3d/" rel="self" type="application/rss+xml" /><item>
+    <title>Open3D Notes 05 | ICP Registration Algorithm</title>
+    <link>https://yiyangd.github.io/o3d_notes05/</link>
+    <pubDate>Sat, 23 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes05/</guid>
+    <description><![CDATA[应用 ICP 算法及其变体进行点云局部配准
+1. Introduction to ICP ICP (Iterative Closest Point) Registration Algorithm has been a mainstay of geometric registration in both research and industry for many years.
+ The input are two point clouds and an rough initial transformation that roughly aligns the source point cloud to the target point cloud.  The initial alignment is usually obtained by a global registration algorithm.   The output is a refined transformation that tightly aligns the two point clouds.]]></description>
+</item></channel>
+</rss>

@@ -4,8 +4,40 @@
         <link>https://yiyangd.github.io/posts/</link>
         <description>All Posts | DYY</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Thu, 21 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>B｜Chapter 2</title>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 13 Aug 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yiyangd.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>使徒行传｜第8章</title>
+    <link>https://yiyangd.github.io/acts08/</link>
+    <pubDate>Sat, 13 Aug 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/acts08/</guid>
+    <description><![CDATA[8. 腓利向南方的地极宣教  【徒一 7】「耶稣对他们说：『父凭着自己的权柄所定的时候、日期，不是你们可以知道的。」
+【徒一 8】「但圣灵降临在你们身上，你们就必得着能力，并要在耶路撒冷、犹太全地，和撒马利亚，直到地极，作我的见证。』」
+  8.0. 上周回顾：使徒行传第七章｜司提反因福音而殉道  【徒七 58】「把他推到城外，用石头打他。作见证的人把衣裳放在一个少年人名叫扫罗的脚前。」
+【徒七 59】「他们正用石头打的时候，司提反呼吁主说：『求主耶稣接收我的灵魂！』」
+【徒七 60】「又跪下大声喊着说：『主啊，不要将这罪归于他们！』说了这话，就睡了。扫罗也喜悦他被害。」
+ 8.1. 司提反被埋葬，扫罗迫害教会，“神的时候到了” （1-3）  【徒八 1】「从这日起，耶路撒冷的教会大遭逼迫，除了使徒以外，门徒都分散在犹太和撒马利亚各处。」
+【徒八 2】「有虔诚的人把司提反埋葬了，为他捶胸大哭。」
+【徒八 3】「扫罗却残害教会，进各人的家，拉着男女下在监里。」
+  神的时候若是没到，教会想离开耶路撒冷都难，因为从天下各国来朝圣的人络绎不绝，门徒每日在圣殿向他们传福音的果效（二 46；五 12、42），比分散到各地要快出千百倍。  【徒二 46】「他们天天同心合意恒切地在殿里，且在家中擘饼，存着欢喜、诚实的心用饭，」 【徒五 12】「主借使徒的手在民间行了许多神迹奇事；他们（或译：信的人）都同心合意地在所罗门的廊下。」 【徒五 42】「他们就每日在殿里、在家里不住地教训人，传耶稣是基督。」   神的时候到了，教会想不离开耶路撒冷也不行，因为「耶路撒冷的教会大遭逼迫，除了使徒以外，门徒都分散在犹太和撒马利亚各处」（1 节）。 司提反的殉道推动了撒种，扫罗的逼迫触动了宣教  门徒所遭遇的逼迫和苦难都是出于主的许可，为要成全祂的意旨，所以我们应当学会在消极的环境中看见主积极的旨意。   扫罗与撒都该人合作，不但「残害教会」（3 节），而且「进各人的家，拉着男女下在监里」（3 节），驱散门徒，比其他法利赛人更加激进。  主耶稣非常幽默，祂将呼召的这位外邦人使徒虽然还没有信主，但已经开始为推动福音传向地极而忙得不亦乐乎了。    问题：  扫罗（保罗）在司提反死后对基督徒的迫害，反而使教会开始顺服基督的最后命令 —— 把福音传向地极。   这一项工作是神的工作；大家怎么看待主耶稣的“幽默”？  对于苦难的问题：   我们如果真的活在一个没有苦难的世界中，我们的内心还会归向主吗？  8.]]></description>
+</item><item>
+    <title>Paper Notes 07 | A comprehensive survey on point cloud registration</title>
+    <link>https://yiyangd.github.io/paper07/</link>
+    <pubDate>Mon, 25 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/paper07/</guid>
+    <description><![CDATA[Paper：A comprehensive survey on point cloud registration
+0. Abstract Registration is a transformation estimation problem between two point clouds, which has a unique and critical role in numerous computer vision applications. The developments of optimization-based methods and deep learning methods have improved registration robustness and efficiency. Recently, the combinations of optimization-based and deep learning methods have further improved performance. However, the connections between optimization-based and deep learning methods are still unclear.]]></description>
+</item><item>
+    <title>Open3D Notes 05 | ICP Registration Algorithm</title>
+    <link>https://yiyangd.github.io/o3d_notes05/</link>
+    <pubDate>Sat, 23 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/o3d_notes05/</guid>
+    <description><![CDATA[应用 ICP 算法及其变体进行点云局部配准
+1. Introduction to ICP ICP (Iterative Closest Point) Registration Algorithm has been a mainstay of geometric registration in both research and industry for many years.
+ The input are two point clouds and an rough initial transformation that roughly aligns the source point cloud to the target point cloud.  The initial alignment is usually obtained by a global registration algorithm.   The output is a refined transformation that tightly aligns the two point clouds.]]></description>
+</item><item>
+    <title>Bayes｜Chapter 2</title>
     <link>https://yiyangd.github.io/bayesian02_freq_bayes/</link>
     <pubDate>Thu, 21 Jul 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -14,6 +46,13 @@
 2.1. Chapter Mission Statement At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
 在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
 2.2. Chapter Goals As data scientists, we aim to build predictive models to understand complex phenomena.]]></description>
+</item><item>
+    <title>Paper Notes 03 | ICP from 1992 to 2009</title>
+    <link>https://yiyangd.github.io/paper03/</link>
+    <pubDate>Wed, 13 Jul 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/paper03/</guid>
+    <description><![CDATA[Check ]]></description>
 </item><item>
     <title>Open3D Notes 04 | Create Point Clouds from RGBD Images</title>
     <link>https://yiyangd.github.io/o3d_notes04/</link>
@@ -57,40 +96,5 @@
     <guid>https://yiyangd.github.io/paper01/</guid>
     <description><![CDATA[PaperNotes 01 ｜ 3DMatch   此篇笔记是Paper 笔记系列的第 1 篇，翻译、摘抄了 2017 年的论文3DMatch: Learning Local Geometric Descriptors from RGB-D Reconstructions
  https://3dmatch.cs.princeton.edu/paper_v2.pdf   0. Abstract 0.1. Challenges and Difficulties Matching local geometric features on real-world depth images is a challenging task due to the noisy, low resolution, and incomplete nature of 3D scan data. These difficulties limit the performance of current state-of-art methods, which are typically based on histograms over geometric properties.]]></description>
-</item><item>
-    <title>Open3D Notes 01 | Point Cloud Processing</title>
-    <link>https://yiyangd.github.io/o3d_notes01/</link>
-    <pubDate>Mon, 04 Jul 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/o3d_notes01/</guid>
-    <description><![CDATA[0. Download and Install Open3D 1 2 3 4 5 6 7 8  # Install $ pip install open3d # Verify $ python -c &#34;import open3d as o3d; print(o3d.__version__)&#34; # 0.15.2 (2022.06.28) # Git Clone $ git clone https://github.com/isl-org/Open3D.git   1. Read and Write a Point Cloud. 1 2 3 4 5 6 7 8 9 10  import open3d as o3d if __name__ == &#34;__main__&#34;: pcd_data = o3d.]]></description>
-</item><item>
-    <title>MIT 18.S191 | Spring 2021 | Notes</title>
-    <link>https://yiyangd.github.io/mit18s191notes/</link>
-    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/mit18s191notes/</guid>
-    <description><![CDATA[Note on Course: Introduction to Computational Thinking Computational science can be summed up by a simplified workflow:
- data ==&gt; input ==&gt; process ==&gt; model ==&gt; visualize ==&gt; output  Topics Include:
- Image Analysis Particle Dynamics and Ray Tracing Epidemic Propagation Climate Modeling  Module 1: Images  https://computationalthinking.mit.edu/Spring21/images/  1. Install Julia and Pluto  Step 1: Download from https://julialang.org/downloads/ Step 2: Open Julia and Install Pluto  To install Pluto, we want to run a package manager command.]]></description>
-</item><item>
-    <title>OpenCV Notes 01 | Feature Detection</title>
-    <link>https://yiyangd.github.io/opencv01/</link>
-    <pubDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/opencv01/</guid>
-    <description><![CDATA[0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
- If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?]]></description>
-</item><item>
-    <title>Paper Notes 00 | How to Read a Paper</title>
-    <link>https://yiyangd.github.io/paper00/</link>
-    <pubDate>Fri, 27 May 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/paper00/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/images/papers/paper00.png" referrerpolicy="no-referrer">
-            </div>PaperNotes00 ｜ How to Read a Paper  此篇笔记是PaperNotes系列的第 1 篇，我将S. Keshav教授在 2016 年写作的How to Read a Paper 进行摘抄，翻译和要点总结：
- http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf    ABSTRACT Researchers spend a great deal of time reading research papers. However, this skill is rarely taught, leading to much wasted effort.
- This article outlines a practical and efficient three-pass method for reading research papers. I also describe how to use this method to do a literature survey.]]></description>
 </item></channel>
 </rss>
