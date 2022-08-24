@@ -6,8 +6,9 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>OpenCV Notes 01 | Feature Detection - DYY</title><meta name="Description" content="This is Yiyang&#39;s Blog."><meta property="og:title" content="OpenCV Notes 01 | Feature Detection" />
-<meta property="og:description" content="0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
- If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?" />
+<meta property="og:description" content="0. Understanding Features What are the main features in an image? How can finding those features be useful to us?
+Jigsaw Puzzle Game  How do you play jigsaw puzzles? How do you arrange lots of scrambled image pieces into a big single image? How can you stitch a lot of natural images to a single image?   Answers:
+ We are looking for specific patterns or specific features which are unique, can be easily tracked and can be easily compared." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yiyangd.github.io/opencv01/" /><meta property="og:image" content="https://yiyangd.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-14T00:00:00+00:00" />
@@ -17,8 +18,9 @@
 <meta name="twitter:image" content="https://yiyangd.github.io/logo.png"/>
 
 <meta name="twitter:title" content="OpenCV Notes 01 | Feature Detection"/>
-<meta name="twitter:description" content="0. Understanding Features Jigsaw Puzzle Game Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.
- If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?"/>
+<meta name="twitter:description" content="0. Understanding Features What are the main features in an image? How can finding those features be useful to us?
+Jigsaw Puzzle Game  How do you play jigsaw puzzles? How do you arrange lots of scrambled image pieces into a big single image? How can you stitch a lot of natural images to a single image?   Answers:
+ We are looking for specific patterns or specific features which are unique, can be easily tracked and can be easily compared."/>
 <meta name="application-name" content="Yiyang&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yiyang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yiyangd.github.io\/opencv01\/"
-        },"genre": "posts","wordcount":  490 ,
+        },"genre": "posts","wordcount":  502 ,
         "url": "https:\/\/yiyangd.github.io\/opencv01\/","datePublished": "2022-06-14T00:00:00+00:00","dateModified": "2022-06-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">OpenCV Notes 01 | Feature Detection</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yiyang Dong</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-14">2022-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;490 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-14">2022-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;502 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -122,7 +124,6 @@
         <li><a href="#0-understanding-features">0. Understanding Features</a>
           <ul>
             <li><a href="#jigsaw-puzzle-game">Jigsaw Puzzle Game</a></li>
-            <li><a href="#basic-questions">Basic Questions</a></li>
             <li><a href="#feature-detection">Feature Detection</a></li>
             <li><a href="#feature-description">Feature Description</a></li>
           </ul>
@@ -133,37 +134,46 @@
             <li><a href="#opencv-implementation">OpenCV Implementation</a></li>
           </ul>
         </li>
-        <li><a href="#heading"></a></li>
+        <li><a href="#shi-tomasi-corner-detector">Shi-Tomasi Corner Detector</a></li>
+        <li><a href="#reference">Reference:</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="0-understanding-features">0. Understanding Features</h3>
+<p>What are the main features in an image? How can finding those features be useful to us?</p>
 <h4 id="jigsaw-puzzle-game">Jigsaw Puzzle Game</h4>
-<p>Most of you will have played the jigsaw puzzle games. You get a lot of small pieces of an image, where you need to assemble them correctly to form a big real image.</p>
-<ul>
-<li>If the computer can play jigsaw puzzles, why can&rsquo;t we give a lot of real-life images of a good natural scenery to computer and tell it to stitch all those images to a big single image?</li>
-<li>If the computer can stitch several natural images to one, what about giving a lot of pictures of a building or any structure and tell computer to <em>create a 3D model</em> out of it?</li>
-</ul>
-<h4 id="basic-questions">Basic Questions</h4>
 <ul>
 <li>How do you play jigsaw puzzles?</li>
 <li>How do you arrange lots of scrambled image pieces into a big single image?</li>
 <li>How can you stitch a lot of natural images to a single image?</li>
 </ul>
+<figure><img src="/images/opencv/0.png" width="400"/>
+</figure>
+
 <p>Answers:</p>
 <ul>
-<li>We are looking for <em>specific patterns</em> or <em>specific features</em> which are <strong>unique</strong>, can be easily tracked and can be easily compared.</li>
-<li>好的 Feature 难以被定义，但小孩子都可以做到 —— 那便是拼拼图先去拼的那四个角，边和独特的拼图块块。</li>
+<li>We are looking for <em>specific patterns</em> or <em>specific features</em> which are <strong>unique</strong>, can be <strong>easily tracked and can be easily compared</strong>.</li>
+<li>A and B are flat surfaces and they are spread over a lot of area.
+<ul>
+<li>It is <strong>difficult to find</strong> the exact location of these patches.</li>
+</ul>
+</li>
+<li>C and D are <strong>edges of the building</strong>. You can find an approximate location, but exact location is still difficult.
+<ul>
+<li>This is because the pattern is same everywhere along the edge.</li>
+<li>An edge is therefore better feature compared to flat area, but not good enough.</li>
+</ul>
+</li>
+<li>E and F are some <strong>corners of the building</strong>. And they can be easily found. So they can be considered as good features.</li>
+<li>好的 Feature 难以被定义，但小孩子都可以做到 —— 那便是拼拼图先去拼的那四个角，边和独特的拼图块。</li>
 </ul>
 <h4 id="feature-detection">Feature Detection</h4>
-<ul>
-<li>looks for the features in images which have maximum variation when moved (by a small amount) in all regions around it.</li>
-</ul>
+<p>Feature Detection is Looking for features (regions) in images which have <strong>maximum variation when moved (by a small amount)</strong> in all regions around it.</p>
 <h4 id="feature-description">Feature Description</h4>
+<p>We take a region around the feature, we explain it in our own words,</p>
 <ul>
-<li>We take a region around the feature, we explain it in our own words,</li>
-<li>like &ldquo;upper part is blue sky, lower part is region from a building, on that building there is glass etc&rdquo;</li>
+<li>like <strong>&ldquo;upper part is blue sky, lower part is region from a building, on that building there is glass etc&rdquo;</strong></li>
 <li>Once you have the features and its description, you can find same features in all images and align(match) them, stitch them together</li>
 </ul>
 <h3 id="1-harris-corner-detection">1. Harris Corner Detection</h3>
@@ -218,24 +228,18 @@ ksize - Aperture parameter of the Sobel derivative used.</li>
 </div><figure><img src="/images/opencv/harris.png" width="400"/>
 </figure>
 
-<h3 id="heading"></h3>
+<h3 id="shi-tomasi-corner-detector">Shi-Tomasi Corner Detector</h3>
 <p>Later in 1994, J. Shi and C. Tomasi made a small modification to it in their paper <em>Good Features to Track</em> which shows better results compared to Harris Corner Detector.</p>
 <ul>
-<li>
-<p>The scoring function in Harris Corner Detector was given by:
-$$R=\lambda_0 \lambda_1 - \alpha(\lambda_0 + \lambda_1)^2$$</p>
-</li>
-<li>
-<p>Instead of this, Shi-Tomasi proposed:
-$$R = min(\lambda_1, \lambda_2)$$
-Reference:</p>
-</li>
-<li>
-<p><a href="https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html</a></p>
-</li>
-<li>
-<p><a href="https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html</a></p>
-</li>
+<li>The scoring function in Harris Corner Detector was given by:
+$$R=\lambda_0 \lambda_1 - \alpha(\lambda_0 + \lambda_1)^2$$</li>
+<li>Instead of this, Shi-Tomasi proposed:
+$$R = min(\lambda_1, \lambda_2)$$</li>
+</ul>
+<h3 id="reference">Reference:</h3>
+<ul>
+<li><a href="https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/db/d27/tutorial_py_table_of_contents_feature2d.html</a></li>
+<li><a href="https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html" target="_blank" rel="noopener noreffer">https://docs.opencv.org/4.x/df/d54/tutorial_py_features_meaning.html</a></li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
