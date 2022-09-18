@@ -7,9 +7,9 @@
 
 ### 2.1. Chapter Mission Statement
 
-At the end of this chapter, the reader will understand the purpose of statistical inference, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
+At the end of this chapter, the reader will understand the purpose of **statistical inference**, as well as recognise the similarities and differences between Frequentist and Bayesian inference. We also introduce the most important theorem in modern statistics: Bayes’ Theorem.
 
-在本章的最后，读者将了解统计推断的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
+在本章的最后，读者将了解**统计推断**的目的，以及认识到频率论和贝叶斯推断之间的异同。 我们还介绍了现代统计学中最重要的定理：贝叶斯定理。
 
 ### 2.2. Chapter Goals
 
