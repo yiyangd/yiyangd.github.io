@@ -8,7 +8,7 @@ Step 1: Search for IntelRealSense github
 Step 2: Click the tag => release => latest
 
 - https://github.com/IntelRealSense/librealsense/releases
-- Click the latest tag (2.50.0 on Jan 16, 2022) and install the SDK on linux
+- Click the latest tag (2.51.1 on Oct 9, 2022) and install the SDK on linux
 - https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md
 
 Step 3: Register the server's public key and add server to the list of repositories
