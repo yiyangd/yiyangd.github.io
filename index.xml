@@ -4,9 +4,24 @@
         <link>https://yiyangd.github.io/</link>
         <description>This is Yiyang&#39;s Blog.</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yiyangd@sfu.ca (Yiyang Dong)</managingEditor>
-            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>yiyangd@sfu.ca (Yiyang Dong)</webMaster><lastBuildDate>Sat, 19 Nov 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://yiyangd.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>使徒行传｜第22章</title>
+    <link>https://yiyangd.github.io/acts22/</link>
+    <pubDate>Sat, 19 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://yiyangd.github.io/acts22/</guid>
+    <description><![CDATA[21. 前情回顾  21.1. 保罗不听劝，回到耶路撒冷（1 - 15） 21.2. 保罗访问雅各，进入圣殿（17 - 26） 21.3. 保罗在圣殿被捕（27 - 36） 21.4. 保罗为自己辩护 (37 - 40)  22.1. 犹太人保罗用希伯来语对犹太百姓说话  【徒廿一 39】「保罗说：『我本是犹太人，生在基利家的大数，并不是无名小城的人。求你准我对百姓说话。』」
+【徒廿一 40】「千夫长准了。保罗就站在台阶上，向百姓摆手，他们都静默无声，保罗便用希伯来话对他们说：」
+【徒廿二 1】「『诸位父兄请听，我现在对你们分诉。』」
+【徒廿二 2】「众人听他说的是希伯来话，就更加安静了。」
+  「分诉」（1 节），原文的意思是「辩护」。表面上是保罗的自辩词，实际上是圣灵引导他向犹太人、罗马巡抚和犹太王为主作见证。   【徒廿二 3】「保罗说：『我原是犹太人，生在基利家的大数，长在这城里，在迦玛列门下，按着我们祖宗严紧的律法受教，热心事奉神，像你们众人今日一样。」
+【徒廿二 4】「我也曾逼迫奉这道的人，直到死地，无论男女都锁拿下监。」
+【徒廿二 5】「这是大祭司和众长老都可以给我作见证的。我又领了他们达与弟兄的书信，往大马士革去，要把在那里奉这道的人锁拿，带到耶路撒冷受刑。』」
+  「按着我们祖宗严紧的律法受教，热心事奉神，像你们众人今日一样」（3 节），这是保罗表示体谅这些殴打自己的同胞，  因为「他们向神有热心，但不是按着真知识；因为不知道神的义，想要立自己的义，就不服神的义了」（罗十 2-3）， 结果「凡杀你们的, 就以为是事奉神」（约十六 2）。    保罗首先指出，自己和听众有许多共同点：
+ 他也有正宗的犹太血统（3 节）； 他也受教于迦玛列门下，律法知识也渊博（3 节）； 他也热心事奉神（3 节）： 他也热心逼迫门徒（4-5 节）。  22.2. 保罗叙述在去往大马士革的路上经历的神迹 （6 - 11）  【徒廿二 6】「『我将到大马士革，正走的时候，约在晌午，忽然从天上发大光，四面照着我。」]]></description>
+</item><item>
     <title>使徒行传｜第18章</title>
     <link>https://yiyangd.github.io/acts18/</link>
     <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate>
@@ -86,13 +101,5 @@
     <guid>https://yiyangd.github.io/o3d_notes02/</guid>
     <description><![CDATA[1. Polygon Mesh （WIKI）Compared to the Point Cloud geometry type, a Polygon Mesh is a collection of Vertices, Edges, Faces(triangles and quadrilaterals), Polygons and Surfaces
  the study of Polygon Meshes is a large sub-field 3D Computer Graphics and Geometric Modeling   2. Read a 3D Mesh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  import open3d as o3d import numpy as np knot_mesh = o3d.]]></description>
-</item><item>
-    <title>Paper Notes 01 | 3DMatch</title>
-    <link>https://yiyangd.github.io/paper01/</link>
-    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://yiyangd.github.io/paper01/</guid>
-    <description><![CDATA[PaperNotes 01 ｜ 3DMatch   此篇笔记是Paper 笔记系列的第 1 篇，翻译、摘抄了 2017 年的论文3DMatch: Learning Local Geometric Descriptors from RGB-D Reconstructions
- https://3dmatch.cs.princeton.edu/paper_v2.pdf   0. Abstract 0.1. Challenges and Difficulties Matching local geometric features on real-world depth images is a challenging task due to the noisy, low resolution, and incomplete nature of 3D scan data. These difficulties limit the performance of current state-of-art methods, which are typically based on histograms over geometric properties.]]></description>
 </item></channel>
 </rss>
