@@ -21,6 +21,7 @@ export default function NoteCard({
               fill
               className="object-cover"
               sizes="(max-width: 64px) 100vw, 64px"
+              priority
             />
           </div>
           <div className="flex-1 min-w-0">
