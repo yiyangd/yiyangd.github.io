@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { NoteCategory } from "../types/note";
 
 interface NavbarProps {
@@ -19,41 +18,41 @@ export default function Navbar({
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
       {/* Top navigation */}
-      <nav className="bg-white border-b">
+      <div className="border-b">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex flex-col">
+            <div className="flex flex-col">
               <span className="text-lg font-bold text-gray-900">
                 Yiyang Dong&apos;s
               </span>
               <span className="text-sm font-medium text-gray-600">
                 STEM STUDY SPACE
               </span>
-            </Link>
-            <Link
+            </div>
+            <a
               href="/about"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
             >
               About
-            </Link>
+            </a>
           </div>
         </div>
-      </nav>
+      </div>
 
       {/* Category navigation */}
-      <nav className="bg-white border-b shadow-sm">
+      <div className="border-b">
         <div className="max-w-screen-xl mx-auto px-4">
-          <div className="flex overflow-x-auto scrollbar-hide">
-            <div className="flex space-x-8 py-3">
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-8 py-4">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => onCategoryChange(category.id)}
-                  className={`flex-shrink-0 ${
+                  className={`text-sm font-medium whitespace-nowrap ${
                     currentCategory === category.id
-                      ? "text-orange-500 font-medium"
+                      ? "text-orange-500"
                       : "text-gray-600 hover:text-orange-500"
                   }`}
                 >
@@ -63,7 +62,7 @@ export default function Navbar({
             </div>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 }

@@ -118,8 +118,8 @@ export default function Home() {
         onCategoryChange={setCurrentCategory}
       />
       <main className="max-w-screen-xl mx-auto px-4">
-        <div className="pt-36 pb-8">
-          <div className="grid gap-4">
+        <div className="pt-32 pb-8">
+          <div className="grid gap-3">
             {filteredNotes.map((note, index) => (
               <NoteCard key={index} {...note} />
             ))}
