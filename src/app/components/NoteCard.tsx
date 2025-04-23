@@ -1,13 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Note } from "../types/note";
 
-interface NoteCardProps {
-  title: string;
-  englishTitle: string;
-  totalLectures: number;
-  image: string;
-  href: string;
-}
+type NoteCardProps = Note;
 
 export default function NoteCard({
   title,
@@ -17,7 +11,7 @@ export default function NoteCard({
   href,
 }: NoteCardProps) {
   return (
-    <Link href={href} className="block">
+    <a href={href} className="block">
       <div className="flex items-start space-x-4 p-4 bg-white rounded-lg border border-gray-100 hover:shadow-md transition-shadow duration-200">
         <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
           <Image src={image} alt={title} fill className="object-cover" />
@@ -28,6 +22,6 @@ export default function NoteCard({
           <p className="text-xs text-gray-400">已更新 {totalLectures} 讲</p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }

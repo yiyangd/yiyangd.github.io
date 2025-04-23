@@ -1,6 +1,23 @@
 import Link from "next/link";
+import { NoteCategory } from "../types/note";
 
-export default function Navbar() {
+interface NavbarProps {
+  currentCategory: NoteCategory;
+  onCategoryChange: (category: NoteCategory) => void;
+}
+
+export default function Navbar({
+  currentCategory,
+  onCategoryChange,
+}: NavbarProps) {
+  const categories = [
+    { id: "all" as const, name: "全部笔记" },
+    { id: "statistics" as const, name: "统计" },
+    { id: "math" as const, name: "数学" },
+    { id: "computer" as const, name: "计算机" },
+    { id: "robotics" as const, name: "机器人" },
+  ];
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top navigation */}
@@ -30,36 +47,19 @@ export default function Navbar() {
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="flex overflow-x-auto scrollbar-hide">
             <div className="flex space-x-8 py-3">
-              <Link
-                href="/"
-                className="flex-shrink-0 text-orange-500 font-medium"
-              >
-                全部笔记
-              </Link>
-              <Link
-                href="/statistics"
-                className="flex-shrink-0 text-gray-600 hover:text-orange-500"
-              >
-                统计
-              </Link>
-              <Link
-                href="/math"
-                className="flex-shrink-0 text-gray-600 hover:text-orange-500"
-              >
-                数学
-              </Link>
-              <Link
-                href="/computer-science"
-                className="flex-shrink-0 text-gray-600 hover:text-orange-500"
-              >
-                计算机
-              </Link>
-              <Link
-                href="/robotics"
-                className="flex-shrink-0 text-gray-600 hover:text-orange-500"
-              >
-                机器人
-              </Link>
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => onCategoryChange(category.id)}
+                  className={`flex-shrink-0 ${
+                    currentCategory === category.id
+                      ? "text-orange-500 font-medium"
+                      : "text-gray-600 hover:text-orange-500"
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
             </div>
           </div>
         </div>
